@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Login, Register, Landing, Home, Forum, Blog } from './pages';
+import { Login, Register, Landing, Home, Forum, Blog, UploadBlog } from './pages';
 
 export default class App extends Component {
   render() {
@@ -14,6 +14,7 @@ export default class App extends Component {
             <Route path="/home" element={<Home />} />
             <Route path="/forum" element={<Forum />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/upload-blog" element={<UploadBlog />} />
           </Routes>
         </main>
       </BrowserRouter>
