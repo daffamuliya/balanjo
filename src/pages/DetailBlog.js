@@ -30,7 +30,7 @@ export default class Landing extends Component {
             <MDBContainer>
               <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5 text-center">
                 <div className="col-lg-12 ">
-                  <img src="/img/cover-blog.png" className="hover-shadow" alt="" />
+                  <img src="/img/cover-blog.png" className="hover-shadow" alt="" style={{ width:'100%' }}/>
                 </div>
               </div>
               <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content mt-5">

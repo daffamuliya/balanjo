@@ -4,9 +4,8 @@ const LandingEcom = () => {
   return (
     <section className="landingecommerce">
       <MDBContainer>
-      
-        <MDBRow className=" pt-5">
-          <MDBCol size="3" className="mt-3">
+        <MDBRow className="pt-5 mb-5">
+          <MDBCol md={3} xs={12} className="mt-3">
             <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-center">
               <MDBCardImage src="/img/lilin.png" position="top" alt="..." />
               <MDBCardBody>
@@ -25,7 +24,7 @@ const LandingEcom = () => {
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          <MDBCol size="3" className="mt-3">
+          <MDBCol md={3} xs={12} className="mt-3">
             <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-center">
               <MDBCardImage src="/img/lilin.png" position="top" alt="..." />
               <MDBCardBody>
@@ -44,7 +43,7 @@ const LandingEcom = () => {
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          <MDBCol size="3" className="mt-3">
+          <MDBCol md={3} xs={12} className="mt-3">
             <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-center">
               <MDBCardImage src="/img/lilin.png" position="top" alt="..." />
               <MDBCardBody>
@@ -63,7 +62,7 @@ const LandingEcom = () => {
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          <MDBCol size="3" className="mt-3">
+          <MDBCol md={3} xs={12} className="mt-3">
             <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-center">
               <MDBCardImage src="/img/lilin.png" position="top" alt="..." />
               <MDBCardBody>
@@ -82,7 +81,7 @@ const LandingEcom = () => {
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          <MDBCol size="3" className="mt-3">
+          <MDBCol md={3} xs={12} className="mt-3">
             <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-center">
               <MDBCardImage src="/img/lilin.png" position="top" alt="..." />
               <MDBCardBody>
@@ -101,7 +100,7 @@ const LandingEcom = () => {
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          <MDBCol size="3" className="mt-3">
+          <MDBCol md={3} xs={12} className="mt-3">
             <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-center">
               <MDBCardImage src="/img/lilin.png" position="top" alt="..." />
               <MDBCardBody>
@@ -120,7 +119,7 @@ const LandingEcom = () => {
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          <MDBCol size="3" className="mt-3">
+          <MDBCol md={3} xs={12} className="mt-3">
             <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-center">
               <MDBCardImage src="/img/lilin.png" position="top" alt="..." />
               <MDBCardBody>
@@ -139,7 +138,7 @@ const LandingEcom = () => {
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          <MDBCol size="3" className="mt-3">
+          <MDBCol md={3} xs={12} className="mt-3">
             <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-center">
               <MDBCardImage src="/img/lilin.png" position="top" alt="..." />
               <MDBCardBody>

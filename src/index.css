@@ -33,18 +33,42 @@ code {
 }
 
 .landingeforum {
-  margin-top: 50px;
-  margin-bottom: 50px;
-  height: 100vh;
+  margin-bottom: 100px;
+  height: 130vh;
   background-color: white;
+}
+@media (max-width: 780px) {
+  .landingeforum {
+    margin-bottom: 100px;
+    height: 300vh;
+    background-color: white;
+  }
 }
 .isiblog {
   margin-bottom: 50px;
-  height: 200vh;
+  height: 400vh;
   background-color: white;
+}
+@media (max-width: 576px) {
+  .isiblog {
+    height: 500vh;
+    background-color: #fafbfb;
+  }
 }
 
 .judul-blog {
   height: 50vh;
   background-color: #fafbfb;
+}
+@media (max-width: 780px) {
+  .judul-blog {
+    height: 80vh;
+    background-color: #fafbfb;
+  }
+}
+.blog {
+  margin-top: 10px;
+  margin-bottom: 100px;
+  padding: 30px;
+  background-color: white;
 }

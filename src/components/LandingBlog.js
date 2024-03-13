@@ -27,7 +27,7 @@ const LandingBlog = () => {
           </div>
         </MDBRow>
         <MDBRow className="pt-5">
-          <MDBCol size="4" className="mt-3">
+          <MDBCol md={4} xs={8} className="mt-3">
             <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-left">
               <MDBCardImage src="/img/foto-blog.png" position="top" alt="..." />
               <MDBCardBody>
@@ -47,7 +47,7 @@ const LandingBlog = () => {
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          <MDBCol size="4" className="mt-3">
+          <MDBCol md={4} xs={8}className="mt-3">
             <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-left">
               <MDBCardImage src="/img/foto-blog.png" position="top" alt="..." />
               <MDBCardBody>
@@ -67,7 +67,7 @@ const LandingBlog = () => {
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          <MDBCol size="4" className="mt-3">
+          <MDBCol md={4} xs={8} className="mt-3">
             <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-left">
               <MDBCardImage src="/img/foto-blog.png" position="top" alt="..." />
               <MDBCardBody>

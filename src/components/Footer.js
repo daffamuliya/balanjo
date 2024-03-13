@@ -14,7 +14,7 @@ const Footer = () => {
             <p className="me-4">Home </p>
             <p className="me-4">Forum </p>
             <p className="me-4">Blog </p>
-            <p className="me-4">E-Commerce </p>
+            <p className="me-4">ECommerce </p>
             <p className="me-4">Login </p>
           </MDBCol>
         </MDBRow>

@@ -15,11 +15,11 @@ export default class Landing extends Component {
                 <MDBInput wrapperClass="mb-4 w-100" id="formControlLg" type="email" size="lg" style={{ fontSize: '16px' }} placeholder="Search for products..." className="focus-ring focus-ring-light " autoComplete="new-password" />
               </form>
             </MDBCol>
-            <MDBCol size="6">
-              <img src="/img/iklan.png" className="hover-shadow" alt="" />
+            <MDBCol md={6} xs={12} className="mb-3">
+              <img src="/img/iklan.png" className="hover-shadow" alt="" style={{ width: '100%' }} />
             </MDBCol>
-            <MDBCol size="6">
-              <img src="/img/iklan (3).png" className="hover-shadow" alt="" />
+            <MDBCol md={6} xs={12}>
+              <img src="/img/iklan (3).png" className="hover-shadow" alt="" style={{ width: '100%' }} />
             </MDBCol>
             <MDBCol size="12 mt-5" style={{ backgroundColor: 'white', padding: '15px' }}>
               <div className="row justify-content-center">

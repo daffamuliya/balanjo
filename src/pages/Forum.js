@@ -11,8 +11,8 @@ export default class Landing extends Component {
         <NormalNavbar />
         <MDBContainer>
           <MDBRow className="mt-3 justify-content-center">
-            <MDBCol size="12">
-              <img src="/img/banner-forum.png" className="hover-shadow" alt="" />
+            <MDBCol md={12} xs={2} className='ms-auto'>
+              <img src="/img/banner-forum.png" className="hover-shadow" alt="" style={{ width: '100%' }} />
             </MDBCol>
             <LandingSocial />
           </MDBRow>

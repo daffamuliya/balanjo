@@ -15,8 +15,8 @@ export default class Landing extends Component {
                 <MDBInput wrapperClass="mb-4 w-100" id="formControlLg" type="email" size="lg" style={{ fontSize: '16px' }} placeholder="Search for products..." className="focus-ring focus-ring-light " autoComplete="new-password" />
               </form>
             </MDBCol>
-            <MDBCol size="12">
-              <img src="/img/kategori-ecom.png" className="hover-shadow" alt="" />
+            <MDBCol md={12} xs={2} className="ms-auto">
+              <img src="/img/kategori-ecom.png" className="hover-shadow" alt="" style={{ width:'100%' }}/>
             </MDBCol>
             <LandingEcom />
           </MDBRow>

@@ -1,4 +1,4 @@
-import { MDBContainer, MDBRow, MDBBtn, MDBCol, MDBCard, MDBCardBody, MDBListGroup, MDBListGroupItem, MDBCardImage, MDBCardText, MDBIcon } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBRow, MDBBtn, MDBCol, MDBCard, MDBCardBody, MDBListGroup, MDBListGroupItem, MDBCardImage, MDBCardText } from 'mdb-react-ui-kit';
 import { Chat } from 'react-bootstrap-icons';
 
 const LandingForum = () => {
@@ -6,14 +6,14 @@ const LandingForum = () => {
     <section className="landingsocial">
       <MDBContainer>
         <MDBRow className="mt-4">
-          <MDBCol size="4">
+          <MDBCol md={4} xs={12}>
             <MDBBtn size="lg" className="col-12" style={{ backgroundColor: '#A08336', fontSize: '16px', fontWeight: 'normal', border: '#A08336', borderRadius: '10px', marginBottom: '30px' }}>
               Mulai Diskusi Baru
             </MDBBtn>
-            <p className="text-white-75" style={{ color: '#6A6D70', marginBottom: '1rem' }}>
+            <p className="text-white-75 d-none d-md-block" style={{ color: '#6A6D70', marginBottom: '1rem' }}>
               Kategori{' '}
             </p>
-            <MDBListGroup style={{ minWidth: '22rem', paddingBottom: '35px' }}>
+            <MDBListGroup style={{ minWidth: '22rem', paddingBottom: '35px' }} className='d-none d-md-block'>
               <MDBListGroupItem noBorders style={{ backgroundColor: 'transparent' }}>
                 - Campus Life
               </MDBListGroupItem>
@@ -30,10 +30,10 @@ const LandingForum = () => {
                 - Bisnis
               </MDBListGroupItem>
             </MDBListGroup>
-            <p className="text-white-75" style={{ color: '#6A6D70', marginBottom: '1rem' }}>
+            <p className="text-white-75 d-none d-md-block" style={{ color: '#6A6D70', marginBottom: '1rem' }}>
               Trending{' '}
             </p>
-            <MDBListGroup style={{ minWidth: '22rem', backgroundColor: 'transparent' }}>
+            <MDBListGroup style={{ minWidth: '22rem', backgroundColor: 'transparent' }} className='d-none d-md-block'>
               <MDBListGroupItem className="d-flex justify-content-between align-items-start" noBorders style={{ backgroundColor: 'transparent' }}>
                 <div className="me-auto">
                   <div className="fw-bold">Info tempat nongkrong di Unand dong</div>14 balasan
@@ -54,8 +54,8 @@ const LandingForum = () => {
               </MDBListGroupItem>
             </MDBListGroup>
           </MDBCol>
-          <MDBCol size="8">
-            <MDBCard className="mb-3">
+          <MDBCol md={8} xs={12}>
+            <MDBCard className="mb-3 ">
               <MDBCardBody>
                 {' '}
                 <div className="d-flex">

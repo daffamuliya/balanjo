@@ -41,7 +41,7 @@ export default class Landing extends Component {
             </h2>
           </MDBRow>
           <MDBRow className="pt-5">
-            <MDBCol size="4">
+            <MDBCol md={4} xs={8} className="mt-3">
               <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none', Width: '390px', Height: '239px' }} className="text-center">
                 <MDBCardImage src="/img/mandiri.png" className="mx-auto mt-5" alt="..." style={{ width: '30%' }} />
                 <MDBCardBody>
@@ -49,7 +49,7 @@ export default class Landing extends Component {
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
-            <MDBCol size="4">
+            <MDBCol md={4} xs={8} className="mt-3">
               <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none', Width: '390px', Height: '239px' }} className="text-center">
                 <MDBCardImage src="/img/qris.png" className="mx-auto mt-5" alt="..." style={{ width: '30%' }} />
                 <MDBCardBody>
@@ -57,7 +57,7 @@ export default class Landing extends Component {
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
-            <MDBCol size="4">
+            <MDBCol md={4} xs={8} className="mt-3">
               <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none', Width: '390px', Height: '239px' }} className="text-center">
                 <MDBCardImage src="/img/bca.png" className="mx-auto mt-5" alt="..." style={{ width: '30%' }} />
                 <MDBCardBody>
@@ -65,7 +65,7 @@ export default class Landing extends Component {
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
-            <MDBCol size="4" className="mt-3">
+            <MDBCol md={4} xs={8} className="mt-3">
               <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none', Width: '390px', Height: '239px' }} className="text-center">
                 <MDBCardImage src="/img/dana.png" className="mx-auto mt-5" alt="..." style={{ width: '30%' }} />
                 <MDBCardBody>
@@ -73,7 +73,7 @@ export default class Landing extends Component {
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
-            <MDBCol size="4" className="mt-3">
+            <MDBCol md={4} xs={8} className="mt-3">
               <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none', Width: '390px', Height: '239px' }} className="text-center">
                 <MDBCardImage src="/img/shoppee.png" className="mx-auto mt-5" alt="..." style={{ width: '30%' }} />
                 <MDBCardBody>
@@ -81,7 +81,7 @@ export default class Landing extends Component {
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
-            <MDBCol size="4" className="mt-3">
+            <MDBCol md={4} xs={8} className="mt-3">
               <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none', Width: '390px', Height: '239px' }} className="text-center">
                 <MDBCardImage src="/img/gopay.png" className="mx-auto mt-5" alt="..." style={{ width: '30%' }} />
                 <MDBCardBody>
