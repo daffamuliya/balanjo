@@ -34,7 +34,17 @@ code {
 
 .landingeforum {
   margin-top: 50px;
-  margin-bottom: 50px ;
+  margin-bottom: 50px;
   height: 100vh;
   background-color: white;
+}
+.isiblog {
+  margin-bottom: 50px;
+  height: 200vh;
+  background-color: white;
+}
+
+.judul-blog {
+  height: 50vh;
+  background-color: #fafbfb;
 }
