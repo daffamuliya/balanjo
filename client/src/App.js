@@ -1,9 +1,31 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Login, Register, Landing, Home, Forum, Blog, UploadBlog, DetailBlog, ECommerce, KategoriEcom, DetailProduk, Cart, Checkout, DetailOrder, BuktiBayar } from './pages';
+import { API_URL } from './utils/constants';
+import axios from 'axios';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      items: [],
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get(API_URL + 'marketplace')
+      .then((res) => {
+        const items = res.data;
+        this.setState({ items });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   render() {
+    console.log(this.state.items);
     return (
       <BrowserRouter>
         <main>

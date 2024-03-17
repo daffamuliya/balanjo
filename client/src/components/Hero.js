@@ -9,7 +9,7 @@ const Hero = () => {
             <h1 className="text-white font-weight-bold" style={{ color: 'white', fontSize: '74px' }}>
               Inovasi untuk Rangers.
             </h1>
-            <p class="text-white-75 mb-5" style={{ color: 'white' }}>
+            <p className="text-white-75 mb-5" style={{ color: 'white' }}>
               Bersatu dalam Pengetahuan, Inspirasi, dan Karya
             </p>
             <MDBBtn size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '169px', maxHeight: '42px', fontWeight: 'normal', textAlign: 'center', border: '#A08336', borderRadius: '10px' }}>
