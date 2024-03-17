@@ -1,3 +1,11 @@
+# Server
+
+Is the part of app that node js, in runs on server side. In runs in (http://localhost:3001) by writing command npm start in terminal. 
+
+# Client 
+
+Is the part of app that contain react app. In runs in (http://localhost:3000) by writing command npm start in terminal. 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
