@@ -1,8 +1,8 @@
-# Server
+## Server
 
 Is the part of app that node js, in runs on server side. In runs in (http://localhost:3001) by writing command npm start in terminal. 
 
-# Client 
+## Client 
 
 Is the part of app that contain react app. In runs in (http://localhost:3000) by writing command npm start in terminal. 
 
