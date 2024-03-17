@@ -1,0 +1,53 @@
+###
+GET http://localhost:3000/blog/
+
+###
+GET http://localhost:3000/blog/detail-2
+
+###
+
+GET http://localhost:3000/blog/addBlog
+
+###
+POST http://localhost:3000/blog/addBlog
+Content-Type: application/json
+
+{
+     "user_id": 1,
+     "kategori_id": 3,
+     "judul" : "menurunkan berat badan",
+     "konten": "cara menurunkan berat badan"
+} 
+
+###
+PUT http://localhost:3000/blog/updateBlog/1
+Content-Type: application/json
+
+{
+     "user_id": 1,
+     "kategori_id": 3,
+     "judul" : "data mining",
+     "konten": "cara nambang data"
+} 
+
+###
+DELETE http://localhost:3000/blog/deleteBlog/1
+
+###
+GET http://localhost:3000/blog/comment/all
+
+###
+POST http://localhost:3000/blog/addComment
+Content-Type: application/json
+
+{
+     "blog_id": 2,
+     "user_id": 1,
+     "komentar" : "sangat menarik"
+} 
+
+###
+DELETE http://localhost:3000/blog/deleteComment/3
+
+###
+GET http://localhost:3000/marketplace/p
