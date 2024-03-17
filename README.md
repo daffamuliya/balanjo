@@ -1,6 +1,6 @@
 ## Server
 
-Is the part of app that node js, in runs on server side. In runs in (http://localhost:3001) by writing command npm start in terminal. 
+Is the part of app that writes in node js, it runs on server side. In runs in (http://localhost:3001) by writing command npm start in terminal. 
 
 ## Client 
 
