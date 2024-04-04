@@ -43,24 +43,26 @@ const LandingBlog = () => {
           {Array.isArray(blog) &&
             blog.map((item) => (
               <MDBCol key={item.id} md={4} xs={8} className="mt-3">
-                <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-left">
-                  <MDBCardImage src="/img/foto-blog.png" position="top" alt="..." />
-                  <MDBCardBody>
-                    <MDBBtn className="mb-3" color="light" style={{ color: '#A08336', fontSize: '14px' }}>
-                      Technology
-                    </MDBBtn>
-                    <MDBCardTitle style={{ fontSize: '20px', fontWeight: 'bold' }}>{item.judul}</MDBCardTitle>
-                    <div className="d-flex">
-                      <MDBCardImage className="me-2 mt-2" src="/img/image.png" style={{ width: '13%', height: '13%' }} />
-                      <MDBCardText className="mt-3" style={{ color: '#97989F', fontSize: '14px' }}>
-                        Elizabeth Slavin
-                      </MDBCardText>
-                      <MDBCardText className="ms-5 mt-3 " style={{ color: '#97989F', fontSize: '14px' }}>
-                        August 20, 2022
-                      </MDBCardText>
-                    </div>
-                  </MDBCardBody>
-                </MDBCard>
+                <a href="/detail-blog" style={{ textDecoration: 'none', color: 'black' }}>
+                  <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-left">
+                    <MDBCardImage src="/img/foto-blog.png" position="top" alt="..." />
+                    <MDBCardBody>
+                      <MDBBtn className="mb-3" color="light" style={{ color: '#A08336', fontSize: '14px' }}>
+                        Technology
+                      </MDBBtn>
+                      <MDBCardTitle style={{ fontSize: '20px', fontWeight: 'bold' }}>{item.judul}</MDBCardTitle>{' '}
+                      <div className="d-flex">
+                        <MDBCardImage className="me-2 mt-2" src="/img/image.png" style={{ width: '13%', height: '13%' }} />
+                        <MDBCardText className="mt-3" style={{ color: '#97989F', fontSize: '14px' }}>
+                          Elizabeth Slavin
+                        </MDBCardText>
+                        <MDBCardText className="ms-5 mt-3 " style={{ color: '#97989F', fontSize: '14px' }}>
+                          August 20, 2022
+                        </MDBCardText>
+                      </div>
+                    </MDBCardBody>
+                  </MDBCard>
+                </a>
               </MDBCol>
             ))}
         </MDBRow>

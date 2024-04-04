@@ -35,7 +35,7 @@ const upload = multer({
 router.get('/', controller.blog.getAllBlog);
 router.get('/baca/:slug', controller.blog.getBlogBySlug);
 router.get('/addBlog', controller.blog.tampilTambahBlog);
-router.post('/addBlog', upload.single('gambar_blog'), controller.blog.addBlog);
+router.post('/addBlog', controller.blog.addBlog);
 router.put('/updateBlog/:id', controller.blog.updateBlog);
 router.delete('/deleteBlog/:id', controller.blog.deleteBlog);
 router.get('/comment/all', controller.blog.getAllComment);

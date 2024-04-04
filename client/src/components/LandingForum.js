@@ -1,7 +1,19 @@
 import { MDBContainer, MDBRow, MDBBtn, MDBCol, MDBCard, MDBCardBody, MDBListGroup, MDBListGroupItem, MDBCardImage, MDBCardText } from 'mdb-react-ui-kit';
 import { Chat } from 'react-bootstrap-icons';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const LandingForum = () => {
+  const [forum, setForum] = useState([]);
+
+  useEffect(() => {
+    getForum();
+  }, []);
+
+  const getForum = async () => {
+    const response = await axios.get('http://localhost:3000/forum');
+    setForum(response.data.items);
+  };
   return (
     <section className="landingsocial">
       <MDBContainer>
@@ -13,7 +25,7 @@ const LandingForum = () => {
             <p className="text-white-75 d-none d-md-block" style={{ color: '#6A6D70', marginBottom: '1rem' }}>
               Kategori{' '}
             </p>
-            <MDBListGroup style={{ minWidth: '22rem', paddingBottom: '35px' }} className='d-none d-md-block'>
+            <MDBListGroup style={{ minWidth: '22rem', paddingBottom: '35px' }} className="d-none d-md-block">
               <MDBListGroupItem noBorders style={{ backgroundColor: 'transparent' }}>
                 - Campus Life
               </MDBListGroupItem>
@@ -33,7 +45,7 @@ const LandingForum = () => {
             <p className="text-white-75 d-none d-md-block" style={{ color: '#6A6D70', marginBottom: '1rem' }}>
               Trending{' '}
             </p>
-            <MDBListGroup style={{ minWidth: '22rem', backgroundColor: 'transparent' }} className='d-none d-md-block'>
+            <MDBListGroup style={{ minWidth: '22rem', backgroundColor: 'transparent' }} className="d-none d-md-block">
               <MDBListGroupItem className="d-flex justify-content-between align-items-start" noBorders style={{ backgroundColor: 'transparent' }}>
                 <div className="me-auto">
                   <div className="fw-bold">Info tempat nongkrong di Unand dong</div>14 balasan
@@ -55,74 +67,26 @@ const LandingForum = () => {
             </MDBListGroup>
           </MDBCol>
           <MDBCol md={8} xs={12}>
-            <MDBCard className="mb-3 ">
-              <MDBCardBody>
-                {' '}
-                <div className="d-flex">
-                  <MDBCardImage className="me-2 mt-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
-                  <MDBCol>
-                    <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '18px', fontWeight: 'bold' }}>
-                      mrclna
-                    </MDBCardText>
-                    <MDBCardText className=" ms-2" style={{ color: 'black', fontSize: '18px', marginTop: '-15px' }}>
-                      Do you like pigeons ?
-                    </MDBCardText>
-                    <Chat />
-                  </MDBCol>
-                </div>
-              </MDBCardBody>
-            </MDBCard>
-            <MDBCard className="mb-3">
-              <MDBCardBody>
-                {' '}
-                <div className="d-flex">
-                  <MDBCardImage className="me-2 mt-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
-                  <MDBCol>
-                    <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '18px', fontWeight: 'bold' }}>
-                      mrclna
-                    </MDBCardText>
-                    <MDBCardText className=" ms-2" style={{ color: 'black', fontSize: '18px', marginTop: '-15px' }}>
-                      Do you like pigeons ?
-                    </MDBCardText>
-                    <Chat />
-                  </MDBCol>
-                </div>
-              </MDBCardBody>
-            </MDBCard>
-            <MDBCard className="mb-3">
-              <MDBCardBody>
-                {' '}
-                <div className="d-flex">
-                  <MDBCardImage className="me-2 mt-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
-                  <MDBCol>
-                    <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '18px', fontWeight: 'bold' }}>
-                      mrclna
-                    </MDBCardText>
-                    <MDBCardText className=" ms-2" style={{ color: 'black', fontSize: '18px', marginTop: '-15px' }}>
-                      Do you like pigeons ?
-                    </MDBCardText>
-                    <Chat />
-                  </MDBCol>
-                </div>
-              </MDBCardBody>
-            </MDBCard>
-            <MDBCard className="mb-3">
-              <MDBCardBody>
-                {' '}
-                <div className="d-flex">
-                  <MDBCardImage className="me-2 mt-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
-                  <MDBCol>
-                    <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '18px', fontWeight: 'bold' }}>
-                      mrclna
-                    </MDBCardText>
-                    <MDBCardText className=" ms-2" style={{ color: 'black', fontSize: '18px', marginTop: '-15px' }}>
-                      Do you like pigeons ?
-                    </MDBCardText>
-                    <Chat />
-                  </MDBCol>
-                </div>
-              </MDBCardBody>
-            </MDBCard>
+            {Array.isArray(forum) &&
+              forum.map((item) => (
+                <MDBCard key={item.id} className="mb-3 ">
+                  <MDBCardBody>
+                    {' '}
+                    <div className="d-flex">
+                        <MDBCardImage className="me-2 mt-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
+                      <MDBCol>
+                        <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '18px', fontWeight: 'bold' }}>
+                          {item.user}
+                        </MDBCardText>
+                        <MDBCardText className=" ms-2" style={{ color: 'black', fontSize: '18px', marginTop: '-15px' }}>
+                          {item.konten}
+                        </MDBCardText>
+                        <Chat />
+                      </MDBCol>
+                    </div>
+                  </MDBCardBody>
+                </MDBCard>
+              ))}
           </MDBCol>
         </MDBRow>
       </MDBContainer>

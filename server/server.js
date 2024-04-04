@@ -44,9 +44,9 @@ app.get('*', checkUser);
 app.use('/auth', auth);
 app.use('/blog', blog);
 
-app.use('/marketplace', isLogin, marketplace);
-app.use('/forum', isLogin, forum);
-app.use('/kelola', isLogin, kelola);
+app.use('/marketplace', marketplace);
+app.use('/forum', forum);
+app.use('/kelola', kelola);
 
 //--------------------------------
 

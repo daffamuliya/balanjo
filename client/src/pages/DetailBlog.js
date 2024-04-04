@@ -1,7 +1,7 @@
-import React, { Component, Image } from 'react';
+import React, { Component } from 'react';
 import NormalNavbar from '../components/NormalNavbar';
 import Footer from '../components/Footer';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBRow, MDBBtn } from 'mdb-react-ui-kit';
 export default class Landing extends Component {
   render() {
     return (
@@ -30,12 +30,12 @@ export default class Landing extends Component {
             <MDBContainer>
               <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5 text-center">
                 <div className="col-lg-12 ">
-                  <img src="/img/cover-blog.png" className="hover-shadow" alt="" style={{ width:'100%' }}/>
+                  <img src="/img/cover-blog.png" className="hover-shadow" alt="" style={{ width: '100%' }} />
                 </div>
               </div>
               <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content mt-5">
                 <div className="col-lg-12 ">
-                  <p style={{ color: 'black', marginTop: '25px', textAlign: 'justify', fontSize:'20px' }}>
+                  <p style={{ color: 'black', marginTop: '25px', textAlign: 'justify', fontSize: '20px' }}>
                     Negara-negara Arab, seperti banyak negara di seluruh dunia, terlibat dalam berbagai peristiwa dan konflik yang melibatkan pelanggaran hukum internasional. Pelanggaran ini berkisar dari konflik bersenjata hingga masalah
                     hak asasi manusia dan intervensi kebijakan luar negeri yang kontroversial. Meskipun tidak semua negara Arab terlibat dalam pelanggaran serupa, sejumlah peristiwa telah menimbulkan kekhawatiran di tingkat internasional.
                     Intervensi Militer dan Konflik Bersenjata Salah satu bentuk pelanggaran hukum internasional yang paling mencolok adalah intervensi militer dan konflik bersenjata. Contohnya termasuk perang saudara di Suriah yang telah

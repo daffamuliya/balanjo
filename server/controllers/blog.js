@@ -1,6 +1,7 @@
 const model = require('../models/indexmodel');
 const { Op, QueryTypes } = require('sequelize');
 const slugify = require('slugify');
+const { blog } = require('./indexcontroller');
 const controller = {};
 
 controller.getAllBlog = async (req, res) => {
