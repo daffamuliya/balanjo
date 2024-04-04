@@ -29,7 +29,7 @@ export default class Landing extends Component {
                   </div>
                 </div>
                 <div className="col-lg-4 mt-5 d-flex justify-content-end">
-                  <MDBBtn size="lg" style={{ backgroundColor: 'black', fontSize: '16px', maxWidth: '169px', maxHeight: '42px', fontWeight: 'normal', border: '#A08336', borderRadius: '10px' }}>
+                  <MDBBtn href="/ecommerce" size="lg" style={{ backgroundColor: 'black', fontSize: '16px', maxWidth: '169px', maxHeight: '42px', fontWeight: 'normal', border: '#A08336', borderRadius: '10px' }}>
                     Lainnya -{'>'}
                   </MDBBtn>
                 </div>
@@ -38,6 +38,30 @@ export default class Landing extends Component {
           </MDBRow>
         </MDBContainer>
         <LandingEcom />
+        <MDBRow className="judul-forum">
+          <MDBContainer>
+            <div className="container px-4 px-lg-5 mt-5">
+              <div className="row gx-4 gx-lg-5 align-items-center justify-content-between">
+                <div className="col-lg-7">
+                  <div className="d-flex flex-column align-items-start">
+                    <p style={{ fontWeight: 'bold', marginBottom: '0' }}>Blog</p>
+                    <h1 className="font-weight-bold mt-3" style={{ fontSize: '35px', fontWeight: 'bold', color: '#A08336', marginBottom: '1rem' }}>
+                      Temukan Inspirasi Karya Rangers{' '}
+                    </h1>
+                    <p className="text-white-75" style={{ color: '#6A6D70', marginBottom: '1rem' }}>
+                      Tempat di mana ide-ide segar bertemu dengan pengetahuan mendalam <br /> untuk membantu mengembangkan bisnis kamu
+                    </p>
+                  </div>
+                </div>
+                <div className="col-lg-4 mt-5 d-flex justify-content-end">
+                  <MDBBtn href="/blog" size="lg" style={{ backgroundColor: 'black', fontSize: '16px', maxWidth: '169px', maxHeight: '42px', fontWeight: 'normal', border: '#A08336', borderRadius: '10px' }}>
+                    Lainnya -{'>'}
+                  </MDBBtn>
+                </div>
+              </div>
+            </div>
+          </MDBContainer>
+        </MDBRow>
         <LandingBlog />
         <MDBContainer>
           {' '}
@@ -56,7 +80,7 @@ export default class Landing extends Component {
                   </div>
                 </div>
                 <div className="col-lg-4 mt-5 d-flex justify-content-end">
-                  <MDBBtn size="lg" style={{ backgroundColor: 'black', fontSize: '16px', maxWidth: '169px', maxHeight: '42px', fontWeight: 'normal', border: '#A08336', borderRadius: '10px' }}>
+                  <MDBBtn href="/forum" size="lg" style={{ backgroundColor: 'black', fontSize: '16px', maxWidth: '169px', maxHeight: '42px', fontWeight: 'normal', border: '#A08336', borderRadius: '10px' }}>
                     Lainnya -{'>'}
                   </MDBBtn>
                 </div>

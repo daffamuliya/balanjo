@@ -6,8 +6,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const UploadBlog = () => {
+  const [user_id] = useState('2');
+  const [user] = useState('daffa');
   const [judul, setJudul] = useState('');
-  const [slug, setSlug] = useState('');
+  const [slug, setSlug] = useState('sds');
   const [kategori_blog, setKategori] = useState('Wirausaha');
   const [gambar, setGambar] = useState('');
   const [summary, setSummary] = useState('');
@@ -18,9 +20,11 @@ const UploadBlog = () => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:3000/blog/addBlog', {
+        user_id,
+        user,
+        kategori_blog,
         judul,
         slug,
-        kategori_blog,
         gambar,
         summary,
         konten,
@@ -63,14 +67,14 @@ const UploadBlog = () => {
                   </label>
                   <select value={kategori_blog} onChange={(e) => setKategori(e.target.value)} class="form-select" aria-label="Default select example" placeholder="Masukkan Kategori Blog">
                     <option selected></option>
-                    <option value="1">Wirauhaha</option>
-                    <option value="2">Keuangan Finansial</option>
-                    <option value="3">Bisnis Teknologi</option>
-                    <option value="4">Agribisnis</option>
-                    <option value="5">Bisnis Peternakan</option>
-                    <option value="6">Bisnis Kuliner</option>
-                    <option value="7">Bisnis Kreatif</option>
-                    <option value="8">Bisnis Jasa</option>
+                    <option value="Wirausaha">Wirausaha</option>
+                    <option value="Keuangan Finansial">Keuangan Finansial</option>
+                    <option value="Bisnis Teknologi">Bisnis Teknologi</option>
+                    <option value="Agribisnis">Agribisnis</option>
+                    <option value="Bisnis Peternakan">Bisnis Peternakan</option>
+                    <option value="Bisnis Kuliner">Bisnis Kuliner</option>
+                    <option value="Bisnis Kreatif">Bisnis Kreatif</option>
+                    <option value="Bisnis Jasa">Bisnis Jasa</option>
                   </select>
                 </div>
                 <div class="mb-3">

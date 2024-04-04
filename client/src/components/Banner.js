@@ -5,17 +5,19 @@ const Banner = () => {
     <section className="banner mt-5">
       <MDBContainer>
         <MDBRow>
-          <MDBCarousel showControls fade>
-            <MDBCarouselItem itemId={1}>
-              <img src="/img/banner.png" className="d-block w-100" alt="..." />
-            </MDBCarouselItem>
-            <MDBCarouselItem itemId={2}>
-              <img src="/img/banner.png" className="d-block w-100" alt="..." />
-            </MDBCarouselItem>
-            <MDBCarouselItem itemId={3}>
-              <img src="/img/banner.png" className="d-block w-100" alt="..." />
-            </MDBCarouselItem>
-          </MDBCarousel>
+          <MDBCol size="12">
+            <MDBCarousel showControls fade>
+              <MDBCarouselItem itemId={1}>
+                <img src="/img/banner.png" className="d-block w-100" alt="..." />
+              </MDBCarouselItem>
+              <MDBCarouselItem itemId={2}>
+                <img src="/img/banner.png" className="d-block w-100" alt="..." />
+              </MDBCarouselItem>
+              <MDBCarouselItem itemId={3}>
+                <img src="/img/banner.png" className="d-block w-100" alt="..." />
+              </MDBCarouselItem>
+            </MDBCarousel>{' '}
+          </MDBCol>
         </MDBRow>
         <MDBRow className="mt-3 justify-content-around">
           <MDBCol size="6">

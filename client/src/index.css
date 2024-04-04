@@ -33,8 +33,10 @@ code {
 }
 
 .landingeforum {
-  margin-bottom: 100px;
-  height: 130vh;
+  /* margin-bottom: 100px; */
+  /* height: 130vh; untuk blog nya ada enam*/
+  height: max-content; /* sesuai content*/
+  padding: 45px;
   background-color: white;
 }
 @media (max-width: 780px) {
@@ -71,4 +73,9 @@ code {
   margin-bottom: 100px;
   padding: 30px;
   background-color: white;
+}
+
+.judul-forum {
+  background-color: white;
+  margin-top: 20px;
 }

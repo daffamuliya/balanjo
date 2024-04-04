@@ -45,7 +45,7 @@ controller.getBlogBySlug = async (req, res) => {
       .then((result) => {
         if (result) {
           res.json({ items: result });
-          // res.json(result)
+          d;
         } else {
           res.status(404).json({
             message: 'data tidak ada',
@@ -60,11 +60,11 @@ controller.getBlogBySlug = async (req, res) => {
 
 controller.addBlog = async (req, res) => {
   try {
-    const { user_id, kategori_blog, judul, summary, konten, user } = req.body;
-    const slug = slugify(judul);
-    const gambar = req.file.filename;
+    const { user_id, kategori_blog, judul, summary, konten, user, gambar, slug } = req.body;
+    // const slug = slugify(judul);
+    // const gambar = req.file.filename;
     await model.blog.create({ user_id, user, kategori_blog, judul, gambar, slug, summary, konten });
-    res.status(200).redirect('/blog');
+    res.redirect('/blog');
   } catch (error) {
     res.json({ message: error.message });
   }
@@ -86,7 +86,6 @@ controller.updateBlog = async (req, res) => {
     });
   } catch (error) {
     res.json({ message: error.message });
-    // res.redirect("/dosen/add-course");
   }
 };
 
@@ -110,8 +109,6 @@ controller.getAllComment = async (req, res) => {
     await model.komentar_blog
       .findAll({
         attributes: ['id', 'blog_id', 'user_id', 'user', 'komentar'],
-        // group: ['user_id']
-        // raw: true,
       })
       .then((result) => {
         if (result.length > 0) {
@@ -163,8 +160,7 @@ controller.tampilTambahBlog = async (req, res) => {
   try {
     await model.kategori_blog.findAll().then((result) => {
       if (result.length > 0) {
-        res.json({ items: result, blogActive: 'active', forumActive: '', marketplaceActive: '' });
-        // console.log(result)
+        res.json({ items: result });
       } else {
         res.status(200).json({
           message: 'data tidak ada',

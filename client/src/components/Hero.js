@@ -12,7 +12,7 @@ const Hero = () => {
             <p className="text-white-75 mb-5" style={{ color: 'white' }}>
               Bersatu dalam Pengetahuan, Inspirasi, dan Karya
             </p>
-            <MDBBtn size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '169px', maxHeight: '42px', fontWeight: 'normal', textAlign: 'center', border: '#A08336', borderRadius: '10px' }}>
+            <MDBBtn href="/home" size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '169px', maxHeight: '42px', fontWeight: 'normal', textAlign: 'center', border: '#A08336', borderRadius: '10px' }}>
               Get Started
             </MDBBtn>
           </div>
