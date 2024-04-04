@@ -42,7 +42,7 @@ code {
 @media (max-width: 780px) {
   .landingeforum {
     margin-bottom: 100px;
-    height: 300vh;
+    height: max-content;
     background-color: white;
   }
 }

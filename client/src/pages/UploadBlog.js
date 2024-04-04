@@ -9,8 +9,8 @@ const UploadBlog = () => {
   const [user_id] = useState('2');
   const [user] = useState('daffa');
   const [judul, setJudul] = useState('');
-  const [slug, setSlug] = useState('sds');
-  const [kategori_blog, setKategori] = useState('Wirausaha');
+  const [slug, setSlug] = useState('');
+  const [kategori_blog, setKategori] = useState('Pilih Kategori');
   const [gambar, setGambar] = useState('');
   const [summary, setSummary] = useState('');
   const [konten, setKonten] = useState('');
@@ -59,7 +59,7 @@ const UploadBlog = () => {
                   <label for="exampleInputEmail1" class="form-label">
                     Slug
                   </label>
-                  <input type="text" value={slug} onChange={(e) => setSlug(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled />
+                  <input type="text" value={slug} onChange={(e) => setSlug(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">
