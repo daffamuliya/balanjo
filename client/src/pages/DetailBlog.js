@@ -7,8 +7,8 @@ import axios from 'axios';
 
 const DetailBlog = () => {
   const { slug } = useParams();
-  const [blog, setBlog] = useState(null);
 
+  const [blog, setBlog] = useState(null);
   useEffect(() => {
     const fetchBlog = async () => {
       try {
@@ -18,7 +18,7 @@ const DetailBlog = () => {
           fetchedBlog = JSON.parse(savedBlog);
         } else {
           const response = await axios.get(`http://localhost:3000/blog/baca/${slug}`);
-          fetchedBlog = response.data.items; 
+          fetchedBlog = response.data.items;
           localStorage.setItem('savedBlog', JSON.stringify(fetchedBlog));
         }
         setBlog(fetchedBlog);
@@ -34,55 +34,55 @@ const DetailBlog = () => {
         localStorage.removeItem('savedBlog');
       }
     };
-  }, [slug]);
+  }, [slug, blog]);
 
-  if (!blog) {
+  if (blog) {
+    return (
+      <div>
+        <NormalNavbar />
+        <MDBRow className="justify-content-center">
+          <section className="judul-blog">
+            <MDBContainer>
+              <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5">
+                <div className="col-lg-12 ">
+                  <MDBBtn className="mb-3" color="light" style={{ color: '#A08336', fontSize: '14px' }}>
+                    Technology
+                  </MDBBtn>
+                  <h1 className="font-weight-bold" style={{ color: 'black', fontSize: '40px', fontWeight: 'bold' }}>
+                    {blog.judul}
+                  </h1>
+                  <p style={{ color: '#50739F' }}>20 Jan 2024, 8:00pm</p>
+                  <p style={{ color: 'black' }}>by Elizabeth Slavin</p>
+                </div>
+              </div>
+            </MDBContainer>
+          </section>
+        </MDBRow>
+        <MDBRow className="justify-content-center">
+          <section className="isiblog">
+            <MDBContainer>
+              <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5 text-center">
+                <div className="col-lg-12 ">
+                  <img src="/img/cover-blog.png" className="hover-shadow" alt="" style={{ width: '100%' }} />
+                </div>
+              </div>
+              <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content mt-5">
+                <div className="col-lg-12 ">
+                  <p style={{ color: 'black', marginTop: '25px', textAlign: 'justify', fontSize: '20px' }} dangerouslySetInnerHTML={{ __html: blog.konten }}></p>
+                </div>
+              </div>
+            </MDBContainer>
+          </section>
+        </MDBRow>
+        <br></br>
+        <br></br>
+        <br></br>
+        <Footer />
+      </div>
+    );
+  } else {
     return <div>Loading..</div>;
   }
-
-  return (
-    <div>
-      <NormalNavbar />
-      <MDBRow className="justify-content-center">
-        <section className="judul-blog">
-          <MDBContainer>
-            <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5">
-              <div className="col-lg-12 ">
-                <MDBBtn className="mb-3" color="light" style={{ color: '#A08336', fontSize: '14px' }}>
-                  Technology
-                </MDBBtn>
-                <h1 className="font-weight-bold" style={{ color: 'black', fontSize: '40px', fontWeight: 'bold' }}>
-                  {blog.judul}
-                </h1>
-                <p style={{ color: '#50739F' }}>20 Jan 2024, 8:00pm</p>
-                <p style={{ color: 'black' }}>by Elizabeth Slavin</p>
-              </div>
-            </div>
-          </MDBContainer>
-        </section>
-      </MDBRow>
-      <MDBRow className="justify-content-center">
-        <section className="isiblog">
-          <MDBContainer>
-            <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5 text-center">
-              <div className="col-lg-12 ">
-                <img src="/img/cover-blog.png" className="hover-shadow" alt="" style={{ width: '100%' }} />
-              </div>
-            </div>
-            <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content mt-5">
-              <div className="col-lg-12 ">
-                <p style={{ color: 'black', marginTop: '25px', textAlign: 'justify', fontSize: '20px' }} dangerouslySetInnerHTML={{ __html: blog.konten }}></p>
-              </div>
-            </div>
-          </MDBContainer>
-        </section>
-      </MDBRow>
-      <br></br>
-      <br></br>
-      <br></br>
-      <Footer />
-    </div>
-  );
 };
 
 export default DetailBlog;

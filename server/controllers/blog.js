@@ -28,34 +28,31 @@ controller.getAllBlog = async (req, res) => {
 
 controller.getBlogBySlug = async (req, res) => {
   try {
-    await model.blog
-      .findOne({
-        include: [
-          {
-            model: model.komentar_blog,
-            attributes: ['id', 'blog_id', 'user_id', 'user', 'komentar', 'created_at'],
-            required: false,
-            order: [['id', 'ASC']],
-          },
-        ],
-        where: {
-          slug: req.params.slug,
+    const result = await model.blog.findOne({
+      include: [
+        {
+          model: model.komentar_blog,
+          attributes: ['id', 'blog_id', 'user_id', 'user', 'komentar', 'created_at'],
+          required: false,
+          order: [['id', 'ASC']],
         },
-      })
+      ],
+      where: {
+        slug: req.params.slug,
+      },
+    });
 
-      .then((result) => {
-        if (result) {
-          res.json({ items: result });
-          d;
-        } else {
-          res.status(404).json({
-            message: 'data tidak ada',
-            data: [],
-          });
-        }
+    if (result) {
+      res.json({ items: result });
+    } else {
+      res.status(404).json({
+        message: 'Data tidak ditemukan',
+        data: [],
       });
+    }
   } catch (error) {
-    res.json({ error });
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Terjadi kesalahan saat mengambil data blog' });
   }
 };
 
