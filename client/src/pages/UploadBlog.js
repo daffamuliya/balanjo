@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NormalNavbar from '../components/NormalNavbar';
 import Footer from '../components/Footer';
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
@@ -14,11 +14,19 @@ const UploadBlog = () => {
   const [file, setFile] = useState('');
   const [summary, setSummary] = useState('');
   const [konten, setKonten] = useState('');
+
   const loadImage = (e) => {
     const image = e.target.files[0];
     setFile(image);
   };
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Memanggil fungsi slugify setiap kali nilai judul berubah
+    const slugified = slugify(judul);
+    setSlug(slugified);
+  }, [judul]);
 
   const saveBlog = async (e) => {
     e.preventDefault();
@@ -41,6 +49,18 @@ const UploadBlog = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  // Fungsi untuk mengubah teks menjadi slug
+  const slugify = (text) => {
+    return text
+      .toString()
+      .toLowerCase()
+      .replace(/\s+/g, '-') // Ganti spasi dengan tanda hubung
+      .replace(/[^\w\-]+/g, '') // Hapus karakter non-word kecuali tanda hubung
+      .replace(/\-\-+/g, '-') // Ganti beberapa tanda hubung berurutan dengan satu tanda hubung
+      .replace(/^-+/, '') // Hapus tanda hubung dari awal teks
+      .replace(/-+$/, ''); // Hapus tanda hubung dari akhir teks
   };
 
   return (
@@ -67,7 +87,7 @@ const UploadBlog = () => {
                   <label for="exampleInputEmail1" class="form-label">
                     Slug
                   </label>
-                  <input type="text" value={slug} onChange={(e) => setSlug(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                  <input type="text" value={slug} readOnly class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">

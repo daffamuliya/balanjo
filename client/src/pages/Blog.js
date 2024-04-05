@@ -19,7 +19,7 @@ export default class Landing extends Component {
               </form>
             </MDBCol>
             <MDBCol size="2" className="mt-3">
-              <MDBBtn href="/upload-blog" size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', border: 'black', marginRight: '5px' }}>
+              <MDBBtn href="upload-blog" size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', border: 'black', marginRight: '5px' }}>
                 Buat artikel kamu
               </MDBBtn>
             </MDBCol>

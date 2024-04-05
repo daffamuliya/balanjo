@@ -23,7 +23,7 @@ const LandingBlog = () => {
               <MDBCol key={item.id} md={4} xs={8} className="mt-3">
                 <a href="/detail-blog" style={{ textDecoration: 'none', color: 'black' }}>
                   <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-left">
-                    <MDBCardImage src={item.url}  position="top" alt="..." />
+                    <MDBCardImage src={item.url} position="top" alt="..." />
                     <MDBCardBody>
                       <MDBBtn className="mb-3" color="light" style={{ color: '#A08336', fontSize: '14px' }}>
                         Technology
