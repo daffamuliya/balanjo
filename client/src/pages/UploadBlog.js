@@ -11,23 +11,31 @@ const UploadBlog = () => {
   const [judul, setJudul] = useState('');
   const [slug, setSlug] = useState('');
   const [kategori_blog, setKategori] = useState('Pilih Kategori');
-  const [gambar, setGambar] = useState('');
+  const [file, setFile] = useState('');
   const [summary, setSummary] = useState('');
   const [konten, setKonten] = useState('');
+  const loadImage = (e) => {
+    const image = e.target.files[0];
+    setFile(image);
+  };
   const navigate = useNavigate();
 
   const saveBlog = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('user_id', user_id);
+    formData.append('user', user);
+    formData.append('judul', judul);
+    formData.append('slug', slug);
+    formData.append('kategori_blog', kategori_blog);
+    formData.append('file', file);
+    formData.append('summary', summary);
+    formData.append('konten', konten);
     try {
-      await axios.post('http://localhost:3000/blog/addBlog', {
-        user_id,
-        user,
-        kategori_blog,
-        judul,
-        slug,
-        gambar,
-        summary,
-        konten,
+      await axios.post('http://localhost:3000/blog/addBlog', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
       navigate('/blog');
     } catch (error) {
@@ -81,7 +89,7 @@ const UploadBlog = () => {
                   <label class="form-label" for="customFile">
                     Foto
                   </label>
-                  <input type="file" value={gambar} onChange={(e) => setGambar(e.target.value)} class="form-control" id="customFile" />
+                  <input type="file" onChange={loadImage} class="form-control" id="customFile" />
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">

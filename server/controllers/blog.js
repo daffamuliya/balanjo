@@ -2,6 +2,7 @@ const model = require('../models/indexmodel');
 const { Op, QueryTypes } = require('sequelize');
 const slugify = require('slugify');
 const { blog } = require('./indexcontroller');
+const path = require('path');
 const controller = {};
 
 controller.getAllBlog = async (req, res) => {
@@ -59,15 +60,33 @@ controller.getBlogBySlug = async (req, res) => {
 };
 
 controller.addBlog = async (req, res) => {
-  try {
-    const { user_id, kategori_blog, judul, summary, konten, user, gambar, slug } = req.body;
-    // const slug = slugify(judul);
-    // const gambar = req.file.filename;
-    await model.blog.create({ user_id, user, kategori_blog, judul, gambar, slug, summary, konten });
-    res.redirect('/blog');
-  } catch (error) {
-    res.json({ message: error.message });
-  }
+  if (req.files === null) return res.status(400).json({ msg: 'No File Uploaded' });
+  const user_id = req.body.user_id;
+  const user = req.body.user;
+  const judul = req.body.judul;
+  const slug = req.body.slug;
+  const kategori_blog = req.body.kategori_blog;
+  const summary = req.body.summary;
+  const konten = req.body.konten;
+  const file = req.files.file;
+  const fileSize = file.data.length;
+  const ext = path.extname(file.name);
+  const fileName = file.md5 + ext;
+  const url = `${req.protocol}://${req.get('host')}/images/${fileName}`;
+  const allowedType = ['.png', '.jpg', '.jpeg'];
+
+  if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({ msg: 'Invalid Images' });
+  if (fileSize > 5000000) return res.status(422).json({ msg: 'Image must be less than 5 MB' });
+
+  file.mv(`./public/images/${fileName}`, async (err) => {
+    if (err) return res.status(500).json({ msg: err.message });
+    try {
+      await model.blog.create({ user_id: user_id, kategori_blog: kategori_blog, judul: judul, slug: slug, summary: summary, konten: konten, user: user, gambar: fileName, url: url });
+      res.redirect('/blog');
+    } catch (error) {
+      console.log(error.message);
+    }
+  });
 };
 
 controller.updateBlog = async (req, res) => {
