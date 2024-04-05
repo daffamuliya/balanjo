@@ -15,7 +15,7 @@ export default class App extends Component {
             <Route path="/forum" element={<Forum />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/upload-blog" element={<UploadBlog />} />
-            <Route path="/detail-blog" element={<DetailBlog />} />
+            <Route path="/detail-blog/:slug" element={<DetailBlog />} />
             <Route path="/ecommerce" element={<ECommerce />} />
             <Route path="/kategori-ecom" element={<KategoriEcom />} />
             <Route path="/detail-produk" element={<DetailProduk />} />
