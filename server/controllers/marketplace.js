@@ -107,26 +107,33 @@ controller.getAllProduk = async (req, res) => {
 
 controller.getProdukById = async (req, res) => {
   try {
-    await model.produk
-      .findOne({
-        attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga'],
-        where: {
-          id: req.params.id,
+    const result = await model.produk.findOne({
+      attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga'],
+      include: [
+        {
+          model: model.kategori_produk,
+          attributes: ['nama'],
+          as: 'kategori',
         },
-      })
-      .then((result) => {
-        if (result) {
-          res.json({ items: result });
-        } else {
-          res.status(404).json({
-            message: 'data tidak ada',
-            data: [],
-          });
-        }
+      ],
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (result) {
+      const kategoriProduk = result.kategori.nama; // Mendapatkan nama kategori
+      res.json({ items: result, kategori: kategoriProduk }); // Mengirimkan nama kategori bersama dengan hasil produk
+    } else {
+      res.status(404).json({
+        message: 'Data tidak ditemukan',
+        data: [],
       });
+    }
   } catch (error) {
-    res.status(404).json({
-      message: error,
+    res.status(500).json({
+      message: 'Terjadi kesalahan saat mengambil data',
+      error: error,
     });
   }
 };
