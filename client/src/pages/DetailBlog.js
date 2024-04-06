@@ -18,6 +18,19 @@ const DetailBlog = () => {
         } else {
           const response = await axios.get(`http://localhost:3000/blog/baca/${slug}`);
           fetchedBlog = response.data.items;
+          const waktuDariDatabase = fetchedBlog.created_at;
+          const waktu = new Date(waktuDariDatabase);
+          const options = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            timeZone: 'Asia/Jakarta',
+          };
+          const waktuNormal = waktu.toLocaleDateString('id-ID', options);
+          fetchedBlog.waktuNormal = waktuNormal;
           localStorage.setItem('savedBlog', JSON.stringify(fetchedBlog));
         }
         setBlog(fetchedBlog);
@@ -50,8 +63,8 @@ const DetailBlog = () => {
                   <h1 className="font-weight-bold" style={{ color: 'black', fontSize: '40px', fontWeight: 'bold' }}>
                     {blog.judul}
                   </h1>
-                  <p style={{ color: '#50739F' }}>20 Jan 2024, 8:00pm</p>
-                  <p style={{ color: 'black' }}>by Elizabeth Slavin</p>
+                  <p style={{ color: '#50739F' }}>{blog.waktuNormal}</p>
+                  <p style={{ color: 'black' }}>Article by {blog.user}</p>
                 </div>
               </div>
             </MDBContainer>
@@ -62,7 +75,7 @@ const DetailBlog = () => {
             <MDBContainer>
               <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5 text-center">
                 <div className="col-lg-12 ">
-                  <img src="/img/cover-blog.png" className="hover-shadow" alt="" style={{ width: '100%' }} />
+                  <img src={blog.url} className="hover-shadow" alt="" style={{ width: '100%' }} />
                 </div>
               </div>
               <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content mt-5">

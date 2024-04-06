@@ -32,7 +32,7 @@ const LandingBlog = () => {
                       <div className="d-flex">
                         <MDBCardImage className="me-2 mt-2" src="/img/image.png" style={{ width: '13%', height: '13%' }} />
                         <MDBCardText className="mt-3" style={{ color: '#97989F', fontSize: '14px' }}>
-                          Elizabeth Slavin
+                          Article by {item.user} 
                         </MDBCardText>
                         <MDBCardText className="ms-5 mt-3 " style={{ color: '#97989F', fontSize: '14px' }}>
                           August 20, 2022

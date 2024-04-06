@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const UploadBlog = () => {
   const [user_id] = useState('2');
-  const [user] = useState('daffa');
+  const [user] = useState('Daffa');
   const [judul, setJudul] = useState('');
   const [slug, setSlug] = useState('');
   const [kategori_blog, setKategori] = useState('Pilih Kategori');
