@@ -4,6 +4,8 @@ import Footer from '../components/Footer';
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const UploadBlog = () => {
   const [user_id] = useState('2');
@@ -121,7 +123,23 @@ const UploadBlog = () => {
                   <label for="exampleInputPassword1" class="form-label">
                     Body
                   </label>
-                  <textarea class="form-control" value={konten} onChange={(e) => setKonten(e.target.value)} placeholder="Isi yang memuat konten anda" id="floatingTextarea"></textarea>
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={konten}
+                    onReady={(editor) => {
+                      console.log('Editor is ready to use!', editor);
+                    }}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setKonten(data);
+                    }}
+                    onBlur={(event, editor) => {
+                      console.log('Blur.', editor);
+                    }}
+                    onFocus={(event, editor) => {
+                      console.log('Focus.', editor);
+                    }}
+                  />
                 </div>
                 <button type="submit" class="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right' }}>
                   Kirim
