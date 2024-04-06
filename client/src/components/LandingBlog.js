@@ -10,8 +10,23 @@ const LandingBlog = () => {
   }, []);
 
   const getBlogs = async () => {
-    const response = await axios.get('http://localhost:3000/blog');
-    setBlog(response.data.items);
+    try {
+      const response = await axios.get('http://localhost:3000/blog');
+      const formattedBlogs = response.data.items.map((item) => {
+        const waktu = new Date(item.created_at);
+        const options = {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          timeZone: 'Asia/Jakarta',
+        };
+        const waktuNormal = waktu.toLocaleDateString('id-ID', options);
+        return { ...item, waktuNormal };
+      });
+      setBlog(formattedBlogs);
+    } catch (error) {
+      console.error('Error fetching blogs:', error);
+    }
   };
 
   return (
@@ -32,10 +47,10 @@ const LandingBlog = () => {
                       <div className="d-flex">
                         <MDBCardImage className="me-2 mt-2" src="/img/image.png" style={{ width: '13%', height: '13%' }} />
                         <MDBCardText className="mt-3" style={{ color: '#97989F', fontSize: '14px' }}>
-                          Article by {item.user} 
+                          Article by {item.user}
                         </MDBCardText>
                         <MDBCardText className="ms-5 mt-3 " style={{ color: '#97989F', fontSize: '14px' }}>
-                          August 20, 2022
+                          {item.waktuNormal}
                         </MDBCardText>
                       </div>
                     </MDBCardBody>
