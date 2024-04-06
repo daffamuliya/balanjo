@@ -41,7 +41,7 @@ const LandingBlog = () => {
                     <MDBCardImage src={item.url} position="top" alt="..." />
                     <MDBCardBody>
                       <MDBBtn className="mb-3" color="light" style={{ color: '#A08336', fontSize: '14px' }}>
-                        Technology
+                        {item.kategori_blog}
                       </MDBBtn>
                       <MDBCardTitle style={{ fontSize: '20px', fontWeight: 'bold' }}>{item.judul}</MDBCardTitle>{' '}
                       <div className="d-flex">

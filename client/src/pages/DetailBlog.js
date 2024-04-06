@@ -55,7 +55,7 @@ const DetailBlog = () => {
               <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5">
                 <div className="col-lg-12 ">
                   <MDBBtn className="mb-3" color="light" style={{ color: '#A08336', fontSize: '14px' }}>
-                    Technology
+                    {blog.kategori_blog}
                   </MDBBtn>
                   <h1 className="font-weight-bold" style={{ color: 'black', fontSize: '40px', fontWeight: 'bold' }}>
                     {blog.judul}
