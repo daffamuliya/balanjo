@@ -34,7 +34,7 @@ const LandingEcom = () => {
                       Rp{item.harga}
                     </MDBCardText>
                     <MDBBtn
-                      href="/detail-produk"
+                      href={`detail-produk/${item.id}`}
                       className="mb-3 mt-2"
                       size="lg"
                       style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '169px', maxHeight: '42px', fontWeight: 'normal', textAlign: 'center', border: '#A08336', borderRadius: '10px' }}

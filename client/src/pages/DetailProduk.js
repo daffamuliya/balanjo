@@ -1,10 +1,40 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import NormalNavbar from '../components/NormalNavbar';
 import Footer from '../components/Footer';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCardImage } from 'mdb-react-ui-kit';
 import LandingEcom from '../components/LandingEcom';
-export default class Landing extends Component {
-  render() {
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+
+const DetailProduk = () => {
+  const { id } = useParams();
+  const [produk, setProduk] = useState(null);
+  useEffect(() => {
+    const fetchProduk = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/marketplace/${id}/produk`);
+        if (response.data.items) {
+          const fetchedProduk = response.data.items;
+          localStorage.setItem('savedProduk', JSON.stringify(fetchedProduk));
+          setProduk(fetchedProduk);
+        } else {
+          console.error('Respon dari server tidak sesuai');
+        }
+      } catch (error) {
+        console.error('Kesalahan saat mengambil data produk:', error);
+      }
+    };
+
+    fetchProduk();
+
+    return () => {
+      if (produk) {
+        localStorage.removeItem('savedProduk');
+      }
+    };
+  }, [id, produk]);
+
+  if (produk) {
     return (
       <div>
         <NormalNavbar />
@@ -23,7 +53,7 @@ export default class Landing extends Component {
                   </MDBCol>
                   <MDBCol md={6} className="ms-md-3 mt-3 mt-md-0">
                     <div>
-                      <MDBCardTitle style={{ fontSize: '40px' }}>Kacamata Photocromic</MDBCardTitle>
+                      <MDBCardTitle style={{ fontSize: '40px' }}>{produk.nama}</MDBCardTitle>
                       <MDBCardText style={{ color: '#2D2D2D', fontSize: '17px', opacity: '60%' }}>
                         Kacamata ini dapat melindungi mata kita dari berbagai jenis radiasi. Mulai dari radiasi sinar ultraviolet sampai radiasi nuklir. Selain itu, kacamata ini juga memiliki bentuk yang keren dan kece.
                       </MDBCardText>
@@ -60,5 +90,9 @@ export default class Landing extends Component {
         <Footer />
       </div>
     );
+  } else {
+    return <div>Loading..</div>;
   }
-}
+};
+
+export default DetailProduk;

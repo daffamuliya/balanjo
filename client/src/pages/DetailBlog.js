@@ -7,7 +7,6 @@ import axios from 'axios';
 
 const DetailBlog = () => {
   const { slug } = useParams();
-
   const [blog, setBlog] = useState(null);
   useEffect(() => {
     const fetchBlog = async () => {
