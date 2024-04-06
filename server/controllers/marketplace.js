@@ -107,33 +107,26 @@ controller.getAllProduk = async (req, res) => {
 
 controller.getProdukById = async (req, res) => {
   try {
-    const result = await model.produk.findOne({
-      attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga'],
-      include: [
-        {
-          model: model.kategori_produk,
-          attributes: ['nama'],
-          as: 'kategori',
+    await model.produk
+      .findOne({
+        attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga'],
+        where: {
+          id: req.params.id,
         },
-      ],
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    if (result) {
-      const kategoriProduk = result.kategori.nama; // Mendapatkan nama kategori
-      res.json({ items: result, kategori: kategoriProduk }); // Mengirimkan nama kategori bersama dengan hasil produk
-    } else {
-      res.status(404).json({
-        message: 'Data tidak ditemukan',
-        data: [],
+      })
+      .then((result) => {
+        if (result) {
+          res.json({ items: result });
+        } else {
+          res.status(404).json({
+            message: 'data tidak ada',
+            data: [],
+          });
+        }
       });
-    }
   } catch (error) {
-    res.status(500).json({
-      message: 'Terjadi kesalahan saat mengambil data',
-      error: error,
+    res.status(404).json({
+      message: error,
     });
   }
 };
@@ -147,7 +140,6 @@ controller.addProduk = async (req, res) => {
     res.status(200).redirect('/marketplace/daftarBarang');
   } catch (error) {
     res.json({ message: error.message });
-    // res.redirect("/dosen/add-course");
   }
 };
 
