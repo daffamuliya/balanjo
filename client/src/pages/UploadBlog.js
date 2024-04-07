@@ -25,7 +25,6 @@ const UploadBlog = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Memanggil fungsi slugify setiap kali nilai judul berubah
     const slugified = slugify(judul);
     setSlug(slugified);
   }, [judul]);

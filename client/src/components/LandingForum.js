@@ -22,9 +22,31 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const LandingForum = () => {
+  const [user_id] = useState('2');
+  const [user] = useState('Daffa');
+  const [konten, setKonten] = useState('');
+
+  const saveForum = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:3000/forum/addForum', {
+        user_id,
+        user,
+        konten,
+      });
+      toggleOpen();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const [forum, setForum] = useState([]);
   const [basicModal, setBasicModal] = useState(false);
   const toggleOpen = () => setBasicModal(!basicModal);
+  const handleCloseModal = () => {
+    toggleOpen(); 
+    window.location.reload(); 
+  };
 
   const [centredModal, setCentredModal] = useState(false);
   const toggleOpen2 = () => setCentredModal(!centredModal);
@@ -121,18 +143,24 @@ const LandingForum = () => {
               <MDBModalTitle>Create a post</MDBModalTitle>
               <MDBBtn className="btn-close" color="none" onClick={toggleOpen}></MDBBtn>
             </MDBModalHeader>
-            <MDBModalBody>
-              <div className="form-floating">
-                <textarea className="form-control" placeholder="Tinggalkan komentar di sini" id="floatingTextarea2" style={{ height: '100px' }}></textarea>
-                <label htmlFor="floatingTextarea2">Tanyakan sesuatu pada rangers</label>
-              </div>
-            </MDBModalBody>
-            <MDBModalFooter>
-              <MDBBtn color="secondary" onClick={toggleOpen}>
-                Close
-              </MDBBtn>
-              <MDBBtn>Send!</MDBBtn>
-            </MDBModalFooter>
+            <form onSubmit={saveForum}>
+              <MDBModalBody>
+                <div className="form-floating">
+                  <textarea value={konten} onChange={(e) => setKonten(e.target.value)} className="form-control" placeholder="Tinggalkan komentar di sini" id="floatingTextarea2" style={{ height: '100px' }}></textarea>
+                  <label htmlFor="floatingTextarea2">Tanyakan sesuatu pada rangers</label>
+                </div>
+              </MDBModalBody>
+              <MDBModalFooter>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  onClick={handleCloseModal}
+                  style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right' }}
+                >
+                  Send!
+                </button>
+              </MDBModalFooter>
+            </form>
           </MDBModalContent>
         </MDBModalDialog>
       </MDBModal>
