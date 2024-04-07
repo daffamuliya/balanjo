@@ -50,6 +50,7 @@ const LandingForum = () => {
 
   const [scrollableModal, setScrollableModal] = useState(false);
   const [forumDetail, setForumDetail] = useState(null);
+  const [statusDetail, setStatusDetail] = useState(null);
 
   useEffect(() => {
     getForum();
@@ -62,9 +63,10 @@ const LandingForum = () => {
 
   const loadForumDetail = async (id) => {
     try {
-      console.log(id);
       const response = await axios.get(`http://localhost:3000/forum/comment/${id}`);
+      const response2 = await axios.get(`http://localhost:3000/forum/${id}`);
       setForumDetail(response.data.items);
+      setStatusDetail(response2.data.items);
       setScrollableModal(true);
     } catch (error) {
       console.log(error);
@@ -185,28 +187,29 @@ const LandingForum = () => {
               <MDBModalTitle>Add Comment</MDBModalTitle>
               <MDBBtn className="btn-close" color="none" onClick={() => setScrollableModal(!scrollableModal)}></MDBBtn>
             </MDBModalHeader>
-
             <MDBModalBody>
-              <form>
-                <div className="mb-3">
-                  <div className="col-auto">
-                    <MDBCardText className="mt-2" style={{ color: 'black', fontSize: '18px', fontWeight: 'bold' }}>
-                      Daffa
-                    </MDBCardText>
+              {statusDetail && (
+                <form>
+                  <div className="mb-3">
+                    <div className="col-auto">
+                      <MDBCardText className="mt-2" style={{ color: 'black', fontSize: '18px', fontWeight: 'bold' }}>
+                        {statusDetail.user}
+                      </MDBCardText>
+                    </div>
+                    <div className="col-12 mb-3 mt-1">
+                      <p className="komentar" style={{ color: 'black', fontSize: '20px' }}>
+                        {statusDetail.konten}
+                      </p>
+                    </div>
                   </div>
-                  <div className="col-12 mb-3 mt-1">
-                    <p className="komentar" style={{ color: 'black', fontSize: '20px' }}>
-                      Absen dong yang di rektorat!
-                    </p>
+                  <div className="mb-3">
+                    <label htmlFor="message-text" className="col-form-label">
+                      Replying to Daffa
+                    </label>
+                    <textarea className="form-control" id="message-text"></textarea>
                   </div>
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="message-text" className="col-form-label">
-                    Replying to Daffa
-                  </label>
-                  <textarea className="form-control" id="message-text"></textarea>
-                </div>
-              </form>{' '}
+                </form>
+              )}
               {forumDetail && (
                 <div className="mb-3">
                   <MDBCard>
