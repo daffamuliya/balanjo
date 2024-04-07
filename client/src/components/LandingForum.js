@@ -49,6 +49,7 @@ const LandingForum = () => {
   };
 
   const [scrollableModal, setScrollableModal] = useState(false);
+  const [forumDetail, setForumDetail] = useState(null);
 
   useEffect(() => {
     getForum();
@@ -58,6 +59,18 @@ const LandingForum = () => {
     const response = await axios.get('http://localhost:3000/forum');
     setForum(response.data.items);
   };
+
+  const loadForumDetail = async (id) => {
+    try {
+      console.log(id);
+      const response = await axios.get(`http://localhost:3000/forum/comment/${id}`);
+      setForumDetail(response.data.items);
+      setScrollableModal(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className="landingsocial">
       <MDBContainer>
@@ -125,7 +138,8 @@ const LandingForum = () => {
                         <MDBCardText className=" ms-2" style={{ color: 'black', fontSize: '18px', marginTop: '-15px' }}>
                           {item.konten}
                         </MDBCardText>
-                        <Chat onClick={() => setScrollableModal(!scrollableModal)} />
+                        {/* Menambahkan event handler onClick pada ikon chat */}
+                        <Chat onClick={() => loadForumDetail(item.id)} style={{ cursor: 'pointer' }} />
                       </MDBCol>
                     </div>
                   </MDBCardBody>
@@ -171,6 +185,7 @@ const LandingForum = () => {
               <MDBModalTitle>Add Comment</MDBModalTitle>
               <MDBBtn className="btn-close" color="none" onClick={() => setScrollableModal(!scrollableModal)}></MDBBtn>
             </MDBModalHeader>
+
             <MDBModalBody>
               <form>
                 <div className="mb-3">
@@ -192,81 +207,23 @@ const LandingForum = () => {
                   <textarea className="form-control" id="message-text"></textarea>
                 </div>
               </form>{' '}
-              <div className="mb-3">
-                <MDBCard>
-                  <div className="d-flex">
-                    <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
-                    <MDBCol>
-                      <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '14px', fontWeight: 'bold' }}>
-                        Daffa
-                      </MDBCardText>
-                      <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
-                        Komentar
-                      </MDBCardText>
-                    </MDBCol>
-                  </div>
-                </MDBCard>
-              </div>
-              <div className="mb-3">
-                <MDBCard>
-                  <div className="d-flex">
-                    <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
-                    <MDBCol>
-                      <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '14px', fontWeight: 'bold' }}>
-                        Daffa
-                      </MDBCardText>
-                      <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
-                        Komentar
-                      </MDBCardText>
-                    </MDBCol>
-                  </div>
-                </MDBCard>
-              </div>
-              <div className="mb-3">
-                <MDBCard>
-                  <div className="d-flex">
-                    <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
-                    <MDBCol>
-                      <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '14px', fontWeight: 'bold' }}>
-                        Daffa
-                      </MDBCardText>
-                      <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
-                        Komentar
-                      </MDBCardText>
-                    </MDBCol>
-                  </div>
-                </MDBCard>
-              </div>
-              <div className="mb-3">
-                <MDBCard>
-                  <div className="d-flex">
-                    <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
-                    <MDBCol>
-                      <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '14px', fontWeight: 'bold' }}>
-                        Daffa
-                      </MDBCardText>
-                      <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
-                        Komentar
-                      </MDBCardText>
-                    </MDBCol>
-                  </div>
-                </MDBCard>
-              </div>
-              <div className="mb-3">
-                <MDBCard>
-                  <div className="d-flex">
-                    <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
-                    <MDBCol>
-                      <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '14px', fontWeight: 'bold' }}>
-                        Daffa
-                      </MDBCardText>
-                      <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
-                        Komentar
-                      </MDBCardText>
-                    </MDBCol>
-                  </div>
-                </MDBCard>
-              </div>
+              {forumDetail && (
+                <div className="mb-3">
+                  <MDBCard>
+                    <div className="d-flex">
+                      <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '10%', height: '13%' }} />
+                      <MDBCol>
+                        <MDBCardText className="mt-2 ms-2 " style={{ color: 'black', fontSize: '16px', fontWeight: 'bold' }}>
+                          {forumDetail.user}
+                        </MDBCardText>
+                        <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
+                          {forumDetail.komentar}
+                        </MDBCardText>
+                      </MDBCol>
+                    </div>
+                  </MDBCard>
+                </div>
+              )}
             </MDBModalBody>
             <MDBModalFooter>
               <MDBBtn>Reply</MDBBtn>
