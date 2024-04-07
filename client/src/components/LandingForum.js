@@ -44,12 +44,11 @@ const LandingForum = () => {
   const [basicModal, setBasicModal] = useState(false);
   const toggleOpen = () => setBasicModal(!basicModal);
   const handleCloseModal = () => {
-    toggleOpen(); 
-    window.location.reload(); 
+    toggleOpen();
+    window.location.reload();
   };
 
-  const [centredModal, setCentredModal] = useState(false);
-  const toggleOpen2 = () => setCentredModal(!centredModal);
+  const [scrollableModal, setScrollableModal] = useState(false);
 
   useEffect(() => {
     getForum();
@@ -126,7 +125,7 @@ const LandingForum = () => {
                         <MDBCardText className=" ms-2" style={{ color: 'black', fontSize: '18px', marginTop: '-15px' }}>
                           {item.konten}
                         </MDBCardText>
-                        <Chat onClick={toggleOpen2} />
+                        <Chat onClick={() => setScrollableModal(!scrollableModal)} />
                       </MDBCol>
                     </div>
                   </MDBCardBody>
@@ -165,31 +164,109 @@ const LandingForum = () => {
         </MDBModalDialog>
       </MDBModal>
 
-      <MDBModal tabIndex="-1" open={centredModal} setOpen={setCentredModal}>
-        <MDBModalDialog centered>
+      <MDBModal open={scrollableModal} setOpen={setScrollableModal} tabIndex="-1">
+        <MDBModalDialog centered scrollable>
           <MDBModalContent>
             <MDBModalHeader>
               <MDBModalTitle>Add Comment</MDBModalTitle>
-              <MDBBtn className="btn-close" color="none" onClick={toggleOpen2}></MDBBtn>
+              <MDBBtn className="btn-close" color="none" onClick={() => setScrollableModal(!scrollableModal)}></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
               <form>
                 <div className="mb-3">
                   <div className="col-auto">
-                    <h5>Daffa</h5>
-                    <p className="text-secondary">@daffamuliya</p>
+                    <MDBCardText className="mt-2" style={{ color: 'black', fontSize: '18px', fontWeight: 'bold' }}>
+                      Daffa
+                    </MDBCardText>
                   </div>
                   <div className="col-12 mb-3 mt-1">
-                    <p className="komentar">Absen dong yang di rektorat!</p>
+                    <p className="komentar" style={{ color: 'black', fontSize: '20px' }}>
+                      Absen dong yang di rektorat!
+                    </p>
                   </div>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="message-text" className="col-form-label">
-                    Replying to @daffamuliya
+                    Replying to Daffa
                   </label>
                   <textarea className="form-control" id="message-text"></textarea>
                 </div>
               </form>{' '}
+              <div className="mb-3">
+                <MDBCard>
+                  <div className="d-flex">
+                    <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
+                    <MDBCol>
+                      <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '14px', fontWeight: 'bold' }}>
+                        Daffa
+                      </MDBCardText>
+                      <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
+                        Komentar
+                      </MDBCardText>
+                    </MDBCol>
+                  </div>
+                </MDBCard>
+              </div>
+              <div className="mb-3">
+                <MDBCard>
+                  <div className="d-flex">
+                    <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
+                    <MDBCol>
+                      <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '14px', fontWeight: 'bold' }}>
+                        Daffa
+                      </MDBCardText>
+                      <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
+                        Komentar
+                      </MDBCardText>
+                    </MDBCol>
+                  </div>
+                </MDBCard>
+              </div>
+              <div className="mb-3">
+                <MDBCard>
+                  <div className="d-flex">
+                    <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
+                    <MDBCol>
+                      <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '14px', fontWeight: 'bold' }}>
+                        Daffa
+                      </MDBCardText>
+                      <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
+                        Komentar
+                      </MDBCardText>
+                    </MDBCol>
+                  </div>
+                </MDBCard>
+              </div>
+              <div className="mb-3">
+                <MDBCard>
+                  <div className="d-flex">
+                    <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
+                    <MDBCol>
+                      <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '14px', fontWeight: 'bold' }}>
+                        Daffa
+                      </MDBCardText>
+                      <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
+                        Komentar
+                      </MDBCardText>
+                    </MDBCol>
+                  </div>
+                </MDBCard>
+              </div>
+              <div className="mb-3">
+                <MDBCard>
+                  <div className="d-flex">
+                    <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '8%', height: '13%' }} />
+                    <MDBCol>
+                      <MDBCardText className="mt-2 ms-2" style={{ color: 'black', fontSize: '14px', fontWeight: 'bold' }}>
+                        Daffa
+                      </MDBCardText>
+                      <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
+                        Komentar
+                      </MDBCardText>
+                    </MDBCol>
+                  </div>
+                </MDBCard>
+              </div>
             </MDBModalBody>
             <MDBModalFooter>
               <MDBBtn>Reply</MDBBtn>

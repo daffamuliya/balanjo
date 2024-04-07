@@ -109,9 +109,35 @@ controller.getAllComment = async (req, res) => {
       .then((result) => {
         if (result.length > 0) {
           res.status(200).json({
-            message: 'mendapat data komentar',
             data: result,
           });
+        } else {
+          res.status(404).json({
+            message: 'data tidak ada',
+            data: [],
+          });
+        }
+      });
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};
+
+controller.getCommentById = async (req, res) => {
+  try {
+    await model.komentar_forum
+      .findOne({
+        attributes: ['id', 'forum_id', 'user_id', 'komentar'],
+
+        where: {
+          forum_id: req.params.forum_id,
+        },
+      })
+      .then((result) => {
+        if (result) {
+          res.json({ items: result });
         } else {
           res.status(404).json({
             message: 'data tidak ada',
@@ -131,7 +157,6 @@ controller.addForumComment = async function (req, res) {
 
   try {
     await model.komentar_forum.create({ forum_id, user_id, user, komentar });
-
     res.redirect('back');
   } catch (error) {
     console.log(error);
