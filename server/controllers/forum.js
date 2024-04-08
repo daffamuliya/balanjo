@@ -128,7 +128,7 @@ controller.getAllComment = async (req, res) => {
 controller.getCommentById = async (req, res) => {
   try {
     await model.komentar_forum
-      .findOne({
+      .findAll({
         attributes: ['id', 'forum_id', 'user_id', 'komentar', 'user'],
 
         where: {

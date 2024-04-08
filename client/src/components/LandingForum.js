@@ -25,6 +25,28 @@ const LandingForum = () => {
   const [user_id] = useState('2');
   const [user] = useState('Daffa');
   const [konten, setKonten] = useState('');
+  const [komentar, setKomentar] = useState('');
+  const [selectedForumId, setSelectedForumId] = useState(null);
+
+  const handleButtonClick = (forum_id) => {
+    setSelectedForumId(forum_id);
+  };
+
+  const saveKomentar = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:3000/forum/addComment', {
+        user_id,
+        forum_id: selectedForumId, // Gunakan selectedForumId dari state
+        user,
+        komentar,
+      });
+      setKomentar('');
+      setScrollableModal(false); // Menutup modal setelah komentar dikirim
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const saveForum = async (e) => {
     e.preventDefault();
@@ -63,10 +85,20 @@ const LandingForum = () => {
 
   const loadForumDetail = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:3000/forum/comment/${id}`);
+      //Response konten forum
       const response2 = await axios.get(`http://localhost:3000/forum/${id}`);
-      setForumDetail(response.data.items);
-      setStatusDetail(response2.data.items);
+      const statusDetailData = Array.isArray(response2.data.items) ? response2.data.items : [response2.data.items];
+      setStatusDetail(statusDetailData);
+
+      //Response konten komentar
+      await handleButtonClick(id);
+      const response = await axios.get(`http://localhost:3000/forum/comment/${id}`);
+      const forumDetailData = Array.isArray(response.data.items) ? response.data.items : [response.data.items];
+      setForumDetail(forumDetailData);
+
+      console.log('statusDetail:', statusDetailData);
+      console.log('forumDetail:', forumDetailData);
+
       setScrollableModal(true);
     } catch (error) {
       console.log(error);
@@ -140,7 +172,6 @@ const LandingForum = () => {
                         <MDBCardText className=" ms-2" style={{ color: 'black', fontSize: '18px', marginTop: '-15px' }}>
                           {item.konten}
                         </MDBCardText>
-                        {/* Menambahkan event handler onClick pada ikon chat */}
                         <Chat onClick={() => loadForumDetail(item.id)} style={{ cursor: 'pointer' }} />
                       </MDBCol>
                     </div>
@@ -189,7 +220,7 @@ const LandingForum = () => {
             </MDBModalHeader>
             <MDBModalBody>
               {statusDetail && (
-                <form>
+                <form onSubmit={saveKomentar}>
                   <div className="mb-3">
                     <div className="col-auto">
                       <MDBCardText className="mt-2" style={{ color: 'black', fontSize: '18px', fontWeight: 'bold' }}>
@@ -202,35 +233,40 @@ const LandingForum = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-5">
                     <label htmlFor="message-text" className="col-form-label">
                       Replying to Daffa
                     </label>
-                    <textarea className="form-control" id="message-text"></textarea>
+                    <textarea value={komentar} onChange={(e) => setKomentar(e.target.value)} className="form-control" id="message-text"></textarea>
+                    <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right', marginTop: '15px' }}>
+                      Send Reply
+                    </button>
                   </div>
                 </form>
               )}
-              {forumDetail && (
-                <div className="mb-3">
-                  <MDBCard>
-                    <div className="d-flex">
-                      <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '10%', height: '13%' }} />
-                      <MDBCol>
-                        <MDBCardText className="mt-2 ms-2 " style={{ color: 'black', fontSize: '16px', fontWeight: 'bold' }}>
-                          {forumDetail.user}
-                        </MDBCardText>
-                        <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
-                          {forumDetail.komentar}
-                        </MDBCardText>
-                      </MDBCol>
-                    </div>
-                  </MDBCard>
-                </div>
-              )}
+
+              <div className="mb-3">
+                <label className="col-form-label">Comments</label>
+                {Array.isArray(forumDetail) &&
+                  forumDetail.map((detail) => (
+                    <MDBCard className="mb-3" key={detail.id}>
+                      {' '}
+                      {/* Pindahkan key ke elemen MDBCard */}
+                      <div className="d-flex">
+                        <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '10%', height: '13%' }} />
+                        <MDBCol>
+                          <MDBCardText className="mt-2 ms-2 " style={{ color: 'black', fontSize: '16px', fontWeight: 'bold' }}>
+                            {detail.user}
+                          </MDBCardText>
+                          <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
+                            {detail.komentar}
+                          </MDBCardText>
+                        </MDBCol>
+                      </div>
+                    </MDBCard>
+                  ))}
+              </div>
             </MDBModalBody>
-            <MDBModalFooter>
-              <MDBBtn>Reply</MDBBtn>
-            </MDBModalFooter>
           </MDBModalContent>
         </MDBModalDialog>
       </MDBModal>
