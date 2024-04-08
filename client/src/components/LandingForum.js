@@ -219,7 +219,7 @@ const LandingForum = () => {
               <MDBBtn className="btn-close" color="none" onClick={() => setScrollableModal(!scrollableModal)}></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
-              {statusDetail && (
+              {statusDetail && ( //bagian disini belom
                 <form onSubmit={saveKomentar}>
                   <div className="mb-3">
                     <div className="col-auto">
