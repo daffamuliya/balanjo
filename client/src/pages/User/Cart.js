@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import NormalNavbar from '../components/NormalNavbar';
-import Footer from '../components/Footer';
+import NormalNavbar from '../../components/NormalNavbar';
+import Footer from '../../components/Footer';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 export default class Landing extends Component {
   render() {

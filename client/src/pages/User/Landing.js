@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import NormalNavbar from '../components/NormalNavbar';
-import Hero from '../components/Hero';
-import Features from '../components/Features';
-import Footer from '../components/Footer';
+import NormalNavbar from '../../components/NormalNavbar';
+import Hero from '../../components/Hero';
+import Features from '../../components/Features';
+import Footer from '../../components/Footer';
 
 export default class Landing extends Component {
   render() {

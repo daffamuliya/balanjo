@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import NormalNavbar from '../components/NormalNavbar';
-import Footer from '../components/Footer';
+import NormalNavbar from '../../components/NormalNavbar';
+import Footer from '../../components/Footer';
 import { MDBContainer, MDBRow, MDBBtn } from 'mdb-react-ui-kit';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';

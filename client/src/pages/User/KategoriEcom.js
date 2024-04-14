@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import NormalNavbar from '../components/NormalNavbar';
-import Footer from '../components/Footer';
+import NormalNavbar from '../../components/NormalNavbar';
+import Footer from '../../components/Footer';
 import { MDBContainer, MDBRow, MDBCol, MDBInput } from 'mdb-react-ui-kit';
-import LandingEcom from '../components/LandingEcom';
+import LandingEcom from '../../components/LandingEcom';
 export default class Landing extends Component {
   render() {
     return (
@@ -16,7 +16,7 @@ export default class Landing extends Component {
               </form>
             </MDBCol>
             <MDBCol md={12} xs={2} className="ms-auto">
-              <img src="/img/kategori-ecom.png" className="hover-shadow" alt="" style={{ width:'100%' }}/>
+              <img src="/img/kategori-ecom.png" className="hover-shadow" alt="" style={{ width: '100%' }} />
             </MDBCol>
             <LandingEcom />
           </MDBRow>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import NormalNavbar from '../components/NormalNavbar';
-import Banner from '../components/Banner';
-import LandingEcom from '../components/LandingEcom';
-import LandingBlog from '../components/LandingBlog';
-import Footer from '../components/Footer';
-import LandingForum from '../components/LandingForum';
+import NormalNavbar from '../../components/NormalNavbar';
+import Banner from '../../components/Banner';
+import LandingEcom from '../../components/LandingEcom';
+import LandingBlog from '../../components/LandingBlog';
+import Footer from '../../components/Footer';
+import LandingForum from '../../components/LandingForum';
 import { MDBContainer, MDBRow, MDBBtn } from 'mdb-react-ui-kit';
 
 export default class Landing extends Component {

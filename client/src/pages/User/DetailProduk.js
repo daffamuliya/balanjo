@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import NormalNavbar from '../components/NormalNavbar';
-import Footer from '../components/Footer';
+import NormalNavbar from '../../components/NormalNavbar';
+import Footer from '../../components/Footer';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCardImage } from 'mdb-react-ui-kit';
-import LandingEcom from '../components/LandingEcom';
+import LandingEcom from '../../components/LandingEcom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
