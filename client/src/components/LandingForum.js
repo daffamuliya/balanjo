@@ -19,6 +19,7 @@ import {
 } from 'mdb-react-ui-kit';
 import { Chat } from 'react-bootstrap-icons';
 import React, { useState, useEffect } from 'react';
+import swal from 'sweetalert';
 import axios from 'axios';
 
 const LandingForum = () => {
@@ -41,6 +42,11 @@ const LandingForum = () => {
         user,
         komentar,
       });
+      swal({
+        icon: 'success',
+        title: 'Success',
+        text: 'Komentar ditambahkan',
+      });
       setKomentar('');
       setScrollableModal(false); // Menutup modal setelah komentar dikirim
     } catch (error) {
@@ -56,7 +62,11 @@ const LandingForum = () => {
         user,
         konten,
       });
-      toggleOpen();
+      swal({
+        icon: 'success',
+        title: 'Success',
+        text: 'Status berhasil di upload!',
+      });
     } catch (error) {
       console.log(error);
     }

@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import swal from 'sweetalert';
 
 const UploadBlog = () => {
   const [user_id] = useState('2');
@@ -46,7 +47,13 @@ const UploadBlog = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      navigate('/blog');
+      swal({
+        icon: 'success',
+        title: 'Success',
+        text: 'Blog berhasil di upload!',
+      }).then(() => {
+        navigate('/blog');
+      });
     } catch (error) {
       console.log(error);
     }
@@ -88,7 +95,7 @@ const UploadBlog = () => {
                   <label for="exampleInputEmail1" class="form-label">
                     Slug
                   </label>
-                  <input type="text" value={slug} readOnly class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                  <input type="text" value={slug} readOnly class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled />
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">
