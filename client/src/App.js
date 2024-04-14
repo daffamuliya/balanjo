@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Login, Register, Landing, Home, Forum, Blog, UploadBlog, DetailBlog, ECommerce, KategoriEcom, DetailProduk, Cart, Checkout, DetailOrder, BuktiBayar } from './pages';
+import { Login, Register, Landing, Home, Forum, Blog, UploadBlog, DetailBlog, ECommerce, KategoriEcom, DetailProduk, Cart, Checkout, DetailOrder, BuktiBayar, Dashboard } from './pages';
 
 export default class App extends Component {
   render() {
@@ -23,6 +23,7 @@ export default class App extends Component {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/detail-order" element={<DetailOrder />} />
             <Route path="/bukti-bayar" element={<BuktiBayar />} />
+            <Route path="/admin" element={<Dashboard />} />
           </Routes>
         </main>
       </BrowserRouter>

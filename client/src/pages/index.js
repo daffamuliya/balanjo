@@ -13,5 +13,6 @@ import Cart from './User/Cart';
 import Checkout from './User/Checkout';
 import DetailOrder from './User/DetailOrder';
 import BuktiBayar from './User/BuktiBayar';
+import Dashboard from './Admin/Dashboard'
 
-export { Login, Register, Landing, Home, Forum, Blog, UploadBlog, DetailBlog, ECommerce, KategoriEcom, DetailProduk, Cart, Checkout, DetailOrder, BuktiBayar };
+export { Login, Register, Landing, Home, Forum, Blog, UploadBlog, DetailBlog, ECommerce, KategoriEcom, DetailProduk, Cart, Checkout, DetailOrder, BuktiBayar, Dashboard };

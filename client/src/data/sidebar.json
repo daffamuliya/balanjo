@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Dashboard",
+    "icon": "bi bi-speedometer"
+  },
+  {
+    "title": "Kelola User",
+    "icon": "bi-person-fill"
+  },
+  {
+    "title": "Kelola Blog",
+    "icon": "bi bi-envelope-check-fill"
+  },
+  {
+    "title": "Kelola Forum",
+    "icon": "bi bi-envelope-check-fill"
+  },
+  {
+    "title": "Kelola E-Commerce",
+    "icon": "bi bi-envelope-check-fill",
+    "childrens": [
+      {
+        "title": "Requested Banner"
+      }
+    ]
+  }
+]
