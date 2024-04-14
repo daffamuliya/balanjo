@@ -46,7 +46,6 @@ controller.getBlogBySlug = async (req, res) => {
       .then((result) => {
         if (result) {
           res.json({ items: result });
-          d;
         } else {
           res.status(404).json({
             message: 'data tidak ada',
