@@ -36,9 +36,9 @@ export default class Landing extends Component {
                           <td>Otto</td>
                           <td>25 Januari 2022</td>
                           <td>
-                            <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
-                            <i class="bi bi-pencil-square" style={{ color: '#A08336' }}></i>
-                            <i class="bi bi-eye-fill" style={{ color: '#A08336' }}></i>
+                            <i class="bi bi-trash-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                            <i class="bi bi-pencil-square" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                            <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
                           </td>
                         </tr>
                         <tr>
@@ -47,9 +47,9 @@ export default class Landing extends Component {
                           <td>Thornton</td>
                           <td>25 Januari 2022</td>
                           <td>
-                            <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
-                            <i class="bi bi-pencil-square" style={{ color: '#A08336' }}></i>
-                            <i class="bi bi-eye-fill" style={{ color: '#A08336' }}></i>
+                            <i class="bi bi-trash-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                            <i class="bi bi-pencil-square" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                            <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
                           </td>
                         </tr>
                         <tr>
@@ -58,9 +58,9 @@ export default class Landing extends Component {
                           <td>Mahmudi</td>
                           <td>25 Januari 2022</td>
                           <td>
-                            <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
-                            <i class="bi bi-pencil-square" style={{ color: '#A08336' }}></i>
-                            <i class="bi bi-eye-fill" style={{ color: '#A08336' }}></i>
+                            <i class="bi bi-trash-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                            <i class="bi bi-pencil-square" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                            <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
                           </td>
                         </tr>
                       </tbody>

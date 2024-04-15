@@ -23,6 +23,9 @@ import AkunDetails from './User/Profile/AkunDetails';
 import KelolaBlogUser from './User/Profile/KelolaBlog';
 import KelolaForumUser from './User/Profile/KelolaForum';
 import RiwayatPesanan from './User/Profile/RiwayatPesanan';
+import DashboardSeller from './User/Seller/DashboardSeller';
+import PesananSeller from './User/Seller/PesananSeller';
+import ProductSeller from './User/Seller/ProductSeller';
 
 export {
   Login,
@@ -50,4 +53,7 @@ export {
   KelolaBlogUser,
   KelolaForumUser,
   RiwayatPesanan,
+  DashboardSeller,
+  PesananSeller,
+  ProductSeller,
 };

@@ -72,7 +72,6 @@ code {
 }
 .blog {
   margin-top: 10px;
-  margin-bottom: 100px;
   padding: 30px;
   background-color: white;
 }
@@ -95,9 +94,9 @@ button:focus {
   width: 260px;
   flex-shrink: 0;
   background-color: white;
-  height: 100%;
+  height: 125vh;
   overflow: auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Merubah shadow agar terlihat */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-item {
@@ -111,16 +110,15 @@ button:focus {
 
 .sidebar-item:hover,
 .sidebar-item.active {
-  /* Menambahkan warna ketika dihover atau active */
   color: #a08336;
-  background-color: rgba(160, 131, 54, 0.1); /* Menambahkan warna background saat dihover atau active */
+  background-color: rgba(160, 131, 54, 0.1);
 }
 
 .sidebar-title {
   display: flex;
   font-size: 1.2em;
   justify-content: space-between;
-  cursor: pointer; /* Menambahkan cursor pointer untuk judul sidebar */
+  cursor: pointer;
 }
 
 .sidebar-title span i {
@@ -157,18 +155,17 @@ button:focus {
 }
 
 @media (max-width: 768px) {
-  /* Menambahkan aturan CSS untuk tampilan seluler */
   .sidebar {
     width: 100%;
-    padding: 20px; /* Mengurangi padding agar lebih sesuai di perangkat seluler */
+    padding: 20px;
   }
 
   .sidebar-item {
     padding: 0.75em 1em;
-    padding-left: 20px; /* Mengurangi padding-left agar lebih sesuai di perangkat seluler */
+    padding-left: 20px;
   }
 
   .sidebar-title {
-    font-size: 1.1em; /* Mengurangi ukuran font agar lebih sesuai di perangkat seluler */
+    font-size: 1.1em;
   }
 }
