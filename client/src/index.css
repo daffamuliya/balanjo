@@ -106,10 +106,11 @@ button:focus {
   display: block;
   transition: background-color 0.15s;
   border-radius: 5px;
+  padding-left: 30px;
+  color: grey;
 }
 .sidebar-item:hover {
-  background-color: #a08336;
-  color: white;
+  color: #a08336;
 }
 
 .sidebar-title {
@@ -119,7 +120,7 @@ button:focus {
 }
 .sidebar-title span i {
   display: inline-block;
-  width: 1.5em;
+  width: 2em;
 }
 .sidebar-title .toggle-btn {
   cursor: pointer;
@@ -138,14 +139,15 @@ button:focus {
 }
 
 .sidebar-item.plain {
-  color: black;
+  color: grey;
+  font-size: 18px;
   text-decoration: none;
 }
 .sidebar-item.plain:hover {
   text-decoration: none;
-  color: white;
+  color: #a08336;
 }
 .sidebar-item.plain i {
   display: inline-block;
-  width: 1.7em;
+  width: 2em;
 }
