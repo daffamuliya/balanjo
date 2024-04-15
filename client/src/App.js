@@ -62,7 +62,7 @@ export default class App extends Component {
             <Route path="/user/blog" element={<KelolaBlogUser />} />
             <Route path="/user/forum" element={<KelolaForumUser />} />
             <Route path="/user/pesanan" element={<RiwayatPesanan />} />
-            <Route path="/seller/dashboard" element={<DashboardSeller />} />
+            <Route path="/seller" element={<DashboardSeller />} />
             <Route path="/seller/pesanan" element={<PesananSeller />} />
             <Route path="/seller/product" element={<ProductSeller />} />
           </Routes>

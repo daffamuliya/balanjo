@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AdminNavbar from '../../components/AdminNavbar';
+import AdminNavbar from '../../../components/AdminNavbar';
 import Card from 'react-bootstrap/Card';
-import Sidebar from '../../components/Sidebar';
+import Sidebar from '../../../components/Sidebar';
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import CardBody from 'react-bootstrap/esm/CardBody';
 
