@@ -1,38 +1,111 @@
 import React, { Component } from 'react';
-import AdminNavbar from '../../../components/AdminNavbar';
+import SellerNavbar from '../../../components/SellerNavbar';
 import Card from 'react-bootstrap/Card';
-import Sidebar from '../../../components/Sidebar';
+import SidebarSeller from '../../../components/SidebarSeller';
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import Table from 'react-bootstrap/Table';
+
 import CardBody from 'react-bootstrap/esm/CardBody';
 
 export default class Landing extends Component {
   render() {
     return (
       <div>
-        <AdminNavbar />
+        <SellerNavbar />
         <div className="main">
-          <Sidebar />
+          <SidebarSeller />
           <div className="container mt-5">
-            <h1 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
-              Dashboard
-            </h1>
-            <MDBRow className="mt-3 justify-content-center">
-              <MDBCol md={6} xs={2} className="ms-auto">
-                <Card>
-                  <CardBody>
-                    <h5>Total Revenue</h5>
-                    <h3>Rp3.340.000</h3>
-                  </CardBody>
-                </Card>
-              </MDBCol>
-              <MDBCol md={6} xs={2} className="ms-auto">
-                <Card>
-                  <CardBody>
-                    <h5>Total Order</h5>
-                    <h3>92</h3>
-                  </CardBody>
-                </Card>
-              </MDBCol>
+            <MDBRow>
+              <MDBRow className="mt-3 justify-content-center">
+                <MDBCol md={6} xs={2} className="ms-auto">
+                  <Card>
+                    <CardBody>
+                      <h5>Total Revenue</h5>
+                      <h3>Rp3.340.000</h3>
+                    </CardBody>
+                  </Card>
+                </MDBCol>
+                <MDBCol md={6} xs={2} className="ms-auto">
+                  <Card>
+                    <CardBody>
+                      <h5>Total Order</h5>
+                      <h3>92</h3>
+                    </CardBody>
+                  </Card>
+                </MDBCol>
+              </MDBRow>
+            </MDBRow>
+            <MDBRow className="mt-5">
+              <h5 style={{ color: '#A08336' }}>Riwayat Pesanan</h5>
+              <MDBRow className="mt-3 justify-content-center">
+                <MDBCol md={12} xs={2} className="ms-auto">
+                  <Card>
+                    <CardBody>
+                      {' '}
+                      <div class="row">
+                        <Table responsive>
+                          <thead>
+                            <tr>
+                              <th>Order ID</th>
+                              <th>Produk</th>
+                              <th>Qty</th>
+                              <th>Tanggal</th>
+                              <th>Nama Kustomer</th>
+                              <th>Total</th>
+                              <th>Status</th>
+                              <th>Aksi</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td>Mark</td>
+                              <td>Otto</td>
+                              <td>@mdo</td>
+                              <td>25 Januari 2022</td>
+                              <td>Otto</td>
+                              <td>Otto</td>
+                              <td>
+                                <i class="bi bi-trash-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                                <i class="bi bi-pencil-square" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                                <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>1</td>
+                              <td>Mark</td>
+                              <td>Otto</td>
+                              <td>@mdo</td>
+                              <td>25 Januari 2022</td>
+                              <td>Otto</td>
+                              <td>Otto</td>
+                              <td>
+                                <i class="bi bi-trash-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                                <i class="bi bi-pencil-square" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                                <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>1</td>
+                              <td>Mark</td>
+                              <td>Otto</td>
+                              <td>@mdo</td>
+                              <td>25 Januari 2022</td>
+                              <td>Otto</td>
+                              <td>Otto</td>
+                              <td>
+                                <i class="bi bi-trash-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                                <i class="bi bi-pencil-square" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                                <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </Table>
+                      </div>
+                    </CardBody>
+                  </Card>
+                </MDBCol>
+              </MDBRow>
             </MDBRow>
           </div>
         </div>

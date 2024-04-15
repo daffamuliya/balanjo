@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Akun",
+    "path": "/seller",
+    "icon": "bi bi-speedometer"
+  },
+  {
+    "title": "Produk",
+    "path": "/seller/product",
+    "icon": "bi bi-bag-dash-fill"
+  },
+  {
+    "title": "Pesanan",
+    "path": "/seller/pesanan",
+    "icon": "bi bi-cart-fill"
+  }
+]
