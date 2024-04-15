@@ -90,7 +90,6 @@ button:focus {
   display: flex;
   height: 100vh;
 }
-
 .sidebar {
   padding-top: 40px;
   width: 260px;
@@ -98,7 +97,7 @@ button:focus {
   background-color: white;
   height: 100%;
   overflow: auto;
-  box-shadow: black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Merubah shadow agar terlihat */
 }
 
 .sidebar-item {
@@ -109,45 +108,67 @@ button:focus {
   padding-left: 30px;
   color: grey;
 }
-.sidebar-item:hover {
+
+.sidebar-item:hover,
+.sidebar-item.active {
+  /* Menambahkan warna ketika dihover atau active */
   color: #a08336;
+  background-color: rgba(160, 131, 54, 0.1); /* Menambahkan warna background saat dihover atau active */
 }
 
 .sidebar-title {
   display: flex;
   font-size: 1.2em;
   justify-content: space-between;
+  cursor: pointer; /* Menambahkan cursor pointer untuk judul sidebar */
 }
+
 .sidebar-title span i {
   display: inline-block;
   width: 2em;
 }
+
 .sidebar-title .toggle-btn {
-  cursor: pointer;
   transition: transform 0.3s;
 }
+
 .sidebar-item.open > .sidebar-title .toggle-btn {
   transform: rotate(180deg);
 }
+
 .sidebar-content {
   padding-top: 0.25em;
   height: 0;
   overflow: hidden;
 }
+
 .sidebar-item.open > .sidebar-content {
   height: auto;
 }
 
 .sidebar-item.plain {
-  color: grey;
   font-size: 18px;
   text-decoration: none;
 }
-.sidebar-item.plain:hover {
-  text-decoration: none;
-  color: #a08336;
-}
+
 .sidebar-item.plain i {
   display: inline-block;
   width: 2em;
+}
+
+@media (max-width: 768px) {
+  /* Menambahkan aturan CSS untuk tampilan seluler */
+  .sidebar {
+    width: 100%;
+    padding: 20px; /* Mengurangi padding agar lebih sesuai di perangkat seluler */
+  }
+
+  .sidebar-item {
+    padding: 0.75em 1em;
+    padding-left: 20px; /* Mengurangi padding-left agar lebih sesuai di perangkat seluler */
+  }
+
+  .sidebar-title {
+    font-size: 1.1em; /* Mengurangi ukuran font agar lebih sesuai di perangkat seluler */
+  }
 }
