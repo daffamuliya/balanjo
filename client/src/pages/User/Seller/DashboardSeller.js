@@ -17,35 +17,19 @@ export default class Landing extends Component {
               Dashboard
             </h1>
             <MDBRow className="mt-3 justify-content-center">
-              <MDBCol md={3} xs={2} className="ms-auto">
+              <MDBCol md={6} xs={2} className="ms-auto">
                 <Card>
                   <CardBody>
-                    <h5>Total User</h5>
-                    <h3>341</h3>
+                    <h5>Total Revenue</h5>
+                    <h3>Rp3.340.000</h3>
                   </CardBody>
                 </Card>
               </MDBCol>
-              <MDBCol md={3} xs={2} className="ms-auto">
+              <MDBCol md={6} xs={2} className="ms-auto">
                 <Card>
                   <CardBody>
-                    <h5>Total Seller</h5>
-                    <h3>341</h3>
-                  </CardBody>
-                </Card>
-              </MDBCol>
-              <MDBCol md={3} xs={2} className="ms-auto">
-                <Card>
-                  <CardBody>
-                    <h5>Total Blog</h5>
-                    <h3>341</h3>
-                  </CardBody>
-                </Card>
-              </MDBCol>
-              <MDBCol md={3} xs={2} className="ms-auto">
-                <Card>
-                  <CardBody>
-                    <h5>Total Forum</h5>
-                    <h3>341</h3>
+                    <h5>Total Order</h5>
+                    <h3>92</h3>
                   </CardBody>
                 </Card>
               </MDBCol>
