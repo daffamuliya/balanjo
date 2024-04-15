@@ -1,6 +1,28 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Login, Register, Landing, Home, Forum, Blog, UploadBlog, DetailBlog, ECommerce, KategoriEcom, DetailProduk, Cart, Checkout, DetailOrder, BuktiBayar, Dashboard } from './pages';
+import {
+  Login,
+  Register,
+  Landing,
+  Home,
+  Forum,
+  Blog,
+  UploadBlog,
+  DetailBlog,
+  ECommerce,
+  KategoriEcom,
+  DetailProduk,
+  Cart,
+  Checkout,
+  DetailOrder,
+  BuktiBayar,
+  Dashboard,
+  KelolaBlog,
+  KelolaEcommerce,
+  KelolaForum,
+  KelolaUser,
+  RequestedBanner,
+} from './pages';
 
 export default class App extends Component {
   render() {
@@ -24,6 +46,11 @@ export default class App extends Component {
             <Route path="/detail-order" element={<DetailOrder />} />
             <Route path="/bukti-bayar" element={<BuktiBayar />} />
             <Route path="/admin" element={<Dashboard />} />
+            <Route path="/admin/blog" element={<KelolaBlog />} />
+            <Route path="/admin/ecommerce" element={<KelolaEcommerce />} />
+            <Route path="/admin/forum" element={<KelolaForum />} />
+            <Route path="/admin/user" element={<KelolaUser />} />
+            <Route path="/admin/banner" element={<RequestedBanner />} />
           </Routes>
         </main>
       </BrowserRouter>

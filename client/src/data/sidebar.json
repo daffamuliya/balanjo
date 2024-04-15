@@ -1,27 +1,32 @@
 [
   {
     "title": "Dashboard",
-    "icon": "bi bi-speedometer"
+    "icon": "bi bi-speedometer",
+    "path": "/admin"
   },
   {
     "title": "Kelola User",
-    "icon": "bi-person-fill"
+    "icon": "bi-person-fill",
+    "path": "/admin/user"
   },
   {
     "title": "Kelola Blog",
-    "icon": "bi bi-envelope-check-fill"
+    "icon": "bi bi-envelope-check-fill",
+    "path": "/admin/blog"
   },
   {
     "title": "Kelola Forum",
-    "icon": "bi bi-envelope-check-fill"
+    "icon": "bi bi-envelope-check-fill",
+    "path": "/admin/forum"
   },
   {
     "title": "E-Commerce",
     "icon": "bi bi-envelope-check-fill",
-    "childrens": [
-      {
-        "title": "Requested Banner"
-      }
-    ]
+    "path": "/admin/ecommerce"
+  },
+  {
+    "title": "Requested Banner",
+    "icon": "bi bi-envelope-check-fill",
+    "path": "/admin/banner"
   }
 ]
