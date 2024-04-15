@@ -4,7 +4,6 @@ import Card from 'react-bootstrap/Card';
 import SidebarSeller from '../../../components/SidebarSeller';
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import Table from 'react-bootstrap/Table';
-
 import CardBody from 'react-bootstrap/esm/CardBody';
 
 export default class Landing extends Component {
