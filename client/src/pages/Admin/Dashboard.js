@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import AdminNavbar from '../../components/AdminNavbar';
 import Card from 'react-bootstrap/Card';
 import Sidebar from '../../components/Sidebar';
-import Table from 'react-bootstrap/Table';
+import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import CardBody from 'react-bootstrap/esm/CardBody';
 
 export default class Landing extends Component {
   render() {
@@ -15,55 +16,40 @@ export default class Landing extends Component {
             <h1 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
               Dashboard
             </h1>
-            <Card>
-              <Card.Body>
-                {' '}
-                <Table responsive>
-                  <thead>
-                    <tr>
-                      <th>User ID</th>
-                      <th>Nama</th>
-                      <th>username</th>
-                      <th>Email</th>
-                      <th>Tanggal Bergabung</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                      <td>25 Januari 2022</td>
-                      <td>
-                        <i class="bi bi-trash-fill"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                      <td>25 Januari 2022</td>
-                      <td>
-                        <i class="bi bi-trash-fill"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Larry the Bird</td>
-                      <td>Mahmudi</td>
-                      <td>@twitter</td>
-                      <td>25 Januari 2022</td>
-                      <td>
-                        <i class="bi bi-trash-fill"></i>
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </Card.Body>
-            </Card>
+            <MDBRow className="mt-3 justify-content-center">
+              <MDBCol md={3} xs={2} className="ms-auto">
+                <Card>
+                  <CardBody>
+                    <h5>Total User</h5>
+                    <h3>341</h3>
+                  </CardBody>
+                </Card>
+              </MDBCol>
+              <MDBCol md={3} xs={2} className="ms-auto">
+                <Card>
+                  <CardBody>
+                    <h5>Total Seller</h5>
+                    <h3>341</h3>
+                  </CardBody>
+                </Card>
+              </MDBCol>
+              <MDBCol md={3} xs={2} className="ms-auto">
+                <Card>
+                  <CardBody>
+                    <h5>Total Blog</h5>
+                    <h3>341</h3>
+                  </CardBody>
+                </Card>
+              </MDBCol>
+              <MDBCol md={3} xs={2} className="ms-auto">
+                <Card>
+                  <CardBody>
+                    <h5>Total Forum</h5>
+                    <h3>341</h3>
+                  </CardBody>
+                </Card>
+              </MDBCol>
+            </MDBRow>
           </div>
         </div>
       </div>
