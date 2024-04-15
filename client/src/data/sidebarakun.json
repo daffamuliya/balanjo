@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Akun",
+    "path": "/user/akun"
+  },
+  {
+    "title": "Riwayat Pesanan",
+    "path": "/user/pesanan"
+  },
+  {
+    "title": "Kelola Blog",
+    "path": "/user/blog"
+  },
+  {
+    "title": "Kelola Forum",
+    "path": "/user/forum"
+  }
+]

@@ -19,6 +19,10 @@ import KelolaEcommerce from './Admin/KelolaEcommerce';
 import KelolaForum from './Admin/KelolaForum';
 import KelolaUser from './Admin/KelolaUser';
 import RequestedBanner from './Admin/RequestedBanner';
+import AkunDetails from './User/Profile/AkunDetails';
+import KelolaBlogUser from './User/Profile/KelolaBlog';
+import KelolaForumUser from './User/Profile/KelolaForum';
+import RiwayatPesanan from './User/Profile/RiwayatPesanan';
 
 export {
   Login,
@@ -42,4 +46,8 @@ export {
   KelolaForum,
   KelolaUser,
   RequestedBanner,
+  AkunDetails,
+  KelolaBlogUser,
+  KelolaForumUser,
+  RiwayatPesanan,
 };

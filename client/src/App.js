@@ -22,6 +22,10 @@ import {
   KelolaForum,
   KelolaUser,
   RequestedBanner,
+  AkunDetails,
+  KelolaBlogUser,
+  KelolaForumUser,
+  RiwayatPesanan,
 } from './pages';
 
 export default class App extends Component {
@@ -51,6 +55,10 @@ export default class App extends Component {
             <Route path="/admin/forum" element={<KelolaForum />} />
             <Route path="/admin/user" element={<KelolaUser />} />
             <Route path="/admin/banner" element={<RequestedBanner />} />
+            <Route path="/user/akun" element={<AkunDetails />} />
+            <Route path="/user/blog" element={<KelolaBlogUser />} />
+            <Route path="/user/forum" element={<KelolaForumUser />} />
+            <Route path="/user/pesanan" element={<RiwayatPesanan />} />
           </Routes>
         </main>
       </BrowserRouter>
