@@ -32,9 +32,9 @@ export default class Landing extends Component {
                   <tbody>
                     <tr>
                       <td>1</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
+                      <td>Daffa</td>
+                      <td>2011527001</td>
+                      <td>daffa@gmail.com</td>
                       <td>25 Januari 2022</td>
                       <td>
                         <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
@@ -42,9 +42,9 @@ export default class Landing extends Component {
                     </tr>
                     <tr>
                       <td>2</td>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
+                      <td>Bobby</td>
+                      <td>2011527002</td>
+                      <td>bobby@gmail.com</td>
                       <td>25 Januari 2022</td>
                       <td>
                         <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
@@ -52,9 +52,9 @@ export default class Landing extends Component {
                     </tr>
                     <tr>
                       <td>3</td>
-                      <td>Larry the Bird</td>
-                      <td>Mahmudi</td>
-                      <td>@twitter</td>
+                      <td>Kemal</td>
+                      <td>2011527003</td>
+                      <td>kemal@gmail.com</td>
                       <td>25 Januari 2022</td>
                       <td>
                         <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
