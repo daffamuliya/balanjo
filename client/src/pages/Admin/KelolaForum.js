@@ -1,75 +1,153 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { MDBBtn, MDBCol, MDBCard, MDBCardImage, MDBCardText, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody } from 'mdb-react-ui-kit';
 import AdminNavbar from '../../components/AdminNavbar';
 import Card from 'react-bootstrap/Card';
 import Sidebar from '../../components/Sidebar';
 import Table from 'react-bootstrap/Table';
+import axios from 'axios';
+import swal from 'sweetalert';
 
-export default class Landing extends Component {
-  render() {
-    return (
-      <div>
-        <AdminNavbar />
-        <div className="main">
-          <Sidebar />
-          <div className="container mt-5">
-            <h1 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
-              Kelola Forum
-            </h1>
-            <Card>
-              <Card.Body>
-                {' '}
-                <Table responsive>
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Judul Forum</th>
-                      <th>Uploader</th>
-                      <th>Balasan</th>
-                      <th>Tanggal Upload</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                      <td>25 Januari 2022</td>
-                      <td>
-                        <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
-                        <i class="bi bi-eye-fill" style={{ color: '#A08336' }}></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                      <td>25 Januari 2022</td>
-                      <td>
-                        <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
-                        <i class="bi bi-eye-fill" style={{ color: '#A08336' }}></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Larry the Bird</td>
-                      <td>Mahmudi</td>
-                      <td>@twitter</td>
-                      <td>25 Januari 2022</td>
-                      <td>
-                        <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
-                        <i class="bi bi-eye-fill" style={{ color: '#A08336' }}></i>
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </Card.Body>
-            </Card>
-          </div>
+export const KelolaForum = () => {
+  const [forum, setForum] = useState([]);
+  const [scrollableModal, setScrollableModal] = useState(false);
+  const [forumDetail, setForumDetail] = useState(null);
+
+  useEffect(() => {
+    getForum();
+  }, []);
+
+  const getForum = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/forum');
+      const formattedForum = response.data.items.map((item) => {
+        const waktu = new Date(item.created_at);
+        const options = {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          timeZone: 'Asia/Jakarta',
+        };
+        const waktuNormal = waktu.toLocaleDateString('id-ID', options);
+        return { ...item, waktuNormal };
+      });
+      setForum(formattedForum);
+    } catch (error) {
+      console.error('Error fetching blogs:', error);
+    }
+  };
+
+  const deleteForum = async (id) => {
+    try {
+      swal({
+        title: 'Anda yakin?',
+        text: 'Anda tidak akan dapat mengembalikan forum ini!',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      }).then(async (willDelete) => {
+        if (willDelete) {
+          await axios.delete(`http://localhost:3000/forum/deleteForum/${id}`);
+          getForum();
+          swal('Forum berhasil dihapus!', {
+            icon: 'success',
+          });
+        } else {
+          swal('Postingan tidak jadi dihapus!');
+        }
+      });
+    } catch (error) {
+      console.error('Error deleting post:', error);
+    }
+  };
+
+  const loadForumDetail = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/forum/comment/${id}`);
+      const forumDetailData = Array.isArray(response.data.items) ? response.data.items : [response.data.items];
+      setForumDetail(forumDetailData);
+      console.log('forumDetail:', forumDetailData);
+      setScrollableModal(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <div>
+      <AdminNavbar />
+      <div className="main">
+        <Sidebar />
+        <div className="container mt-5">
+          <h1 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
+            Kelola Forum
+          </h1>
+          <Card>
+            <Card.Body>
+              {' '}
+              <Table responsive>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Judul Forum</th>
+                    <th>Uploader</th>
+                    <th>Tanggal Upload</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Array.isArray(forum) &&
+                    forum.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.konten}</td>
+                        <td>{item.user}</td>
+                        <td>{item.waktuNormal}</td>
+                        <td>
+                          <i class="bi bi-trash-fill" onClick={() => deleteForum(item.id)} style={{ color: '#A08336', marginRight: '5px', cursor: 'pointer' }}></i>
+                          <i class="bi bi-eye-fill" onClick={() => loadForumDetail(item.id)} style={{ color: '#A08336', marginLeft: '10px', cursor: 'pointer' }}></i>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
         </div>
       </div>
-    );
-  }
-}
+      <MDBModal open={scrollableModal} setOpen={setScrollableModal} tabIndex="-1">
+        <MDBModalDialog centered scrollable>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Comments</MDBModalTitle>
+              <MDBBtn className="btn-close" color="none" onClick={() => setScrollableModal(!scrollableModal)}></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>
+              <div className="mb-3">
+                {Array.isArray(forumDetail) &&
+                  forumDetail.map((detail) => (
+                    <MDBCard className="mb-3" key={detail.id}>
+                      {' '}
+                      {/* Pindahkan key ke elemen MDBCard */}
+                      <div className="d-flex">
+                        <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '10%', height: '13%' }} />
+                        <MDBCol>
+                          <MDBCardText className="mt-2 ms-2 " style={{ color: 'black', fontSize: '16px', fontWeight: 'bold' }}>
+                            {detail.user}
+                          </MDBCardText>
+                          <MDBCardText className="mb-3 ms-2" style={{ color: 'black', fontSize: '16px', marginTop: '-15px' }}>
+                            {detail.komentar}
+                          </MDBCardText>
+                        </MDBCol>
+                      </div>
+                    </MDBCard>
+                  ))}
+              </div>
+            </MDBModalBody>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
+    </div>
+  );
+};
+
+export default KelolaForum;
