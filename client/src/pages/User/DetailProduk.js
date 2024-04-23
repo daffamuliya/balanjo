@@ -63,9 +63,9 @@ const DetailProduk = () => {
                   </MDBCol>
                   <MDBCol md={6} className="ms-md-3 mt-3 mt-md-0">
                     <div>
-                      <MDBCardTitle style={{ fontSize: '40px' }}>{produk.nama}</MDBCardTitle>
-                      <MDBCardText style={{ color: '#2D2D2D', fontSize: '17px', opacity: '60%' }}>{produk.deskripsi}</MDBCardText>
-                      <MDBCardTitle style={{ fontSize: '30px' }}>Rp{produk.harga}</MDBCardTitle>
+                      <MDBCardTitle style={{ fontSize: '28px', fontWeight: 'bold' }}>{produk.nama}</MDBCardTitle>
+                      <MDBCardText style={{ color: '#2D2D2D', fontSize: '16px', opacity: '60%', paddingRight: '5px' }}>{produk.deskripsi}</MDBCardText>
+                      <MDBCardTitle style={{ fontSize: '22px', fontWeight: 'bold' }}>Rp{produk.harga}</MDBCardTitle>
                       <hr className="my-4 me-4" />
                       <div className="mb-3 me-4">
                         <label htmlFor="exampleInputPassword1" className="form-label">

@@ -11,11 +11,11 @@ export default class Landing extends Component {
         <AdminNavbar />
         <div className="main">
           <Sidebar />
-          <div className="container mt-5">
+          <div className="container mt-5 ">
             <h1 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
               Daftar Banner
             </h1>
-            <Card> 
+            <Card>
               <Card.Body>
                 {' '}
                 <Table responsive>
