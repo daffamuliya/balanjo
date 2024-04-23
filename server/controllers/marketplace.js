@@ -132,16 +132,6 @@ controller.getProdukById = async (req, res) => {
 };
 
 controller.addProduk = async (req, res) => {
-  // try {
-  //   const { id_penjual, id_kategori, nama, deskripsi, harga, stok } = req.body;
-  //   const gambar = req.file.filename;
-  //   const slug = slugify(nama);
-  //   await model.produk.create({ id_penjual, id_kategori, nama, gambar, deskripsi, harga, stok, slug });
-  //   res.status(200).redirect('/marketplace/daftarBarang');
-  // } catch (error) {
-  //   res.json({ message: error.message });
-  // }
-
   if (req.files === null) return res.status(400).json({ msg: 'No File Uploaded' });
   const id_penjual = req.body.id_penjual;
   const id_kategori = req.body.id_kategori;
@@ -163,7 +153,7 @@ controller.addProduk = async (req, res) => {
   file.mv(`./public/images/${fileName}`, async (err) => {
     if (err) return res.status(500).json({ msg: err.message });
     try {
-      await model.produk.create({ id_penjual: id_penjual, id_kategori: id_kategori, nama: nama, deskripsi: deskripsi, harga: harga, stok: stok, gambar: fileName });
+      await model.produk.create({ id_penjual: id_penjual, id_kategori: id_kategori, nama: nama, deskripsi: deskripsi, harga: harga, stok: stok, gambar: url });
       res.redirect('/seller/product');
     } catch (error) {
       console.log(error.message);
