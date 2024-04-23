@@ -2,11 +2,21 @@ import React, { useEffect, useState } from 'react';
 import NormalNavbar from '../../components/NormalNavbar';
 import Footer from '../../components/Footer';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCardImage } from 'mdb-react-ui-kit';
-import LandingEcom from '../../components/LandingEcom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import RekomendasiEcom from '../../components/RecomendasiEcom';
 
 const DetailProduk = () => {
+  const [quantity, setQuantity] = useState(1);
+
+  const handleQuantity = () => {
+    if (quantity <= 1) {
+      return setQuantity(quantity + 0);
+    } else {
+      setQuantity(quantity - 1);
+    }
+  };
+
   const { id } = useParams();
   const [produk, setProduk] = useState(null);
   useEffect(() => {
@@ -49,7 +59,7 @@ const DetailProduk = () => {
               <MDBCard>
                 <MDBCardBody className="d-md-flex justify-content-between align-items-center">
                   <MDBCol md={6} className="mb-md-0">
-                    <MDBCardImage src="/img/detail-produk.png" position="top" alt="..." />
+                    <MDBCardImage src={produk.gambar} position="top" alt="..." />
                   </MDBCol>
                   <MDBCol md={6} className="ms-md-3 mt-3 mt-md-0">
                     <div>
@@ -62,24 +72,31 @@ const DetailProduk = () => {
                           Variasi
                         </label>
                         <select className="form-select" aria-label="Default select example" placeholder="Select size">
-                          <option selected>Select Size</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                          <option selected>Select Variant</option>
+                          <option value="1">Oversize</option>
+                          <option value="2">Normal Size</option>
                         </select>
                       </div>
-                      <div className="mb-3 me-4 mt-3 mt-md-5">
-                        <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                      <div className="input-group mb-3 me-4" style={{ paddingRight: '20px' }}>
+                        <button className="btn btn-secondary" type="button" onClick={handleQuantity} style={{ backgroundColor: '#fff', border: '1px solid #ccc', color: 'black' }}>
+                          -
+                        </button>
+                        <input type="text" className="form-control text-center font-weight-bold" name="quantity" value={quantity} placeholder={quantity} disabled style={{ backgroundColor: '#fff', border: '1px solid #ccc' }} />
+                        <button className="btn btn-secondary" type="button" onClick={() => setQuantity(quantity + 1)} style={{ backgroundColor: '#fff', border: '1px solid #ccc', color: 'black' }}>
+                          +
+                        </button>
                       </div>
-                      <MDBBtn size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%' }}>
-                        Tambah ke Keranjang
-                      </MDBBtn>
+                      <div className="mb-3 me-4">
+                        <MDBBtn size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%' }}>
+                          Tambah ke Keranjang
+                        </MDBBtn>
+                      </div>
                     </div>
                   </MDBCol>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
-            <LandingEcom />
+            <RekomendasiEcom />
           </MDBRow>
         </MDBContainer>
         <br></br>

@@ -2,7 +2,7 @@ import { MDBContainer, MDBRow, MDBBtn, MDBCol, MDBCard, MDBCardBody, MDBCardImag
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const LandingEcom = () => {
+const RekomendasiEcom = () => {
   const [marketplace, setMarketplace] = useState([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const LandingEcom = () => {
             marketplace.map((item) => (
               <MDBCol key={item.id} md={3} xs={12} className="mt-3">
                 <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-center">
-                  <MDBCardImage  src={item.gambar} position="top" alt="..." />
+                  <MDBCardImage src={item.gambar} position="top" alt="..." />
                   <MDBCardBody>
                     <MDBCardText className="mb-3" style={{ color: '#8D8D8D' }}>
                       {item.id_kategori}
@@ -34,7 +34,7 @@ const LandingEcom = () => {
                       Rp{item.harga}
                     </MDBCardText>
                     <MDBBtn
-                      href={`detail-produk/${item.id}`}
+                      href={`${item.id}`}
                       className="mb-3 mt-2"
                       size="lg"
                       style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '169px', maxHeight: '42px', fontWeight: 'normal', textAlign: 'center', border: '#A08336', borderRadius: '10px' }}
@@ -51,4 +51,4 @@ const LandingEcom = () => {
   );
 };
 
-export default LandingEcom;
+export default RekomendasiEcom;

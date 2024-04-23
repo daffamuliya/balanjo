@@ -15,7 +15,7 @@ export default class Landing extends Component {
             <h1 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
               Daftar Banner
             </h1>
-            <Card>
+            <Card> 
               <Card.Body>
                 {' '}
                 <Table responsive>

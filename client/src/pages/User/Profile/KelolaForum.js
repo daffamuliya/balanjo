@@ -49,7 +49,6 @@ export const KelolaForumUser = () => {
                             <td>25 Januari 2022</td>
                             <td>
                               <i class="bi bi-trash-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
-                              <i class="bi bi-pencil-square" style={{ color: '#A08336', paddingRight: '10px' }}></i>
                               <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
                             </td>
                           </tr>
