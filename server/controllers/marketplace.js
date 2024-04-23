@@ -1,7 +1,7 @@
 const model = require('../models/indexmodel');
 const { Op, QueryTypes } = require('sequelize');
-const slugify = require('slugify');
 const controller = {};
+const path = require('path');
 
 controller.jualProduk = async (req, res) => {
   const kategori = await model.kategori_produk.findAll({ attributes: ['id', 'nama'] });
@@ -132,15 +132,43 @@ controller.getProdukById = async (req, res) => {
 };
 
 controller.addProduk = async (req, res) => {
-  try {
-    const { id_penjual, id_kategori, nama, deskripsi, harga, stok } = req.body;
-    const gambar = req.file.filename;
-    const slug = slugify(nama);
-    await model.produk.create({ id_penjual, id_kategori, nama, gambar, deskripsi, harga, stok, slug });
-    res.status(200).redirect('/marketplace/daftarBarang');
-  } catch (error) {
-    res.json({ message: error.message });
-  }
+  // try {
+  //   const { id_penjual, id_kategori, nama, deskripsi, harga, stok } = req.body;
+  //   const gambar = req.file.filename;
+  //   const slug = slugify(nama);
+  //   await model.produk.create({ id_penjual, id_kategori, nama, gambar, deskripsi, harga, stok, slug });
+  //   res.status(200).redirect('/marketplace/daftarBarang');
+  // } catch (error) {
+  //   res.json({ message: error.message });
+  // }
+
+  if (req.files === null) return res.status(400).json({ msg: 'No File Uploaded' });
+  const id_penjual = req.body.id_penjual;
+  const id_kategori = req.body.id_kategori;
+  const nama = req.body.nama;
+  const deskripsi = req.body.deskripsi;
+  const harga = req.body.harga;
+  const stok = req.body.stok;
+
+  const file = req.files.file;
+  const fileSize = file.data.length;
+  const ext = path.extname(file.name);
+  const fileName = file.md5 + ext;
+  const url = `${req.protocol}://${req.get('host')}/images/${fileName}`;
+  const allowedType = ['.png', '.jpg', '.jpeg'];
+
+  if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({ msg: 'Invalid Images' });
+  if (fileSize > 5000000) return res.status(422).json({ msg: 'Image must be less than 5 MB' });
+
+  file.mv(`./public/images/${fileName}`, async (err) => {
+    if (err) return res.status(500).json({ msg: err.message });
+    try {
+      await model.produk.create({ id_penjual: id_penjual, id_kategori: id_kategori, nama: nama, deskripsi: deskripsi, harga: harga, stok: stok, gambar: fileName });
+      res.redirect('/seller/product');
+    } catch (error) {
+      console.log(error.message);
+    }
+  });
 };
 
 controller.updateProduk = async (req, res) => {

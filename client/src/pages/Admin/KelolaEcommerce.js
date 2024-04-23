@@ -13,7 +13,7 @@ export default class Landing extends Component {
           <Sidebar />
           <div className="container mt-5 ">
             <h3 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
-              Order History
+              Transaction History
             </h3>
             <Card>
               <Card.Body>

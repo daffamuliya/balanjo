@@ -29,6 +29,7 @@ import {
   DashboardSeller,
   PesananSeller,
   ProductSeller,
+  UploadProduk,
 } from './pages';
 
 export default class App extends Component {
@@ -65,6 +66,7 @@ export default class App extends Component {
             <Route path="/seller" element={<DashboardSeller />} />
             <Route path="/seller/pesanan" element={<PesananSeller />} />
             <Route path="/seller/product" element={<ProductSeller />} />
+            <Route path="/seller/upload-produk" element={<UploadProduk />} />
           </Routes>
         </main>
       </BrowserRouter>

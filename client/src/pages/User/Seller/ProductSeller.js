@@ -17,6 +17,11 @@ export default class Landing extends Component {
           <div className="container mt-5">
             <MDBRow className="mt-5">
               <h5 style={{ color: '#A08336' }}>Produk</h5>
+              <MDBCol size="2" className="mt-3">
+                <a href="upload-produk" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', display: 'inline-block' }}>
+                  + Tambah
+                </a>
+              </MDBCol>
               <MDBRow className="mt-3 justify-content-center">
                 <MDBCol md={12} xs={2} className="ms-auto">
                   <Card>

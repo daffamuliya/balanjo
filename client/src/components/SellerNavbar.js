@@ -10,8 +10,8 @@ const NormalNavbar = () => {
       <Navbar.Brand href="/" className="ms-5">
         <img src="/img/logo.png" width="63" height="63" className="d-inline-block align-top" alt="React Bootstrap logo" />
       </Navbar.Brand>
-      <MDBBtn size="lg" className="me-2" style={{ backgroundColor: 'rgba(160, 131, 54, 0.1)', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336' }}>
-        Seller Center
+      <MDBBtn size="lg" style={{ backgroundColor: 'rgba(160, 131, 54, 0.1)', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336' }}>
+        Seller
       </MDBBtn>
       <Container>
         <Navbar.Toggle aria-controls="navbarScroll" />

@@ -26,6 +26,7 @@ import RiwayatPesanan from './User/Profile/RiwayatPesanan';
 import DashboardSeller from './User/Seller/DashboardSeller';
 import PesananSeller from './User/Seller/PesananSeller';
 import ProductSeller from './User/Seller/ProductSeller';
+import UploadProduk from './User/Seller/UploadProduct';
 
 export {
   Login,
@@ -56,4 +57,5 @@ export {
   DashboardSeller,
   PesananSeller,
   ProductSeller,
+  UploadProduk,
 };
