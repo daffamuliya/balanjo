@@ -12,9 +12,9 @@ export default class Landing extends Component {
         <div className="main">
           <Sidebar />
           <div className="container mt-5">
-            <h1 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
+            <h3 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
               Daftar Request Banner
-            </h1>
+            </h3>
             <Card>
               <Card.Body>
                 {' '}

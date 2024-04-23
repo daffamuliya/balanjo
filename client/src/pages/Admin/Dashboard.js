@@ -13,9 +13,9 @@ export default class Landing extends Component {
         <div className="main">
           <Sidebar />
           <div className="container mt-5">
-            <h1 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
+            <h3 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
               Dashboard
-            </h1>
+            </h3>
             <MDBRow className="mt-3 justify-content-center">
               <MDBCol md={3} xs={2} className="ms-auto">
                 <Card>

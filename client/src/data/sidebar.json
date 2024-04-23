@@ -25,7 +25,7 @@
     "path": "/admin/ecommerce"
   },
   {
-    "title": "Requested Banner",
+    "title": "Banner",
     "icon": "bi bi-envelope-check-fill",
     "path": "/admin/banner"
   }

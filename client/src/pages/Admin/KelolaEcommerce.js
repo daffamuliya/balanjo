@@ -12,40 +12,36 @@ export default class Landing extends Component {
         <div className="main">
           <Sidebar />
           <div className="container mt-5 ">
-            <h1 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
-              Daftar Banner
-            </h1>
+            <h3 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
+              Order History
+            </h3>
             <Card>
               <Card.Body>
                 {' '}
                 <Table responsive>
                   <thead>
                     <tr>
-                      <th>ID Banner</th>
-                      <th>Gambar</th>
-                      <th>Aksi</th>
+                      <th>Order ID</th>
+                      <th>Product</th>
+                      <th>Date</th>
+                      <th>Customer</th>
+                      <th>Total</th>
+                      <th>Payment</th>
+                      <th>Status</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>1</td>
-                      <td>Mark</td>
+                      <td>000123</td>
+                      <td>Kacamata</td>
+                      <td>12 Maret 2022</td>
+                      <td>Daffa Riza Muliya</td>
+                      <td>Rp 0,00</td>
+                      <td>Lunas</td>
+                      <td>Dikirim</td>
                       <td>
-                        <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Jacob</td>
-                      <td>
-                        <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Larry the Bird</td>
-                      <td>
-                        <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
+                        <i class="bi bi-eye-fill" style={{ color: '#A08336' }}></i>
                       </td>
                     </tr>
                   </tbody>
