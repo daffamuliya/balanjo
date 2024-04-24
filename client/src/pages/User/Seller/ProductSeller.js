@@ -96,7 +96,7 @@ const ProductSeller = () => {
                                 <td>{item.nama}</td>
                                 <td>{item.stok}</td>
                                 <td> {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(item.harga)}</td>
-                                <td>null</td>
+                                <td>35</td>
                                 <td>{item.deskripsi}</td>
                                 <td>
                                   <i class="bi bi-trash-fill" onClick={() => deleteProduk(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
