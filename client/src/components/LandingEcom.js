@@ -31,7 +31,7 @@ const LandingEcom = () => {
                       {item.nama}
                     </MDBCardTitle>
                     <MDBCardText className="mt-3" style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                      Rp{item.harga}
+                      {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(item.harga)}
                     </MDBCardText>
                     <MDBBtn
                       href={`detail-produk/${item.id}`}

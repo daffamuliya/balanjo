@@ -81,33 +81,33 @@ const UploadProduk = () => {
                         <form onSubmit={saveProduk}>
                           <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">
-                              Nama Produk
+                              Nama Produk*
                             </label>
-                            <input type="text" value={nama} onChange={(e) => setNama(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            <input type="text" value={nama} onChange={(e) => setNama(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
                           </div>
                           <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">
-                              Stok
+                              Stok (Input angka)*
                             </label>
-                            <input type="text" value={stok} onChange={(e) => setStok(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            <input type="number" value={stok} onChange={(e) => setStok(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
                           </div>
                           <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">
-                              Harga
+                              Harga (Input angka)*
                             </label>
-                            <input type="text" value={harga} onChange={(e) => setHarga(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            <input type="number" value={harga} onChange={(e) => setHarga(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
                           </div>
                           <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">
-                              Deskripsi
+                              Deskripsi*
                             </label>
-                            <textarea value={deskripsi} onChange={(e) => setDeskripsi(e.target.value)} class="form-control" id="floatingTextarea"></textarea>
+                            <textarea value={deskripsi} onChange={(e) => setDeskripsi(e.target.value)} class="form-control" id="floatingTextarea" required></textarea>
                           </div>
                           <div class="mb-3">
                             <label class="form-label" for="customFile">
-                              Foto
+                              Foto*
                             </label>
-                            <input type="file" onChange={loadImage} class="form-control" id="customFile" />
+                            <input type="file" onChange={loadImage} class="form-control" id="customFile" required />
                           </div>
                           <button type="submit" class="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right' }}>
                             + Tambah

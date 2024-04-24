@@ -86,7 +86,7 @@ controller.getAllProduk = async (req, res) => {
   try {
     await model.produk
       .findAll({
-        attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga'],
+        attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok', 'created_at'],
       })
       .then((result) => {
         if (result.length > 0) {
