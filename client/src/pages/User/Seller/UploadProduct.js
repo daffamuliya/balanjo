@@ -10,7 +10,7 @@ import CardBody from 'react-bootstrap/esm/CardBody';
 
 const UploadProduk = () => {
   const [id_penjual] = useState('2');
-  const [id_kategori] = useState('1');
+  const [id_kategori, setKategori] = useState('');
   const [nama, setNama] = useState('');
   const [deskripsi, setDeskripsi] = useState('');
   const [harga, setHarga] = useState('');
@@ -89,10 +89,13 @@ const UploadProduk = () => {
                             <label htmlFor="exampleInputPassword1" className="form-label">
                               Kategori Produk*
                             </label>
-                            <select className="form-select" aria-label="Default select example" placeholder="Select size" required>
+                            <select className="form-select" aria-label="Default select example" placeholder="Select size" required value={id_kategori} onChange={(e) => setKategori(e.target.value)}>
                               <option selected>Select Kategori</option>
-                              <option value="1">Oversize</option>
-                              <option value="2">Normal Size</option>
+                              <option value="1">Aksesoris</option>
+                              <option value="2">Pakaian</option>
+                              <option value="3">Makanan</option>
+                              <option value="4">Herbal</option>
+                              <option value="5">Lainnya</option>
                             </select>
                           </div>
                           <div class="mb-3">
