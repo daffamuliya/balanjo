@@ -85,17 +85,15 @@ const UploadProduk = () => {
                             </label>
                             <input type="text" value={nama} onChange={(e) => setNama(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
                           </div>
-                          <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">
-                              Stok (Input angka)*
+                          <div className="mb-3 ">
+                            <label htmlFor="exampleInputPassword1" className="form-label">
+                              Kategori Produk*
                             </label>
-                            <input type="number" value={stok} onChange={(e) => setStok(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
-                          </div>
-                          <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">
-                              Harga (Input angka)*
-                            </label>
-                            <input type="number" value={harga} onChange={(e) => setHarga(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
+                            <select className="form-select" aria-label="Default select example" placeholder="Select size" required>
+                              <option selected>Select Kategori</option>
+                              <option value="1">Oversize</option>
+                              <option value="2">Normal Size</option>
+                            </select>
                           </div>
                           <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">
@@ -103,6 +101,20 @@ const UploadProduk = () => {
                             </label>
                             <textarea value={deskripsi} onChange={(e) => setDeskripsi(e.target.value)} class="form-control" id="floatingTextarea" required></textarea>
                           </div>
+                          <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">
+                              Stok (Input angka)*
+                            </label>
+                            <input type="number" value={stok} onChange={(e) => setStok(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">
+                              Harga (Input angka)*
+                            </label>
+                            <input type="number" value={harga} onChange={(e) => setHarga(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
+                          </div>
+
                           <div class="mb-3">
                             <label class="form-label" for="customFile">
                               Foto*

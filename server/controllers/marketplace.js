@@ -37,6 +37,7 @@ controller.detailProduk = async (req, res) => {
   try {
     await model.produk
       .findOne({
+        attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok', 'created_at'],
         where: {
           id: req.params.id,
         },
@@ -109,7 +110,7 @@ controller.getProdukById = async (req, res) => {
   try {
     await model.produk
       .findOne({
-        attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga'],
+        attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok'],
         where: {
           id: req.params.id,
         },
