@@ -120,9 +120,9 @@ const LandingForum = () => {
       <MDBContainer>
         <MDBRow className="mt-4">
           <MDBCol md={4} xs={12}>
-            <MDBBtn onClick={toggleOpen} className="col-12" style={{ backgroundColor: '#A08336', fontSize: '16px', fontWeight: 'normal', border: '#A08336', borderRadius: '10px', marginBottom: '30px' }}>
+            <a onClick={toggleOpen} className="btn btn-primary col-12" style={{ backgroundColor: '#A08336', fontSize: '16px', fontWeight: 'normal', border: '#A08336', borderRadius: '10px', marginBottom: '30px' }}>
               Mulai Diskusi Baru
-            </MDBBtn>
+            </a>
             <p className="text-white-75 d-none d-md-block" style={{ color: '#6A6D70', marginBottom: '1rem' }}>
               Kategori{' '}
             </p>

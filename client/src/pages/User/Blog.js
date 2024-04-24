@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NormalNavbar from '../../components/NormalNavbar';
 import Footer from '../../components/Footer';
-import { MDBRow, MDBCol, MDBContainer, MDBInput, MDBBtn } from 'mdb-react-ui-kit';
+import { MDBRow, MDBCol, MDBContainer, MDBInput } from 'mdb-react-ui-kit';
 import LandingBlog from '../../components/LandingBlog';
 export default class Landing extends Component {
   render() {
@@ -19,9 +19,9 @@ export default class Landing extends Component {
               </form>
             </MDBCol>
             <MDBCol size="2" className="mt-3">
-              <MDBBtn href="upload-blog" size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', border: 'black', marginRight: '5px' }}>
+              <a href="upload-blog" className="btn btn-primary" size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', border: 'black', marginRight: '5px' }}>
                 Buat artikel kamu
-              </MDBBtn>
+              </a>
             </MDBCol>
           </MDBRow>
         </MDBContainer>

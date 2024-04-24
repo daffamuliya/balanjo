@@ -1,5 +1,3 @@
-import { MDBBtn } from 'mdb-react-ui-kit';
-
 const Hero = () => {
   return (
     <section className="hero">
@@ -12,9 +10,9 @@ const Hero = () => {
             <p className="text-white-75 mb-5" style={{ color: 'white' }}>
               Bersatu dalam Pengetahuan, Inspirasi, dan Karya
             </p>
-            <MDBBtn href="/home" size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '169px', maxHeight: '42px', fontWeight: 'normal', textAlign: 'center', border: '#A08336', borderRadius: '10px' }}>
+            <a href="/home" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '169px', maxHeight: '48px', fontWeight: 'normal', textAlign: 'center', border: '#A08336', borderRadius: '10px' }}>
               Get Started
-            </MDBBtn>
+            </a>
           </div>
         </div>
       </div>
