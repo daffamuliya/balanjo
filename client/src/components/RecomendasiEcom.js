@@ -25,7 +25,7 @@ const RekomendasiEcom = () => {
                   <MDBCardImage src={item.gambar} position="top" alt="..." />
                   <MDBCardBody>
                     <MDBCardText className="mb-3" style={{ color: '#8D8D8D' }}>
-                      {item.id_kategori}
+                      {/* {item.id_kategori} */}
                     </MDBCardText>
                     <MDBCardTitle style={{ fontSize: '20px', fontWeight: 'bold' }} className="text-center">
                       {item.nama}

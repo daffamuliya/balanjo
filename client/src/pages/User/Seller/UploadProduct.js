@@ -94,8 +94,11 @@ const UploadProduk = () => {
                               <option value="1">Aksesoris</option>
                               <option value="2">Pakaian</option>
                               <option value="3">Makanan</option>
-                              <option value="4">Herbal</option>
-                              <option value="5">Lainnya</option>
+                              <option value="4">Minuman</option>
+                              <option value="5">Herbal</option>
+                              <option value="6">Kreatif</option>
+                              <option value="7">Jasa</option>
+                              <option value="8">Lainnya</option>
                             </select>
                           </div>
                           <div class="mb-3">
