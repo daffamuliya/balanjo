@@ -2,7 +2,6 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { MDBBtn } from 'mdb-react-ui-kit';
 
 const NormalNavbar = () => {
   return (
@@ -19,14 +18,13 @@ const NormalNavbar = () => {
             <Nav.Link href="/blog">Blog</Nav.Link>
             <Nav.Link href="/ecommerce">E Commerce</Nav.Link>
           </Nav>
-
           <Form className="d-flex">
-            <MDBBtn size="lg" className="me-2" style={{ backgroundColor: 'transparent', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336' }}>
+            <a href="/login" className="btn btn-primary" style={{ marginRight: '5px', backgroundColor: 'transparent', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336' }}>
               Login
-            </MDBBtn>
-            <MDBBtn size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', fontWeight: 'bold', textAlign: 'center', border: 'black' }}>
-              Sign In
-            </MDBBtn>
+            </a>
+            <a href="/register" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '55px', fontWeight: 'bold', textAlign: 'center', border: 'black' }}>
+              Sign Up
+            </a>
           </Form>
         </Navbar.Collapse>
       </Container>
