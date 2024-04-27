@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NormalNavbar from '../../components/NormalNavbar';
 import Footer from '../../components/Footer';
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCardImage } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage } from 'mdb-react-ui-kit';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import RekomendasiEcom from '../../components/RecomendasiEcom';
