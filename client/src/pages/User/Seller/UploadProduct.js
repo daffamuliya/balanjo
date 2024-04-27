@@ -90,7 +90,7 @@ const UploadProduk = () => {
                               Kategori Produk*
                             </label>
                             <select className="form-select" aria-label="Default select example" placeholder="Select size" required value={id_kategori} onChange={(e) => setKategori(e.target.value)}>
-                              <option selected>Select Kategori</option>
+                              <option selected>Pilih Kategori Produk</option>
                               <option value="1">Aksesoris</option>
                               <option value="2">Pakaian</option>
                               <option value="3">Makanan</option>

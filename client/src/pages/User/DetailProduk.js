@@ -87,7 +87,7 @@ const DetailProduk = () => {
                         </button>
                       </div>
                       <div className="mb-3 me-4">
-                        <a href="/" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%' }}>
+                        <a href="/cart" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%' }}>
                           Tambah Keranjang
                         </a>
                       </div>

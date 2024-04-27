@@ -45,7 +45,8 @@ export default class Landing extends Component {
               <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none', Width: '390px', Height: '239px' }} className="text-center">
                 <MDBCardImage src="/img/mandiri.png" className="mx-auto mt-5" alt="..." style={{ width: '30%' }} />
                 <MDBCardBody>
-                  <MDBCardText className="mt-3 mb-3">Fitur untuk berdiskusi, sekaligus memamerkan kreativitas.</MDBCardText>
+                  <MDBCardText className="mt-3 mb-3">PT BALANJO INDONESIA</MDBCardText>
+                  <br></br>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -53,7 +54,7 @@ export default class Landing extends Component {
               <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none', Width: '390px', Height: '239px' }} className="text-center">
                 <MDBCardImage src="/img/qris.png" className="mx-auto mt-5" alt="..." style={{ width: '30%' }} />
                 <MDBCardBody>
-                  <MDBCardText className="mt-3 mb-3">Fitur untuk berdiskusi, sekaligus memamerkan kreativitas.</MDBCardText>
+                  <MDBCardText className="mt-3 mb-3">PT BALANJO INDONESIA</MDBCardText>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -61,7 +62,8 @@ export default class Landing extends Component {
               <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none', Width: '390px', Height: '239px' }} className="text-center">
                 <MDBCardImage src="/img/bca.png" className="mx-auto mt-5" alt="..." style={{ width: '30%' }} />
                 <MDBCardBody>
-                  <MDBCardText className="mt-3 mb-3">Fitur untuk berdiskusi, sekaligus memamerkan kreativitas.</MDBCardText>
+                  <MDBCardText className="mt-3 mb-3">PT BALANJO INDONESIA</MDBCardText>
+                  <br></br>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -69,7 +71,8 @@ export default class Landing extends Component {
               <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none', Width: '390px', Height: '239px' }} className="text-center">
                 <MDBCardImage src="/img/dana.png" className="mx-auto mt-5" alt="..." style={{ width: '30%' }} />
                 <MDBCardBody>
-                  <MDBCardText className="mt-3 mb-3">Fitur untuk berdiskusi, sekaligus memamerkan kreativitas.</MDBCardText>
+                  <MDBCardText className="mt-3 mb-3">PT BALANJO INDONESIA</MDBCardText>
+                  <br></br>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -77,7 +80,7 @@ export default class Landing extends Component {
               <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none', Width: '390px', Height: '239px' }} className="text-center">
                 <MDBCardImage src="/img/shoppee.png" className="mx-auto mt-5" alt="..." style={{ width: '30%' }} />
                 <MDBCardBody>
-                  <MDBCardText className="mt-3 mb-3">Fitur untuk berdiskusi, sekaligus memamerkan kreativitas.</MDBCardText>
+                  <MDBCardText className="mt-3 mb-3">PT BALANJO INDONESIA</MDBCardText>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -85,9 +88,15 @@ export default class Landing extends Component {
               <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none', Width: '390px', Height: '239px' }} className="text-center">
                 <MDBCardImage src="/img/gopay.png" className="mx-auto mt-5" alt="..." style={{ width: '30%' }} />
                 <MDBCardBody>
-                  <MDBCardText className="mt-3 mb-3">Fitur untuk berdiskusi, sekaligus memamerkan kreativitas.</MDBCardText>
+                  <MDBCardText className="mt-3 mb-3">PT BALANJO INDONESIA</MDBCardText>
+                  <br></br>
                 </MDBCardBody>
               </MDBCard>
+            </MDBCol>
+            <MDBCol size="12" className="mt-5 text-center">
+              <a href="bukti-bayar" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '178px', maxHeight: '42px', textAlign: 'center', border: 'black', display: 'inline-block' }}>
+                Upload Bukti Bayar
+              </a>
             </MDBCol>
           </MDBRow>
         </MDBContainer>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NormalNavbar from '../../components/NormalNavbar';
 import Footer from '../../components/Footer';
+import Form from 'react-bootstrap/Form';
 import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCard } from 'mdb-react-ui-kit';
 export default class Landing extends Component {
   render() {
@@ -18,28 +19,7 @@ export default class Landing extends Component {
                   {' '}
                   <div class="row">
                     <div class="col-12 mb-4 mt-4">
-                      <h3 className="text-center mb-3" style={{ fontWeight: 'bold' }}>
-                        Informasi Pelanggan
-                      </h3>
                       <form>
-                        <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label" style={{ fontWeight: 'bold' }}>
-                            Nama Lengkap
-                          </label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nama lengkap anda" />
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label" style={{ fontWeight: 'bold' }}>
-                            Email
-                          </label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email anda" />
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label" style={{ fontWeight: 'bold' }}>
-                            Nomor Handphone
-                          </label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nomor handphone anda" />
-                        </div>
                         <h3 className="text-center mb-3 mt-4" style={{ fontWeight: 'bold' }}>
                           Address Information
                         </h3>
@@ -77,11 +57,21 @@ export default class Landing extends Component {
                   <h3 className="text-center mb-3" style={{ fontWeight: 'bold' }}>
                     Opsi Pengiriman
                   </h3>
+                  <Form>
+                    {['radio'].map((type) => (
+                      <div key={`reverse-${type}`} className="mb-3">
+                        <Form.Check label="COD" name="group1" type={type} id={`${type}-1`} />
+                        <Form.Check label="J&T" name="group1" type={type} id={`${type}-2`} />
+                      </div>
+                    ))}
+                  </Form>
                 </MDBCardBody>
               </MDBCard>
-              <button type="submit" class="btn btn-primary" style={{ marginTop: '20px', backgroundColor: '#A08336', fontSize: '16px', maxWidth: '180px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right' }}>
-                Bayar
-              </button>
+              <MDBCol size="12" className="mt-3 text-end">
+                <a href="detail-order" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', display: 'inline-block' }}>
+                  Bayar
+                </a>
+              </MDBCol>
             </MDBCol>
           </MDBRow>
         </MDBContainer>
