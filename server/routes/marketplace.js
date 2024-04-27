@@ -46,7 +46,7 @@ router.get('/riwayat', controller.marketplace.riwayat);
 router.post('/addProduk', controller.marketplace.addProduk);
 router.put('/updateProduk/:id', controller.marketplace.updateProduk);
 router.delete('/deleteProduk/:id', controller.marketplace.deleteProduk);
-router.get('/:id/getCart', controller.marketplace.getAllCart);
+router.get('/:user_id/getCart', controller.marketplace.getAllCart);
 router.post('/cart/addCart', controller.marketplace.addCart);
 router.delete('/deleteCart/:id', controller.marketplace.deleteCart);
 

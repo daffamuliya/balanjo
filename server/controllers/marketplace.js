@@ -201,11 +201,13 @@ controller.getAllCart = async function (req, res) {
   try {
     await model.cart
       .findAll({
-        attributes: ['id', 'id_penjual', 'produk_id', 'jumlah', 'status'],
+        attributes: ['id', 'user_id', 'produk_id', 'jumlah', 'harga', 'sub_total', 'gambar', 'created_at'],
+        where: {
+          user_id: req.params.user_id,
+        },
       })
       .then((result) => {
         if (result) {
-          // res.json("blog/allCart", { items: result,dasbordaktif: "", rpsaktif: "active"  });
           res.status(200).json({
             message: 'mendapat cart',
             data: result,
