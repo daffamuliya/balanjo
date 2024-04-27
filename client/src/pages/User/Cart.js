@@ -48,7 +48,9 @@ const Cart = () => {
                 <MDBTableHead>
                   <tr>
                     <th scope="col">Product</th>
-                    <th scope="col">Quantity</th>
+                    <th className="text-center" scope="col">
+                      Qty
+                    </th>
                     <th scope="col">Price</th>
                     <th scope="col">Subtotal</th>
                     <th scope="col"></th>
@@ -67,16 +69,8 @@ const Cart = () => {
                             </div>
                           </div>
                         </td>
-                        <td>
-                          <div className="d-flex align-items-center">
-                            <button className="btn btn-secondary me-2" type="button" onClick={handleQuantity}>
-                              -
-                            </button>
-                            <input type="text" className="form-control text-center font-weight-bold" value={quantity} disabled style={{ width: '50px' }} />
-                            <button className="btn btn-secondary ms-2" type="button" onClick={() => setQuantity(quantity + 1)}>
-                              +
-                            </button>
-                          </div>
+                        <td className="text-center">
+                          <p className="fw-normal mb-1">{item.jumlah}</p>
                         </td>
                         <td>
                           <p className="fw-normal mb-1">Rp{item.harga}</p>
