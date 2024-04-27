@@ -226,20 +226,20 @@ controller.getAllCart = async function (req, res) {
 
 controller.addCart = async (req, res) => {
   try {
-    const { id_penjual, produk_id, jumlah, status } = req.body;
+    const { user_id, produk_id, jumlah, harga, sub_total, gambar } = req.body;
     await model.cart.create({
-      id_penjual: id_penjual,
+      user_id: user_id,
       produk_id: produk_id,
       jumlah: jumlah,
-      status: status,
+      harga: harga,
+      sub_total: sub_total,
+      gambar: gambar,
     });
     res.status(200).json({
       message: 'berhasil menambah cart',
     });
-    //   res.redirect("/dosen/courses");
   } catch (error) {
     res.json({ message: error.message });
-    // res.redirect("/dosen/add-course");
   }
 };
 

@@ -39,6 +39,12 @@ const cart = sequelize.define(
       type: DataTypes.BIGINT,
       allowNull: false,
     },
+
+    gambar: {
+      type: DataTypes.BLOB,
+      allowNull: false,
+    },
+
     created_at: {
       type: DataTypes.DATE,
     },

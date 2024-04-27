@@ -4,10 +4,14 @@ import Footer from '../../components/Footer';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage } from 'mdb-react-ui-kit';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import swal from 'sweetalert';
 import RekomendasiEcom from '../../components/RecomendasiEcom';
+import { useNavigate } from 'react-router-dom';
 
 const DetailProduk = () => {
+  const [user_id] = useState('2');
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
 
   const handleQuantity = () => {
     if (quantity <= 1) {
@@ -43,6 +47,39 @@ const DetailProduk = () => {
       }
     };
   }, [id, produk]);
+
+  const addToCart = async () => {
+    const cartItem = {
+      user_id: user_id,
+      produk_id: produk.id,
+      jumlah: quantity,
+      harga: produk.harga,
+      sub_total: quantity * produk.harga,
+      gambar: produk.gambar,
+    };
+
+    try {
+      const response = await axios.post(`http://localhost:3000/marketplace/cart/addCart`, cartItem);
+      if (response.status === 200) {
+        swal({
+          icon: 'success',
+          title: 'Success',
+          text: 'Produk berhasil di upload!',
+        }).then(() => {
+          navigate('/cart');
+        });
+      } else {
+        throw new Error('Gagal mengunggah produk');
+      }
+    } catch (error) {
+      console.log(error);
+      swal({
+        icon: 'error',
+        title: 'Error',
+        text: 'Gagal mengunggah produk. Silakan coba lagi.',
+      });
+    }
+  };
 
   if (produk) {
     return (
@@ -87,7 +124,7 @@ const DetailProduk = () => {
                         </button>
                       </div>
                       <div className="mb-3 me-4">
-                        <a href="/cart" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%' }}>
+                        <a href="/cart" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%' }} onClick={addToCart}>
                           Tambah Keranjang
                         </a>
                       </div>
