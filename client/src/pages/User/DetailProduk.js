@@ -64,7 +64,7 @@ const DetailProduk = () => {
         swal({
           icon: 'success',
           title: 'Success',
-          text: 'Produk berhasil di upload!',
+          text: 'Produk berhasil ditambahkan ke keranjang!',
         }).then(() => {
           navigate('/cart');
         });
@@ -124,9 +124,9 @@ const DetailProduk = () => {
                         </button>
                       </div>
                       <div className="mb-3 me-4">
-                        <a href="/cart" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%' }} onClick={addToCart}>
+                        <button className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%' }} onClick={addToCart}>
                           Tambah Keranjang
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </MDBCol>
