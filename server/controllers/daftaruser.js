@@ -51,4 +51,17 @@ controller.getUserById = async (req, res) => {
   }
 };
 
+controller.deleteUser = async (req, res) => {
+  try {
+    await model.users.destroy({
+      where: { id: req.params.id },
+    });
+    res.status(200).json({
+      message: 'berhasil happus data',
+    });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
 module.exports = controller;

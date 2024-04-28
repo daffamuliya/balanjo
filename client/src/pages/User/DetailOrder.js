@@ -3,7 +3,6 @@ import NormalNavbar from '../../components/NormalNavbar';
 import Footer from '../../components/Footer';
 import axios from 'axios';
 import swal from 'sweetalert';
-import { useNavigate } from 'react-router-dom';
 import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCard, MDBCardTitle, MDBCardSubTitle, MDBCardText, MDBCardImage } from 'mdb-react-ui-kit';
 
 const DetailOrder = () => {
@@ -11,7 +10,6 @@ const DetailOrder = () => {
   const user_id = '2';
   const [totalBayar, setTotalBayar] = useState(0);
   const [user, setUser] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchOrderDetail();
