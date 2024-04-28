@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/conn');
 const users = require('./users');
+const produk = require('./produk');
 
 const order_detail = sequelize.define(
   'order_detail',
@@ -11,21 +12,18 @@ const order_detail = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-
     user_id: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      references: {
-        model: users,
-        key: 'id',
-      },
     },
-
+    produk_id: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
     alamat: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-
     total: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -33,8 +31,12 @@ const order_detail = sequelize.define(
   },
   {
     tableName: 'order_detail',
-    timestamps: true,
+    timestamps: false,
   }
 );
+
+// Menetapkan relasi
+order_detail.belongsTo(users, { foreignKey: 'user_id' });
+order_detail.belongsTo(produk, { foreignKey: 'produk_id' });
 
 module.exports = order_detail;

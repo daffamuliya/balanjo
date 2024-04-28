@@ -4,10 +4,12 @@ import Footer from '../../components/Footer';
 import { MDBContainer, MDBRow, MDBCol, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const [user_id] = useState('2');
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCartData();
@@ -50,6 +52,39 @@ const Cart = () => {
       console.error('Error deleting produk:', error);
     }
   };
+
+  const deleteAllCartItems = async () => {
+    try {
+      await axios.delete(`http://localhost:3000/marketplace/deleteAllCartItems/${user_id}`);
+    } catch (error) {
+      console.error('Terjadi kesalahan saat menghapus item di keranjang:', error);
+    }
+  };
+
+  const handleCheckout = async () => {
+    try {
+      const defaultAddress = 'Jalan Seberang Padang';
+
+      for (const item of cartItems) {
+        const orderData = {
+          user_id: user_id,
+          produk_id: item.produk_id,
+          alamat: defaultAddress,
+          total: item.sub_total,
+        };
+
+        const response = await axios.post('http://localhost:3000/marketplace/addOrder', orderData);
+        swal('Berhasil!', response.data.message, 'success').then(() => {
+          navigate('/checkout');
+          deleteAllCartItems();
+        });
+      }
+    } catch (error) {
+      console.error('Error saat melakukan checkout:', error);
+      swal('Gagal!', 'Terjadi kesalahan saat melakukan checkout', 'error');
+    }
+  };
+
   return (
     <div>
       <NormalNavbar />
@@ -95,7 +130,7 @@ const Cart = () => {
                           <p className="fw-normal mb-1">Rp{item.sub_total}</p>
                         </td>
                         <td>
-                          <i class="bi bi-trash-fill" onClick={() => deleteProduk(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
+                          <i className="bi bi-trash-fill" onClick={() => deleteProduk(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
                         </td>
                       </tr>
                     ))}
@@ -104,9 +139,9 @@ const Cart = () => {
             </div>
           </MDBCol>
           <MDBCol size="12" className="mt-3 text-end">
-            <a href="checkout" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', display: 'inline-block' }}>
+            <button onClick={handleCheckout} className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', display: 'inline-block' }}>
               CHECKOUT
-            </a>
+            </button>
           </MDBCol>
         </MDBRow>
       </MDBContainer>

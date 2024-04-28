@@ -47,7 +47,10 @@ router.post('/addProduk', controller.marketplace.addProduk);
 router.put('/updateProduk/:id', controller.marketplace.updateProduk);
 router.delete('/deleteProduk/:id', controller.marketplace.deleteProduk);
 router.get('/:user_id/getCart', controller.marketplace.getAllCart);
+router.get('/:user_id/getOrderDetail', controller.marketplace.getOrderDetail);
+router.post('/addOrder', controller.marketplace.addOrderDetail);
 router.post('/cart/addCart', controller.marketplace.addCart);
 router.delete('/deleteCart/:id', controller.marketplace.deleteCart);
+router.delete('/deleteAllCartItems/:user_id', controller.marketplace.deleteAllCartItems);
 
 module.exports = router;
