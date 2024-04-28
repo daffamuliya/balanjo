@@ -12,5 +12,5 @@ indexmodel.komentar_forum = require('./komentar_forum.js');
 indexmodel.produk = require('./produk.js');
 indexmodel.users = require('./users.js');
 indexmodel.order_detail = require('./order_detail.js');
-
+indexmodel.transaksi = require('./transaksi.js');
 module.exports = indexmodel;
