@@ -64,4 +64,16 @@ controller.deleteUser = async (req, res) => {
   }
 };
 
+controller.getTotalUsers = async (req, res) => {
+  try {
+    await model.users
+      .count() // Menghitung jumlah baris di tabel users
+      .then((count) => {
+        res.json({ totalUsers: count });
+      });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = controller;

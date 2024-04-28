@@ -177,4 +177,14 @@ controller.deleteForumComment = async (req, res) => {
   }
 };
 
+controller.getTotalForum = async (req, res) => {
+  try {
+    await model.forum.count().then((count) => {
+      res.json({ totalForum: count });
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = controller;

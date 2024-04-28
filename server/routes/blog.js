@@ -39,6 +39,7 @@ router.post('/addBlog', controller.blog.addBlog);
 router.put('/updateBlog/:id', controller.blog.updateBlog);
 router.delete('/deleteBlog/:id', controller.blog.deleteBlog);
 router.get('/comment/all', controller.blog.getAllComment);
+router.get('/totalblog', controller.blog.getTotalBlog);
 router.post('/addComment', controller.blog.addBlogComment);
 router.delete('/deleteComment/:id', controller.blog.deleteBlogComment);
 

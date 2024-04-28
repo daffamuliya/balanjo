@@ -14,5 +14,6 @@ router.get('/comment/all', controller.forum.getAllComment);
 router.get('/comment/:forum_id', controller.forum.getCommentById);
 router.post('/addComment', controller.forum.addForumComment);
 router.delete('/deleteComment/:id', controller.forum.deleteForumComment);
+router.get('/total/totalforum', controller.forum.getTotalForum);
 
 module.exports = router;

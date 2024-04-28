@@ -193,4 +193,14 @@ controller.tampilTambahBlog = async (req, res) => {
   }
 };
 
+controller.getTotalBlog = async (req, res) => {
+  try {
+    await model.blog.count().then((count) => {
+      res.json({ totalBlog: count });
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = controller;
