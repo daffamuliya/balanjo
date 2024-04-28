@@ -32,6 +32,7 @@ const blog = require('./routes/blog');
 const forum = require('./routes/forum');
 const marketplace = require('./routes/marketplace');
 const kelola = require('./routes/kelola');
+const daftaruser = require('./routes/daftaruser');
 
 const { isLogin, checkUser } = require(`./middleware/authToken`);
 const { MulterError } = require('multer');
@@ -49,7 +50,7 @@ app.use(express.static('public'));
 app.get('*', checkUser);
 app.use('/auth', auth);
 app.use('/blog', blog);
-
+app.use('/daftaruser', daftaruser);
 app.use('/marketplace', marketplace);
 app.use('/forum', forum);
 app.use('/kelola', kelola);

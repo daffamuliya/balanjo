@@ -1,8 +1,9 @@
 const express = require('express');
-const router = express();
-const controller = require(`../controllers/indexcontroller`);
-
+const controller = require('../controllers/indexcontroller');
+const router = express.Router();
 router.use(express.static('public'));
-router.get('/daftaruser', controller.daftaruser.getAllUser);
+
+router.get('/', controller.daftaruser.getAllUser);
+router.get('/:id', controller.daftaruser.getUserById);
 
 module.exports = router;

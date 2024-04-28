@@ -1,58 +1,60 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require("../config/conn");
-const blog = require("./blog");
+const sequelize = require('../config/conn');
+const blog = require('./blog');
 
-const users = sequelize.define('users', {
-
-    id : {
-        type : DataTypes.BIGINT,
-        allowNull : false,
-        primaryKey : true,
-        autoIncrement: true
+const users = sequelize.define(
+  'users',
+  {
+    id: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    username : {
-        type : DataTypes.STRING,
-        allowNull : false        
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    name : {
-        type : DataTypes.STRING,
-        allowNull : false
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    email : {
-        type : DataTypes.STRING,
-        allowNull : false
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    no_telp : {
-        type : DataTypes.STRING,
-        allowNull : false
+    no_telp: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    password : {
-        type : DataTypes.STRING,
-        allowNull : false
+    alamat: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    remember_token : {
-        type : DataTypes.STRING
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    role : {
-        type : DataTypes.STRING,
-        allowNull : true,
+    remember_token: {
+      type: DataTypes.STRING,
     },
-    created_at : {
-        type : DataTypes.DATE
-       
+    role: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
-    updated_at : {
-        type : DataTypes.DATE   
-    }
-
-}, {
+    created_at: {
+      type: DataTypes.DATE,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+    },
+  },
+  {
     tableName: 'users',
     timestamps: true,
     updatedAt: 'updated_at',
-    createdAt: 'created_at'
-});
-
-// users.hasOne(blog,{ foreignKey: "users_id" });
-
+    createdAt: 'created_at',
+  }
+);
 
 module.exports = users;
