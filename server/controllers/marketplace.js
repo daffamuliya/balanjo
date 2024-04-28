@@ -202,6 +202,12 @@ controller.getAllCart = async function (req, res) {
     await model.cart
       .findAll({
         attributes: ['id', 'user_id', 'produk_id', 'jumlah', 'harga', 'sub_total', 'gambar', 'created_at'],
+        include: [
+          {
+            model: model.produk,
+            attributes: ['nama', 'deskripsi'],
+          },
+        ],
         where: {
           user_id: req.params.user_id,
         },

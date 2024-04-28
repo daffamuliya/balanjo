@@ -38,7 +38,6 @@ controller.getForumById = async (req, res) => {
     await model.forum
       .findOne({
         attributes: ['id', 'user_id', 'user', 'konten'],
-
         where: {
           id: req.params.id,
         },

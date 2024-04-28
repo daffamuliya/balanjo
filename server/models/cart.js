@@ -1,6 +1,8 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/conn');
 const users = require('./users');
+const produk = require('./produk'); // Import model produk
+
 const cart = sequelize.define(
   'cart',
   {
@@ -23,6 +25,10 @@ const cart = sequelize.define(
     produk_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: produk, // Menambahkan referensi ke model produk
+        key: 'id',
+      },
     },
 
     jumlah: {
@@ -54,5 +60,8 @@ const cart = sequelize.define(
     timestamps: false,
   }
 );
+
+// Definisikan relasi dengan model produk
+cart.belongsTo(produk, { foreignKey: 'produk_id' }); // Setiap item dalam keranjang berhubungan dengan satu produk
 
 module.exports = cart;

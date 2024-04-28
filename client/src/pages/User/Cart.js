@@ -3,37 +3,53 @@ import NormalNavbar from '../../components/NormalNavbar';
 import Footer from '../../components/Footer';
 import { MDBContainer, MDBRow, MDBCol, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const Cart = () => {
-  const [quantity, setQuantity] = useState(1);
   const [user_id] = useState('2');
   const [cartItems, setCartItems] = useState([]);
 
-  const handleQuantity = () => {
-    if (quantity <= 1) {
-      return setQuantity(quantity + 0);
-    } else {
-      setQuantity(quantity - 1);
-    }
-  };
-
   useEffect(() => {
-    const fetchCartData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/marketplace/${user_id}/getCart`);
-        if (response.data.data) {
-          setCartItems(response.data.data);
-          console.log(response.data.data);
-        } else {
-          console.error('Data keranjang tidak ditemukan');
-        }
-      } catch (error) {
-        console.error('Terjadi kesalahan saat mengambil data keranjang:', error);
-      }
-    };
-
     fetchCartData();
   }, [user_id]);
+
+  async function fetchCartData() {
+    try {
+      const response = await axios.get(`http://localhost:3000/marketplace/${user_id}/getCart`);
+      if (response.data.data) {
+        setCartItems(response.data.data);
+        console.log(response.data.data);
+      } else {
+        console.error('Data keranjang tidak ditemukan');
+      }
+    } catch (error) {
+      console.error('Terjadi kesalahan saat mengambil data keranjang:', error);
+    }
+  }
+
+  const deleteProduk = async (id) => {
+    try {
+      swal({
+        title: 'Anda yakin?',
+        text: 'Anda tidak akan dapat mengembalikan produk ini!',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      }).then(async (willDelete) => {
+        if (willDelete) {
+          await axios.delete(`http://localhost:3000/marketplace/deleteCart/${id}`);
+          fetchCartData();
+          swal('Produk berhasil dihapus!', {
+            icon: 'success',
+          });
+        } else {
+          swal('Produk Anda tidak jadi dihapus!');
+        }
+      });
+    } catch (error) {
+      console.error('Error deleting produk:', error);
+    }
+  };
   return (
     <div>
       <NormalNavbar />
@@ -64,8 +80,8 @@ const Cart = () => {
                           <div className="d-flex align-items-center">
                             <img src={item.gambar} alt="" style={{ width: '100px', height: '100px' }} />
                             <div className="ms-3">
-                              <p className="fw-bold mb-1">Kacamata Photocromic</p>
-                              <p className="text-muted mb-0">Size : 28mm</p>
+                              <p className="fw-bold mb-1">{item.produk.nama}</p>
+                              <p className="text-muted mb-0">{item.produk.deskripsi}</p>
                             </div>
                           </div>
                         </td>
@@ -79,7 +95,7 @@ const Cart = () => {
                           <p className="fw-normal mb-1">Rp{item.sub_total}</p>
                         </td>
                         <td>
-                          <i class="bi bi-trash-fill" style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
+                          <i class="bi bi-trash-fill" onClick={() => deleteProduk(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
                         </td>
                       </tr>
                     ))}
