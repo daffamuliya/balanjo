@@ -1,10 +1,8 @@
 import SellerNavbar from '../../../components/SellerNavbar';
-import Card from 'react-bootstrap/Card';
 import SidebarSeller from '../../../components/SidebarSeller';
 import Table from 'react-bootstrap/Table';
-import CardBody from 'react-bootstrap/esm/CardBody';
 import React, { useState, useEffect } from 'react';
-import { MDBCol, MDBBtn, MDBRow, MDBContainer, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody } from 'mdb-react-ui-kit';
+import { MDBCol, MDBBtn, MDBRow, MDBContainer, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody, MDBCard, MDBCardBody } from 'mdb-react-ui-kit';
 import axios from 'axios';
 import swal from 'sweetalert';
 
@@ -72,8 +70,8 @@ const ProductSeller = () => {
             </MDBCol>
             <MDBRow className="mt-3 justify-content-center">
               <MDBCol md={12} xs={2} className="ms-auto">
-                <Card>
-                  <CardBody>
+                <MDBCard>
+                  <MDBCardBody>
                     {' '}
                     <div class="row">
                       <Table responsive>
@@ -108,8 +106,8 @@ const ProductSeller = () => {
                         </tbody>
                       </Table>
                     </div>
-                  </CardBody>
-                </Card>
+                  </MDBCardBody>
+                </MDBCard>
               </MDBCol>
             </MDBRow>
           </MDBRow>
