@@ -9,10 +9,18 @@ const DetailOrder = () => {
   const [orderDetail, setOrderDetail] = useState(null);
   const user_id = '2';
   const [totalBayar, setTotalBayar] = useState(0);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     fetchOrderDetail();
+    getUser();
   }, []);
+
+  const getUser = async () => {
+    const response = await axios.get(`http://localhost:3000/daftaruser/${user_id}`);
+    setUser(response.data.items);
+    console.log(response.data.items);
+  };
 
   const fetchOrderDetail = async () => {
     try {
@@ -40,10 +48,12 @@ const DetailOrder = () => {
 
             <MDBCard className="mb-3">
               <MDBCardBody>
-                <MDBCardTitle>Budi Anto</MDBCardTitle>
-                <MDBCardSubTitle>budigeming762@gmail.com</MDBCardSubTitle>
-                <MDBCardText>+628234234231</MDBCardText>
-                <MDBCardText>Jl Durian Tarung No 9, Kel. Pasar Ambacang, Kec. Kuranji, Kota Padang, Sumatera Barat</MDBCardText>
+                <MDBCardBody>
+                  <MDBCardTitle>{user.name}</MDBCardTitle>
+                  <MDBCardSubTitle>{user.email}</MDBCardSubTitle>
+                  <MDBCardText>{user.no_telp}</MDBCardText>
+                  <MDBCardText>{user.alamat}</MDBCardText>
+                </MDBCardBody>
               </MDBCardBody>
             </MDBCard>
             {Array.isArray(orderDetail) &&

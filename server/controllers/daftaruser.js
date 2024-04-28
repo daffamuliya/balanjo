@@ -8,7 +8,7 @@ controller.getAllUser = async (req, res) => {
   try {
     await model.users
       .findAll({
-        attributes: ['id', 'username', 'name', 'email', 'no_telp'],
+        attributes: ['id', 'username', 'name', 'email', 'no_telp', 'alamat', 'created_at'],
       })
       .then((result) => {
         if (result.length > 0) {
@@ -29,7 +29,7 @@ controller.getUserById = async (req, res) => {
   try {
     await model.users
       .findOne({
-        attributes: ['id', 'username', 'name', 'email', 'no_telp'],
+        attributes: ['id', 'username', 'name', 'email', 'no_telp', 'alamat'],
         where: {
           id: req.params.id,
         },
