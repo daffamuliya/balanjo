@@ -89,7 +89,6 @@ export const KelolaForumUser = () => {
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Judul Forum</th>
                         <th>Tanggal</th>
                         <th>Kategori</th>
                         <th>Aksi</th>
@@ -99,7 +98,6 @@ export const KelolaForumUser = () => {
                       {Array.isArray(forum) &&
                         forum.map((item) => (
                           <tr key={item.id}>
-                            <td>{item.id}</td>
                             <td>{item.konten}</td>
                             <td>{item.user}</td>
                             <td>{item.waktuNormal}</td>

@@ -85,7 +85,6 @@ const KelolaBlog = () => {
                   <Table responsive>
                     <thead>
                       <tr>
-                        <th>No</th>
                         <th>Judul Blog</th>
                         <th>Kategori</th>
                         <th>Uploader</th>
@@ -97,7 +96,6 @@ const KelolaBlog = () => {
                       {Array.isArray(blog) &&
                         blog.map((item) => (
                           <tr key={item.id}>
-                            <td>{item.id}</td>
                             <td>{item.judul}</td>
                             <td>{item.kategori_blog}</td>
                             <td>{item.user}</td>
