@@ -5,10 +5,10 @@ import Sidebar from '../../components/Sidebar';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { MDBBtn, MDBRow, MDBContainer, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody } from 'mdb-react-ui-kit';
 
 const KelolaUser = () => {
   const [user, setUser] = useState([]);
-  const user_id = '2';
 
   useEffect(() => {
     getUser();
@@ -26,9 +26,9 @@ const KelolaUser = () => {
 
   const [UserDetail, setUserDetail] = useState(null);
   const [scrollableModal, setScrollableModal] = useState(false);
-  const loadUserDetail = async (slug) => {
+  const loadUserDetail = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:3000/daftaruser/${user_id}`);
+      const response = await axios.get(`http://localhost:3000/daftaruser/${id}`);
       const UserDetailData = Array.isArray(response.data.items) ? response.data.items : [response.data.items];
       setUserDetail(UserDetailData);
       setScrollableModal(true);
@@ -105,6 +105,51 @@ const KelolaUser = () => {
           </Card>
         </div>
       </div>
+      <MDBModal open={scrollableModal} setOpen={setScrollableModal} tabIndex="-1">
+        <MDBModalDialog centered scrollable>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>User Details</MDBModalTitle>
+              <MDBBtn className="btn-close" color="none" onClick={() => setScrollableModal(!scrollableModal)}></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>
+              <MDBRow className="justify-content-center">
+                <section className="isiblog">
+                  {Array.isArray(UserDetail) &&
+                    UserDetail.map((detail) => (
+                      <MDBContainer key={detail.id}>
+                        {/* <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5 text-center">
+                          <div className="col-lg-12 ">
+                            <img src={detail.url} className="hover-shadow" alt="" style={{ width: '100%' }} />
+                          </div>
+                        </div> */}
+                        <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content">
+                          <div className="col-lg-12 ">
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '18px' }}>
+                              Nama Lengkap : <br /> {detail.name}
+                            </p>
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '18px' }}>
+                              Username : <br /> {detail.username}
+                            </p>
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '18px' }}>
+                              Email : <br /> {detail.email}
+                            </p>
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '18px' }}>
+                              No Handphone : <br /> {detail.no_telp}
+                            </p>
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '18px' }}>
+                              Alamat : <br /> {detail.alamat}
+                            </p>
+                          </div>
+                        </div>
+                      </MDBContainer>
+                    ))}
+                </section>
+              </MDBRow>
+            </MDBModalBody>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
     </div>
   );
 };
