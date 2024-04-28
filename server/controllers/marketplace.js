@@ -240,7 +240,7 @@ controller.getOrderDetail = async function (req, res) {
         include: [
           {
             model: model.produk,
-            attributes: ['nama', 'deskripsi'],
+            attributes: ['nama', 'deskripsi', 'gambar'],
           },
         ],
         where: {
