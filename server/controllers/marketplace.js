@@ -318,6 +318,21 @@ controller.deleteCart = async function (req, res) {
   }
 };
 
+controller.deleteOrderDetail = async function (req, res) {
+  try {
+    await model.order_detail.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(200).json({
+      message: 'berhasil hapus id',
+    });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
 controller.deleteAllCartItems = async function (req, res) {
   try {
     await model.cart.destroy({

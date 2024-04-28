@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import NormalNavbar from '../../components/NormalNavbar';
 import Footer from '../../components/Footer';
 import axios from 'axios';
-
+import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
 import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCard, MDBCardTitle, MDBCardSubTitle, MDBCardText, MDBCardImage } from 'mdb-react-ui-kit';
 
 const DetailOrder = () => {
@@ -10,6 +11,7 @@ const DetailOrder = () => {
   const user_id = '2';
   const [totalBayar, setTotalBayar] = useState(0);
   const [user, setUser] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchOrderDetail();
@@ -36,6 +38,30 @@ const DetailOrder = () => {
       console.error('Terjadi kesalahan saat mengambil data detail pemesanan:', error);
     }
   };
+
+  const deleteProduk = async (id) => {
+    try {
+      swal({
+        title: 'Anda yakin?',
+        text: 'Anda tidak akan dapat mengembalikan produk ini!',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      }).then(async (willDelete) => {
+        if (willDelete) {
+          await axios.delete(`http://localhost:3000/marketplace/deleteOrderDetail/${id}`);
+          fetchOrderDetail();
+          swal('Produk berhasil dihapus!', {
+            icon: 'success',
+          });
+        } else {
+          swal('Produk Anda tidak jadi dihapus!');
+        }
+      });
+    } catch (error) {
+      console.error('Error deleting produk:', error);
+    }
+  };
   return (
     <div>
       <NormalNavbar />
@@ -60,14 +86,23 @@ const DetailOrder = () => {
               orderDetail.map((item) => (
                 <MDBCard key={item.id} className="mt-1">
                   <MDBRow className="g-0">
-                    <div className="d-flex align-items-center">
-                      <img src={item.produk.gambar} alt="" style={{ width: '100px', height: '100px' }} />
-                      <div className="ms-3">
-                        <p className="fw-bold mb-1">{item.produk.nama}</p>
-                        <p className="text-muted mb-0">Harga : {item.total}</p>
-                        <p className="text-muted mb-0">{item.produk.deskripsi}</p>
+                    <MDBCol size={10}>
+                      <div className="d-flex align-items-center">
+                        <img src={item.produk.gambar} alt="" style={{ width: '100px', height: '100px' }} />
+                        <div className="ms-3">
+                          <p className="fw-bold mb-1">{item.produk.nama}</p>
+                          <p className="text-muted mb-0">Harga : {item.total}</p>
+                          <p className="text-muted mb-0">{item.produk.deskripsi}</p>
+                        </div>
                       </div>
-                    </div>
+                    </MDBCol>
+                    <MDBCol size={2}>
+                      <div className="d-flex align-items-center">
+                        <div className="ms-3 mt-5">
+                          <i class="bi bi-trash-fill" onClick={() => deleteProduk(item.id)} style={{ color: '#A08336' }}></i>
+                        </div>
+                      </div>
+                    </MDBCol>
                   </MDBRow>
                 </MDBCard>
               ))}
