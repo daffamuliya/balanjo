@@ -63,7 +63,7 @@ const DetailOrder = () => {
               ))}
 
             <p className="text-center mt-3">Total Bayar</p>
-            <h2 className="text-center">Rp{totalBayar}</h2>
+            <h2 className="text-center">{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(totalBayar)}</h2>
             <hr className="my-4" />
           </MDBCol>
           <h2 className="text-center mt-3" style={{ fontWeight: 'bold', color: '#A08336' }}>

@@ -74,8 +74,8 @@ const Cart = () => {
         };
 
         const response = await axios.post('http://localhost:3000/marketplace/addOrder', orderData);
-        swal('Berhasil!', response.data.message, 'success').then(() => {
-          navigate('/checkout');
+        swal('Checkout', 'Lanjutkan ke pembayaran', 'success').then(() => {
+          navigate('/detail-order');
           deleteAllCartItems();
         });
       }
