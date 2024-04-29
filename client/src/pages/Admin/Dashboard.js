@@ -46,9 +46,9 @@ const Dashboard = () => {
       <div className="main">
         <Sidebar />
         <div className="container mt-5">
-          <h3 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
+          <h5 className="title" style={{ color: '#A08336' }}>
             Dashboard
-          </h3>
+          </h5>
           <MDBRow className="mt-3 justify-content-center">
             <MDBCol md={3} xs={2} className="ms-auto">
               <Card>

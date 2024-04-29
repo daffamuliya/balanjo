@@ -67,9 +67,9 @@ const KelolaUser = () => {
       <div className="main">
         <Sidebar />
         <div className="container mt-5">
-          <h3 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
-            User
-          </h3>
+          <h5 className="title" style={{ color: '#A08336' }}>
+            Kelola User
+          </h5>
           <Card>
             <Card.Body>
               {' '}
@@ -125,21 +125,26 @@ const KelolaUser = () => {
                         </div> */}
                         <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content">
                           <div className="col-lg-12 ">
-                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '18px' }}>
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
                               Nama Lengkap : <br /> {detail.name}
-                            </p>
-                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '18px' }}>
+                            </p>{' '}
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
                               Username : <br /> {detail.username}
-                            </p>
-                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '18px' }}>
+                            </p>{' '}
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
                               Email : <br /> {detail.email}
-                            </p>
-                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '18px' }}>
+                            </p>{' '}
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
                               No Handphone : <br /> {detail.no_telp}
-                            </p>
-                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '18px' }}>
+                            </p>{' '}
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
                               Alamat : <br /> {detail.alamat}
-                            </p>
+                            </p>{' '}
+                            <hr />
                           </div>
                         </div>
                       </MDBContainer>

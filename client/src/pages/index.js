@@ -27,6 +27,7 @@ import DashboardSeller from './User/Seller/DashboardSeller';
 import PesananSeller from './User/Seller/PesananSeller';
 import ProductSeller from './User/Seller/ProductSeller';
 import UploadProduk from './User/Seller/UploadProduct';
+import TambahBanner from './Admin/TambahBanner';
 
 export {
   Login,
@@ -58,4 +59,5 @@ export {
   PesananSeller,
   ProductSeller,
   UploadProduk,
+  TambahBanner,
 };

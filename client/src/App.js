@@ -30,6 +30,7 @@ import {
   PesananSeller,
   ProductSeller,
   UploadProduk,
+  TambahBanner,
 } from './pages';
 
 export default class App extends Component {
@@ -59,6 +60,7 @@ export default class App extends Component {
             <Route path="/admin/forum" element={<KelolaForum />} />
             <Route path="/admin/user" element={<KelolaUser />} />
             <Route path="/admin/banner" element={<RequestedBanner />} />
+            <Route path="/admin/upload-banner" element={<TambahBanner />} />
             <Route path="/user/akun" element={<AkunDetails />} />
             <Route path="/user/blog" element={<KelolaBlogUser />} />
             <Route path="/user/forum" element={<KelolaForumUser />} />

@@ -1,68 +1,74 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AdminNavbar from '../../components/AdminNavbar';
 import Card from 'react-bootstrap/Card';
 import Sidebar from '../../components/Sidebar';
 import Table from 'react-bootstrap/Table';
+import { MDBCol } from 'mdb-react-ui-kit';
 
-export default class Landing extends Component {
-  render() {
-    return (
-      <div>
-        <AdminNavbar />
-        <div className="main">
-          <Sidebar />
-          <div className="container mt-5">
-            <h3 className="title" style={{ color: '#A08336', fontWeight: 'bold' }}>
-              Daftar Request Banner
-            </h3>
-            <Card>
-              <Card.Body>
-                {' '}
-                <Table responsive>
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Produk</th>
-                      <th>Seller</th>
-                      <th>Tanggal</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Mark</td>
-                      <td>Mark</td>
-                      <td>Mark</td>
-                      <td>
-                        <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Jacob</td>
-                      <td>Mark</td>
-                      <td>Mark</td>
-                      <td>
-                        <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Larry the Bird</td>
-                      <td>Mark</td>
-                      <td>Mark</td>
-                      <td>
-                        <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </Card.Body>
-            </Card>
-          </div>
+const RequestedBanner = () => {
+  return (
+    <div>
+      <AdminNavbar />
+      <div className="main">
+        <Sidebar />
+        <div className="container mt-5">
+          <h5 className="title" style={{ color: '#A08336' }}>
+            Requested Banner
+          </h5>
+          <MDBCol size="2" className="mt-3 mb-3">
+            <a href="upload-banner" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', display: 'inline-block' }}>
+              + Tambah
+            </a>
+          </MDBCol>
+          <Card>
+            <Card.Body>
+              {' '}
+              <Table responsive>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Produk</th>
+                    <th>Seller</th>
+                    <th>Tanggal</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Mark</td>
+                    <td>Mark</td>
+                    <td>
+                      <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Mark</td>
+                    <td>Mark</td>
+                    <td>
+                      <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Larry the Bird</td>
+                    <td>Mark</td>
+                    <td>Mark</td>
+                    <td>
+                      <i class="bi bi-trash-fill" style={{ color: '#A08336' }}></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default RequestedBanner;
