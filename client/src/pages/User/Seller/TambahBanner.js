@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card';
 import { MDBCol } from 'mdb-react-ui-kit';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
 
 const TambahBanner = () => {
   const [id_user] = useState('2');
@@ -14,6 +15,7 @@ const TambahBanner = () => {
   const [deskripsi, setDeskripsi] = useState('');
   const [gambar, setGambar] = useState(null);
   const [bukti_transfer, setBuktiTransfer] = useState(null);
+  const navigate = useNavigate();
 
   const loadImage = (e) => {
     if (e.target.name === 'gambar') {
@@ -56,7 +58,7 @@ const TambahBanner = () => {
           title: 'Sukses',
           text: 'Banner berhasil diunggah!',
         }).then(() => {
-          // Tambahkan navigasi ke halaman yang sesuai
+          navigate('/seller/daftar-banner');
         });
       } else {
         throw new Error('Gagal mengunggah banner');
