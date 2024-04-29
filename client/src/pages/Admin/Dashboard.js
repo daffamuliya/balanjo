@@ -132,7 +132,11 @@ const Dashboard = () => {
                                 <td>
                                   <img src={item.gambar} alt="" style={{ width: '100px', height: '100px' }} />
                                 </td>
-                                <td>{item.status}</td>
+                                <td>
+                                  <button className="btn btn-success" size="sm" style={{ fontSize: '13px', maxWidth: '120px', maxHeight: '30px', border: 'black', marginRight: '5px' }}>
+                                    {item.status}
+                                  </button>
+                                </td>
                                 <td>
                                   <i class="bi bi-trash-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
                                   <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>{' '}

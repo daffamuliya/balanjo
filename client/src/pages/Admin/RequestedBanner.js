@@ -25,7 +25,6 @@ const RequestedBanner = () => {
   const approveBanner = async (id) => {
     try {
       const defaultStatus = 'Aktif';
-
       const selectedBanner = banner.find((item) => item.id === id);
 
       if (!selectedBanner) {
