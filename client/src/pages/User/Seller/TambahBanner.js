@@ -28,7 +28,6 @@ const TambahBanner = () => {
   const saveBanner = async (e) => {
     e.preventDefault();
 
-    // Periksa apakah gambar dan bukti_transfer telah dipilih
     if (!gambar || !bukti_transfer) {
       swal({
         icon: 'error',

@@ -106,6 +106,35 @@ controller.getAllProduk = async (req, res) => {
   }
 };
 
+controller.requestedBanner = async (req, res) => {
+  try {
+    await model.requested_banner
+      .findAll({
+        attributes: ['id', 'id_user', 'nama_banner', 'deskripsi', 'gambar', 'bukti_transfer', 'status'],
+        include: [
+          {
+            model: model.users,
+            attributes: ['name'],
+          },
+        ],
+      })
+      .then((result) => {
+        if (result.length > 0) {
+          res.json({ items: result });
+        } else {
+          res.status(404).json({
+            message: 'data tidak ada',
+            data: [],
+          });
+        }
+      });
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};
+
 controller.getProdukById = async (req, res) => {
   try {
     await model.produk
