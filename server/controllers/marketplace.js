@@ -367,6 +367,34 @@ controller.addCart = async (req, res) => {
   }
 };
 
+controller.rejectBanner = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await addActiveBanner.destroy({ where: { id: id } });
+    res.status(200).json({ msg: 'Banner berhasil ditolak' });
+  } catch (error) {
+    console.error('Error saat menolak banner:', error);
+    res.status(500).json({ msg: 'Terjadi kesalahan saat menolak banner' });
+  }
+};
+
+controller.addActiveBanner = async (req, res) => {
+  try {
+    const { id_user, nama_banner, gambar, status } = req.body;
+    await model.active_banner.create({
+      id_user: id_user,
+      nama_banner: nama_banner,
+      gambar: gambar,
+      status: status,
+    });
+    res.status(200).json({
+      message: 'berhasil menambahkan data ke order detail',
+    });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
 controller.addBanner = async (req, res) => {
   try {
     // Periksa apakah ada berkas yang diunggah

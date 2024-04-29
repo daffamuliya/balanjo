@@ -4,9 +4,11 @@ import Card from 'react-bootstrap/Card';
 import Sidebar from '../../components/Sidebar';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const RequestedBanner = () => {
   const [banner, setBanner] = useState([]);
+
   useEffect(() => {
     getBanner();
   }, []);
@@ -19,6 +21,46 @@ const RequestedBanner = () => {
       console.error('Error fetching banner:', error);
     }
   };
+
+  const approveBanner = async (id) => {
+    try {
+      const defaultStatus = 'Aktif';
+
+      const selectedBanner = banner.find((item) => item.id === id);
+
+      if (!selectedBanner) {
+        console.error('Banner tidak ditemukan');
+        swal('Gagal!', 'Banner tidak ditemukan', 'error');
+        return;
+      }
+
+      const activeBannerData = {
+        id_user: selectedBanner.id_user,
+        nama_banner: selectedBanner.nama_banner,
+        gambar: selectedBanner.gambar,
+        status: defaultStatus,
+      };
+
+      const response = await axios.post(`http://localhost:3000/marketplace/banner/addActiveBanner/${id}`, activeBannerData);
+      console.log(response);
+      swal('Banner Ditambahkan', 'Banner telah ditambahkan sebagai aktif', 'success').then(() => {
+        getBanner();
+      });
+    } catch (error) {
+      console.error('Error saat menambahkan banner aktif:', error);
+      swal('Gagal!', 'Terjadi kesalahan saat menambahkan banner aktif', 'error');
+    }
+  };
+
+  const rejectBanner = async (id) => {
+    try {
+      await axios.post(`http://localhost:3000/marketplace/banner/rejectBanner/${id}`);
+      getBanner();
+    } catch (error) {
+      console.error('Error rejecting banner:', error);
+    }
+  };
+
   return (
     <div>
       <AdminNavbar />
@@ -28,10 +70,8 @@ const RequestedBanner = () => {
           <h5 className="title" style={{ color: '#A08336' }}>
             Requested Banner
           </h5>
-
           <Card>
             <Card.Body>
-              {' '}
               <Table responsive>
                 <thead>
                   <tr>
@@ -61,12 +101,17 @@ const RequestedBanner = () => {
                         </td>
                         <td>{item.status}</td>
                         <td className="text-center">
-                          <a href="upload-banner" className="btn btn-primary" size="sm" style={{ backgroundColor: '#A08336', fontSize: '13px', maxWidth: '120px', maxHeight: '30px', border: 'black', marginRight: '5px' }}>
+                          <button
+                            onClick={() => approveBanner(item.id)}
+                            className="btn btn-primary"
+                            size="sm"
+                            style={{ backgroundColor: '#A08336', fontSize: '13px', maxWidth: '120px', maxHeight: '30px', border: 'black', marginRight: '5px' }}
+                          >
                             Setujui
-                          </a>
-                          <a href="upload-banner" className="btn btn-danger" size="sm" style={{ fontSize: '13px', maxWidth: '120px', maxHeight: '30px', border: 'black' }}>
+                          </button>
+                          <button onClick={() => rejectBanner(item.id)} className="btn btn-danger" size="sm" style={{ fontSize: '13px', maxWidth: '120px', maxHeight: '30px', border: 'black' }}>
                             Tolak
-                          </a>
+                          </button>
                         </td>
                       </tr>
                     ))}
