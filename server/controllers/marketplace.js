@@ -135,6 +135,47 @@ controller.requestedBanner = async (req, res) => {
   }
 };
 
+controller.activeBanner = async (req, res) => {
+  try {
+    await model.active_banner
+      .findAll({
+        attributes: ['id', 'id_user', 'nama_banner', 'gambar', 'status'],
+        include: [
+          {
+            model: model.users,
+            attributes: ['name'],
+          },
+        ],
+      })
+      .then((result) => {
+        if (result.length > 0) {
+          res.json({ items: result });
+        } else {
+          res.status(404).json({
+            message: 'data tidak ada',
+            data: [],
+          });
+        }
+      });
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};
+
+controller.getTotalBanner = async (req, res) => {
+  try {
+    await model.active_banner
+      .count() // Menghitung jumlah baris di tabel users
+      .then((count) => {
+        res.json({ totalBanner: count });
+      });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 controller.getProdukById = async (req, res) => {
   try {
     await model.produk

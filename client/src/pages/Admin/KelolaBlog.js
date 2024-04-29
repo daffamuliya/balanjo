@@ -85,7 +85,7 @@ const KelolaBlog = () => {
               <Table responsive>
                 <thead>
                   <tr>
-                    <th>No</th>
+                    <th>Blog ID</th>
                     <th>Judul Blog</th>
                     <th>Kategori</th>
                     <th>Uploader</th>

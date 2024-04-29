@@ -11,12 +11,32 @@ const Dashboard = () => {
   const [totalUsers, setTotalUsers] = useState(0);
   const [totalBlog, setTotalBlog] = useState(0);
   const [totalForum, setTotalForum] = useState(0);
+  const [totalBanner, setTotalBanner] = useState(0);
+  const [banner, setBanner] = useState([]);
 
   useEffect(() => {
     getTotalUsers();
     getTotalBlog();
     getTotalForum();
+    getBanner();
+    getTotalBanner();
   }, []);
+  const getBanner = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/marketplace/banner/activeBanner');
+      setBanner(response.data.items);
+    } catch (error) {
+      console.error('Error fetching banner:', error);
+    }
+  };
+  const getTotalBanner = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/marketplace/banner/total');
+      setTotalBanner(response.data.totalBanner);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
   const getTotalUsers = async () => {
     try {
       const response = await axios.get('http://localhost:3000/daftaruser/user/total');
@@ -60,8 +80,8 @@ const Dashboard = () => {
               <MDBCol md={3} xs={2} className="ms-auto">
                 <Card>
                   <CardBody>
-                    <h5>Total Banner</h5>
-                    <h3>341</h3>
+                    <h5>Total Active Banner</h5>
+                    <h3>{totalBanner}</h3>
                   </CardBody>
                 </Card>
               </MDBCol>
@@ -94,35 +114,32 @@ const Dashboard = () => {
                       <Table responsive>
                         <thead>
                           <tr>
-                            <th>Order ID</th>
-                            <th>Product</th>
-                            <th>Date</th>
-                            <th>Customer</th>
-                            <th>Total</th>
-                            <th>Payment</th>
+                            <th>Banner ID</th>
+                            <th>Nama User</th>
+                            <th>Nama Banner</th>
+                            <th>Gambar</th>
                             <th>Status</th>
                             <th>Action</th>
                           </tr>
                         </thead>
-                        {/* <tbody>
-                          {Array.isArray(transaksi) &&
-                            transaksi.map((item) => (
+                        <tbody>
+                          {Array.isArray(banner) &&
+                            banner.map((item) => (
                               <tr>
                                 <td>{item.id}</td>
-                                <td>{item.produk.nama}</td>
-                                <td>{item.tanggal_pesan}</td>
                                 <td>{item.user.name}</td>
-                                <td>Rp {item.total}</td>
-                                <td>{item.payment}</td>
+                                <td>{item.nama_banner}</td>
+                                <td>
+                                  <img src={item.gambar} alt="" style={{ width: '100px', height: '100px' }} />
+                                </td>
                                 <td>{item.status}</td>
                                 <td>
                                   <i class="bi bi-trash-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
-                                  <i class="bi bi-pencil-square" style={{ color: '#A08336', paddingRight: '10px' }}></i>
                                   <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>{' '}
                                 </td>
                               </tr>
                             ))}
-                        </tbody> */}
+                        </tbody>
                       </Table>
                     </div>
                   </CardBody>

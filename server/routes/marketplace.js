@@ -54,6 +54,8 @@ router.post('/cart/addCart', controller.marketplace.addCart);
 router.post('/banner/addBanner', controller.marketplace.addBanner);
 router.post('/banner/addActiveBanner/:id', controller.marketplace.addActiveBanner);
 router.get('/banner/requestedBanner', controller.marketplace.requestedBanner);
+router.get('/banner/activeBanner', controller.marketplace.activeBanner);
+router.get('/banner/total', controller.marketplace.getTotalBanner);
 router.delete('banner/rejectBanner/:id', controller.marketplace.rejectBanner);
 router.delete('/deleteCart/:id', controller.marketplace.deleteCart);
 router.delete('/deleteOrderDetail/:id', controller.marketplace.deleteOrderDetail);
