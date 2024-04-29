@@ -85,54 +85,30 @@ const TambahBanner = () => {
                   <form onSubmit={saveProduk}>
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">
-                        Nama Produk*
+                        Nama Banner
                       </label>
                       <input type="text" value={nama} onChange={(e) => setNama(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
                     </div>
-                    <div className="mb-3 ">
-                      <label htmlFor="exampleInputPassword1" className="form-label">
-                        Kategori Produk*
-                      </label>
-                      <select className="form-select" aria-label="Default select example" placeholder="Select size" required value={id_kategori} onChange={(e) => setKategori(e.target.value)}>
-                        <option selected>Pilih Kategori Produk</option>
-                        <option value="1">Aksesoris</option>
-                        <option value="2">Pakaian</option>
-                        <option value="3">Makanan</option>
-                        <option value="4">Minuman</option>
-                        <option value="5">Herbal</option>
-                        <option value="6">Kreatif</option>
-                        <option value="7">Jasa</option>
-                        <option value="8">Lainnya</option>
-                      </select>
-                    </div>
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">
-                        Deskripsi*
+                        Deskripsi Banner Anda
                       </label>
                       <textarea value={deskripsi} onChange={(e) => setDeskripsi(e.target.value)} class="form-control" id="floatingTextarea" required></textarea>
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">
-                        Stok (Input angka)*
+                      <label class="form-label" for="customFile">
+                        Upload Gambar Banner (Ukuran 15mmx15mm)
                       </label>
-                      <input type="number" value={stok} onChange={(e) => setStok(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
+                      <input type="file" onChange={loadImage} class="form-control" id="customFile" required />
                     </div>
-
-                    <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">
-                        Harga (Input angka)*
-                      </label>
-                      <input type="number" value={harga} onChange={(e) => setHarga(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
-                    </div>
-
                     <div class="mb-3">
                       <label class="form-label" for="customFile">
-                        Foto*
+                        Bukti Transfer
                       </label>
                       <input type="file" onChange={loadImage} class="form-control" id="customFile" required />
                     </div>
                     <button type="submit" class="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right' }}>
-                      + Tambah
+                      Ajukan
                     </button>
                   </form>
                 </div>
