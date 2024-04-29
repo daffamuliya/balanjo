@@ -5,9 +5,11 @@ import Sidebar from '../../components/Sidebar';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
 
 const RequestedBanner = () => {
   const [banner, setBanner] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getBanner();
@@ -43,7 +45,7 @@ const RequestedBanner = () => {
       const response = await axios.post(`http://localhost:3000/marketplace/banner/addActiveBanner/${id}`, activeBannerData);
       console.log(response);
       swal('Banner Ditambahkan', 'Banner telah ditambahkan sebagai aktif', 'success').then(() => {
-        getBanner();
+        navigate('/admin');
       });
     } catch (error) {
       console.error('Error saat menambahkan banner aktif:', error);
