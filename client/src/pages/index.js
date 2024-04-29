@@ -28,6 +28,8 @@ import PesananSeller from './User/Seller/PesananSeller';
 import ProductSeller from './User/Seller/ProductSeller';
 import UploadProduk from './User/Seller/UploadProduct';
 import TambahBanner from './Admin/TambahBanner';
+import TambahBannerUser from './User/Seller/TambahBanner';
+import DaftarBannerUser from './User/Seller/RequestedBanner';
 
 export {
   Login,
@@ -60,4 +62,6 @@ export {
   ProductSeller,
   UploadProduk,
   TambahBanner,
+  TambahBannerUser,
+  DaftarBannerUser,
 };

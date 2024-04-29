@@ -13,5 +13,11 @@
     "title": "Pesanan",
     "path": "/seller/pesanan",
     "icon": "bi bi-cart-fill"
+  },
+
+  {
+    "title": "Banner",
+    "icon": "bi bi-envelope-check-fill",
+    "path": "/seller/daftar-banner"
   }
 ]

@@ -31,6 +31,8 @@ import {
   ProductSeller,
   UploadProduk,
   TambahBanner,
+  DaftarBannerUser,
+  TambahBannerUser,
 } from './pages';
 
 export default class App extends Component {
@@ -69,6 +71,8 @@ export default class App extends Component {
             <Route path="/seller/pesanan" element={<PesananSeller />} />
             <Route path="/seller/product" element={<ProductSeller />} />
             <Route path="/seller/upload-produk" element={<UploadProduk />} />
+            <Route path="/seller/daftar-banner" element={<DaftarBannerUser />} />
+            <Route path="/seller/upload-banner" element={<TambahBannerUser />} />
           </Routes>
         </main>
       </BrowserRouter>

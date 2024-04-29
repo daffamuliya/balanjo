@@ -1,20 +1,25 @@
 import React from 'react';
-import AdminNavbar from '../../components/AdminNavbar';
 import Card from 'react-bootstrap/Card';
-import Sidebar from '../../components/Sidebar';
+import SellerNavbar from '../../../components/SellerNavbar';
+import SidebarSeller from '../../../components/SidebarSeller';
+import { MDBCol } from 'mdb-react-ui-kit';
 import Table from 'react-bootstrap/Table';
 
 const RequestedBanner = () => {
   return (
     <div>
-      <AdminNavbar />
+      <SellerNavbar />
       <div className="main">
-        <Sidebar />
+        <SidebarSeller />
         <div className="container mt-5">
           <h5 className="title" style={{ color: '#A08336' }}>
             Requested Banner
           </h5>
-
+          <MDBCol size="2" className="mt-3 mb-3">
+            <a href="upload-banner" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', display: 'inline-block' }}>
+              + Tambah
+            </a>
+          </MDBCol>
           <Card>
             <Card.Body>
               {' '}

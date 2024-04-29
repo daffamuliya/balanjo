@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import AdminNavbar from '../../components/AdminNavbar';
-import Card from 'react-bootstrap/Card';
-import Sidebar from '../../components/Sidebar';
+import SellerNavbar from '../../../components/SellerNavbar';
+import SidebarSeller from '../../../components/SidebarSeller';
 import CardBody from 'react-bootstrap/esm/CardBody';
+import Card from 'react-bootstrap/Card';
 import { MDBCol } from 'mdb-react-ui-kit';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -65,9 +65,9 @@ const TambahBanner = () => {
 
   return (
     <div>
-      <AdminNavbar />
+      <SellerNavbar />
       <div className="main">
-        <Sidebar />
+        <SidebarSeller />
         <div className="container mt-5">
           <h5 className="title" style={{ color: '#A08336' }}>
             Requested Banner
