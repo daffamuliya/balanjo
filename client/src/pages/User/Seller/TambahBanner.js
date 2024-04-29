@@ -1,43 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import SellerNavbar from '../../../components/SellerNavbar';
 import SidebarSeller from '../../../components/SidebarSeller';
 import CardBody from 'react-bootstrap/esm/CardBody';
 import Card from 'react-bootstrap/Card';
 import { MDBCol } from 'mdb-react-ui-kit';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
 const TambahBanner = () => {
-  const [id_penjual] = useState('2');
-  const [id_kategori, setKategori] = useState('');
-  const [nama, setNama] = useState('');
+  const [id_user] = useState('2');
+  const [status] = useState('Diajukan');
+  const [nama_banner, setNamaBanner] = useState('');
   const [deskripsi, setDeskripsi] = useState('');
-  const [harga, setHarga] = useState('');
-  const [stok, setStok] = useState('');
-  const [file, setFile] = useState('');
+  const [gambar, setGambar] = useState(null);
+  const [bukti_transfer, setBuktiTransfer] = useState(null);
 
   const loadImage = (e) => {
-    const image = e.target.files[0];
-    setFile(image);
+    if (e.target.name === 'gambar') {
+      setGambar(e.target.files[0]);
+    } else if (e.target.name === 'bukti_transfer') {
+      setBuktiTransfer(e.target.files[0]);
+    }
   };
 
-  const navigate = useNavigate();
-  useEffect(() => {}, []);
-
-  const saveProduk = async (e) => {
+  const saveBanner = async (e) => {
     e.preventDefault();
+
+    // Periksa apakah gambar dan bukti_transfer telah dipilih
+    if (!gambar || !bukti_transfer) {
+      swal({
+        icon: 'error',
+        title: 'Gagal',
+        text: 'Silakan pilih gambar dan bukti transfer.',
+      });
+      return;
+    }
+
     const formData = new FormData();
-    formData.append('id_penjual', id_penjual);
-    formData.append('id_kategori', id_kategori);
-    formData.append('nama', nama);
+    formData.append('id_user', id_user);
+    formData.append('nama_banner', nama_banner);
     formData.append('deskripsi', deskripsi);
-    formData.append('file', file);
-    formData.append('harga', harga);
-    formData.append('stok', stok);
+    formData.append('gambar', gambar);
+    formData.append('bukti_transfer', bukti_transfer);
+    formData.append('status', status);
 
     try {
-      const response = await axios.post('http://localhost:3000/marketplace/addProduk', formData, {
+      const response = await axios.post('http://localhost:3000/marketplace/banner/addBanner', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -45,20 +53,20 @@ const TambahBanner = () => {
       if (response.status === 200) {
         swal({
           icon: 'success',
-          title: 'Success',
-          text: 'Produk berhasil di upload!',
+          title: 'Sukses',
+          text: 'Banner berhasil diunggah!',
         }).then(() => {
-          navigate('/seller/product');
+          // Tambahkan navigasi ke halaman yang sesuai
         });
       } else {
-        throw new Error('Gagal mengunggah produk');
+        throw new Error('Gagal mengunggah banner');
       }
     } catch (error) {
       console.log(error);
       swal({
         icon: 'error',
-        title: 'Error',
-        text: 'Gagal mengunggah produk. Silakan coba lagi.',
+        title: 'Gagal',
+        text: 'Gagal mengunggah banner. Silakan coba lagi.',
       });
     }
   };
@@ -79,40 +87,39 @@ const TambahBanner = () => {
           </MDBCol>
           <Card>
             <CardBody>
-              {' '}
-              <div class="row">
-                <div class="col-12 mb-4 mt-4">
-                  <form onSubmit={saveProduk}>
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">
+              <div className="row">
+                <div className="col-12 mb-4 mt-4">
+                  <form onSubmit={saveBanner}>
+                    <div className="mb-3">
+                      <label htmlFor="nama_banner" className="form-label">
                         Nama Banner
                       </label>
-                      <input type="text" value={nama} onChange={(e) => setNama(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
+                      <input type="text" value={nama_banner} onChange={(e) => setNamaBanner(e.target.value)} className="form-control" id="nama_banner" required />
                     </div>
-                    <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">
+                    <div className="mb-3">
+                      <label htmlFor="deskripsi" className="form-label">
                         Deskripsi Banner Anda
                       </label>
-                      <textarea value={deskripsi} onChange={(e) => setDeskripsi(e.target.value)} class="form-control" id="floatingTextarea" required></textarea>
+                      <textarea value={deskripsi} onChange={(e) => setDeskripsi(e.target.value)} className="form-control" id="deskripsi" required></textarea>
                     </div>
-                    <div class="mb-3">
-                      <label class="form-label" for="customFile">
+                    <div className="mb-3">
+                      <label htmlFor="gambar" className="form-label">
                         Upload Gambar Banner (Ukuran 15mmx15mm)
                       </label>
-                      <input type="file" onChange={loadImage} class="form-control" id="customFile" required />
+                      <input type="file" onChange={loadImage} className="form-control" id="gambar" name="gambar" required />
                     </div>
-                    <div class="mb-3">
-                      <label class="form-label" for="customFile">
+                    <div className="mb-3">
+                      <label htmlFor="bukti_transfer" className="form-label">
                         Bukti Transfer
                       </label>
-                      <input type="file" onChange={loadImage} class="form-control" id="customFile" required />
+                      <input type="file" onChange={loadImage} className="form-control" id="bukti_transfer" name="bukti_transfer" required />
                     </div>
-                    <button type="submit" class="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right' }}>
+                    <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right' }}>
                       Ajukan
                     </button>
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label" style={{ fontSize: '14px' }}>
-                        *Banner yang diajukan akan melalui proses review oleh admin, sebelum akhirnya di terbitkan di halaman awal e commerce.
+                    <div className="mb-3">
+                      <label htmlFor="note" className="form-label" style={{ fontSize: '14px' }}>
+                        *Banner yang diajukan akan melalui proses review oleh admin, sebelum akhirnya diterbitkan di halaman awal e-commerce.
                       </label>
                     </div>
                   </form>

@@ -13,4 +13,6 @@ indexmodel.produk = require('./produk.js');
 indexmodel.users = require('./users.js');
 indexmodel.order_detail = require('./order_detail.js');
 indexmodel.transaksi = require('./transaksi.js');
+indexmodel.requested_banner = require('./requested_banner.js');
+
 module.exports = indexmodel;

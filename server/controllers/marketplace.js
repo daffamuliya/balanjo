@@ -338,6 +338,66 @@ controller.addCart = async (req, res) => {
   }
 };
 
+controller.addBanner = async (req, res) => {
+  try {
+    // Periksa apakah ada berkas yang diunggah
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).json({ msg: 'Tidak ada berkas yang diunggah' });
+    }
+
+    const { id_user, nama_banner, deskripsi, status } = req.body;
+    const { gambar, bukti_transfer } = req.files;
+
+    // Pastikan jenis file yang diunggah adalah gambar
+    const allowedTypes = ['.png', '.jpg', '.jpeg'];
+    if (!allowedTypes.includes(path.extname(gambar.name).toLowerCase())) {
+      return res.status(422).json({ msg: 'Gambar tidak valid' });
+    }
+
+    // Pastikan ukuran gambar tidak melebihi 5 MB
+    const gambarSize = gambar.size;
+    if (gambarSize > 5000000) {
+      return res.status(422).json({ msg: 'Ukuran gambar harus kurang dari 5 MB' });
+    }
+
+    // Simpan gambar
+    const gambarName = gambar.md5 + path.extname(gambar.name);
+    const gambarUrl = `${req.protocol}://${req.get('host')}/images/${gambarName}`;
+    await gambar.mv(`./public/images/${gambarName}`);
+
+    // Pastikan jenis file yang diunggah untuk bukti transfer adalah gambar
+    if (!allowedTypes.includes(path.extname(bukti_transfer.name).toLowerCase())) {
+      return res.status(422).json({ msg: 'Bukti transfer tidak valid' });
+    }
+
+    // Pastikan ukuran bukti transfer tidak melebihi 5 MB
+    const buktiTransferSize = bukti_transfer.size;
+    if (buktiTransferSize > 5000000) {
+      return res.status(422).json({ msg: 'Ukuran bukti transfer harus kurang dari 5 MB' });
+    }
+
+    // Simpan bukti transfer
+    const buktiTransferName = bukti_transfer.md5 + path.extname(bukti_transfer.name);
+    const buktiTransferUrl = `${req.protocol}://${req.get('host')}/images/${buktiTransferName}`;
+    await bukti_transfer.mv(`./public/images/${buktiTransferName}`);
+
+    // Buat banner dengan menyertakan URL gambar dan bukti transfer
+    await model.requested_banner.create({
+      id_user,
+      nama_banner,
+      deskripsi,
+      gambar: gambarUrl,
+      bukti_transfer: buktiTransferUrl,
+      status,
+    });
+
+    res.redirect('/seller/upload-banner');
+  } catch (error) {
+    console.error('Error saat menambahkan banner:', error);
+    return res.status(500).json({ msg: 'Terjadi kesalahan saat menambahkan banner' });
+  }
+};
+
 controller.deleteCart = async function (req, res) {
   try {
     await model.cart.destroy({

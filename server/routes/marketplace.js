@@ -51,6 +51,7 @@ router.get('/transaksi', controller.marketplace.getAllTransaksi);
 router.get('/:user_id/getOrderDetail', controller.marketplace.getOrderDetail);
 router.post('/addOrder', controller.marketplace.addOrderDetail);
 router.post('/cart/addCart', controller.marketplace.addCart);
+router.post('/banner/addBanner', controller.marketplace.addBanner);
 router.delete('/deleteCart/:id', controller.marketplace.deleteCart);
 router.delete('/deleteOrderDetail/:id', controller.marketplace.deleteOrderDetail);
 router.delete('/deleteAllCartItems/:user_id', controller.marketplace.deleteAllCartItems);
