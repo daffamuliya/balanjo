@@ -10,9 +10,9 @@ const multer = require('multer');
 
 const cors = require('cors');
 const corsOptions = {
-  origin: 'http://localhost:3001', // Allow requests from this origin
-  methods: 'GET,PUT,POST,DELETE,PATCH,OPTIONS', // Specify allowed HTTP methods
-  credentials: true, // Allow cookies and authentication headers
+  origin: 'http://localhost:3001',
+  methods: 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+  credentials: true,
 };
 
 app.use(cors(corsOptions));

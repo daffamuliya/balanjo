@@ -9,7 +9,6 @@ app.use(express.static('public'));
 
 const checkUser = (req, res, next) => {
   const token = req.cookies.token;
-
   if (token) {
     jwt.verify(token, process.env.TOKEN, async (err, decodedToken) => {
       if (err) {
@@ -36,16 +35,13 @@ const checkUser = (req, res, next) => {
 
 function isLogin(req, res, next) {
   const token = req.cookies.token;
-
   if (token) {
     jwt.verify(token, process.env.TOKEN, (err, decodedToken) => {
       if (err) {
         console.log(err.message);
-        res.send('token error'); //505
+        res.send('token error');
       } else {
         console.log(decodedToken);
-        // const role = decodedToken.role;
-        // if (role != "mahasiswa") return res.render("eror403");
         next();
       }
     });

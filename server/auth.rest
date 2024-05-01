@@ -2,11 +2,12 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-   "name": "daffa",
-    "username" : "illios",
+    "name": "User Test",
+    "username" : "illios 3",
     "password" : "123",
     "confPassword" : "123",
-    "type": "M"
+    "email" : "daffa2@gmail.com",
+    "no_telp" : "082286541161"
 } 
 
 
@@ -14,7 +15,7 @@ Content-Type: application/json
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
-{
-    "username" : "umibozu",
+{     
+    "email" : "daffa2@gmail.com",
     "password" : "123"
 } 
