@@ -15,20 +15,28 @@ controller.tampilregister = async function (req, res) {
 
 controller.register = async function (req, res) {
   const { name, username, password, confPassword, email, no_telp } = req.body;
-  if (password !== confPassword) return res.status(400).json({ msg: 'Password dan Confirm Password tidak cocok' });
-  const salt = await bcrypt.genSalt();
-  const hashPassword = await bcrypt.hash(password, salt);
-
-  const role = 'User';
-  const alamat = 'Alamat belum dilengkapi';
-
-  const usernameExist = await model.findOne({ where: { username: username } });
-  if (usernameExist) return res.status(400).json({ msg: 'Username sudah dipakai' });
-
-  const emailExist = await model.findOne({ where: { email: email } });
-  if (emailExist) return res.status(400).json({ msg: 'Email sudah terdaftar' });
 
   try {
+    if (password !== confPassword) {
+      return res.status(400).json({ msg: 'Password dan Confirm Password tidak cocok' });
+    }
+
+    const usernameExist = await model.findOne({ where: { username: username } });
+    if (usernameExist) {
+      return res.status(400).json({ msg: 'Username sudah dipakai' });
+    }
+
+    const emailExist = await model.findOne({ where: { email: email } });
+    if (emailExist) {
+      return res.status(400).json({ msg: 'Email sudah terdaftar' });
+    }
+
+    const salt = await bcrypt.genSalt();
+    const hashPassword = await bcrypt.hash(password, salt);
+
+    const role = 'User';
+    const alamat = 'Alamat belum dilengkapi';
+
     await model.create({
       name: name,
       username: username,
@@ -38,6 +46,7 @@ controller.register = async function (req, res) {
       no_telp: no_telp,
       alamat: alamat,
     });
+
     res.json({ msg: 'Register Berhasil' });
   } catch (error) {
     console.log(error);
