@@ -25,10 +25,9 @@ router.use(function (req, res, next) {
 router.use(express.static('public'));
 
 router.post('/register', controller.users.register);
+router.get('/me', controller.users.me);
 router.post('/login', controller.users.login);
-router.post('/logout', controller.users.logout);
-router.get ('/token', refreshToken);
-
+router.delete('/logout', controller.users.logout);
 router.get('/login', controller.users.tampillogin);
 router.get('/register', controller.users.tampilregister);
 

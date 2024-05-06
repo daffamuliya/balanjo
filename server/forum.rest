@@ -1,14 +1,14 @@
-
-
-
 ###
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
-{
-     "username": "2011522023",
-     "password" : "123"
-}
+{     
+    "email" : "tiara1239910wqwq@gmail.com",
+    "password" : "123"
+} 
+
+### 
+GET http://localhost:3000/forum/dashboard
 
 ###
 PUT http://localhost:3000/forum/updateForum/1

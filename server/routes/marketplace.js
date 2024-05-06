@@ -5,6 +5,7 @@ const path = require('path');
 const router = express();
 router.set('view engine', 'ejs');
 router.use(express.static('public'));
+const { verifyUser, adminOnly } = require(`../middleware/AuthUser.js`);
 
 const fileStorageBarang = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -33,6 +34,7 @@ const uploadBarang = multer({
 });
 
 router.get('/', controller.marketplace.getAllProduk);
+router.get('/dashboard', verifyUser, controller.marketplace.getAllDashboardProduk);
 router.get('/:id/produk', controller.marketplace.getProdukById);
 router.get('/jualProduk', controller.marketplace.jualProduk);
 router.get('/:id/detailProduk', controller.marketplace.detailProduk);

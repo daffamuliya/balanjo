@@ -23,8 +23,8 @@ import swal from 'sweetalert';
 import axios from 'axios';
 
 const LandingForum = () => {
-  const [user_id] = useState('2');
-  const [user] = useState('Daffa');
+  const [user_id] = useState('26');
+  const [user] = useState('Tiara Sayang');
   const [konten, setKonten] = useState('');
   const [komentar, setKomentar] = useState('');
   const [selectedForumId, setSelectedForumId] = useState(null);

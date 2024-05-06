@@ -106,6 +106,53 @@ controller.getAllProduk = async (req, res) => {
   }
 };
 
+controller.getAllDashboardProduk = async (req, res) => {
+  try {
+    let response;
+    if (req.role === 'admin') {
+      response = await model.produk
+        .findAll({
+          attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok', 'created_at'],
+        })
+        .then((result) => {
+          if (result.length > 0) {
+            res.json({ items: result });
+          } else {
+            res.status(404).json({
+              message: 'data tidak ada',
+              data: [],
+            });
+          }
+        });
+    } else {
+      await model.produk
+        .findAll({
+          attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok', 'created_at'],
+          where: {
+            user_id: req.userId,
+          },
+        })
+
+        .then((result) => {
+          if (result.length > 0) {
+            res.json({ items: result });
+          } else {
+            res.status(404).json({
+              message: 'data tidak ada',
+              data: [],
+            });
+          }
+        });
+    }
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: 'Terjadi kesalahan dalam mengambil data forum',
+    });
+  }
+};
+
 controller.requestedBanner = async (req, res) => {
   try {
     await model.requested_banner
@@ -166,11 +213,9 @@ controller.activeBanner = async (req, res) => {
 
 controller.getTotalBanner = async (req, res) => {
   try {
-    await model.active_banner
-      .count() // Menghitung jumlah baris di tabel users
-      .then((count) => {
-        res.json({ totalBanner: count });
-      });
+    await model.active_banner.count().then((count) => {
+      res.json({ totalBanner: count });
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

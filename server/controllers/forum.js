@@ -33,6 +33,42 @@ controller.getAllForum = async (req, res) => {
   }
 };
 
+controller.getAllDashboardForum = async (req, res) => {
+  try {
+    let response;
+    if (req.role === 'admin') {
+      response = await model.forum.findAll({
+        include: [
+          {
+            model: model.komentar_forum,
+            attributes: ['id', 'forum_id', 'user_id', 'komentar', 'user', 'created_at'],
+            required: false,
+          },
+        ],
+      });
+    } else {
+      response = await model.forum.findAll({
+        where: {
+          user_id: req.userId,
+        },
+        include: [
+          {
+            model: model.komentar_forum,
+            attributes: ['id', 'forum_id', 'user_id', 'komentar', 'user', 'created_at'],
+            required: false,
+          },
+        ],
+      });
+    }
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: 'Terjadi kesalahan dalam mengambil data forum',
+    });
+  }
+};
+
 controller.getForumById = async (req, res) => {
   try {
     await model.forum

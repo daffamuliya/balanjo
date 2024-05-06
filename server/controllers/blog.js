@@ -26,6 +26,51 @@ controller.getAllBlog = async (req, res) => {
   }
 };
 
+controller.getAllDashboardBlog = async (req, res) => {
+  try {
+    let response;
+    if (req.role === 'admin') {
+      response = await model.blog
+        .findAll({
+          order: [['created_at', 'DESC']],
+        })
+        .then((result) => {
+          if (result.length > 0) {
+            res.json({ items: result });
+          } else {
+            res.status(404).json({
+              message: 'data tidak ada',
+              data: [],
+            });
+          }
+        });
+    } else {
+      response = await model.blog
+        .findAll({
+          where: {
+            user_id: req.userId,
+          },
+          order: [['created_at', 'DESC']],
+        })
+        .then((result) => {
+          if (result.length > 0) {
+            res.json({ items: result });
+          } else {
+            res.status(404).json({
+              message: 'data tidak ada',
+              data: [],
+            });
+          }
+        });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: 'Terjadi kesalahan dalam mengambil data blog',
+    });
+  }
+};
+
 controller.getBlogBySlug = async (req, res) => {
   try {
     await model.blog

@@ -9,8 +9,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import swal from 'sweetalert';
 
 const UploadBlog = () => {
-  const [user_id] = useState('2');
-  const [user] = useState('Daffa');
+  const [user_id] = useState('26');
+  const [user] = useState('Tiara Sayang');
   const [judul, setJudul] = useState('');
   const [slug, setSlug] = useState('');
   const [kategori_blog, setKategori] = useState('Pilih Kategori');

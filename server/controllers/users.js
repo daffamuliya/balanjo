@@ -1,6 +1,7 @@
 const model = require('../models/users');
 const controller = {};
 const bcrypt = require('bcryptjs');
+const argon2 = require('argon2');
 const { json } = require('body-parser');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -31,8 +32,7 @@ controller.register = async function (req, res) {
       return res.status(400).json({ msg: 'Email sudah terdaftar' });
     }
 
-    const salt = await bcrypt.genSalt();
-    const hashPassword = await bcrypt.hash(password, salt);
+    const hashPassword = await argon2.hash(password);
 
     const role = 'User';
     const alamat = 'Alamat belum dilengkapi';
@@ -61,64 +61,41 @@ controller.tampillogin = async function (req, res) {
 };
 
 controller.login = async function (req, res) {
-  try {
-    const user = await model.findAll({
-      where: {
-        email: req.body.email,
-      },
-    });
-    const match = await bcrypt.compare(req.body.password, user[0].password);
-    if (!match) return res.status(400).json({ msg: 'Password salah' });
-    const userId = user[0].id;
-    const name = user[0].name;
-    const email = user[0].email;
-    const accessToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: '20s',
-    });
-    const refreshToken = jwt.sign({ userId, name, email }, process.env.REFRESH_TOKEN_SECRET, {
-      expiresIn: '1d',
-    });
-    await model.update(
-      { remember_token: refreshToken },
-      {
-        where: {
-          id: userId,
-        },
-      }
-    );
-    res.cookie('refreshToken', refreshToken, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000,
-      secure: true,
-    });
-    res.json({ accessToken });
-  } catch (error) {
-    res.status(404).json({ msg: 'Email tidak ditemukan' });
+  const user = await model.findOne({
+    where: {
+      email: req.body.email,
+    },
+  });
+  if (!user) return res.status(404).json({ msg: 'User tidak ditemukan' });
+  const match = await argon2.verify(user.password, req.body.password);
+  if (!match) return res.status(400).json({ msg: 'Wrong Password' });
+  req.session.userId = user.uuid;
+  const uuid = user.uuid;
+  const name = user.name;
+  const email = user.email;
+  const role = user.role;
+  res.status(200).json({ uuid, name, email, role });
+};
+
+controller.me = async function (req, res) {
+  if (!req.session.userId) {
+    return res.status(401).json({ msg: 'Mohon login ke akun anda' });
   }
+  const user = await model.findOne({
+    attributes: ['uuid', 'name', 'email', 'role'],
+    where: {
+      uuid: req.session.userId,
+    },
+  });
+  if (!user) return res.status(404).json({ msg: 'User tidak ditemukan' });
+  res.status(200).json(user);
 };
 
 controller.logout = async function (req, res) {
-  const refreshToken = req.cookies.refreshToken;
-  if (!refreshToken) return res.sendStatus(204);
-
-  const user = await users.findAll({
-    where: {
-      remember_token: refreshToken,
-    },
+  req.session.destroy((err) => {
+    if (err) return res.status(400).json({ msg: 'Tidak dapat logout' });
+    res.status(200).json({ msg: 'Anda telah logout' });
   });
-
-  if (!user[0]) return res.sendStatus(204);
-  const userId = user[0].id;
-  await model.update(
-    { remember_token: null },
-    {
-      where: {
-        id: userId,
-      },
-    }
-  );
-  res.clearCookie('refreshToken');
-  return res.sendStatus(200);
 };
 
 module.exports = controller;

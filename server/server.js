@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const port = 3000;
 const FileUpload = require('express-fileupload');
@@ -7,6 +8,13 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 dotenv.config();
 const multer = require('multer');
+const SequelizeStore = require('connect-session-sequelize');
+const db = require('../server/config/conn.js');
+
+const sessionStore = SequelizeStore(session.Store);
+const store = new sessionStore({
+  db: db,
+});
 
 const cors = require('cors');
 const corsOptions = {
@@ -24,6 +32,18 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(
+  session({
+    secret: process.env.SESS_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: store,
+    cookie: {
+      secure: 'auto',
+    },
+  })
+);
+
 app.use(express.static('public'));
 app.use(FileUpload());
 
@@ -34,9 +54,6 @@ const marketplace = require('./routes/marketplace');
 const kelola = require('./routes/kelola');
 const daftaruser = require('./routes/daftaruser');
 
-const { isLogin, checkUser } = require(`./middleware/authToken`);
-const { MulterError } = require('multer');
-const fileUpload = require('express-fileupload');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -47,7 +64,6 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
-app.get('*', checkUser);
 app.use('/auth', auth);
 app.use('/blog', blog);
 app.use('/daftaruser', daftaruser);
@@ -64,6 +80,8 @@ app.get('/', (req, res) => {
 app.use('/', (req, res) => {
   res.render('eror404');
 });
+
+// store.sync();
 
 app.listen(port, () => {
   console.log(`Server Sedang Berjalan di http://localhost:${port}`);

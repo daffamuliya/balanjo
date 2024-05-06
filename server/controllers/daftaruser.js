@@ -8,7 +8,7 @@ controller.getAllUser = async (req, res) => {
   try {
     await model.users
       .findAll({
-        attributes: ['id', 'username', 'name', 'email', 'no_telp', 'alamat', 'created_at'],
+        attributes: ['id', 'uuid', 'username', 'name', 'email', 'no_telp', 'alamat', 'created_at'],
       })
       .then((result) => {
         if (result.length > 0) {
@@ -29,9 +29,9 @@ controller.getUserById = async (req, res) => {
   try {
     await model.users
       .findOne({
-        attributes: ['id', 'username', 'name', 'email', 'no_telp', 'alamat'],
+        attributes: ['id', 'uuid', 'username', 'name', 'email', 'no_telp', 'alamat'],
         where: {
-          id: req.params.id,
+          uuid: req.params.id,
         },
       })
       .then((result) => {
@@ -66,11 +66,9 @@ controller.deleteUser = async (req, res) => {
 
 controller.getTotalUsers = async (req, res) => {
   try {
-    await model.users
-      .count() // Menghitung jumlah baris di tabel users
-      .then((count) => {
-        res.json({ totalUsers: count });
-      });
+    await model.users.count().then((count) => {
+      res.json({ totalUsers: count });
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

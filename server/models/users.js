@@ -11,6 +11,14 @@ const users = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    uuid: {
+      type: DataTypes.STRING,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,

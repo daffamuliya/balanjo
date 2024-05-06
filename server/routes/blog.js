@@ -5,6 +5,7 @@ const path = require('path');
 const router = express();
 router.set('view engine', 'ejs');
 router.use(express.static('public'));
+const { verifyUser, adminOnly } = require(`../middleware/AuthUser.js`);
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -33,6 +34,7 @@ const upload = multer({
 });
 
 router.get('/', controller.blog.getAllBlog);
+router.get('/dashboard', verifyUser, controller.blog.getAllDashboardBlog);
 router.get('/baca/:slug', controller.blog.getBlogBySlug);
 router.get('/addBlog', controller.blog.tampilTambahBlog);
 router.post('/addBlog', controller.blog.addBlog);

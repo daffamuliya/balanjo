@@ -2,11 +2,11 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "name": "User Test",
-    "username" : "illios 3",
+    "name": "Tiara Sayang",
+    "username" : "tiara1231",
     "password" : "123",
     "confPassword" : "123",
-    "email" : "daffa2@gmail.com",
+    "email" : "tiara1239910wqwq@gmail.com",
     "no_telp" : "082286541161"
 } 
 
@@ -16,6 +16,12 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {     
-    "email" : "daffa2@gmail.com",
+    "email" : "tiara1239910wqwq@gmail.com",
     "password" : "123"
 } 
+
+###
+GET http://localhost:3000/auth/me
+
+###
+DELETE http://localhost:3000/auth/logout

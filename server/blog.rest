@@ -1,5 +1,18 @@
 ###
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{     
+    "email" : "tiara1239910wqwq@gmail.com",
+    "password" : "123"
+} 
+
+
+###
 GET http://localhost:3000/blog/
+
+###
+GET http://localhost:3000/blog/dashboard
 
 ###
 GET http://localhost:3000/blog/detail-2
