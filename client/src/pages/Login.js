@@ -1,35 +1,28 @@
 import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBIcon } from 'mdb-react-ui-kit';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import swal from 'sweetalert';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { LoginUser, reset } from '../features/authSlice';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [msg, setMsg] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user, isError, isSuccess, message } = useSelector((state) => state.auth);
 
   const Auth = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post('http://localhost:3000/auth/login', {
-        email: email,
-        password: password,
-      });
-      swal({
-        icon: 'success',
-        title: 'Success',
-        text: 'Anda berhasil login',
-      }).then(() => {
-        navigate('/home');
-      });
-    } catch (error) {
-      if (error.response) {
-        setMsg(error.response.data.msg);
-      }
-    }
+    dispatch(LoginUser({ email, password }));
   };
+
+  useEffect(() => {
+    if (user || isSuccess) {
+      navigate('/home');
+    }
+    dispatch(reset());
+  }, [user, isSuccess, dispatch, navigate]);
   return (
     <MDBContainer fluid>
       <MDBRow className="d-flex justify-content-center align-items-center h-100">
@@ -40,7 +33,7 @@ function Login() {
                 Login
               </h2>
               <form onSubmit={Auth}>
-                <p className="text-center">{msg}</p>
+                {isError && <p className="text-center">{message}</p>}
                 <p className="text-black-100" style={{ fontSize: '16px' }}>
                   Email
                 </p>
