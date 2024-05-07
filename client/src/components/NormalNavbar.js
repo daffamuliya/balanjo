@@ -45,8 +45,8 @@ const NormalNavbar = () => {
               </>
             ) : user ? (
               <>
-                <MDBBtn size="lg" className="me-2" style={{ backgroundColor: 'transparent', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336' }}>
-                  {user && user.username}
+                <MDBBtn size="lg" className="me-2" style={{ backgroundColor: 'transparent', fontSize: '16px', maxWidth: '300px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336' }}>
+                  Halo, {user && user.username}
                 </MDBBtn>
                 <MDBBtn onClick={handleLogout} size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', fontWeight: 'bold', textAlign: 'center', border: 'black' }}>
                   Logout

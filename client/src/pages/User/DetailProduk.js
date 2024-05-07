@@ -7,11 +7,20 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import RekomendasiEcom from '../../components/RecomendasiEcom';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMe } from '../../features/authSlice';
 
 const DetailProduk = () => {
+  const { user } = useSelector((state) => state.auth);
+
   const [user_id] = useState('2');
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
 
   const handleQuantity = () => {
     if (quantity <= 1) {
@@ -49,6 +58,15 @@ const DetailProduk = () => {
   }, [id, produk]);
 
   const addToCart = async () => {
+    if (!user) {
+      swal({
+        icon: 'warning',
+        title: 'Oops!',
+        text: 'Anda belum login. Silakan login terlebih dahulu untuk menambahkan produk ke keranjang.',
+      });
+      return;
+    }
+
     const cartItem = {
       user_id: user_id,
       produk_id: produk.id,
@@ -124,9 +142,25 @@ const DetailProduk = () => {
                         </button>
                       </div>
                       <div className="mb-3 me-4">
-                        <button className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%' }} onClick={addToCart}>
-                          Tambah Keranjang
-                        </button>
+                        {user ? (
+                          <button className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%' }} onClick={addToCart}>
+                            Tambah Keranjang
+                          </button>
+                        ) : (
+                          <button
+                            className="btn btn-primary"
+                            style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%' }}
+                            onClick={() =>
+                              swal({
+                                icon: 'warning',
+                                title: 'Oops!',
+                                text: 'Anda belum login. Silakan login terlebih dahulu untuk menambahkan produk ke keranjang.',
+                              })
+                            }
+                          >
+                            Tambah Keranjang
+                          </button>
+                        )}
                       </div>
                     </div>
                   </MDBCol>

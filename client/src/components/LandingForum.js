@@ -21,6 +21,7 @@ import { Chat } from 'react-bootstrap-icons';
 import React, { useState, useEffect } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const LandingForum = () => {
   const [user_id] = useState('26');
@@ -28,6 +29,7 @@ const LandingForum = () => {
   const [konten, setKonten] = useState('');
   const [komentar, setKomentar] = useState('');
   const [selectedForumId, setSelectedForumId] = useState(null);
+  const { user: loggedInUser } = useSelector((state) => state.auth);
 
   const handleButtonClick = (forum_id) => {
     setSelectedForumId(forum_id);
@@ -120,9 +122,25 @@ const LandingForum = () => {
       <MDBContainer>
         <MDBRow className="mt-4">
           <MDBCol md={4} xs={12}>
-            <a onClick={toggleOpen} className="btn btn-primary col-12" style={{ backgroundColor: '#A08336', fontSize: '16px', fontWeight: 'normal', border: '#A08336', borderRadius: '10px', marginBottom: '30px' }}>
-              Mulai Diskusi Baru
-            </a>
+            {loggedInUser ? (
+              <a onClick={toggleOpen} className="btn btn-primary col-12" style={{ backgroundColor: '#A08336', fontSize: '16px', fontWeight: 'normal', border: '#A08336', borderRadius: '10px', marginBottom: '30px' }}>
+                Mulai Diskusi Baru
+              </a>
+            ) : (
+              <a
+                onClick={() =>
+                  swal({
+                    icon: 'warning',
+                    title: 'Oops!',
+                    text: 'Anda belum login. Silakan login terlebih dahulu untuk membuat diskusi baru.',
+                  })
+                }
+                className="btn btn-primary col-12"
+                style={{ backgroundColor: '#A08336', fontSize: '16px', fontWeight: 'normal', border: '#A08336', borderRadius: '10px', marginBottom: '30px' }}
+              >
+                Mulai Diskusi Baru
+              </a>
+            )}
             <p className="text-white-75 d-none d-md-block" style={{ color: '#6A6D70', marginBottom: '1rem' }}>
               Kategori{' '}
             </p>
