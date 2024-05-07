@@ -31,7 +31,7 @@ const KelolaBlog = () => {
 
   const getBlogs = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/blog');
+      const response = await axios.get('http://localhost:3000/blog/dashboard');
       const formattedBlogs = response.data.items.map((item) => {
         const waktu = new Date(item.created_at);
         const options = {
