@@ -2,8 +2,23 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout, getMe } from '../features/authSlice';
+import { MDBBtn } from 'mdb-react-ui-kit';
+import React, { useEffect } from 'react';
 
 const NormalNavbar = () => {
+  const dispatch = useDispatch();
+  const { user, isError } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <Navbar expand="lg" style={{ backgroundColor: 'white', color: 'black', fontWeight: 'bold' }}>
       <Container>
@@ -19,12 +34,25 @@ const NormalNavbar = () => {
             <Nav.Link href="/ecommerce">E Commerce</Nav.Link>
           </Nav>
           <Form className="d-flex">
-            <a href="/login" className="btn btn-primary" style={{ marginRight: '5px', backgroundColor: 'transparent', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336' }}>
-              Login
-            </a>
-            <a href="/register" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '55px', fontWeight: 'bold', textAlign: 'center', border: 'black' }}>
-              Sign Up
-            </a>
+            {isError ? (
+              <>
+                <a href="/login" className="btn btn-primary" style={{ marginRight: '5px', backgroundColor: 'transparent', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336' }}>
+                  Login
+                </a>
+                <a href="/register" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '55px', fontWeight: 'bold', textAlign: 'center', border: 'black' }}>
+                  Sign Up
+                </a>
+              </>
+            ) : user ? (
+              <>
+                <MDBBtn size="lg" className="me-2" style={{ backgroundColor: 'transparent', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336' }}>
+                  {user && user.username}
+                </MDBBtn>
+                <MDBBtn onClick={handleLogout} size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', fontWeight: 'bold', textAlign: 'center', border: 'black' }}>
+                  Logout
+                </MDBBtn>
+              </>
+            ) : null}
           </Form>
         </Navbar.Collapse>
       </Container>

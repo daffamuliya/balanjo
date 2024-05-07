@@ -17,7 +17,7 @@ function Login() {
       if (user && user.role === 'admin') {
         navigate('/admin');
       } else {
-        navigate('/user/akun');
+        navigate('/home');
       }
     }
     dispatch(reset());

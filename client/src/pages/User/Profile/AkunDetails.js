@@ -59,7 +59,7 @@ const AkunDetails = () => {
                     </form>
                   </div>
                   <h2 className="title" style={{ fontWeight: 'bold' }}>
-                    Password
+                    Change Password
                   </h2>
                   <div class="col-12 mb-4 mt-4">
                     <form>
