@@ -6,8 +6,24 @@ import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import CardBody from 'react-bootstrap/esm/CardBody';
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMe } from '../../features/authSlice';
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate('/login');
+    }
+  }, [isError, navigate]);
   const [totalUsers, setTotalUsers] = useState(0);
   const [totalBlog, setTotalBlog] = useState(0);
   const [totalForum, setTotalForum] = useState(0);

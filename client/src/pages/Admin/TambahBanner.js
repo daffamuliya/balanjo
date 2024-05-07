@@ -5,10 +5,25 @@ import Sidebar from '../../components/Sidebar';
 import CardBody from 'react-bootstrap/esm/CardBody';
 import { MDBCol } from 'mdb-react-ui-kit';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getMe } from '../../features/authSlice';
 import swal from 'sweetalert';
 
 const TambahBanner = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate('/login');
+    }
+  }, [isError, navigate]);
   const [id_penjual] = useState('2');
   const [id_kategori, setKategori] = useState('');
   const [nama, setNama] = useState('');
@@ -22,7 +37,6 @@ const TambahBanner = () => {
     setFile(image);
   };
 
-  const navigate = useNavigate();
   useEffect(() => {}, []);
 
   const saveProduk = async (e) => {

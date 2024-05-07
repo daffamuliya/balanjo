@@ -2,11 +2,11 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "name": "Tiara Sayang",
-    "username" : "tiara1231",
+    "name": "Admin Ganteng",
+    "username" : "admin ganteng",
     "password" : "123",
     "confPassword" : "123",
-    "email" : "tiara1239910wqwq@gmail.com",
+    "email" : "admin@gmail.com",
     "no_telp" : "082286541161"
 } 
 

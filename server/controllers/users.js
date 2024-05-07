@@ -72,6 +72,7 @@ controller.login = async function (req, res) {
   req.session.userId = user.uuid;
   const uuid = user.uuid;
   const name = user.name;
+  const username = user.username;
   const email = user.email;
   const role = user.role;
   res.status(200).json({ uuid, name, email, role });
@@ -82,7 +83,7 @@ controller.me = async function (req, res) {
     return res.status(401).json({ msg: 'Mohon login ke akun anda' });
   }
   const user = await model.findOne({
-    attributes: ['uuid', 'name', 'email', 'role'],
+    attributes: ['uuid', 'name', 'email', 'role', 'username'],
     where: {
       uuid: req.session.userId,
     },

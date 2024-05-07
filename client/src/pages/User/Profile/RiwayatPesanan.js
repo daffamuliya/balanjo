@@ -4,8 +4,24 @@ import Card from 'react-bootstrap/Card';
 import SidebarAkun from '../../../components/SidebarAkun';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMe } from '../../../features/authSlice';
 
 const RiwayatPesanan = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate('/login');
+    }
+  }, [isError, navigate]);
   const [transaksi, setTransaksi] = useState([]);
   useEffect(() => {
     getTransaksi();

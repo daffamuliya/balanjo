@@ -6,8 +6,24 @@ import Sidebar from '../../components/Sidebar';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMe } from '../../features/authSlice';
 
 export const KelolaForum = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate('/login');
+    }
+  }, [isError, navigate]);
   const [forum, setForum] = useState([]);
   const [scrollableModal, setScrollableModal] = useState(false);
   const [forumDetail, setForumDetail] = useState(null);

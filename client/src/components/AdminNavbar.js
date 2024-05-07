@@ -3,8 +3,19 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { MDBBtn } from 'mdb-react-ui-kit';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logout, reset } from '../features/authSlice';
 
 const NormalNavbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+  const logOut = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate('/login');
+  };
   return (
     <Navbar expand="lg" style={{ backgroundColor: 'white', color: 'black', fontWeight: 'bold', boxShadow: 'black' }}>
       <Navbar.Brand href="/">
@@ -17,6 +28,9 @@ const NormalNavbar = () => {
           <Form className="d-flex">
             <MDBBtn size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', fontWeight: 'bold', textAlign: 'center', border: 'black' }}>
               Admin
+            </MDBBtn>
+            <MDBBtn onClick={logOut} size="lg" className="me-2" style={{ backgroundColor: 'transparent', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336' }}>
+              Logout
             </MDBBtn>
           </Form>
         </Navbar.Collapse>

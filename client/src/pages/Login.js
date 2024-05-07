@@ -12,17 +12,22 @@ function Login() {
   const dispatch = useDispatch();
   const { user, isError, isSuccess, message } = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    if (user || isSuccess) {
+      if (user && user.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/user/akun');
+      }
+    }
+    dispatch(reset());
+  }, [user, isSuccess, dispatch, navigate]);
+
   const Auth = async (e) => {
     e.preventDefault();
     dispatch(LoginUser({ email, password }));
   };
 
-  useEffect(() => {
-    if (user || isSuccess) {
-      navigate('/home');
-    }
-    dispatch(reset());
-  }, [user, isSuccess, dispatch, navigate]);
   return (
     <MDBContainer fluid>
       <MDBRow className="d-flex justify-content-center align-items-center h-100">

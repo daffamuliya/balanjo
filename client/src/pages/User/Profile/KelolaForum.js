@@ -6,8 +6,24 @@ import SidebarAkun from '../../../components/SidebarAkun';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMe } from '../../../features/authSlice';
 
 export const KelolaForumUser = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate('/login');
+    }
+  }, [isError, navigate]);
   const [forum, setForum] = useState([]);
   const [scrollableModal, setScrollableModal] = useState(false);
   const [forumDetail, setForumDetail] = useState(null);
@@ -19,7 +35,7 @@ export const KelolaForumUser = () => {
   const getForum = async () => {
     try {
       const response = await axios.get('http://localhost:3000/forum/dashboard');
-      const formattedForum = response.data.items.map((item) => {
+      const formattedForum = response.data.map((item) => {
         const waktu = new Date(item.created_at);
         const options = {
           year: 'numeric',
@@ -97,7 +113,7 @@ export const KelolaForumUser = () => {
                     <tbody>
                       {Array.isArray(forum) &&
                         forum.map((item) => (
-                          <tr key={item.id}>
+                          <tr key={item.uuid}>
                             <td>{item.konten}</td>
                             <td>{item.user}</td>
                             <td>{item.waktuNormal}</td>

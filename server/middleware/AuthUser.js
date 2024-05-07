@@ -8,7 +8,7 @@ const verifyUser = async (req, res, next) => {
 
   try {
     const user = await User.findOne({
-      attributes: ['uuid', 'name', 'email', 'role', 'id'],
+      attributes: ['uuid', 'name', 'email', 'role', 'id', 'username'],
       where: {
         uuid: req.session.userId,
       },
@@ -30,7 +30,7 @@ const verifyUser = async (req, res, next) => {
 const adminOnly = async (req, res, next) => {
   try {
     const user = await User.findOne({
-      attributes: ['uuid', 'name', 'email', 'role'],
+      attributes: ['uuid', 'name', 'email', 'role', 'username'],
       where: {
         uuid: req.session.userId,
       },

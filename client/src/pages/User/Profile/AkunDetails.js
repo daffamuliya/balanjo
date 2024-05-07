@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import UserNavbar from '../../../components/UserNavbar';
 import Card from 'react-bootstrap/Card';
 import SidebarAkun from '../../../components/SidebarAkun';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMe } from '../../../features/authSlice';
 
 const AkunDetails = () => {
-  const [user, setUser] = useState([]);
-  const user_id = '2';
-  useEffect(() => {
-    getUser();
-  }, []);
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
 
-  const getUser = async () => {
-    const response = await axios.get(`http://localhost:3000/daftaruser/${user_id}`);
-    setUser(response.data.items);
-    console.log(response.data.items);
-  };
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate('/login');
+    }
+  }, [isError, navigate]);
 
   return (
     <div>
@@ -36,20 +41,20 @@ const AkunDetails = () => {
                         <label for="exampleInputEmail1" class="form-label">
                           FULL NAME *
                         </label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder={user.name} aria-describedby="emailHelp" disabled />
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled placeholder={user && user.name} />
                       </div>
 
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">
                           USERNAME *
                         </label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder={user.username} aria-describedby="emailHelp" disabled />
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled placeholder={user && user.username} />
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">
                           EMAIL *
                         </label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder={user.email} aria-describedby="emailHelp" disabled />
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled placeholder={user && user.email} />
                       </div>
                     </form>
                   </div>

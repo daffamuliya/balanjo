@@ -11,9 +11,9 @@ const SidebarAkun = () => {
   }, []);
 
   const getUser = async () => {
-    const response = await axios.get(`http://localhost:3000/daftaruser/${user_id}`);
-    setUser(response.data.items);
-    console.log(response.data.items);
+    // const response = await axios.get(`http://localhost:3000/daftaruser/${user_id}`);
+    // setUser(response.data.items);
+    // console.log(response.data.items);
   };
   return (
     <div className="sidebar">

@@ -6,10 +6,24 @@ import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMe } from '../../features/authSlice';
 
 const RequestedBanner = () => {
-  const [banner, setBanner] = useState([]);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate('/login');
+    }
+  }, [isError, navigate]);
+  const [banner, setBanner] = useState([]);
 
   useEffect(() => {
     getBanner();
