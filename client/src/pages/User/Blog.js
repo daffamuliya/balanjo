@@ -44,7 +44,7 @@ export default function Landing() {
           <MDBCol size="2" className="mt-3">
             {user ? (
               <button className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%' }} onClick={handleCreateArticle}>
-                Tambah Keranjang
+                Tulis Artikel
               </button>
             ) : (
               <button
@@ -58,7 +58,7 @@ export default function Landing() {
                   })
                 }
               >
-                Tambah Keranjang
+                Tulis Artikel
               </button>
             )}
           </MDBCol>
