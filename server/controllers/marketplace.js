@@ -347,6 +347,41 @@ controller.getAllCart = async function (req, res) {
   }
 };
 
+controller.getMyCart = async function (req, res) {
+  try {
+    await model.cart
+      .findAll({
+        attributes: ['id', 'user_id', 'produk_id', 'jumlah', 'harga', 'sub_total', 'gambar', 'created_at'],
+        include: [
+          {
+            model: model.produk,
+            attributes: ['nama', 'deskripsi'],
+          },
+        ],
+        where: {
+          user_id: req.userId,
+        },
+      })
+      .then((result) => {
+        if (result) {
+          res.status(200).json({
+            message: 'mendapat cart',
+            data: result,
+          });
+        } else {
+          res.status(404).json({
+            message: 'data tidak ada',
+            data: [],
+          });
+        }
+      });
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};
+
 controller.getAllTransaksi = async function (req, res) {
   try {
     const result = await model.transaksi.findAll({
@@ -394,7 +429,42 @@ controller.getOrderDetail = async function (req, res) {
           },
         ],
         where: {
-          user_id: req.params.user_id,
+          user_id: req.params.userId,
+        },
+      })
+      .then((result) => {
+        if (result) {
+          res.status(200).json({
+            message: 'mendapatkan data order',
+            data: result,
+          });
+        } else {
+          res.status(404).json({
+            message: 'data tidak ada',
+            data: [],
+          });
+        }
+      });
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};
+
+controller.getMyOrder = async function (req, res) {
+  try {
+    await model.order_detail
+      .findAll({
+        attributes: ['id', 'user_id', 'produk_id', 'alamat', 'total'],
+        include: [
+          {
+            model: model.produk,
+            attributes: ['nama', 'deskripsi', 'gambar'],
+          },
+        ],
+        where: {
+          user_id: req.userId,
         },
       })
       .then((result) => {
@@ -420,17 +490,23 @@ controller.getOrderDetail = async function (req, res) {
 controller.addOrderDetail = async function (req, res) {
   try {
     const { user_id, produk_id, alamat, total } = req.body;
+
+    if (!user_id || !produk_id || !alamat || !total) {
+      throw new Error('Semua data yang diperlukan harus disediakan');
+    }
+
     await model.order_detail.create({
       user_id: user_id,
       produk_id: produk_id,
       alamat: alamat,
       total: total,
     });
+
     res.status(200).json({
-      message: 'berhasil menambahkan data ke order detail',
+      message: 'Berhasil menambahkan data ke order detail',
     });
   } catch (error) {
-    res.json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -575,7 +651,7 @@ controller.deleteAllCartItems = async function (req, res) {
   try {
     await model.cart.destroy({
       where: {
-        user_id: req.params.user_id,
+        user_id: req.userId,
       },
     });
     res.status(200).json({

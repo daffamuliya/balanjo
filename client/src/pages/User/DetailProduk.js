@@ -11,9 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMe } from '../../features/authSlice';
 
 const DetailProduk = () => {
-  const { user } = useSelector((state) => state.auth);
-
-  const [user_id] = useState('2');
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -21,6 +18,9 @@ const DetailProduk = () => {
   useEffect(() => {
     dispatch(getMe());
   }, [dispatch]);
+
+  const { user } = useSelector((state) => state.auth);
+  const user_id = user ? user.id : null;
 
   const handleQuantity = () => {
     if (quantity <= 1) {
@@ -78,6 +78,7 @@ const DetailProduk = () => {
 
     try {
       const response = await axios.post(`http://localhost:3000/marketplace/cart/addCart`, cartItem);
+
       if (response.status === 200) {
         swal({
           icon: 'success',

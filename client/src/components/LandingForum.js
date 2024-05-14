@@ -123,11 +123,12 @@ const LandingForum = () => {
         <MDBRow className="mt-4">
           <MDBCol md={4} xs={12}>
             {loggedInUser ? (
-              <a onClick={toggleOpen} className="btn btn-primary col-12" style={{ backgroundColor: '#A08336', fontSize: '16px', fontWeight: 'normal', border: '#A08336', borderRadius: '10px', marginBottom: '30px' }}>
+              <a href onClick={toggleOpen} className="btn btn-primary col-12" style={{ backgroundColor: '#A08336', fontSize: '16px', fontWeight: 'normal', border: '#A08336', borderRadius: '10px', marginBottom: '30px' }}>
                 Mulai Diskusi Baru
               </a>
             ) : (
               <a
+                href
                 onClick={() =>
                   swal({
                     icon: 'warning',

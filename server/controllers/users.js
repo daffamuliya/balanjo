@@ -83,7 +83,7 @@ controller.me = async function (req, res) {
     return res.status(401).json({ msg: 'Mohon login ke akun anda' });
   }
   const user = await model.findOne({
-    attributes: ['uuid', 'name', 'email', 'role', 'username'],
+    attributes: ['uuid', 'name', 'email', 'role', 'username', 'id'],
     where: {
       uuid: req.session.userId,
     },

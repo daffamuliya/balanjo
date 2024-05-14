@@ -5,19 +5,27 @@ import { MDBContainer, MDBRow, MDBCol, MDBTable, MDBTableHead, MDBTableBody } fr
 import axios from 'axios';
 import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMe } from '../../features/authSlice';
 
 const Cart = () => {
-  const [user_id] = useState('2');
   const [cartItems, setCartItems] = useState([]);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+  const userId = user ? user.id : null;
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
 
   useEffect(() => {
     fetchCartData();
-  }, [user_id]);
+  }, []);
 
   async function fetchCartData() {
     try {
-      const response = await axios.get(`http://localhost:3000/marketplace/${user_id}/getCart`);
+      const response = await axios.get(`http://localhost:3000/marketplace/myCart`);
       if (response.data.data) {
         setCartItems(response.data.data);
         console.log(response.data.data);
@@ -55,33 +63,34 @@ const Cart = () => {
 
   const deleteAllCartItems = async () => {
     try {
-      await axios.delete(`http://localhost:3000/marketplace/deleteAllCartItems/${user_id}`);
+      await axios.delete(`http://localhost:3000/marketplace/deleteAllCartItems/${userId}`);
     } catch (error) {
       console.error('Terjadi kesalahan saat menghapus item di keranjang:', error);
     }
   };
 
   const handleCheckout = async () => {
-    try {
-      const defaultAddress = 'Jalan Seberang Padang';
+    for (const item of cartItems) {
+      const orderData = {
+        user_id: userId,
+        produk_id: item.produk_id,
+        alamat: 'Jalan Wakanda',
+        total: item.sub_total,
+      };
+      console.log(orderData);
 
-      for (const item of cartItems) {
-        const orderData = {
-          user_id: user_id,
-          produk_id: item.produk_id,
-          alamat: defaultAddress,
-          total: item.sub_total,
-        };
-
-        const response = await axios.post('http://localhost:3000/marketplace/addOrder', orderData);
-        swal('Checkout', 'Lanjutkan ke pembayaran', 'success').then(() => {
-          navigate('/detail-order');
-          deleteAllCartItems();
-        });
+      try {
+        const response = await axios.post(`http://localhost:3000/marketplace/addOrderDetail`, orderData);
+        if (response.status === 200) {
+          swal('Checkout', 'Lanjutkan ke pembayaran', 'success').then(() => {
+            navigate('/detail-order');
+            deleteAllCartItems();
+          });
+        }
+      } catch (error) {
+        console.error('Error saat melakukan checkout:', error);
+        swal('Gagal!', 'Terjadi kesalahan saat melakukan checkout', 'error');
       }
-    } catch (error) {
-      console.error('Error saat melakukan checkout:', error);
-      swal('Gagal!', 'Terjadi kesalahan saat melakukan checkout', 'error');
     }
   };
 

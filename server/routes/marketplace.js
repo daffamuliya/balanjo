@@ -48,10 +48,12 @@ router.get('/riwayat', controller.marketplace.riwayat);
 router.post('/addProduk', controller.marketplace.addProduk);
 router.put('/updateProduk/:id', controller.marketplace.updateProduk);
 router.delete('/deleteProduk/:id', controller.marketplace.deleteProduk);
-router.get('/:user_id/getCart', controller.marketplace.getAllCart);
+router.get('/:user_id/getCart', controller.marketplace.getAllCart); //ini dia coks
+router.get('/myCart', verifyUser, controller.marketplace.getMyCart);
 router.get('/transaksi', controller.marketplace.getAllTransaksi);
 router.get('/:user_id/getOrderDetail', controller.marketplace.getOrderDetail);
-router.post('/addOrder', controller.marketplace.addOrderDetail);
+router.get('/getMyOrder', verifyUser, controller.marketplace.getMyOrder);
+router.post('/addOrderDetail', verifyUser, controller.marketplace.addOrderDetail);
 router.post('/cart/addCart', controller.marketplace.addCart);
 router.post('/banner/addBanner', controller.marketplace.addBanner);
 router.post('/banner/addActiveBanner/:id', controller.marketplace.addActiveBanner);
@@ -61,6 +63,6 @@ router.get('/banner/total', controller.marketplace.getTotalBanner);
 router.delete('banner/rejectBanner/:id', controller.marketplace.rejectBanner);
 router.delete('/deleteCart/:id', controller.marketplace.deleteCart);
 router.delete('/deleteOrderDetail/:id', controller.marketplace.deleteOrderDetail);
-router.delete('/deleteAllCartItems/:user_id', controller.marketplace.deleteAllCartItems);
+router.delete('/deleteAllCartItems/:user_id', verifyUser, controller.marketplace.deleteAllCartItems);
 
 module.exports = router;

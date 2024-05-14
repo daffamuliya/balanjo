@@ -3,28 +3,29 @@ import NormalNavbar from '../../components/NormalNavbar';
 import Footer from '../../components/Footer';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { useSelector, useDispatch } from 'react-redux';
+import { getMe } from '../../features/authSlice';
 import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCard, MDBCardTitle, MDBCardSubTitle, MDBCardText, MDBCardImage } from 'mdb-react-ui-kit';
 
 const DetailOrder = () => {
   const [orderDetail, setOrderDetail] = useState(null);
-  const user_id = '2';
+  const { user } = useSelector((state) => state.auth);
   const [totalBayar, setTotalBayar] = useState(0);
-  const [user, setUser] = useState([]);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
 
   useEffect(() => {
     fetchOrderDetail();
-    getUser();
   }, []);
-
-  const getUser = async () => {
-    const response = await axios.get(`http://localhost:3000/daftaruser/${user_id}`);
-    setUser(response.data.items);
-    console.log(response.data.items);
-  };
 
   const fetchOrderDetail = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/marketplace/${user_id}/getOrderDetail`);
+      const response = await axios.get(`http://localhost:3000/marketplace/getMyOrder`);
+      console.log(response);
       if (response.data.data) {
         setOrderDetail(response.data.data);
         const totalBayar = response.data.data.reduce((acc, item) => acc + item.total, 0);
@@ -73,10 +74,10 @@ const DetailOrder = () => {
             <MDBCard className="mb-3">
               <MDBCardBody>
                 <MDBCardBody>
-                  <MDBCardTitle>{user.name}</MDBCardTitle>
-                  <MDBCardSubTitle>{user.email}</MDBCardSubTitle>
-                  <MDBCardText>{user.no_telp}</MDBCardText>
-                  <MDBCardText>{user.alamat}</MDBCardText>
+                  <MDBCardTitle>{user && user.name}</MDBCardTitle>
+                  <MDBCardSubTitle>{user && user.email}</MDBCardSubTitle>
+                  <MDBCardText>{user && user.no_telp}</MDBCardText>
+                  <MDBCardText>{user && user.alamat}</MDBCardText>
                 </MDBCardBody>
               </MDBCardBody>
             </MDBCard>
