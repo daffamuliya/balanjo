@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NormalNavbar from '../../components/NormalNavbar';
+import EcomNavbar from '../../components/EcomNavbar';
 import Footer from '../../components/Footer';
 import { MDBContainer, MDBRow, MDBCol, MDBInput } from 'mdb-react-ui-kit';
 import LandingEcom from '../../components/LandingEcom';
@@ -7,7 +7,7 @@ export default class Landing extends Component {
   render() {
     return (
       <div>
-        <NormalNavbar />
+        <EcomNavbar />
         <MDBContainer>
           <MDBRow className="mt-3 justify-content-center">
             <MDBCol size="12">
