@@ -7,16 +7,24 @@ import { useNavigate } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import swal from 'sweetalert';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMe } from '../../features/authSlice';
 
 const UploadBlog = () => {
-  const [user_id] = useState('26');
-  const [user] = useState('Tiara Sayang');
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const user_id = user ? user.id : null;
+
   const [judul, setJudul] = useState('');
   const [slug, setSlug] = useState('');
   const [kategori_blog, setKategori] = useState('Pilih Kategori');
   const [file, setFile] = useState('');
   const [summary, setSummary] = useState('');
   const [konten, setKonten] = useState('');
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
 
   const loadImage = (e) => {
     const image = e.target.files[0];
@@ -34,7 +42,7 @@ const UploadBlog = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('user_id', user_id);
-    formData.append('user', user);
+    formData.append('user', user.name);
     formData.append('judul', judul);
     formData.append('slug', slug);
     formData.append('kategori_blog', kategori_blog);
@@ -81,28 +89,27 @@ const UploadBlog = () => {
           </MDBCol>
         </MDBRow>
         <section className="blog">
-          {' '}
-          <div class="row">
-            <div class="col-12 mb-4 mt-4">
+          <div className="row">
+            <div className="col-12 mb-4 mt-4">
               <form onSubmit={saveBlog}>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">
+                <div className="mb-3">
+                  <label htmlFor="judul" className="form-label">
                     Judul
                   </label>
-                  <input type="text" value={judul} onChange={(e) => setJudul(e.target.value)} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                  <input type="text" value={judul} onChange={(e) => setJudul(e.target.value)} className="form-control" id="judul" />
                 </div>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">
+                <div className="mb-3">
+                  <label htmlFor="slug" className="form-label">
                     Slug
                   </label>
-                  <input type="text" value={slug} readOnly class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled />
+                  <input type="text" value={slug} readOnly className="form-control" id="slug" disabled />
                 </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">
+                <div className="mb-3">
+                  <label htmlFor="kategori_blog" className="form-label">
                     Kategori
                   </label>
-                  <select value={kategori_blog} onChange={(e) => setKategori(e.target.value)} class="form-select" aria-label="Default select example" placeholder="Masukkan Kategori Blog">
-                    <option selected></option>
+                  <select value={kategori_blog} onChange={(e) => setKategori(e.target.value)} className="form-select" aria-label="Default select example" id="kategori_blog">
+                    <option value="Pilih Kategori">Pilih Kategori</option>
                     <option value="Wirausaha">Wirausaha</option>
                     <option value="Keuangan Finansial">Keuangan Finansial</option>
                     <option value="Bisnis Teknologi">Bisnis Teknologi</option>
@@ -113,20 +120,20 @@ const UploadBlog = () => {
                     <option value="Bisnis Jasa">Bisnis Jasa</option>
                   </select>
                 </div>
-                <div class="mb-3">
-                  <label class="form-label" for="customFile">
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="file">
                     Foto
                   </label>
-                  <input type="file" onChange={loadImage} class="form-control" id="customFile" />
+                  <input type="file" onChange={loadImage} className="form-control" id="file" />
                 </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">
+                <div className="mb-3">
+                  <label htmlFor="summary" className="form-label">
                     Ringkasan
                   </label>
-                  <textarea class="form-control" value={summary} onChange={(e) => setSummary(e.target.value)} placeholder="Ringkasan yang merangkum konten anda" id="floatingTextarea"></textarea>
+                  <textarea className="form-control" value={summary} onChange={(e) => setSummary(e.target.value)} placeholder="Ringkasan yang merangkum konten anda" id="summary"></textarea>
                 </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">
+                <div className="mb-3">
+                  <label htmlFor="konten" className="form-label">
                     Body
                   </label>
                   <CKEditor
@@ -147,7 +154,7 @@ const UploadBlog = () => {
                     }}
                   />
                 </div>
-                <button type="submit" class="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right' }}>
+                <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right' }}>
                   Kirim
                 </button>
               </form>
@@ -155,9 +162,9 @@ const UploadBlog = () => {
           </div>
         </section>
       </MDBContainer>
-      <br></br>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
+      <br />
       <Footer />
     </div>
   );

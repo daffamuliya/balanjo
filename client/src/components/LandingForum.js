@@ -21,15 +21,22 @@ import { Chat } from 'react-bootstrap-icons';
 import React, { useState, useEffect } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMe } from '../features/authSlice';
 
 const LandingForum = () => {
-  const [user_id] = useState('26');
-  const [user] = useState('Tiara Sayang');
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const user_id = user ? user.id : null;
+
   const [konten, setKonten] = useState('');
   const [komentar, setKomentar] = useState('');
   const [selectedForumId, setSelectedForumId] = useState(null);
   const { user: loggedInUser } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
 
   const handleButtonClick = (forum_id) => {
     setSelectedForumId(forum_id);
@@ -41,7 +48,7 @@ const LandingForum = () => {
       await axios.post('http://localhost:3000/forum/addComment', {
         user_id,
         forum_id: selectedForumId, // Gunakan selectedForumId dari state
-        user,
+        user: user.name,
         komentar,
       });
       swal({
@@ -61,7 +68,7 @@ const LandingForum = () => {
     try {
       await axios.post('http://localhost:3000/forum/addForum', {
         user_id,
-        user,
+        user: user.name,
         konten,
       });
       swal({
