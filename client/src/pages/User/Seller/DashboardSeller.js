@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 import { getMe } from '../../../features/authSlice';
 
 const DashboardSeller = () => {
-  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
