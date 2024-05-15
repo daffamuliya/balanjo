@@ -428,7 +428,7 @@ controller.getMyCart = async function (req, res) {
 controller.getAllTransaksi = async function (req, res) {
   try {
     const result = await model.transaksi.findAll({
-      attributes: ['id', 'tanggal_pesan', 'id_user', 'total', 'payment', 'status'],
+      attributes: ['id', 'id_user', 'tanggal_pesan', 'id_user', 'total', 'payment', 'status'],
       include: [
         {
           model: model.users,

@@ -13,7 +13,8 @@ import { getMe } from '../../../features/authSlice';
 const PesananSeller = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError } = useSelector((state) => state.auth);
+  const { isError, user } = useSelector((state) => state.auth);
+  const id_user = user ? user.id : null;
 
   useEffect(() => {
     dispatch(getMe());
