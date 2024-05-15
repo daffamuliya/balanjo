@@ -6,8 +6,26 @@ import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import CardBody from 'react-bootstrap/esm/CardBody';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMe } from '../../../features/authSlice';
 
 const PesananSeller = () => {
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+  
+  useEffect(() => {
+    if (isError) {
+      navigate('/login');
+    }
+  }, [isError, navigate]);
+
   const [transaksi, setTransaksi] = useState([]);
   useEffect(() => {
     getTransaksi();

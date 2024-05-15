@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SellerNavbar from '../../../components/SellerNavbar';
 import SidebarSeller from '../../../components/SidebarSeller';
 import CardBody from 'react-bootstrap/esm/CardBody';
@@ -7,15 +7,32 @@ import { MDBCol } from 'mdb-react-ui-kit';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMe } from '../../../features/authSlice';
 
 const TambahBanner = () => {
-  const [id_user] = useState('2');
+  const { user } = useSelector((state) => state.auth);
+  const id_user = user ? user.id : null;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate('/login');
+    }
+  }, [isError, navigate]);
+
   const [status] = useState('Diajukan');
   const [nama_banner, setNamaBanner] = useState('');
   const [deskripsi, setDeskripsi] = useState('');
   const [gambar, setGambar] = useState(null);
   const [bukti_transfer, setBuktiTransfer] = useState(null);
-  const navigate = useNavigate();
 
   const loadImage = (e) => {
     if (e.target.name === 'gambar') {

@@ -5,17 +5,38 @@ import React, { useState, useEffect } from 'react';
 import { MDBCol, MDBBtn, MDBRow, MDBContainer, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody, MDBCard, MDBCardBody } from 'mdb-react-ui-kit';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMe } from '../../../features/authSlice';
 
 const ProductSeller = () => {
-  const [marketplace, setMarketplace] = useState([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate('/login');
+    }
+  }, [isError, navigate]);
+
+  const [marketplace, setMarketplace] = useState([]);
+  
   useEffect(() => {
     getMarketplace();
   }, []);
 
   const getMarketplace = async () => {
-    const response = await axios.get('http://localhost:3000/marketplace');
-    setMarketplace(response.data.items);
+    try {
+      const response = await axios.get('http://localhost:3000/marketplace/dashboard');
+      setMarketplace(response.data.items);
+    } catch (error) {
+      console.error('Error fetching marketplace data:', error);
+    }
   };
 
   const deleteProduk = async (id) => {

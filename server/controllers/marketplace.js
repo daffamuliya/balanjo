@@ -108,48 +108,26 @@ controller.getAllProduk = async (req, res) => {
 
 controller.getAllDashboardProduk = async (req, res) => {
   try {
-    let response;
+    let result;
     if (req.role === 'admin') {
-      response = await model.produk
-        .findAll({
-          attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok', 'created_at'],
-        })
-        .then((result) => {
-          if (result.length > 0) {
-            res.json({ items: result });
-          } else {
-            res.status(404).json({
-              message: 'data tidak ada',
-              data: [],
-            });
-          }
-        });
+      result = await model.produk.findAll({
+        attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok', 'created_at'],
+      });
     } else {
-      await model.produk
-        .findAll({
-          attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok', 'created_at'],
-          where: {
-            user_id: req.userId,
-          },
-        })
-
-        .then((result) => {
-          if (result.length > 0) {
-            res.json({ items: result });
-          } else {
-            res.status(404).json({
-              message: 'data tidak ada',
-              data: [],
-            });
-          }
-        });
+      result = await model.produk.findAll({
+        attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok', 'created_at'],
+        where: { id_penjual: req.userId },
+      });
     }
-    res.status(200).json(response);
+
+    if (result.length > 0) {
+      res.status(200).json({ items: result });
+    } else {
+      res.status(404).json({ message: 'data tidak ada', data: [] });
+    }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      message: 'Terjadi kesalahan dalam mengambil data forum',
-    });
+    console.error('Error in getAllDashboardProduk:', error);
+    res.status(500).json({ message: 'Terjadi kesalahan dalam mengambil data produk' });
   }
 };
 

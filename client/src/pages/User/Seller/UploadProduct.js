@@ -4,12 +4,30 @@ import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import Card from 'react-bootstrap/Card';
 import SidebarSeller from '../../../components/SidebarSeller';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import CardBody from 'react-bootstrap/esm/CardBody';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMe } from '../../../features/authSlice';
 
 const UploadProduk = () => {
-  const [id_penjual] = useState('2');
+  const { user } = useSelector((state) => state.auth);
+  const id_penjual = user ? user.id : null;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate('/login');
+    }
+  }, [isError, navigate]);
+
   const [id_kategori, setKategori] = useState('');
   const [nama, setNama] = useState('');
   const [deskripsi, setDeskripsi] = useState('');
@@ -22,7 +40,6 @@ const UploadProduk = () => {
     setFile(image);
   };
 
-  const navigate = useNavigate();
   useEffect(() => {}, []);
 
   const saveProduk = async (e) => {

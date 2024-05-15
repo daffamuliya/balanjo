@@ -5,8 +5,26 @@ import SidebarSeller from '../../../components/SidebarSeller';
 import { MDBCol } from 'mdb-react-ui-kit';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMe } from '../../../features/authSlice';
 
 const RequestedBanner = () => {
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate('/login');
+    }
+  }, [isError, navigate]);
+
   const [banner, setBanner] = useState([]);
   useEffect(() => {
     getBanner();
