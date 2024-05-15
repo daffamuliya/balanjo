@@ -199,6 +199,32 @@ controller.getTotalBanner = async (req, res) => {
   }
 };
 
+controller.getBannerById = async (req, res) => {
+  try {
+    await model.active_banner
+      .findOne({
+        attributes: ['id', 'gambar'],
+        where: {
+          id: req.params.id,
+        },
+      })
+      .then((result) => {
+        if (result) {
+          res.json({ items: result });
+        } else {
+          res.status(404).json({
+            message: 'data tidak ada',
+            data: [],
+          });
+        }
+      });
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};
+
 controller.getProdukById = async (req, res) => {
   try {
     await model.produk

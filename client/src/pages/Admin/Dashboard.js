@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import AdminNavbar from '../../components/AdminNavbar';
 import Card from 'react-bootstrap/Card';
 import Sidebar from '../../components/Sidebar';
-import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import CardBody from 'react-bootstrap/esm/CardBody';
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { MDBBtn, MDBRow, MDBCol, MDBContainer, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody } from 'mdb-react-ui-kit';
 import { getMe } from '../../features/authSlice';
 
 const Dashboard = () => {
@@ -43,6 +43,19 @@ const Dashboard = () => {
       setBanner(response.data.items);
     } catch (error) {
       console.error('Error fetching banner:', error);
+    }
+  };
+
+  const [BannerDetail, setBannerDetail] = useState(null);
+  const [scrollableModal, setScrollableModal] = useState(false);
+  const loadBannerDetail = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/marketplace/banner/${id}`);
+      const BannerDetailData = Array.isArray(response.data.items) ? response.data.items : [response.data.items];
+      setBannerDetail(BannerDetailData);
+      setScrollableModal(true);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -166,7 +179,7 @@ const Dashboard = () => {
                                 </td>
                                 <td>
                                   <i class="bi bi-trash-fill" onClick={() => deleteActiveBanner(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
-                                  <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>{' '}
+                                  <i class="bi bi-eye-fill" onClick={() => loadBannerDetail(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>{' '}
                                 </td>
                               </tr>
                             ))}
@@ -180,6 +193,32 @@ const Dashboard = () => {
           </MDBRow>
         </div>
       </div>
+      <MDBModal open={scrollableModal} setOpen={setScrollableModal} tabIndex="-1">
+        <MDBModalDialog centered scrollable>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Banner Details</MDBModalTitle>
+              <MDBBtn className="btn-close" color="none" onClick={() => setScrollableModal(!scrollableModal)}></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>
+              <MDBRow className="justify-content-center">
+                <section className="isiblog">
+                  {Array.isArray(BannerDetail) &&
+                    BannerDetail.map((detail) => (
+                      <MDBContainer key={detail.id}>
+                        <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5 text-center">
+                          <div className="col-lg-12 ">
+                            <img src={detail.gambar} className="hover-shadow" alt="" style={{ width: '100%' }} />
+                          </div>
+                        </div>
+                      </MDBContainer>
+                    ))}
+                </section>
+              </MDBRow>
+            </MDBModalBody>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
     </div>
   );
 };

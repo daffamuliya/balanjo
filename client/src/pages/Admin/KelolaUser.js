@@ -134,11 +134,6 @@ const KelolaUser = () => {
                   {Array.isArray(UserDetail) &&
                     UserDetail.map((detail) => (
                       <MDBContainer key={detail.id}>
-                        {/* <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5 text-center">
-                          <div className="col-lg-12 ">
-                            <img src={detail.url} className="hover-shadow" alt="" style={{ width: '100%' }} />
-                          </div>
-                        </div> */}
                         <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content">
                           <div className="col-lg-12 ">
                             <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
