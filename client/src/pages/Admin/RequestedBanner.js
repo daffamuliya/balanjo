@@ -69,7 +69,8 @@ const RequestedBanner = () => {
 
   const rejectBanner = async (id) => {
     try {
-      await axios.post(`http://localhost:3000/marketplace/banner/rejectBanner/${id}`);
+      const response = await axios.delete(`http://localhost:3000/marketplace/banner/rejectBanner/${id}`);
+      console.log(response.data);
       getBanner();
     } catch (error) {
       console.error('Error rejecting banner:', error);

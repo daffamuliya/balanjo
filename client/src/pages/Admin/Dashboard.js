@@ -45,6 +45,17 @@ const Dashboard = () => {
       console.error('Error fetching banner:', error);
     }
   };
+
+  const deleteActiveBanner = async (id) => {
+    try {
+      const response = await axios.delete(`http://localhost:3000/marketplace/banner/deleteActiveBanner/${id}`);
+      console.log(response.data);
+      getBanner();
+    } catch (error) {
+      console.error('Error rejecting banner:', error);
+    }
+  };
+
   const getTotalBanner = async () => {
     try {
       const response = await axios.get('http://localhost:3000/marketplace/banner/total');
@@ -154,8 +165,8 @@ const Dashboard = () => {
                                   </button>
                                 </td>
                                 <td>
-                                  <i class="bi bi-trash-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
-                                  <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>{' '}
+                                  <i class="bi bi-trash-fill" onClick={() => deleteActiveBanner(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
+                                  <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>{' '}
                                 </td>
                               </tr>
                             ))}

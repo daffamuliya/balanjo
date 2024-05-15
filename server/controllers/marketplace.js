@@ -509,12 +509,31 @@ controller.addCart = async (req, res) => {
 
 controller.rejectBanner = async (req, res) => {
   try {
-    const { id } = req.params;
-    await addActiveBanner.destroy({ where: { id: id } });
-    res.status(200).json({ msg: 'Banner berhasil ditolak' });
+    await model.requested_banner.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(200).json({
+      message: 'berhasil hapus id',
+    });
   } catch (error) {
-    console.error('Error saat menolak banner:', error);
-    res.status(500).json({ msg: 'Terjadi kesalahan saat menolak banner' });
+    res.json({ message: error.message });
+  }
+};
+
+controller.deleteActiveBanner = async (req, res) => {
+  try {
+    await model.active_banner.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(200).json({
+      message: 'berhasil hapus id',
+    });
+  } catch (error) {
+    res.json({ message: error.message });
   }
 };
 
@@ -526,6 +545,11 @@ controller.addActiveBanner = async (req, res) => {
       nama_banner: nama_banner,
       gambar: gambar,
       status: status,
+    });
+    await model.requested_banner.destroy({
+      where: {
+        id: req.params.id,
+      },
     });
     res.status(200).json({
       message: 'berhasil menambahkan data ke order detail',

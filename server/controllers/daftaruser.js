@@ -31,7 +31,7 @@ controller.getUserById = async (req, res) => {
       .findOne({
         attributes: ['id', 'uuid', 'username', 'name', 'email', 'no_telp', 'alamat'],
         where: {
-          uuid: req.params.id,
+          id: req.params.id,
         },
       })
       .then((result) => {
