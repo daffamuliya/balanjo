@@ -40,7 +40,7 @@ router.get('/jualProduk', controller.marketplace.jualProduk);
 router.get('/:id/detailProduk', controller.marketplace.detailProduk);
 router.get('/detailPembayaran', controller.marketplace.detailPembayaran);
 router.get('/bayar', controller.marketplace.bayar);
-router.get('/upload_bukti', controller.marketplace.upload_bukti);
+router.post('/upload_bukti', controller.marketplace.upload_bukti);
 router.get('/daftarBarang', controller.marketplace.daftarBarang);
 router.get('/pesananPelanggan', controller.marketplace.pesananPelanggan);
 router.get('/barangTerjual', controller.marketplace.barangTerjual);
@@ -48,7 +48,7 @@ router.get('/riwayat', controller.marketplace.riwayat);
 router.post('/addProduk', controller.marketplace.addProduk);
 router.put('/updateProduk/:id', controller.marketplace.updateProduk);
 router.delete('/deleteProduk/:id', controller.marketplace.deleteProduk);
-router.get('/:user_id/getCart', controller.marketplace.getAllCart); //ini dia coks
+router.get('/:user_id/getCart', controller.marketplace.getAllCart);
 router.get('/myCart', verifyUser, controller.marketplace.getMyCart);
 router.get('/transaksi', controller.marketplace.getAllTransaksi);
 router.get('/transaksi/:id', controller.marketplace.getTransaksiById);
