@@ -119,9 +119,9 @@ const PesananSeller = () => {
                   {Array.isArray(TransaksiDetail) &&
                     TransaksiDetail.map((detail) => (
                       <MDBContainer key={detail.id}>
-                        <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5 text-center">
+                        <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                           <div className="col-lg-12 ">
-                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
+                            <p style={{ color: 'black', textAlign: 'justify', fontSize: '16px' }}>
                               Nama Produk : <br /> {detail.produk.nama}
                             </p>{' '}
                             <hr />
@@ -133,10 +133,15 @@ const PesananSeller = () => {
                               Payment : <br /> {detail.payment}
                             </p>{' '}
                             <hr />
-                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
-                              Status : <br /> {detail.status}
-                            </p>{' '}
-                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>Status :</p>
+                            <select className="form-select" aria-label="Default select example">
+                              <option selected>{detail.status}</option>
+                              <option value="1">Dalam Pengiriman</option>
+                              <option value="2">Ditolak</option>
+                            </select>
+                            <button className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%', marginTop: '20px' }}>
+                              Simpan perubahan status
+                            </button>
                           </div>
                         </div>
                       </MDBContainer>
