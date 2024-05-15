@@ -78,12 +78,12 @@ const DashboardSeller = () => {
                           <tr>
                             <th>Order ID</th>
                             <th>Product</th>
+                            <th>Qty</th>
                             <th>Date</th>
                             <th>Customer</th>
                             <th>Total</th>
                             <th>Payment</th>
                             <th>Status</th>
-                            <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -92,16 +92,12 @@ const DashboardSeller = () => {
                               <tr>
                                 <td>{item.id}</td>
                                 <td>{item.produk.nama}</td>
+                                <td>12</td>
                                 <td>{item.tanggal_pesan}</td>
                                 <td>{item.user.name}</td>
                                 <td>Rp {item.total}</td>
                                 <td>{item.payment}</td>
                                 <td>{item.status}</td>
-                                <td>
-                                  <i class="bi bi-trash-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
-                                  <i class="bi bi-pencil-square" style={{ color: '#A08336', paddingRight: '10px' }}></i>
-                                  <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>{' '}
-                                </td>
                               </tr>
                             ))}
                         </tbody>

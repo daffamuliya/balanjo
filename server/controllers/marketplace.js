@@ -421,6 +421,46 @@ controller.getAllTransaksi = async function (req, res) {
     });
   }
 };
+
+controller.getTransaksiById = async function (req, res) {
+  try {
+    const result = await model.transaksi.findOne({
+      attributes: ['id', 'id_produk', 'tanggal_pesan', 'id_user', 'total', 'payment', 'status'],
+      include: [
+        {
+          model: model.produk,
+          attributes: ['nama'],
+        },
+        {
+          model: model.users,
+          attributes: ['name'],
+        },
+      ],
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (result) {
+      res.status(200).json({
+        message: 'Berhasil mendapatkan transaksi',
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        message: 'Data tidak ditemukan',
+        data: [],
+      });
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({
+      message: 'Terjadi kesalahan dalam memproses permintaan',
+      error: error.message,
+    });
+  }
+};
+
 controller.getOrderDetail = async function (req, res) {
   try {
     await model.order_detail

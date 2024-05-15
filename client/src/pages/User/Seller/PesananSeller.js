@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SellerNavbar from '../../../components/SellerNavbar';
 import Card from 'react-bootstrap/Card';
 import SidebarSeller from '../../../components/SidebarSeller';
-import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { MDBBtn, MDBRow, MDBCol, MDBContainer, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody } from 'mdb-react-ui-kit';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import CardBody from 'react-bootstrap/esm/CardBody';
@@ -19,7 +19,7 @@ const PesananSeller = () => {
   useEffect(() => {
     dispatch(getMe());
   }, [dispatch]);
-  
+
   useEffect(() => {
     if (isError) {
       navigate('/login');
@@ -37,6 +37,19 @@ const PesananSeller = () => {
       setTransaksi(response.data.data);
     } catch (error) {
       console.error('Error fetching blogs:', error);
+    }
+  };
+
+  const [TransaksiDetail, setTransaksiDetail] = useState(null);
+  const [scrollableModal, setScrollableModal] = useState(false);
+  const loadTransaksiDetail = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/marketplace/transaksi/${id}`);
+      const TransaksiDetailData = Array.isArray(response.data.data) ? response.data.data : [response.data.data];
+      setTransaksiDetail(TransaksiDetailData);
+      setScrollableModal(true);
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
@@ -78,9 +91,8 @@ const PesananSeller = () => {
                                 <td>{item.payment}</td>
                                 <td>{item.status}</td>
                                 <td>
-                                  <i class="bi bi-trash-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>
-                                  <i class="bi bi-pencil-square" style={{ color: '#A08336', paddingRight: '10px' }}></i>
-                                  <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px' }}></i>{' '}
+                                  <i class="bi bi-pencil-square" onClick={() => loadTransaksiDetail(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
+                                  <i class="bi bi-eye-fill" style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
                                 </td>
                               </tr>
                             ))}
@@ -94,6 +106,47 @@ const PesananSeller = () => {
           </MDBRow>
         </div>
       </div>
+      <MDBModal open={scrollableModal} setOpen={setScrollableModal} tabIndex="-1">
+        <MDBModalDialog centered scrollable>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Status Transaksi</MDBModalTitle>
+              <MDBBtn className="btn-close" color="none" onClick={() => setScrollableModal(!scrollableModal)}></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>
+              <MDBRow className="justify-content-center">
+                <section className="isiblog">
+                  {Array.isArray(TransaksiDetail) &&
+                    TransaksiDetail.map((detail) => (
+                      <MDBContainer key={detail.id}>
+                        <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5 text-center">
+                          <div className="col-lg-12 ">
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
+                              Nama Produk : <br /> {detail.produk.nama}
+                            </p>{' '}
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
+                              Customer : <br /> {detail.user.name}
+                            </p>{' '}
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
+                              Payment : <br /> {detail.payment}
+                            </p>{' '}
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
+                              Status : <br /> {detail.status}
+                            </p>{' '}
+                            <hr />
+                          </div>
+                        </div>
+                      </MDBContainer>
+                    ))}
+                </section>
+              </MDBRow>
+            </MDBModalBody>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
     </div>
   );
 };

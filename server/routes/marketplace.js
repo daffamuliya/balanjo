@@ -51,6 +51,7 @@ router.delete('/deleteProduk/:id', controller.marketplace.deleteProduk);
 router.get('/:user_id/getCart', controller.marketplace.getAllCart); //ini dia coks
 router.get('/myCart', verifyUser, controller.marketplace.getMyCart);
 router.get('/transaksi', controller.marketplace.getAllTransaksi);
+router.get('/transaksi/:id', controller.marketplace.getTransaksiById);
 router.get('/:user_id/getOrderDetail', controller.marketplace.getOrderDetail);
 router.get('/getMyOrder', verifyUser, controller.marketplace.getMyOrder);
 router.post('/addOrderDetail', verifyUser, controller.marketplace.addOrderDetail);
