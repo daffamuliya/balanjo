@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout, getMe } from '../features/authSlice';
 import { MDBBtn } from 'mdb-react-ui-kit';
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const NormalNavbar = () => {
   const dispatch = useDispatch();
@@ -45,9 +46,11 @@ const NormalNavbar = () => {
               </>
             ) : user ? (
               <>
-                <MDBBtn size="lg" className="me-2" style={{ backgroundColor: 'transparent', fontSize: '16px', maxWidth: '300px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336' }}>
-                  Halo, {user && user.username}
-                </MDBBtn>
+                <Link to="/user/akun" style={{ textDecoration: 'none' }}>
+                  <button size="lg" className="me-2" style={{ backgroundColor: 'transparent', fontSize: '16px', maxWidth: '300px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336', paddingTop: '10px' }}>
+                    Halo, {user && user.username}
+                  </button>
+                </Link>
                 <MDBBtn onClick={handleLogout} size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', fontWeight: 'bold', textAlign: 'center', border: 'black' }}>
                   Logout
                 </MDBBtn>
