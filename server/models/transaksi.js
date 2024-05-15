@@ -1,7 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/conn');
 const users = require('./users');
-const produk = require('./produk');
 
 const transaksi = sequelize.define(
   'transaksi',
@@ -12,11 +11,9 @@ const transaksi = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-
     tanggal_pesan: {
       type: DataTypes.DATE,
     },
-
     id_user: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -25,22 +22,18 @@ const transaksi = sequelize.define(
         key: 'id',
       },
     },
-
     total: {
       type: DataTypes.BIGINT,
       allowNull: false,
     },
-
     payment: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-
     status: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-
     bukti_transfer: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -53,6 +46,6 @@ const transaksi = sequelize.define(
   }
 );
 
-transaksi.belongsTo(users, { foreignKey: 'id_user' }); // Menentukan hubungan "belongsTo" antara "transaksi" dan "produk"
+transaksi.belongsTo(users, { foreignKey: 'id_user' });
 
 module.exports = transaksi;

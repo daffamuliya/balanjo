@@ -69,7 +69,6 @@ const PesananSeller = () => {
                         <thead>
                           <tr>
                             <th>Order ID</th>
-                            <th>Product</th>
                             <th>Date</th>
                             <th>Customer</th>
                             <th>Total</th>
@@ -83,7 +82,6 @@ const PesananSeller = () => {
                             transaksi.map((item) => (
                               <tr>
                                 <td>{item.id}</td>
-                                <td>{item.produk.nama}</td>
                                 <td>{item.tanggal_pesan}</td>
                                 <td>{item.user.name}</td>
                                 <td>Rp {item.total}</td>
@@ -120,16 +118,16 @@ const PesananSeller = () => {
                       <MDBContainer key={detail.id}>
                         <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                           <div className="col-lg-12 ">
-                            <p style={{ color: 'black', textAlign: 'justify', fontSize: '16px' }}>
-                              Nama Produk : <br /> {detail.produk.nama}
-                            </p>{' '}
-                            <hr />
                             <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
                               Customer : <br /> {detail.user.name}
                             </p>{' '}
                             <hr />
                             <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
                               Payment : <br /> {detail.payment}
+                            </p>{' '}
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
+                              Total Transaksi : <br /> {detail.total}
                             </p>{' '}
                             <hr />
                             <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>Status :</p>
