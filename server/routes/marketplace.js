@@ -40,7 +40,7 @@ router.get('/jualProduk', controller.marketplace.jualProduk);
 router.get('/:id/detailProduk', controller.marketplace.detailProduk);
 router.get('/detailPembayaran', controller.marketplace.detailPembayaran);
 router.get('/bayar', controller.marketplace.bayar);
-router.post('/upload_bukti', controller.marketplace.upload_bukti);
+router.post('/transfer', verifyUser, controller.marketplace.transfer);
 router.get('/daftarBarang', controller.marketplace.daftarBarang);
 router.get('/pesananPelanggan', controller.marketplace.pesananPelanggan);
 router.get('/barangTerjual', controller.marketplace.barangTerjual);

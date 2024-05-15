@@ -71,42 +71,45 @@ controller.bayar = async (req, res) => {
   res.json({ kategori });
 };
 
-controller.upload_bukti = async (req, res) => {
+controller.transfer = async (req, res) => {
   try {
-    // Periksa apakah ada berkas yang diunggah
+    console.log('Memeriksa apakah ada berkas yang diunggah...');
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).json({ msg: 'Tidak ada berkas yang diunggah' });
     }
 
-    const { id_produk, tanggal_pesan, id_user, total, payment, status } = req.body;
+    const allowedTypes = ['.png', '.jpg', '.jpeg'];
+    const { id_user, total, payment, status } = req.body;
     const { bukti_transfer } = req.files;
 
-    // Pastikan jenis file yang diunggah untuk bukti transfer adalah gambar
+    console.log('Memvalidasi jenis file...');
     if (!allowedTypes.includes(path.extname(bukti_transfer.name).toLowerCase())) {
       return res.status(422).json({ msg: 'Bukti transfer tidak valid' });
     }
 
-    // Pastikan ukuran bukti transfer tidak melebihi 5 MB
-    const buktiTransferSize = bukti_transfer.size;
-    if (buktiTransferSize > 5000000) {
+    console.log('Memeriksa ukuran file...');
+    if (bukti_transfer.size > 5000000) {
       return res.status(422).json({ msg: 'Ukuran bukti transfer harus kurang dari 5 MB' });
     }
 
-    // Simpan bukti transfer
     const buktiTransferName = bukti_transfer.md5 + path.extname(bukti_transfer.name);
     const buktiTransferUrl = `${req.protocol}://${req.get('host')}/images/${buktiTransferName}`;
-    await bukti_transfer.mv(`./public/images/${buktiTransferName}`);
 
-    // Buat banner dengan menyertakan URL gambar dan bukti transfer
+    console.log('Menyimpan file...');
+    await bukti_transfer.mv(`./public/images/${buktiTransferName}`);
+    console.log('File berhasil disimpan:', buktiTransferName);
+
+    console.log('Membuat catatan transaksi...');
     await model.transaksi.create({
-      id_produk,
-      tanggal_pesan,
       id_user,
       total,
       payment,
       status,
       bukti_transfer: buktiTransferUrl,
     });
+
+    console.log('Transaksi berhasil dibuat.');
+    return res.status(200).json({ msg: 'Bukti transfer berhasil diunggah!' });
   } catch (error) {
     console.error('Error saat menambahkan banner:', error);
     return res.status(500).json({ msg: 'Terjadi kesalahan saat menambahkan banner' });

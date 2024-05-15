@@ -13,15 +13,6 @@ const transaksi = sequelize.define(
       autoIncrement: true,
     },
 
-    id_produk: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-      references: {
-        model: produk,
-        key: 'id',
-      },
-    },
-
     tanggal_pesan: {
       type: DataTypes.DATE,
     },
@@ -57,11 +48,11 @@ const transaksi = sequelize.define(
   },
   {
     tableName: 'transaksi',
-    timestamps: true,
+    timestamps: false,
+    createdAt: 'tanggal_pesan',
   }
 );
 
-transaksi.belongsTo(produk, { foreignKey: 'id_produk' }); // Menentukan hubungan "belongsTo" antara "transaksi" dan "produk"
 transaksi.belongsTo(users, { foreignKey: 'id_user' }); // Menentukan hubungan "belongsTo" antara "transaksi" dan "produk"
 
 module.exports = transaksi;

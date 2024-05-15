@@ -26,53 +26,28 @@ export const BuktiBayar = () => {
     }
   }, [isError, navigate]);
 
-  const [id_produk] = useState('2');
-  const [tanggal_pesan] = useState('12 Januari 2024');
-  const [total, setTotal] = useState('650000');
+  const [total] = useState(650000);
   const [payment, setPayment] = useState('');
   const [status] = useState('Sudah Bayar');
   const [bukti_transfer, setBuktiTransfer] = useState(null);
 
   const loadImage = (e) => {
-    if (e.target.name === 'bukti_transfer') {
-      setBuktiTransfer(e.target.files[0]);
-    }
+    const image = e.target.files[0];
+    setBuktiTransfer(image);
   };
+
+  useEffect(() => {}, []);
 
   const saveBukti = async (e) => {
     e.preventDefault();
-
-    if (!bukti_transfer) {
-      swal({
-        icon: 'error',
-        title: 'Gagal',
-        text: 'Silakan pilih gambar dan bukti transfer.',
-      });
-      return;
-    }
-
-    // Log data sebelum mengirim permintaan POST
-    console.log('Data yang akan dikirim:', {
-      id_produk,
-      tanggal_pesan,
-      id_user,
-      total,
-      payment,
-      status,
-      bukti_transfer,
-    });
-
     const formData = new FormData();
-    formData.append('id_produk', id_produk);
-    formData.append('tanggal_pesan', tanggal_pesan);
     formData.append('id_user', id_user);
     formData.append('total', total);
     formData.append('payment', payment);
     formData.append('status', status);
     formData.append('bukti_transfer', bukti_transfer);
-
     try {
-      const response = await axios.post('http://localhost:3000/marketplace/upload_bukti', formData, {
+      const response = await axios.post('http://localhost:3000/marketplace/transfer', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -173,7 +148,7 @@ export const BuktiBayar = () => {
                         <label for="exampleInputEmail1" class="form-label" style={{ fontWeight: 'bold' }}>
                           Nominal Pembayaran
                         </label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Rp650.000" value={total} onChange={(e) => setTotal(e.target.value)} disabled />
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Rp650.000" disabled />
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label" style={{ fontWeight: 'bold' }}>
@@ -181,11 +156,11 @@ export const BuktiBayar = () => {
                         </label>
                         <select className="form-select" aria-label="Default select example" placeholder="Select size" value={payment} onChange={(e) => setPayment(e.target.value)}>
                           <option value="">Pilih Sumber</option>
-                          <option value="1">E Wallet</option>
-                          <option value="2">Transfer Bank</option>
+                          <option value="E Wallet">E Wallet</option>
+                          <option value="Transfer Bank">Transfer Bank</option>
                         </select>
                       </div>
-                      <div class="mb-3">
+                      {/* <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label" style={{ fontWeight: 'bold' }}>
                           Tujuan Pembayaran
                         </label>
@@ -199,7 +174,7 @@ export const BuktiBayar = () => {
                           <option value="6">Bank Mandiri</option>
                           <option value="7">Lainnya</option>
                         </select>
-                      </div>
+                      </div> */}
                       <div class="mb-3">
                         <label class="form-label" for="customFile" style={{ fontWeight: 'bold' }}>
                           Upload Bukti
