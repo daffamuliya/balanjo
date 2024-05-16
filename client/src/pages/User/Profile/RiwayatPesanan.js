@@ -29,7 +29,7 @@ const RiwayatPesanan = () => {
 
   const getTransaksi = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/marketplace/transaksi');
+      const response = await axios.get('http://localhost:3000/marketplace/pesan/transaksi');
       setTransaksi(response.data.data);
     } catch (error) {
       console.error('Error fetching blogs:', error);
@@ -45,16 +45,12 @@ const RiwayatPesanan = () => {
             <Card.Body>
               <section className="blog">
                 <div class="row">
-                  <h2 className="title" style={{ fontWeight: 'bold' }}>
-                    Riwayat Pesanan
-                  </h2>
                   <Table responsive>
                     <thead>
                       <tr>
                         <th>Order ID</th>
-                        <th>Product</th>
                         <th>Date</th>
-                        <th>Total</th>
+                        <th>Total Transaksi</th>
                         <th>Payment</th>
                         <th>Status</th>
                       </tr>
@@ -64,7 +60,6 @@ const RiwayatPesanan = () => {
                         transaksi.map((item) => (
                           <tr>
                             <td>{item.id}</td>
-                            <td>{item.produk.nama}</td>
                             <td>{item.tanggal_pesan}</td>
                             <td>Rp {item.total}</td>
                             <td>{item.payment}</td>

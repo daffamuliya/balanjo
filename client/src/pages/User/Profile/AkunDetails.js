@@ -43,7 +43,6 @@ const AkunDetails = () => {
                         </label>
                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled placeholder={user && user.name} />
                       </div>
-
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">
                           USERNAME *
@@ -56,7 +55,22 @@ const AkunDetails = () => {
                         </label>
                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled placeholder={user && user.email} />
                       </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">
+                          HANDPHONE *
+                        </label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled placeholder={user && user.no_telp} />
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">
+                          ALAMAT *
+                        </label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled placeholder={user && user.alamat} />
+                      </div>
                     </form>
+                    <button type="submit" class="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right' }}>
+                      Edit Profile
+                    </button>
                   </div>
                   <h2 className="title" style={{ fontWeight: 'bold' }}>
                     Change Password

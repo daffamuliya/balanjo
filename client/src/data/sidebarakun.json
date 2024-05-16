@@ -2,10 +2,9 @@
   {
     "title": "Akun",
     "path": "/user/akun"
-    
   },
   {
-    "title": "Riwayat Pesanan",
+    "title": "Pesanan Saya",
     "path": "/user/pesanan"
   },
   {
