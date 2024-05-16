@@ -5,12 +5,12 @@
     "icon": "bi-person-fill"
   },
   {
-    "title": "Produk",
+    "title": "Produk Saya",
     "path": "/seller/product",
     "icon": "bi bi-bag-dash-fill"
   },
   {
-    "title": "Pesanan",
+    "title": "Pesanan Masuk",
     "path": "/seller/pesanan",
     "icon": "bi bi-cart-fill"
   },

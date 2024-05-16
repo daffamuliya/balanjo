@@ -25,7 +25,7 @@ const ProductSeller = () => {
   }, [isError, navigate]);
 
   const [marketplace, setMarketplace] = useState([]);
-  
+
   useEffect(() => {
     getMarketplace();
   }, []);
@@ -83,7 +83,7 @@ const ProductSeller = () => {
         <SidebarSeller />
         <div className="container mt-5">
           <MDBRow className="mt-5">
-            <h5 style={{ color: '#A08336' }}>Produk</h5>
+            <h5 style={{ color: '#A08336' }}>Produk Saya</h5>
             <MDBCol size="2" className="mt-3">
               <a href="upload-produk" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', display: 'inline-block' }}>
                 + Tambah

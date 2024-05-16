@@ -14,7 +14,7 @@ const transaksi = sequelize.define(
     tanggal_pesan: {
       type: DataTypes.DATE,
     },
-    id_user: {
+    id_pembeli: {
       type: DataTypes.BIGINT,
       allowNull: false,
       references: {
@@ -22,6 +22,11 @@ const transaksi = sequelize.define(
         key: 'id',
       },
     },
+    id_penjual: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
+
     total: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -46,6 +51,6 @@ const transaksi = sequelize.define(
   }
 );
 
-transaksi.belongsTo(users, { foreignKey: 'id_user' });
+transaksi.belongsTo(users, { foreignKey: 'id_pembeli' });
 
 module.exports = transaksi;

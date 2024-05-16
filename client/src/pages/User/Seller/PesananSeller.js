@@ -14,7 +14,7 @@ const PesananSeller = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError, user } = useSelector((state) => state.auth);
-  const id_user = user ? user.id : null;
+  const id_pembeli = user ? user.id : null;
 
   useEffect(() => {
     dispatch(getMe());
@@ -59,7 +59,7 @@ const PesananSeller = () => {
         <SidebarSeller />
         <div className="container mt-5">
           <MDBRow className="mt-5">
-            <h5 style={{ color: '#A08336' }}>Pesanan</h5>
+            <h5 style={{ color: '#A08336' }}>Pesanan Masuk</h5>
             <MDBRow className="mt-3 justify-content-center">
               <MDBCol md={12} xs={2} className="ms-auto">
                 <Card>

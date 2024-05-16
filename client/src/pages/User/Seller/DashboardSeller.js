@@ -76,7 +76,6 @@ const DashboardSeller = () => {
                         <thead>
                           <tr>
                             <th>Order ID</th>
-                            <th>Product</th>
                             <th>Qty</th>
                             <th>Date</th>
                             <th>Customer</th>
@@ -90,7 +89,6 @@ const DashboardSeller = () => {
                             transaksi.map((item) => (
                               <tr>
                                 <td>{item.id}</td>
-                                <td>{item.produk.nama}</td>
                                 <td>12</td>
                                 <td>{item.tanggal_pesan}</td>
                                 <td>{item.user.name}</td>
