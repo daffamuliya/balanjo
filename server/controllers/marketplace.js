@@ -79,7 +79,7 @@ controller.transfer = async (req, res) => {
     }
 
     const allowedTypes = ['.png', '.jpg', '.jpeg'];
-    const { id_user, total, payment, status } = req.body;
+    const { id_pembeli, id_penjual, total, payment, status } = req.body;
     const { bukti_transfer } = req.files;
 
     console.log('Memvalidasi jenis file...');
@@ -101,7 +101,8 @@ controller.transfer = async (req, res) => {
 
     console.log('Membuat catatan transaksi...');
     await model.transaksi.create({
-      id_user,
+      id_pembeli,
+      id_penjual,
       total,
       payment,
       status,

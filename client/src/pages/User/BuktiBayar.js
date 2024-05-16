@@ -10,7 +10,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCard, MDBCardText, MDBCar
 
 export const BuktiBayar = () => {
   const { user } = useSelector((state) => state.auth);
-  const id_user = user ? user.id : null;
+  const id_pembeli = user ? user.id : null;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,6 +27,7 @@ export const BuktiBayar = () => {
   }, [isError, navigate]);
 
   const [total] = useState(650000);
+  const [id_penjual] = useState(2);
   const [payment, setPayment] = useState('');
   const [status] = useState('Sudah Bayar');
   const [bukti_transfer, setBuktiTransfer] = useState(null);
@@ -41,7 +42,8 @@ export const BuktiBayar = () => {
   const saveBukti = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('id_user', id_user);
+    formData.append('id_pembeli', id_pembeli);
+    formData.append('id_penjual', id_penjual);
     formData.append('total', total);
     formData.append('payment', payment);
     formData.append('status', status);
