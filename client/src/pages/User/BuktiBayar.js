@@ -11,10 +11,32 @@ import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCard, MDBCardText, MDBCar
 export const BuktiBayar = () => {
   const { user } = useSelector((state) => state.auth);
   const id_pembeli = user ? user.id : null;
+  const [totalBayar, setTotalBayar] = useState(0);
+
+  useEffect(() => {
+    fetchOrderDetail();
+  }, []);
+
+  const fetchOrderDetail = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/marketplace/getMyOrder`);
+      console.log(response);
+      if (response.data.data) {
+        const totalBayar = response.data.data.reduce((acc, item) => acc + item.total, 0);
+        console.log('Total Bayar:', totalBayar);
+        setTotalBayar(totalBayar);
+      } else {
+        console.error('Data detail pemesanan tidak ditemukan');
+      }
+    } catch (error) {
+      console.error('Terjadi kesalahan saat mengambil data detail pemesanan:', error);
+    }
+  };
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
+  const userId = user ? user.id : null;
 
   useEffect(() => {
     dispatch(getMe());
@@ -26,7 +48,7 @@ export const BuktiBayar = () => {
     }
   }, [isError, navigate]);
 
-  const [total] = useState(650000);
+  const [total, setTotal] = useState('');
   const [id_penjual] = useState(2);
   const [payment, setPayment] = useState('');
   const [status] = useState('Sudah Bayar');
@@ -37,14 +59,18 @@ export const BuktiBayar = () => {
     setBuktiTransfer(image);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (totalBayar > 0) {
+      setTotal(new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(totalBayar));
+    }
+  }, [totalBayar]);
 
   const saveBukti = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('id_pembeli', id_pembeli);
     formData.append('id_penjual', id_penjual);
-    formData.append('total', total);
+    formData.append('total', totalBayar);
     formData.append('payment', payment);
     formData.append('status', status);
     formData.append('bukti_transfer', bukti_transfer);
@@ -61,6 +87,7 @@ export const BuktiBayar = () => {
           text: 'Bukti Transfer berhasil diunggah!',
         }).then(() => {
           navigate('/home');
+          deleteAllOrderItems();
         });
       } else {
         throw new Error('Gagal mengunggah bukti');
@@ -74,6 +101,15 @@ export const BuktiBayar = () => {
       });
     }
   };
+
+  const deleteAllOrderItems = async () => {
+    try {
+      await axios.delete(`http://localhost:3000/marketplace/deleteAllOrderItems/${userId}`);
+    } catch (error) {
+      console.error('Terjadi kesalahan saat menghapus item di keranjang:', error);
+    }
+  };
+
   return (
     <div>
       <NormalNavbar />
@@ -139,21 +175,29 @@ export const BuktiBayar = () => {
             </MDBRow>
             <MDBCard className="mt-4">
               <MDBCardBody>
-                {' '}
-                <div class="row">
-                  <div class="col-12 mb-4">
+                <div className="row">
+                  <div className="col-12 mb-4">
                     <h3 className="text-center mb-3 mt-3" style={{ fontWeight: 'bold' }}>
                       Informasi Pelanggan
                     </h3>
                     <form onSubmit={saveBukti}>
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label" style={{ fontWeight: 'bold' }}>
+                      <div className="mb-3">
+                        <label htmlFor="exampleInputEmail1" className="form-label" style={{ fontWeight: 'bold' }}>
                           Nominal Pembayaran
                         </label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Rp650.000" disabled />
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder={new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(totalBayar)}
+                          value={total}
+                          onChange={(e) => setTotal(e.target.value)}
+                          disabled
+                        />
                       </div>
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label" style={{ fontWeight: 'bold' }}>
+                      <div className="mb-3">
+                        <label htmlFor="exampleInputEmail1" className="form-label" style={{ fontWeight: 'bold' }}>
                           Sumber Transfer
                         </label>
                         <select className="form-select" aria-label="Default select example" placeholder="Select size" value={payment} onChange={(e) => setPayment(e.target.value)}>
@@ -162,28 +206,13 @@ export const BuktiBayar = () => {
                           <option value="Transfer Bank">Transfer Bank</option>
                         </select>
                       </div>
-                      {/* <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label" style={{ fontWeight: 'bold' }}>
-                          Tujuan Pembayaran
-                        </label>
-                        <select className="form-select" aria-label="Default select example" placeholder="Select size">
-                          <option value="">Pilih Tujuan</option>
-                          <option value="1">Gopay</option>
-                          <option value="2">Shoppepay</option>
-                          <option value="3">Dana</option>
-                          <option value="4">Bank Nagari</option>
-                          <option value="5">Bank BNI</option>
-                          <option value="6">Bank Mandiri</option>
-                          <option value="7">Lainnya</option>
-                        </select>
-                      </div> */}
-                      <div class="mb-3">
-                        <label class="form-label" for="customFile" style={{ fontWeight: 'bold' }}>
+                      <div className="mb-3">
+                        <label className="form-label" htmlFor="customFile" style={{ fontWeight: 'bold' }}>
                           Upload Bukti
                         </label>
                         <input type="file" onChange={loadImage} className="form-control" id="bukti_transfer" name="bukti_transfer" required />
                       </div>
-                      <button type="submit" class="btn btn-primary" style={{ marginTop: '20px', backgroundColor: '#A08336', fontSize: '16px', maxWidth: '180px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right' }}>
+                      <button type="submit" className="btn btn-primary" style={{ marginTop: '20px', backgroundColor: '#A08336', fontSize: '16px', maxWidth: '180px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right' }}>
                         Konfirmasi
                       </button>
                     </form>
@@ -194,9 +223,9 @@ export const BuktiBayar = () => {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-      <br></br>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
+      <br />
       <Footer />
     </div>
   );

@@ -28,7 +28,7 @@ const Cart = () => {
       const response = await axios.get(`http://localhost:3000/marketplace/myCart`);
       if (response.data.data) {
         setCartItems(response.data.data);
-        console.log(response.data.data);
+        console.log('Fetched cart items:', response.data.data); // Logging tambahan
       } else {
         console.error('Data keranjang tidak ditemukan');
       }
@@ -73,11 +73,12 @@ const Cart = () => {
     for (const item of cartItems) {
       const orderData = {
         user_id: userId,
+        id_penjual: item.id_penjual,
         produk_id: item.produk_id,
         alamat: 'Jalan Wakanda',
         total: item.sub_total,
       };
-      console.log(orderData);
+      console.log('Order Data:', orderData); // Logging tambahan
 
       try {
         const response = await axios.post(`http://localhost:3000/marketplace/addOrderDetail`, orderData);

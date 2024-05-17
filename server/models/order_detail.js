@@ -16,6 +16,11 @@ const order_detail = sequelize.define(
       type: DataTypes.BIGINT,
       allowNull: false,
     },
+    id_penjual: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
+
     produk_id: {
       type: DataTypes.BIGINT,
       allowNull: false,

@@ -31,6 +31,11 @@ const cart = sequelize.define(
       },
     },
 
+    id_penjual: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
+
     jumlah: {
       type: DataTypes.BIGINT,
       allowNull: false,

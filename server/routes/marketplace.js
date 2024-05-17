@@ -68,5 +68,6 @@ router.delete('/banner/deleteActiveBanner/:id', controller.marketplace.deleteAct
 router.delete('/deleteCart/:id', controller.marketplace.deleteCart);
 router.delete('/deleteOrderDetail/:id', controller.marketplace.deleteOrderDetail);
 router.delete('/deleteAllCartItems/:user_id', verifyUser, controller.marketplace.deleteAllCartItems);
+router.delete('/deleteAllOrderItems/:user_id', verifyUser, controller.marketplace.deleteAllOrderItems);
 
 module.exports = router;

@@ -70,6 +70,7 @@ const DetailProduk = () => {
     const cartItem = {
       user_id: user_id,
       produk_id: produk.id,
+      id_penjual: produk.id_penjual,
       jumlah: quantity,
       harga: produk.harga,
       sub_total: quantity * produk.harga,

@@ -395,7 +395,6 @@ controller.getMyCart = async function (req, res) {
   try {
     await model.cart
       .findAll({
-        attributes: ['id', 'user_id', 'produk_id', 'jumlah', 'harga', 'sub_total', 'gambar', 'created_at'],
         include: [
           {
             model: model.produk,
@@ -535,7 +534,7 @@ controller.getOrderDetail = async function (req, res) {
   try {
     await model.order_detail
       .findAll({
-        attributes: ['id', 'user_id', 'produk_id', 'alamat', 'total'],
+        attributes: ['id', 'user_id', 'id_penjual', 'produk_id', 'alamat', 'total'],
         include: [
           {
             model: model.produk,
@@ -603,14 +602,15 @@ controller.getMyOrder = async function (req, res) {
 
 controller.addOrderDetail = async function (req, res) {
   try {
-    const { user_id, produk_id, alamat, total } = req.body;
+    const { user_id, id_penjual, produk_id, alamat, total } = req.body;
 
-    if (!user_id || !produk_id || !alamat || !total) {
+    if (!user_id || !id_penjual || !produk_id || !alamat || !total) {
       throw new Error('Semua data yang diperlukan harus disediakan');
     }
 
     await model.order_detail.create({
       user_id: user_id,
+      id_penjual: id_penjual,
       produk_id: produk_id,
       alamat: alamat,
       total: total,
@@ -626,10 +626,11 @@ controller.addOrderDetail = async function (req, res) {
 
 controller.addCart = async (req, res) => {
   try {
-    const { user_id, produk_id, jumlah, harga, sub_total, gambar } = req.body;
+    const { user_id, produk_id, id_penjual, jumlah, harga, sub_total, gambar } = req.body;
     await model.cart.create({
       user_id: user_id,
       produk_id: produk_id,
+      id_penjual: id_penjual,
       jumlah: jumlah,
       harga: harga,
       sub_total: sub_total,
@@ -788,6 +789,21 @@ controller.deleteOrderDetail = async function (req, res) {
 controller.deleteAllCartItems = async function (req, res) {
   try {
     await model.cart.destroy({
+      where: {
+        user_id: req.userId,
+      },
+    });
+    res.status(200).json({
+      message: 'Berhasil menghapus semua item dari keranjang',
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+controller.deleteAllOrderItems = async function (req, res) {
+  try {
+    await model.order_detail.destroy({
       where: {
         user_id: req.userId,
       },
