@@ -12,8 +12,8 @@ export const BuktiBayar = () => {
   const { user } = useSelector((state) => state.auth);
   const id_pembeli = user ? user.id : null;
   const [totalBayar, setTotalBayar] = useState(0);
-  const [idPenjual, setIdPenjual] = useState(null); // State untuk menyimpan id_penjual
-  const [orderDetails, setOrderDetails] = useState([]); // State untuk menyimpan detail order
+  const [idPenjual, setIdPenjual] = useState(null); 
+  const [orderDetails, setOrderDetails] = useState([]); 
 
   useEffect(() => {
     fetchOrderDetail();
