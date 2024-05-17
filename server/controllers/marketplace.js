@@ -569,7 +569,7 @@ controller.getMyOrder = async function (req, res) {
   try {
     await model.order_detail
       .findAll({
-        attributes: ['id', 'user_id', 'produk_id', 'alamat', 'total'],
+        attributes: ['id', 'user_id', 'produk_id', 'alamat', 'total', 'id_penjual'],
         include: [
           {
             model: model.produk,

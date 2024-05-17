@@ -12,6 +12,8 @@ export const BuktiBayar = () => {
   const { user } = useSelector((state) => state.auth);
   const id_pembeli = user ? user.id : null;
   const [totalBayar, setTotalBayar] = useState(0);
+  const [idPenjual, setIdPenjual] = useState(null); // State untuk menyimpan id_penjual
+  const [orderDetails, setOrderDetails] = useState([]); // State untuk menyimpan detail order
 
   useEffect(() => {
     fetchOrderDetail();
@@ -19,12 +21,17 @@ export const BuktiBayar = () => {
 
   const fetchOrderDetail = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/marketplace/getMyOrder`);
+      const response = await axios.get('http://localhost:3000/marketplace/getMyOrder');
       console.log(response);
       if (response.data.data) {
-        const totalBayar = response.data.data.reduce((acc, item) => acc + item.total, 0);
+        const orderDetails = response.data.data;
+        setOrderDetails(orderDetails);
+        const totalBayar = orderDetails.reduce((acc, item) => acc + item.total, 0);
         console.log('Total Bayar:', totalBayar);
         setTotalBayar(totalBayar);
+        if (orderDetails.length > 0) {
+          setIdPenjual(orderDetails[0].id_penjual);
+        }
       } else {
         console.error('Data detail pemesanan tidak ditemukan');
       }
@@ -49,7 +56,6 @@ export const BuktiBayar = () => {
   }, [isError, navigate]);
 
   const [total, setTotal] = useState('');
-  const [id_penjual] = useState(2);
   const [payment, setPayment] = useState('');
   const [status] = useState('Sudah Bayar');
   const [bukti_transfer, setBuktiTransfer] = useState(null);
@@ -69,7 +75,7 @@ export const BuktiBayar = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('id_pembeli', id_pembeli);
-    formData.append('id_penjual', id_penjual);
+    formData.append('id_penjual', idPenjual); // Menggunakan idPenjual dari state
     formData.append('total', totalBayar);
     formData.append('payment', payment);
     formData.append('status', status);
