@@ -52,6 +52,7 @@ router.get('/:user_id/getCart', controller.marketplace.getAllCart);
 router.get('/myCart', verifyUser, controller.marketplace.getMyCart);
 router.get('/transaksi', verifyUser, controller.marketplace.getAllTransaksi);
 router.get('/pesan/transaksi', verifyUser, controller.marketplace.getTransaksiByIdBeli);
+router.get('/order/transaksi', verifyUser, controller.marketplace.getTransaksiByIdJual);
 router.get('/transaksi/:id', controller.marketplace.getTransaksiById);
 router.get('/:user_id/getOrderDetail', controller.marketplace.getOrderDetail);
 router.get('/getMyOrder', verifyUser, controller.marketplace.getMyOrder);

@@ -460,6 +460,41 @@ controller.getAllTransaksi = async function (req, res) {
   }
 };
 
+controller.getTransaksiByIdJual = async function (req, res) {
+  try {
+    const result = await model.transaksi.findAll({
+      attributes: ['id', 'id_pembeli', 'id_penjual', 'tanggal_pesan', 'total', 'payment', 'status', 'bukti_transfer'],
+      include: [
+        {
+          model: model.users,
+          attributes: ['name'],
+        },
+      ],
+      where: {
+        id_penjual: req.userId,
+      },
+    });
+
+    if (result.length > 0) {
+      res.status(200).json({
+        message: 'Berhasil mendapatkan transaksi',
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        message: 'Data tidak ditemukan',
+        data: [],
+      });
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({
+      message: 'Terjadi kesalahan dalam memproses permintaan',
+      error: error.message,
+    });
+  }
+};
+
 controller.getTransaksiByIdBeli = async function (req, res) {
   try {
     const result = await model.transaksi.findAll({

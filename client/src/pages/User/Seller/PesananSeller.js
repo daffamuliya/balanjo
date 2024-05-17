@@ -13,8 +13,7 @@ import { getMe } from '../../../features/authSlice';
 const PesananSeller = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError, user } = useSelector((state) => state.auth);
-  const id_pembeli = user ? user.id : null;
+  const { isError } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -33,7 +32,7 @@ const PesananSeller = () => {
 
   const getTransaksi = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/marketplace/transaksi');
+      const response = await axios.get('http://localhost:3000/marketplace/order/transaksi');
       setTransaksi(response.data.data);
     } catch (error) {
       console.error('Error fetching blogs:', error);
