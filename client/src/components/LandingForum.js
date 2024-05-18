@@ -46,7 +46,7 @@ const LandingForum = () => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:3000/forum/addComment', {
-        user_id,
+        user_id: user_id,
         forum_id: selectedForumId, // Gunakan selectedForumId dari state
         user: user.name,
         komentar,
@@ -271,7 +271,7 @@ const LandingForum = () => {
                   </div>
                   <div className="mb-5">
                     <label htmlFor="message-text" className="col-form-label">
-                      Replying to Daffa
+                      Replying to {statusDetail.user}
                     </label>
                     <textarea value={komentar} onChange={(e) => setKomentar(e.target.value)} className="form-control" id="message-text"></textarea>
                     <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right', marginTop: '15px' }}>
