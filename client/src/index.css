@@ -94,7 +94,7 @@ button:focus {
   width: 260px;
   flex-shrink: 0;
   background-color: white;
-  height: 125vh;
+  height: 150vh;
   overflow: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
