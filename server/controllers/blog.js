@@ -134,21 +134,73 @@ controller.addBlog = async (req, res) => {
 };
 
 controller.updateBlog = async (req, res) => {
+  const { id } = req.params;
+  const { user_id, user, judul, slug, kategori_blog, summary, konten } = req.body;
+
   try {
-    const { user_id, kategori_id, judul, konten } = req.body;
-    await model.blog.update(
-      { user_id, kategori_id, judul, summary, konten },
-      {
-        where: {
-          id: req.params.id,
-        },
+    const blog = await model.blog.findByPk(id);
+    if (!blog) {
+      return res.status(404).json({ msg: 'Blog not found' });
+    }
+
+    if (req.files && req.files.file) {
+      const file = req.files.file;
+      const fileSize = file.data.length;
+      const ext = path.extname(file.name);
+      const fileName = file.md5 + ext;
+      const url = `${req.protocol}://${req.get('host')}/images/${fileName}`;
+      const allowedType = ['.png', '.jpg', '.jpeg'];
+
+      if (!allowedType.includes(ext.toLowerCase())) {
+        return res.status(422).json({ msg: 'Invalid Image Type' });
       }
-    );
-    res.status(200).json({
-      message: 'berhasil edit blog',
-    });
+      if (fileSize > 5000000) {
+        return res.status(422).json({ msg: 'Image must be less than 5 MB' });
+      }
+
+      // Hapus file gambar lama jika ada
+      if (blog.gambar) {
+        const oldFilePath = path.join(__dirname, '../public/images', blog.gambar);
+        if (fs.existsSync(oldFilePath)) {
+          fs.unlinkSync(oldFilePath);
+        }
+      }
+
+      file.mv(`./public/images/${fileName}`, async (err) => {
+        if (err) {
+          return res.status(500).json({ msg: err.message });
+        }
+
+        // Update data blog dengan gambar baru
+        blog.user_id = user_id;
+        blog.user = user;
+        blog.judul = judul;
+        blog.slug = slug;
+        blog.kategori_blog = kategori_blog;
+        blog.summary = summary;
+        blog.konten = konten;
+        blog.gambar = fileName;
+        blog.url = url;
+
+        await blog.save();
+        res.redirect('/blog');
+      });
+    } else {
+      // Update data blog tanpa mengganti gambar
+      blog.user_id = user_id;
+      blog.user = user;
+      blog.judul = judul;
+      blog.slug = slug;
+      blog.kategori_blog = kategori_blog;
+      blog.summary = summary;
+      blog.konten = konten;
+
+      await blog.save();
+      res.redirect('/blog');
+    }
   } catch (error) {
-    res.json({ message: error.message });
+    console.log(error.message);
+    res.status(500).json({ msg: 'Server error' });
   }
 };
 
