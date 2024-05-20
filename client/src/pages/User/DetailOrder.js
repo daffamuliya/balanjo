@@ -5,7 +5,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMe } from '../../features/authSlice';
-import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCard, MDBCardTitle, MDBCardSubTitle, MDBCardText, MDBCardImage } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCard, MDBCardTitle, MDBCardSubTitle, MDBCardText } from 'mdb-react-ui-kit';
 
 const DetailOrder = () => {
   const [orderDetail, setOrderDetail] = useState(null);
