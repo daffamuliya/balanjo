@@ -255,31 +255,32 @@ const LandingForum = () => {
               <MDBBtn className="btn-close" color="none" onClick={() => setScrollableModal(!scrollableModal)}></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
-              {statusDetail && (
-                <form onSubmit={saveKomentar}>
-                  <div className="mb-3">
-                    <div className="col-auto">
-                      <MDBCardText className="mt-2" style={{ color: 'black', fontSize: '18px', fontWeight: 'bold' }}>
-                        {statusDetail.user}
-                      </MDBCardText>
+              {Array.isArray(statusDetail) &&
+                statusDetail.map((status) => (
+                  <form onSubmit={saveKomentar}>
+                    <div className="mb-3">
+                      <div className="col-auto">
+                        <MDBCardText className="mt-2" style={{ color: 'black', fontSize: '18px', fontWeight: 'bold' }}>
+                          {status.user}
+                        </MDBCardText>
+                      </div>
+                      <div className="col-12 mb-3 mt-1">
+                        <p className="komentar" style={{ color: 'black', fontSize: '20px' }}>
+                          {status.konten}
+                        </p>
+                      </div>
                     </div>
-                    <div className="col-12 mb-3 mt-1">
-                      <p className="komentar" style={{ color: 'black', fontSize: '20px' }}>
-                        {statusDetail.konten}
-                      </p>
+                    <div className="mb-5">
+                      <label htmlFor="message-text" className="col-form-label">
+                        Replying to {status.user}
+                      </label>
+                      <textarea value={komentar} onChange={(e) => setKomentar(e.target.value)} className="form-control" id="message-text"></textarea>
+                      <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right', marginTop: '15px' }}>
+                        Send Reply
+                      </button>
                     </div>
-                  </div>
-                  <div className="mb-5">
-                    <label htmlFor="message-text" className="col-form-label">
-                      Replying to {statusDetail.user}
-                    </label>
-                    <textarea value={komentar} onChange={(e) => setKomentar(e.target.value)} className="form-control" id="message-text"></textarea>
-                    <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right', marginTop: '15px' }}>
-                      Send Reply
-                    </button>
-                  </div>
-                </form>
-              )}
+                  </form>
+                ))}
 
               <div className="mb-3">
                 <label className="col-form-label">Comments</label>

@@ -35,7 +35,7 @@ const LandingBlog = () => {
         <MDBRow className="pt-5">
           {Array.isArray(blog) &&
             blog.map((item) => (
-              <MDBCol key={item.id} md={4} xs={8} className="mt-3">
+              <MDBCol key={item.id} md={4} xs={12} className="mt-3">
                 <a href={`detail-blog/${item.slug}`} style={{ textDecoration: 'none', color: 'black' }}>
                   <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-left">
                     <MDBCardImage src={item.url} position="top" alt="..." />

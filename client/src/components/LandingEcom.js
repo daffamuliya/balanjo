@@ -22,7 +22,7 @@ const LandingEcom = () => {
             marketplace.map((item) => (
               <MDBCol key={item.id} md={3} xs={12} className="mt-3">
                 <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-center">
-                  <MDBCardImage src={item.gambar} position="top" alt="..."  />
+                  <MDBCardImage src={item.gambar} position="top" alt="..." />
                   <MDBCardBody>
                     {/* <MDBCardText className="mb-3" style={{ color: '#8D8D8D' }}>
                       {item.id_kategori}

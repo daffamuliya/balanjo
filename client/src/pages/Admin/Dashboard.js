@@ -109,7 +109,7 @@ const Dashboard = () => {
         <div className="container mt-5">
           <MDBRow>
             <MDBRow className="mt-3 justify-content-center">
-              <MDBCol md={3} xs={2} className="ms-auto">
+              <MDBCol md={3} xs={2} className="ms-auto mb-1">
                 <Card>
                   <CardBody>
                     <h5>Total User</h5>
@@ -117,7 +117,7 @@ const Dashboard = () => {
                   </CardBody>
                 </Card>
               </MDBCol>
-              <MDBCol md={3} xs={2} className="ms-auto">
+              <MDBCol md={3} xs={2} className="ms-auto mb-1">
                 <Card>
                   <CardBody>
                     <h5>Total Active Banner</h5>
@@ -125,7 +125,7 @@ const Dashboard = () => {
                   </CardBody>
                 </Card>
               </MDBCol>
-              <MDBCol md={3} xs={2} className="ms-auto">
+              <MDBCol md={3} xs={2} className="ms-auto mb-1">
                 <Card>
                   <CardBody>
                     <h5>Total Blog</h5>
@@ -133,7 +133,7 @@ const Dashboard = () => {
                   </CardBody>
                 </Card>
               </MDBCol>
-              <MDBCol md={3} xs={2} className="ms-auto">
+              <MDBCol md={3} xs={2} className="ms-auto mb-1">
                 <Card>
                   <CardBody>
                     <h5>Total Forum</h5>
