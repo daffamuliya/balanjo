@@ -96,31 +96,39 @@ controller.updatePassword = async function (req, res) {
   const { oldPassword, newPassword, confNewPassword } = req.body;
 
   try {
+    // Temukan pengguna berdasarkan ID sesi
     const loggedInUser = await model.findOne({
       where: {
         uuid: req.session.userId,
       },
     });
 
+    // Periksa apakah pengguna ditemukan
     if (!loggedInUser) {
       return res.status(404).json({ msg: 'Pengguna tidak ditemukan' });
     }
 
+    // Verifikasi kata sandi lama
     const isMatch = await argon2.verify(loggedInUser.password, oldPassword);
     if (!isMatch) {
       return res.status(400).json({ msg: 'Kata sandi lama salah' });
     }
 
+    // Periksa apakah kata sandi baru dan konfirmasi kata sandi cocok
     if (newPassword !== confNewPassword) {
       return res.status(400).json({ msg: 'Password baru dan konfirmasi password tidak cocok' });
     }
 
+    // Hash kata sandi baru
     const hashNewPassword = await argon2.hash(newPassword);
 
+    // Perbarui kata sandi pengguna
     await loggedInUser.update({ password: hashNewPassword });
 
+    // Berhasil memperbarui kata sandi
     res.json({ msg: 'Password berhasil diperbarui' });
   } catch (error) {
+    // Tangani kesalahan
     console.log(error);
     res.status(500).json({ msg: 'Server Error' });
   }

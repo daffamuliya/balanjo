@@ -11,9 +11,10 @@ import axios from 'axios';
 import swal from 'sweetalert';
 
 const AkunDetails = () => {
-  const { user, isError } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
 
   const [showModal, setShowModal] = useState(false);
   const [oldPassword, setOldPassword] = useState('');
