@@ -124,16 +124,6 @@ const DetailProduk = () => {
                       <MDBCardText style={{ color: '#2D2D2D', fontSize: '16px', opacity: '60%', paddingRight: '5px' }}>{produk.deskripsi}</MDBCardText>
                       <MDBCardTitle style={{ fontSize: '22px', fontWeight: 'bold' }}>Rp{produk.harga}</MDBCardTitle>
                       <hr className="my-4 me-4" />
-                      <div className="mb-3 me-4">
-                        <label htmlFor="exampleInputPassword1" className="form-label">
-                          Variasi
-                        </label>
-                        <select className="form-select" aria-label="Default select example" placeholder="Select size">
-                          <option selected>Select Variant</option>
-                          <option value="1">Oversize</option>
-                          <option value="2">Normal Size</option>
-                        </select>
-                      </div>
                       <div className="input-group mb-3 me-4" style={{ paddingRight: '20px' }}>
                         <button className="btn btn-secondary" type="button" onClick={handleQuantity} style={{ backgroundColor: '#fff', border: '1px solid #ccc', color: 'black' }}>
                           -
