@@ -24,6 +24,8 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMe } from '../features/authSlice';
 
+axios.defaults.withCredentials = true;
+
 const LandingForum = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -46,8 +48,8 @@ const LandingForum = () => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:3000/forum/addComment', {
-        user_id: user_id,
-        forum_id: selectedForumId, // Gunakan selectedForumId dari state
+        user_id,
+        forum_id: selectedForumId,
         user: user.name,
         komentar,
       });
@@ -57,7 +59,7 @@ const LandingForum = () => {
         text: 'Komentar ditambahkan',
       });
       setKomentar('');
-      setScrollableModal(false); // Menutup modal setelah komentar dikirim
+      setScrollableModal(false);
     } catch (error) {
       console.log(error);
     }
@@ -104,12 +106,10 @@ const LandingForum = () => {
 
   const loadForumDetail = async (id) => {
     try {
-      //Response konten forum
       const response2 = await axios.get(`http://localhost:3000/forum/${id}`);
       const statusDetailData = Array.isArray(response2.data.items) ? response2.data.items : [response2.data.items];
       setStatusDetail(statusDetailData);
 
-      //Response konten komentar
       await handleButtonClick(id);
       const response = await axios.get(`http://localhost:3000/forum/comment/${id}`);
       const forumDetailData = Array.isArray(response.data.items) ? response.data.items : [response.data.items];
@@ -255,7 +255,7 @@ const LandingForum = () => {
               <MDBBtn className="btn-close" color="none" onClick={() => setScrollableModal(!scrollableModal)}></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
-              {statusDetail && ( //bagian disini belom
+              {statusDetail && (
                 <form onSubmit={saveKomentar}>
                   <div className="mb-3">
                     <div className="col-auto">
@@ -287,7 +287,6 @@ const LandingForum = () => {
                   forumDetail.map((detail) => (
                     <MDBCard className="mb-3" key={detail.id}>
                       {' '}
-                      {/* Pindahkan key ke elemen MDBCard */}
                       <div className="d-flex">
                         <MDBCardImage className="me-2 mt-2 ms-2" src="/img/profile.png" style={{ width: '10%', height: '13%' }} />
                         <MDBCol>

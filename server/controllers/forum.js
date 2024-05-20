@@ -191,10 +191,10 @@ controller.addForumComment = async function (req, res) {
   const { user_id, forum_id, komentar, user } = req.body;
 
   try {
-    await model.komentar_forum.create({ forum_id, user_id, user, komentar });
-    res.redirect('back');
+    await model.komentar_forum.create({ user_id, forum_id, komentar, user });
+    res.redirect('/forum');
   } catch (error) {
-    console.log(error);
+    res.json({ message: error.message });
   }
 };
 
