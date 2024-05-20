@@ -4,6 +4,7 @@ const slugify = require('slugify');
 const { blog } = require('./indexcontroller');
 const path = require('path');
 const controller = {};
+const fs = require('fs');
 
 controller.getAllBlog = async (req, res) => {
   try {
@@ -160,7 +161,7 @@ controller.updateBlog = async (req, res) => {
 
       // Hapus file gambar lama jika ada
       if (blog.gambar) {
-        const oldFilePath = path.join(__dirname, '../public/images', blog.gambar);
+        const oldFilePath = path.join(__dirname, './public/images', blog.gambar);
         if (fs.existsSync(oldFilePath)) {
           fs.unlinkSync(oldFilePath);
         }
