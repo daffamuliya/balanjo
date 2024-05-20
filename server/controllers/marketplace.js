@@ -435,9 +435,6 @@ controller.getAllTransaksi = async function (req, res) {
           attributes: ['name'],
         },
       ],
-      where: {
-        id_pembeli: req.userId,
-      },
     });
 
     if (result.length > 0) {

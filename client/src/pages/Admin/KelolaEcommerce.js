@@ -52,13 +52,11 @@ const KelolaEcommerce = () => {
                 <thead>
                   <tr>
                     <th>Order ID</th>
-                    <th>Product</th>
                     <th>Date</th>
                     <th>Customer</th>
                     <th>Total</th>
                     <th>Payment</th>
                     <th>Status</th>
-                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -66,15 +64,11 @@ const KelolaEcommerce = () => {
                     transaksi.map((item) => (
                       <tr>
                         <td>{item.id}</td>
-                        <td>{item.produk.nama}</td>
                         <td>{item.tanggal_pesan}</td>
                         <td>{item.user.name}</td>
                         <td>Rp {item.total}</td>
                         <td>{item.payment}</td>
                         <td>{item.status}</td>
-                        <td>
-                          <i class="bi bi-eye-fill" style={{ color: '#A08336' }}></i>
-                        </td>
                       </tr>
                     ))}
                 </tbody>
