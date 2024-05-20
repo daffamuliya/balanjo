@@ -168,7 +168,8 @@ const PesananSeller = () => {
                                 {detail.status}
                               </option>
                               <option value="Dalam Pengiriman">Dalam Pengiriman</option>
-                              <option value="Ditolak">Ditolak</option>
+                              <option value="Pesanan diterima pembeli">Pesanan diterima pembeli</option>
+                              <option value="Pesanan Ditolak">Pesanan Ditolak</option>
                             </select>
                             <button className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%', marginTop: '20px' }} onClick={() => handleSaveStatus(detail.id)}>
                               Simpan perubahan status

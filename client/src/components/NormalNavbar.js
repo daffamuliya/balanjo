@@ -46,11 +46,17 @@ const NormalNavbar = () => {
               </>
             ) : user ? (
               <>
-                <Link to="/user/akun" style={{ textDecoration: 'none' }}>
+                {user.role === 'admin' ? (
                   <button size="lg" className="me-2" style={{ backgroundColor: 'transparent', fontSize: '16px', maxWidth: '300px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336', paddingTop: '10px' }}>
                     Halo, {user && user.username}
                   </button>
-                </Link>
+                ) : (
+                  <Link to="/user/akun" style={{ textDecoration: 'none' }}>
+                    <button size="lg" className="me-2" style={{ backgroundColor: 'transparent', fontSize: '16px', maxWidth: '300px', maxHeight: '42px', textAlign: 'center', border: 'none', color: '#A08336', paddingTop: '10px' }}>
+                      Halo, {user && user.username}
+                    </button>
+                  </Link>
+                )}
                 <MDBBtn onClick={handleLogout} size="lg" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', fontWeight: 'bold', textAlign: 'center', border: 'black' }}>
                   Logout
                 </MDBBtn>
