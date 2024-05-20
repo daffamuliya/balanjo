@@ -25,3 +25,13 @@ GET http://localhost:3000/auth/me
 
 ###
 DELETE http://localhost:3000/auth/logout
+
+###
+PUT http://localhost:3000/auth/updatePassword
+Content-Type: application/json
+
+{     
+    "oldPassword" : "123",
+    "newPassword" : "12",
+    "confNewPassword" : "12"
+} 

@@ -25,6 +25,7 @@ router.use(function (req, res, next) {
 router.use(express.static('public'));
 
 router.post('/register', controller.users.register);
+router.put('/updatePassword', controller.users.updatePassword);
 router.get('/me', controller.users.me);
 router.post('/login', controller.users.login);
 router.delete('/logout', controller.users.logout);

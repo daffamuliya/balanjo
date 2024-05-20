@@ -7,6 +7,8 @@ import SidebarAkun from '../../../components/SidebarAkun';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '../../../features/authSlice';
+import axios from 'axios';
+import swal from 'sweetalert';
 
 const AkunDetails = () => {
   const { user } = useSelector((state) => state.auth);
@@ -15,6 +17,9 @@ const AkunDetails = () => {
   const { isError } = useSelector((state) => state.auth);
 
   const [showModal, setShowModal] = useState(false);
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confNewPassword, setConfNewPassword] = useState('');
 
   useEffect(() => {
     dispatch(getMe());
@@ -34,8 +39,43 @@ const AkunDetails = () => {
     setShowModal(false);
   };
 
-  const handleSaveChanges = () => {
-    setShowModal(false);
+  const handleSaveChanges = async (e) => {
+    e.preventDefault();
+    try {
+      if (newPassword !== confNewPassword) {
+        return swal({
+          icon: 'error',
+          title: 'Error',
+          text: 'Password baru dan konfirmasi password tidak cocok',
+        });
+      }
+
+      const response = await axios.put('http://localhost:3000/auth/updatePassword', {
+        oldPassword: oldPassword,
+        newPassword: newPassword,
+        confNewPassword: confNewPassword,
+      });
+      if (response.status === 200) {
+        swal({
+          icon: 'success',
+          title: 'Success',
+          text: response.data.msg,
+        });
+        setShowModal(false);
+      } else {
+        swal({
+          icon: 'error',
+          title: 'Error',
+          text: response.data.msg,
+        });
+      }
+    } catch (error) {
+      swal({
+        icon: 'error',
+        title: 'Error',
+        text: 'Gagal mengubah kata sandi. Silakan coba lagi.',
+      });
+    }
   };
 
   return (
@@ -87,18 +127,18 @@ const AkunDetails = () => {
                     Change Password
                   </h2>
                   <div className="col-12 mb-4 mt-4">
-                    <form>
+                    <form onSubmit={handleSaveChanges}>
                       <div className="mb-3">
                         <label className="form-label">OLD PASSWORD</label>
-                        <input type="password" className="form-control" placeholder="Old Password" />
+                        <input type="password" className="form-control" placeholder="Old Password" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} />
                       </div>
                       <div className="mb-3">
                         <label className="form-label">NEW PASSWORD</label>
-                        <input type="password" className="form-control" placeholder="New Password" />
+                        <input type="password" className="form-control" placeholder="New Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
                       </div>
                       <div className="mb-3">
                         <label className="form-label">REPEAT NEW PASSWORD</label>
-                        <input type="password" className="form-control" placeholder="Repeat New Password" />
+                        <input type="password" className="form-control" placeholder="Repeat New Password" value={confNewPassword} onChange={(e) => setConfNewPassword(e.target.value)} />
                       </div>
                       <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', maxWidth: '158px', maxHeight: '42px', textAlign: 'center', border: 'black', float: 'right' }}>
                         Save Changes
