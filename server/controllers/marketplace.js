@@ -565,6 +565,41 @@ controller.getTransaksiById = async function (req, res) {
   }
 };
 
+controller.updateTransaksi = async function (req, res) {
+  try {
+    // Mencari transaksi berdasarkan id
+    const result = await model.transaksi.findOne({
+      attributes: ['id', 'tanggal_pesan', 'id_pembeli', 'total', 'payment', 'status', 'bukti_transfer'],
+      include: [
+        {
+          model: model.users,
+          attributes: ['name'],
+        },
+      ],
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (result) {
+      await model.transaksi.update({ status: req.body.status }, { where: { id: req.params.id } });
+      res.status(200).json({
+        message: 'Berhasil memperbarui transaksi',
+      });
+    } else {
+      res.status(404).json({
+        message: 'Data tidak ditemukan',
+      });
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({
+      message: 'Terjadi kesalahan dalam memproses permintaan',
+      error: error.message,
+    });
+  }
+};
+
 controller.getOrderDetail = async function (req, res) {
   try {
     await model.order_detail

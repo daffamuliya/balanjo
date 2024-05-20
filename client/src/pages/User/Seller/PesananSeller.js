@@ -43,6 +43,8 @@ const PesananSeller = () => {
   const [Bukti, setBukti] = useState(null);
   const [scrollableModal, setScrollableModal] = useState(false);
   const [scrollableModal2, setScrollableModal2] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState('');
+
   const loadTransaksiDetail = async (id) => {
     try {
       const response = await axios.get(`http://localhost:3000/marketplace/transaksi/${id}`);
@@ -51,6 +53,22 @@ const PesananSeller = () => {
       setScrollableModal(true);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleStatusChange = (e) => {
+    setSelectedStatus(e.target.value);
+  };
+
+  const handleSaveStatus = async (id) => {
+    try {
+      await axios.put(`http://localhost:3000/marketplace/transaksi/${id}`, {
+        status: selectedStatus,
+      });
+      setScrollableModal(false);
+      getTransaksi();
+    } catch (error) {
+      console.error('Error updating status:', error);
     }
   };
 
@@ -64,6 +82,7 @@ const PesananSeller = () => {
       console.log(error);
     }
   };
+
   return (
     <div>
       <SellerNavbar />
@@ -144,12 +163,14 @@ const PesananSeller = () => {
                             </p>{' '}
                             <hr />
                             <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>Status :</p>
-                            <select className="form-select" aria-label="Default select example">
-                              <option selected>{detail.status}</option>
-                              <option value="1">Dalam Pengiriman</option>
-                              <option value="2">Ditolak</option>
+                            <select className="form-select" aria-label="Default select example" onChange={handleStatusChange} value={selectedStatus}>
+                              <option value="" disabled selected>
+                                {detail.status}
+                              </option>
+                              <option value="Dalam Pengiriman">Dalam Pengiriman</option>
+                              <option value="Ditolak">Ditolak</option>
                             </select>
-                            <button className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%', marginTop: '20px' }}>
+                            <button className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%', marginTop: '20px' }} onClick={() => handleSaveStatus(detail.id)}>
                               Simpan perubahan status
                             </button>
                           </div>
@@ -162,6 +183,7 @@ const PesananSeller = () => {
           </MDBModalContent>
         </MDBModalDialog>
       </MDBModal>
+      ;
       <MDBModal open={scrollableModal2} setOpen={setScrollableModal2} tabIndex="-1">
         <MDBModalDialog centered scrollable>
           <MDBModalContent>

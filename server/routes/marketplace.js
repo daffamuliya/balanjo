@@ -54,6 +54,7 @@ router.get('/transaksi', verifyUser, controller.marketplace.getAllTransaksi);
 router.get('/pesan/transaksi', verifyUser, controller.marketplace.getTransaksiByIdBeli);
 router.get('/order/transaksi', verifyUser, controller.marketplace.getTransaksiByIdJual);
 router.get('/transaksi/:id', controller.marketplace.getTransaksiById);
+router.put('/transaksi/:id', controller.marketplace.updateTransaksi);
 router.get('/:user_id/getOrderDetail', controller.marketplace.getOrderDetail);
 router.get('/getMyOrder', verifyUser, controller.marketplace.getMyOrder);
 router.post('/addOrderDetail', verifyUser, controller.marketplace.addOrderDetail);
