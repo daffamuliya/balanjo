@@ -54,7 +54,6 @@ const marketplace = require('./routes/marketplace');
 const kelola = require('./routes/kelola');
 const daftaruser = require('./routes/daftaruser');
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -77,9 +76,7 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
-app.use('/', (req, res) => {
-  res.render('eror404');
-});
+app.use('/', (req, res) => {});
 
 // store.sync();
 
