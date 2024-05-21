@@ -429,7 +429,6 @@ controller.getMyCart = async function (req, res) {
 controller.getAllTransaksi = async function (req, res) {
   try {
     const result = await model.transaksi.findAll({
-      attributes: ['id', 'id_pembeli', 'tanggal_pesan', 'total', 'payment', 'status', 'bukti_transfer'],
       include: [
         {
           model: model.users,
@@ -461,7 +460,6 @@ controller.getAllTransaksi = async function (req, res) {
 controller.getTransaksiByIdJual = async function (req, res) {
   try {
     const result = await model.transaksi.findAll({
-      attributes: ['id', 'id_pembeli', 'id_penjual', 'tanggal_pesan', 'total', 'payment', 'status', 'bukti_transfer'],
       include: [
         {
           model: model.users,
@@ -496,7 +494,6 @@ controller.getTransaksiByIdJual = async function (req, res) {
 controller.getTransaksiByIdBeli = async function (req, res) {
   try {
     const result = await model.transaksi.findAll({
-      attributes: ['id', 'id_pembeli', 'tanggal_pesan', 'total', 'payment', 'status', 'bukti_transfer'],
       include: [
         {
           model: model.users,
@@ -531,7 +528,6 @@ controller.getTransaksiByIdBeli = async function (req, res) {
 controller.getTransaksiById = async function (req, res) {
   try {
     const result = await model.transaksi.findOne({
-      attributes: ['id', 'tanggal_pesan', 'id_pembeli', 'total', 'payment', 'status', 'bukti_transfer'],
       include: [
         {
           model: model.users,
@@ -567,7 +563,6 @@ controller.updateTransaksi = async function (req, res) {
   try {
     // Mencari transaksi berdasarkan id
     const result = await model.transaksi.findOne({
-      attributes: ['id', 'tanggal_pesan', 'id_pembeli', 'total', 'payment', 'status', 'bukti_transfer'],
       include: [
         {
           model: model.users,
@@ -602,7 +597,6 @@ controller.getOrderDetail = async function (req, res) {
   try {
     await model.order_detail
       .findAll({
-        attributes: ['id', 'user_id', 'id_penjual', 'produk_id', 'alamat', 'total'],
         include: [
           {
             model: model.produk,
