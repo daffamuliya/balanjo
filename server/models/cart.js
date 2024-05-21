@@ -41,6 +41,11 @@ const cart = sequelize.define(
       allowNull: false,
     },
 
+    keterangan: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+
     harga: {
       type: DataTypes.BIGINT,
       allowNull: false,

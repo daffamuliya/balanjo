@@ -79,7 +79,7 @@ controller.transfer = async (req, res) => {
     }
 
     const allowedTypes = ['.png', '.jpg', '.jpeg'];
-    const { id_pembeli, id_penjual, total, payment, status } = req.body;
+    const { id_pembeli, id_penjual, total, keterangan, payment, status } = req.body;
     const { bukti_transfer } = req.files;
 
     console.log('Memvalidasi jenis file...');
@@ -104,6 +104,7 @@ controller.transfer = async (req, res) => {
       id_pembeli,
       id_penjual,
       total,
+      keterangan,
       payment,
       status,
       bukti_transfer: buktiTransferUrl,
@@ -636,7 +637,7 @@ controller.getMyOrder = async function (req, res) {
   try {
     await model.order_detail
       .findAll({
-        attributes: ['id', 'user_id', 'produk_id', 'alamat', 'total', 'id_penjual'],
+        attributes: ['id', 'user_id', 'produk_id', 'alamat', 'total', 'keterangan', 'id_penjual'],
         include: [
           {
             model: model.produk,
@@ -669,7 +670,7 @@ controller.getMyOrder = async function (req, res) {
 
 controller.addOrderDetail = async function (req, res) {
   try {
-    const { user_id, id_penjual, produk_id, alamat, total } = req.body;
+    const { user_id, id_penjual, produk_id, alamat, keterangan, total } = req.body;
 
     if (!user_id || !id_penjual || !produk_id || !alamat || !total) {
       throw new Error('Semua data yang diperlukan harus disediakan');
@@ -679,6 +680,7 @@ controller.addOrderDetail = async function (req, res) {
       user_id: user_id,
       id_penjual: id_penjual,
       produk_id: produk_id,
+      keterangan: keterangan,
       alamat: alamat,
       total: total,
     });
@@ -693,12 +695,13 @@ controller.addOrderDetail = async function (req, res) {
 
 controller.addCart = async (req, res) => {
   try {
-    const { user_id, produk_id, id_penjual, jumlah, harga, sub_total, gambar } = req.body;
+    const { user_id, produk_id, id_penjual, jumlah, keterangan, harga, sub_total, gambar } = req.body;
     await model.cart.create({
       user_id: user_id,
       produk_id: produk_id,
       id_penjual: id_penjual,
       jumlah: jumlah,
+      keterangan: keterangan,
       harga: harga,
       sub_total: sub_total,
       gambar: gambar,

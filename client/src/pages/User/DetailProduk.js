@@ -14,6 +14,7 @@ const DetailProduk = () => {
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [keterangan, setKeterangan] = useState('');
 
   useEffect(() => {
     dispatch(getMe());
@@ -72,6 +73,7 @@ const DetailProduk = () => {
       produk_id: produk.id,
       id_penjual: produk.id_penjual,
       jumlah: quantity,
+      keterangan: keterangan,
       harga: produk.harga,
       sub_total: quantity * produk.harga,
       gambar: produk.gambar,
@@ -124,6 +126,12 @@ const DetailProduk = () => {
                       <MDBCardText style={{ color: '#2D2D2D', fontSize: '16px', opacity: '60%', paddingRight: '5px' }}>{produk.deskripsi}</MDBCardText>
                       <MDBCardTitle style={{ fontSize: '22px', fontWeight: 'bold' }}>Rp{produk.harga}</MDBCardTitle>
                       <hr className="my-4 me-4" />
+                      <div className="mb-3 me-4">
+                        <label htmlFor="keterangan" className="form-label">
+                          Keterangan
+                        </label>
+                        <input type="text" className="form-control" id="judul" value={keterangan} onChange={(e) => setKeterangan(e.target.value)} />
+                      </div>
                       <div className="input-group mb-3 me-4" style={{ paddingRight: '20px' }}>
                         <button className="btn btn-secondary" type="button" onClick={handleQuantity} style={{ backgroundColor: '#fff', border: '1px solid #ccc', color: 'black' }}>
                           -

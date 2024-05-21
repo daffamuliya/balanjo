@@ -25,6 +25,12 @@ const order_detail = sequelize.define(
       type: DataTypes.BIGINT,
       allowNull: false,
     },
+
+    keterangan: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+
     alamat: {
       type: DataTypes.STRING,
       allowNull: false,

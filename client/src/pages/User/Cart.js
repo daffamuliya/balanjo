@@ -75,7 +75,8 @@ const Cart = () => {
         user_id: userId,
         id_penjual: item.id_penjual,
         produk_id: item.produk_id,
-        alamat: 'Jalan Wakanda',
+        keterangan: item.keterangan,
+        alamat: user && user.alamat,
         total: item.sub_total,
       };
       console.log('Order Data:', orderData); // Logging tambahan
@@ -114,6 +115,7 @@ const Cart = () => {
                     </th>
                     <th scope="col">Price</th>
                     <th scope="col">Subtotal</th>
+                    <th scope="col">Keterangan</th>
                     <th scope="col"></th>
                   </tr>
                 </MDBTableHead>
@@ -133,11 +135,15 @@ const Cart = () => {
                         <td className="text-center">
                           <p className="fw-normal mb-1">{item.jumlah}</p>
                         </td>
+
                         <td>
                           <p className="fw-normal mb-1">Rp{item.harga}</p>
                         </td>
                         <td>
                           <p className="fw-normal mb-1">Rp{item.sub_total}</p>
+                        </td>
+                        <td className="text-center">
+                          <p className="fw-normal mb-1">{item.keterangan}</p>
                         </td>
                         <td>
                           <i className="bi bi-trash-fill" onClick={() => deleteProduk(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>

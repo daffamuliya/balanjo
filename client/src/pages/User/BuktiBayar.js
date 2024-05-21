@@ -12,8 +12,9 @@ export const BuktiBayar = () => {
   const { user } = useSelector((state) => state.auth);
   const id_pembeli = user ? user.id : null;
   const [totalBayar, setTotalBayar] = useState(0);
-  const [idPenjual, setIdPenjual] = useState(null); 
-  const [orderDetails, setOrderDetails] = useState([]); 
+  const [keterangan, setKeterangan] = useState('');
+  const [idPenjual, setIdPenjual] = useState(null);
+  const [orderDetails, setOrderDetails] = useState([]);
 
   useEffect(() => {
     fetchOrderDetail();
@@ -31,6 +32,7 @@ export const BuktiBayar = () => {
         setTotalBayar(totalBayar);
         if (orderDetails.length > 0) {
           setIdPenjual(orderDetails[0].id_penjual);
+          setKeterangan(orderDetails[0].keterangan); // Set the keterangan state
         }
       } else {
         console.error('Data detail pemesanan tidak ditemukan');
@@ -75,8 +77,9 @@ export const BuktiBayar = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('id_pembeli', id_pembeli);
-    formData.append('id_penjual', idPenjual); // Menggunakan idPenjual dari state
+    formData.append('id_penjual', idPenjual);
     formData.append('total', totalBayar);
+    formData.append('keterangan', keterangan);
     formData.append('payment', payment);
     formData.append('status', status);
     formData.append('bukti_transfer', bukti_transfer);
@@ -201,6 +204,12 @@ export const BuktiBayar = () => {
                           onChange={(e) => setTotal(e.target.value)}
                           disabled
                         />
+                      </div>
+                      <div className="mb-3">
+                        <label htmlFor="keterangan" className="form-label" style={{ fontWeight: 'bold' }}>
+                          Keterangan
+                        </label>
+                        <textarea className="form-control" id="keterangan" rows="3" value={keterangan} onChange={(e) => setKeterangan(e.target.value)} disabled />
                       </div>
                       <div className="mb-3">
                         <label htmlFor="exampleInputEmail1" className="form-label" style={{ fontWeight: 'bold' }}>
