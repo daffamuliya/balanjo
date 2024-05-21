@@ -36,11 +36,7 @@ export default function Landing() {
           <MDBCol md={12} xs={2} className="ms-auto mb-3">
             <img src="/img/banner-blog.png" className="hover-shadow" alt="" style={{ width: '100%' }} />
           </MDBCol>
-          <MDBCol md={10} xs={12} className="mb-3">
-            <form className="d-flex">
-              <MDBInput wrapperClass="mb-4 w-100" id="formControlLg" type="email" size="lg" style={{ fontSize: '16px' }} placeholder="Search for products..." className="focus-ring focus-ring-light " autoComplete="new-password" />
-            </form>
-          </MDBCol>
+          <MDBCol md={10} xs={12} className="mb-3"></MDBCol>
           <MDBCol md={2} xs={12} className="mb-3">
             {user ? (
               <button className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%' }} onClick={handleCreateArticle}>
