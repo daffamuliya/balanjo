@@ -1,8 +1,8 @@
 import SellerNavbar from '../../../components/SellerNavbar';
 import SidebarSeller from '../../../components/SidebarSeller';
 import Table from 'react-bootstrap/Table';
-import React, { useState, useEffect } from 'react';
-import { MDBCol, MDBBtn, MDBRow, MDBContainer, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody, MDBCard, MDBCardBody } from 'mdb-react-ui-kit';
+import React, { useState, useEffect, useRef } from 'react';
+import { MDBCol, MDBBtn, MDBRow, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody, MDBCard, MDBCardBody } from 'mdb-react-ui-kit';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,9 +27,10 @@ const ProductSeller = () => {
   }, [isError, navigate]);
 
   const [marketplace, setMarketplace] = useState([]);
-  const [produkDetail, setProdukDetail] = useState(null);
+  const [produkDetail, setProdukDetail] = useState('');
   const [scrollableModal, setScrollableModal] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
+  const fileInputRef = useRef(null);
 
   const [nama, setNama] = useState('');
   const [stok, setStok] = useState(0);
@@ -120,6 +121,10 @@ const ProductSeller = () => {
       }).then(() => {
         setScrollableModal(false);
         getMarketplace();
+        setFile(''); // Reset file state
+        if (fileInputRef.current) {
+          fileInputRef.current.value = ''; // Reset file input
+        }
       });
     } catch (error) {
       console.log(error);
@@ -151,7 +156,6 @@ const ProductSeller = () => {
                             <th>Nama Produk</th>
                             <th>Stok</th>
                             <th>Harga</th>
-                            <th>Terjual</th>
                             <th>Deskripsi</th>
                             <th>Aksi</th>
                           </tr>
@@ -164,7 +168,6 @@ const ProductSeller = () => {
                                 <td>{item.nama}</td>
                                 <td>{item.stok}</td>
                                 <td>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(item.harga)}</td>
-                                <td>35</td>
                                 <td>{item.deskripsi}</td>
                                 <td>
                                   <i className="bi bi-trash-fill" onClick={() => deleteProduk(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
@@ -213,9 +216,12 @@ const ProductSeller = () => {
                     </div>
                     <div className="mb-3">
                       <label htmlFor="file" className="form-label">
-                        Unggah Gambar
+                        Edit Gambar
                       </label>
-                      <input type="file" onChange={(e) => setFile(e.target.files[0])} className="form-control" id="file" />
+                      <div className="mb-3">
+                        <img src={produkDetail.gambar} className="hover-shadow" alt="" style={{ width: '50%' }} />
+                      </div>
+                      <input type="file" ref={fileInputRef} onChange={(e) => setFile(e.target.files[0])} className="form-control" id="file" />
                     </div>
                     <div className="mb-3">
                       <label htmlFor="deskripsi" className="form-label">
