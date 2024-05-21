@@ -50,7 +50,7 @@ export default class App extends Component {
             <Route path="/upload-blog" element={<UploadBlog />} />
             <Route path="/detail-blog/:slug" element={<DetailBlog />} />
             <Route path="/ecommerce" element={<ECommerce />} />
-            <Route path="/kategori-ecom" element={<KategoriEcom />} />
+            <Route path="/kategori-ecom/:id" element={<KategoriEcom />} />
             <Route path="/detail-produk/:id" element={<DetailProduk />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />

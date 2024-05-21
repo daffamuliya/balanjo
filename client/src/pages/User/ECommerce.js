@@ -24,42 +24,42 @@ export default class Landing extends Component {
             <MDBCol size="12 mt-5" style={{ backgroundColor: 'white', padding: '15px' }}>
               <div className="row justify-content-center">
                 <div className="col-auto align-items-center" style={{ margin: '10px' }}>
-                  <a href="/kategori-ecom" data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
+                  <a href={`kategori-ecom/${1}`} data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
                     <img src="/img/kategori (1).png" width="75" alt="User 1" />
                   </a>
                 </div>
                 <div className="col-auto align-items-center" style={{ margin: '10px' }}>
-                  <a href="/kategori-ecom" data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
+                  <a href={`kategori-ecom/${2}`} data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
                     <img src="/img/kategori (2).png" width="75" alt="User 2" />
                   </a>
                 </div>
                 <div className="col-auto align-items-center" style={{ margin: '10px' }}>
-                  <a href="/kategori-ecom" data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
+                  <a href={`kategori-ecom/${3}`} data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
                     <img src="/img/kategori (3).png" width="75" alt="User 3" />
                   </a>
                 </div>
                 <div className="col-auto align-items-center" style={{ margin: '10px' }}>
-                  <a href="/kategori-ecom" data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
+                  <a href={`kategori-ecom/${4}`} data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
                     <img src="/img/kategori (4).png" width="75" alt="User 4" />
                   </a>
                 </div>
                 <div className="col-auto align-items-center" style={{ margin: '10px' }}>
-                  <a href="/kategori-ecom" data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
+                  <a href={`kategori-ecom/${5}`} data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
                     <img src="/img/kategori (5).png" width="75" alt="User 5" />
                   </a>
                 </div>
                 <div className="col-auto align-items-center" style={{ margin: '10px' }}>
-                  <a href="/kategori-ecom" data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
+                  <a href={`kategori-ecom/${6}`} data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
                     <img src="/img/kategori (6).png" width="75" alt="User 6" />
                   </a>
                 </div>
                 <div className="col-auto align-items-center" style={{ margin: '10px' }}>
-                  <a href="/kategori-ecom" data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
+                  <a href={`kategori-ecom/${7}`} data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
                     <img src="/img/kategori (7).png" width="75" alt="User 7" />
                   </a>
                 </div>
                 <div className="col-auto align-items-center" style={{ margin: '10px' }}>
-                  <a href="/kategori-ecom" data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
+                  <a href={`kategori-ecom/${8}`} data-toggle="collapse" data-target=".forum-content" style={{ color: 'black', textDecoration: 'none', fontSize: '14px' }}>
                     <img src="/img/kategori (8).png" width="75" alt="User 8" />
                   </a>
                 </div>

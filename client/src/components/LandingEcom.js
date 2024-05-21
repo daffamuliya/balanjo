@@ -24,9 +24,9 @@ const LandingEcom = () => {
                 <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-center">
                   <MDBCardImage src={item.gambar} position="top" alt="..." />
                   <MDBCardBody>
-                    {/* <MDBCardText className="mb-3" style={{ color: '#8D8D8D' }}>
-                      {item.id_kategori}
-                    </MDBCardText> */}
+                    <MDBCardText className="mb-3" style={{ color: '#8D8D8D' }}>
+                      {item.kategori_produk.nama}
+                    </MDBCardText>
                     <MDBCardTitle style={{ fontSize: '20px', fontWeight: 'bold' }} className="text-center">
                       {item.nama}
                     </MDBCardTitle>

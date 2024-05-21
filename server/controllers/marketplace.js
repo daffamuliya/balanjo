@@ -152,6 +152,36 @@ controller.getAllProduk = async (req, res) => {
   }
 };
 
+controller.getProdukByKategori = async (req, res) => {
+  try {
+    const { id_kategori } = req.params;
+    const result = await model.produk.findAll({
+      where: { id_kategori },
+      attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok', 'created_at'],
+      include: [
+        {
+          model: model.kategori_produk,
+          attributes: ['nama'],
+        },
+      ],
+    });
+
+    if (result.length > 0) {
+      res.json({ items: result });
+    } else {
+      res.status(404).json({
+        message: 'data tidak ada',
+        data: [],
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error retrieving data',
+      error: error.message,
+    });
+  }
+};
+
 controller.getAllDashboardProduk = async (req, res) => {
   try {
     let result;
