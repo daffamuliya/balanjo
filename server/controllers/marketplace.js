@@ -126,23 +126,28 @@ controller.allCart = async (req, res) => {
 
 controller.getAllProduk = async (req, res) => {
   try {
-    await model.produk
-      .findAll({
-        attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok', 'created_at'],
-      })
-      .then((result) => {
-        if (result.length > 0) {
-          res.json({ items: result });
-        } else {
-          res.status(404).json({
-            message: 'data tidak ada',
-            data: [],
-          });
-        }
+    const result = await model.produk.findAll({
+      attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok', 'created_at'],
+      include: [
+        {
+          model: model.kategori_produk,
+          attributes: ['nama'],
+        },
+      ],
+    });
+
+    if (result.length > 0) {
+      res.json({ items: result });
+    } else {
+      res.status(404).json({
+        message: 'data tidak ada',
+        data: [],
       });
+    }
   } catch (error) {
-    res.status(404).json({
-      message: error,
+    res.status(500).json({
+      message: 'Error retrieving data',
+      error: error.message,
     });
   }
 };
