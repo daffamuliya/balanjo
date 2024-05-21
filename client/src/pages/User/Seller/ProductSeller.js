@@ -12,7 +12,7 @@ import { getMe } from '../../../features/authSlice';
 const ProductSeller = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError } = useSelector((state) => state.auth);
+  const { isError, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -32,8 +32,8 @@ const ProductSeller = () => {
 
   const getMarketplace = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/marketplace/dashboard');
-      setMarketplace(response.data.items);
+      const response = await axios.get('http://localhost:3000/marketplace/produksaya/dashboard');
+      setMarketplace(response.data.data);
     } catch (error) {
       console.error('Error fetching marketplace data:', error);
     }

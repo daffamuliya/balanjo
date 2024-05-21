@@ -182,28 +182,37 @@ controller.getProdukByKategori = async (req, res) => {
   }
 };
 
-controller.getAllDashboardProduk = async (req, res) => {
+controller.getDashboard = async (req, res) => {
   try {
-    let result;
-    if (req.role === 'admin') {
-      result = await model.produk.findAll({
-        attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok', 'created_at'],
-      });
-    } else {
-      result = await model.produk.findAll({
-        attributes: ['id', 'id_penjual', 'id_kategori', 'nama', 'gambar', 'deskripsi', 'rate', 'harga', 'stok', 'created_at'],
-        where: { id_penjual: req.userId },
+    const { role, userId } = req;
+
+    if (!userId) {
+      return res.status(400).json({
+        message: 'User ID tidak ditemukan',
       });
     }
 
+    const queryOptions = role === 'admin' ? {} : { where: { id_penjual: userId } };
+
+    const result = await model.produk.findAll(queryOptions);
+
     if (result.length > 0) {
-      res.status(200).json({ items: result });
+      res.status(200).json({
+        message: 'Berhasil mendapatkan produk',
+        data: result,
+      });
     } else {
-      res.status(404).json({ message: 'data tidak ada', data: [] });
+      res.status(404).json({
+        message: 'Data tidak ditemukan',
+        data: [],
+      });
     }
   } catch (error) {
     console.error('Error in getAllDashboardProduk:', error);
-    res.status(500).json({ message: 'Terjadi kesalahan dalam mengambil data produk' });
+    res.status(500).json({
+      message: 'Terjadi kesalahan dalam memproses permintaan',
+      error: error.message,
+    });
   }
 };
 

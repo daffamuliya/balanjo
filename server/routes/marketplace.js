@@ -35,7 +35,7 @@ const uploadBarang = multer({
 
 router.get('/', controller.marketplace.getAllProduk);
 router.get('/:id_kategori', controller.marketplace.getProdukByKategori);
-router.get('/dashboard', verifyUser, controller.marketplace.getAllDashboardProduk);
+router.get('/produksaya/dashboard', verifyUser, controller.marketplace.getDashboard);
 router.get('/:id/produk', controller.marketplace.getProdukById);
 router.get('/jualProduk', controller.marketplace.jualProduk);
 router.get('/:id/detailProduk', controller.marketplace.detailProduk);
