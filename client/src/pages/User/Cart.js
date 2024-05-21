@@ -25,10 +25,10 @@ const Cart = () => {
 
   async function fetchCartData() {
     try {
-      const response = await axios.get(`http://localhost:3000/marketplace/myCart`);
+      const response = await axios.get(`http://localhost:3000/marketplace/cart/myCart`);
       if (response.data.data) {
         setCartItems(response.data.data);
-        console.log('Fetched cart items:', response.data.data); // Logging tambahan
+        console.log('Fetched cart items:', response.data.data);
       } else {
         console.error('Data keranjang tidak ditemukan');
       }

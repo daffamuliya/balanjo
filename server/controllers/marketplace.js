@@ -493,34 +493,34 @@ controller.getAllCart = async function (req, res) {
 
 controller.getMyCart = async function (req, res) {
   try {
-    await model.cart
-      .findAll({
-        include: [
-          {
-            model: model.produk,
-            attributes: ['nama', 'deskripsi'],
-          },
-        ],
-        where: {
-          user_id: req.userId,
+    const result = await model.cart.findAll({
+      include: [
+        {
+          model: model.produk,
+          attributes: ['nama', 'deskripsi'],
         },
-      })
-      .then((result) => {
-        if (result) {
-          res.status(200).json({
-            message: 'mendapat cart',
-            data: result,
-          });
-        } else {
-          res.status(404).json({
-            message: 'data tidak ada',
-            data: [],
-          });
-        }
+      ],
+      where: {
+        user_id: req.userId,
+      },
+    });
+
+    if (result && result.length > 0) {
+      // Memastikan ada data
+      res.status(200).json({
+        message: 'mendapat cart',
+        data: result,
       });
+    } else {
+      res.status(404).json({
+        message: 'data tidak ada',
+        data: [],
+      });
+    }
   } catch (error) {
-    res.status(404).json({
-      message: error,
+    res.status(500).json({
+      message: 'Terjadi kesalahan pada server',
+      error: error.message,
     });
   }
 };

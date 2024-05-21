@@ -50,7 +50,7 @@ router.get('/riwayat', controller.marketplace.riwayat);
 router.post('/addProduk', controller.marketplace.addProduk);
 router.delete('/deleteProduk/:id', controller.marketplace.deleteProduk);
 router.get('/:user_id/getCart', controller.marketplace.getAllCart);
-router.get('/myCart', verifyUser, controller.marketplace.getMyCart);
+router.get('/cart/myCart', verifyUser, controller.marketplace.getMyCart);
 router.get('/transaksi/all', controller.marketplace.getAllTransaksi);
 router.get('/pesan/transaksi', verifyUser, controller.marketplace.getTransaksiByIdBeli);
 router.get('/order/transaksi', verifyUser, controller.marketplace.getTransaksiByIdJual);
