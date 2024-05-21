@@ -6,12 +6,12 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {     
-    "email" : "daffamuliya15@gmail.com",
+    "email" : "admin@gmail.com",
     "password" : "123"
 } 
 
 ###
-GET http://localhost:3000/marketplace/1
+GET http://localhost:3000/marketplace/transaksi/all
 
 ###
 GET http://localhost:3000/auth/me

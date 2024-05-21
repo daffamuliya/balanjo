@@ -29,7 +29,7 @@ const KelolaEcommerce = () => {
 
   const getTransaksi = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/marketplace/transaksi');
+      const response = await axios.get('http://localhost:3000/marketplace/transaksi/all');
       setTransaksi(response.data.data);
     } catch (error) {
       console.error('Error fetching blogs:', error);

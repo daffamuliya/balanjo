@@ -441,8 +441,6 @@ controller.addProduk = async (req, res) => {
   });
 };
 
-
-
 controller.deleteProduk = async (req, res) => {
   try {
     await model.produk.destroy({
