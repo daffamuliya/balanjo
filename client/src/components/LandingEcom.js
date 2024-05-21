@@ -1,9 +1,12 @@
-import { MDBContainer, MDBRow, MDBBtn, MDBCol, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBRow, MDBBtn, MDBCol, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBInput } from 'mdb-react-ui-kit';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const LandingEcom = () => {
   const [marketplace, setMarketplace] = useState([]);
+  const [search, setSearch] = useState('');
+
+  const filteredMarketplace = marketplace.filter((item) => item.nama.toLowerCase().includes(search.toLowerCase()) || item.kategori_produk.nama.toLowerCase().includes(search.toLowerCase()));
 
   useEffect(() => {
     getMarketplace();
@@ -18,8 +21,24 @@ const LandingEcom = () => {
     <section className="landingecommerce">
       <MDBContainer>
         <MDBRow className="pt-5 mb-5">
-          {Array.isArray(marketplace) &&
-            marketplace.map((item) => (
+          <MDBCol size="12">
+            <form className="d-flex">
+              <MDBInput
+                onChange={(e) => setSearch(e.target.value)}
+                wrapperClass="mb-4 w-100"
+                id="formControlLg"
+                type="email"
+                size="lg"
+                style={{ fontSize: '16px' }}
+                placeholder="Search for products..."
+                className="focus-ring focus-ring-light "
+                autoComplete="new-password"
+              />
+            </form>
+          </MDBCol>
+
+          {Array.isArray(filteredMarketplace) &&
+            filteredMarketplace.map((item) => (
               <MDBCol key={item.id} md={3} xs={12} className="mt-3">
                 <MDBCard style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '28px', border: 'none', maxWidth: '352px', Height: '444px' }} className="text-center">
                   <MDBCardImage src={item.gambar} position="top" alt="..." />
