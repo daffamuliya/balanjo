@@ -2,6 +2,7 @@ const model = require('../models/indexmodel');
 const { Op, QueryTypes } = require('sequelize');
 const controller = {};
 const path = require('path');
+const fs = require('fs');
 
 controller.jualProduk = async (req, res) => {
   const kategori = await model.kategori_produk.findAll({ attributes: ['id', 'nama'] });
@@ -336,6 +337,80 @@ controller.getProdukById = async (req, res) => {
   }
 };
 
+controller.updateProduk = async (req, res) => {
+  const { id } = req.params;
+  const { nama, stok, harga, deskripsi } = req.body;
+
+  try {
+    const produk = await model.produk.findByPk(id);
+    if (!produk) {
+      return res.status(404).json({ message: 'Produk tidak ditemukan' });
+    }
+
+    if (req.files && req.files.file) {
+      const file = req.files.file;
+      const fileSize = file.data.length;
+      const ext = path.extname(file.name);
+      const fileName = file.md5 + ext;
+      const url = `${req.protocol}://${req.get('host')}/images/${fileName}`;
+      const allowedType = ['.png', '.jpg', '.jpeg'];
+
+      // Verifikasi tipe file
+      if (!allowedType.includes(ext.toLowerCase())) {
+        return res.status(422).json({ message: 'Tipe gambar tidak valid' });
+      }
+
+      // Verifikasi ukuran file
+      if (fileSize > 5000000) {
+        return res.status(422).json({ message: 'Ukuran gambar harus kurang dari 5 MB' });
+      }
+
+      // Hapus file gambar lama jika ada
+      if (produk.gambar) {
+        const oldFilePath = path.join(__dirname, './public/images', produk.gambar);
+        if (fs.existsSync(oldFilePath)) {
+          fs.unlinkSync(oldFilePath);
+        }
+      }
+
+      // Simpan file gambar baru
+      file.mv(`./public/images/${fileName}`, async (err) => {
+        if (err) {
+          return res.status(500).json({ msg: err.message });
+        }
+
+        // Update data produk dengan gambar baru
+        produk.nama = nama;
+        produk.stok = stok;
+        produk.harga = harga;
+        produk.deskripsi = deskripsi;
+        produk.gambar = url;
+
+        // Simpan perubahan
+        await produk.save();
+
+        // Redirect setelah berhasil memperbarui produk
+        res.redirect('/produk');
+      });
+    } else {
+      // Update data produk tanpa mengganti gambar
+      produk.nama = nama;
+      produk.stok = stok;
+      produk.harga = harga;
+      produk.deskripsi = deskripsi;
+
+      // Simpan perubahan
+      await produk.save();
+
+      // Redirect setelah berhasil memperbarui produk
+      res.redirect('/produk');
+    }
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ msg: 'Server error' });
+  }
+};
+
 controller.addProduk = async (req, res) => {
   if (req.files === null) return res.status(400).json({ msg: 'No File Uploaded' });
   const id_penjual = req.body.id_penjual;
@@ -366,25 +441,7 @@ controller.addProduk = async (req, res) => {
   });
 };
 
-controller.updateProduk = async (req, res) => {
-  try {
-    const { id_penjual, id_kategori, konten, nama, gambar, deskripsi, rate, harga } = req.body;
-    await model.produk.update(
-      { id_penjual, id_kategori, nama, deskripsi, rate, harga },
-      {
-        where: {
-          id: req.params.id,
-        },
-      }
-    );
-    res.status(200).json({
-      message: 'berhasil edit data',
-    });
-  } catch (error) {
-    res.json({ message: error.message });
-    // res.redirect("/dosen/add-course");
-  }
-};
+
 
 controller.deleteProduk = async (req, res) => {
   try {

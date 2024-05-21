@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MDBBtn, MDBRow, MDBContainer, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody } from 'mdb-react-ui-kit';
+import { MDBBtn, MDBRow, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody } from 'mdb-react-ui-kit';
 import UserNavbar from '../../../components/UserNavbar';
 import Card from 'react-bootstrap/Card';
 import SidebarAkun from '../../../components/SidebarAkun';

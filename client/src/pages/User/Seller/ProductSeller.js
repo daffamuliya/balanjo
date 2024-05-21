@@ -8,11 +8,13 @@ import swal from 'sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '../../../features/authSlice';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const ProductSeller = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError, user } = useSelector((state) => state.auth);
+  const { isError } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -25,6 +27,15 @@ const ProductSeller = () => {
   }, [isError, navigate]);
 
   const [marketplace, setMarketplace] = useState([]);
+  const [produkDetail, setProdukDetail] = useState(null);
+  const [scrollableModal, setScrollableModal] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
+
+  const [nama, setNama] = useState('');
+  const [stok, setStok] = useState(0);
+  const [harga, setHarga] = useState(0);
+  const [deskripsi, setDeskripsi] = useState('');
+  const [file, setFile] = useState('');
 
   useEffect(() => {
     getMarketplace();
@@ -36,6 +47,30 @@ const ProductSeller = () => {
       setMarketplace(response.data.data);
     } catch (error) {
       console.error('Error fetching marketplace data:', error);
+    }
+  };
+  const loadProdukDetail = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/marketplace/${id}/produk`);
+
+      if (!response.data || !response.data.items || response.data.items.length === 0) {
+        throw new Error('Data produk tidak tersedia');
+      }
+
+      const produkData = response.data.items;
+      setProdukDetail(produkData);
+      console.log(produkData);
+
+      setNama(produkData.nama);
+      setStok(produkData.stok);
+      setHarga(produkData.harga);
+      setDeskripsi(produkData.deskripsi);
+
+      setScrollableModal(true);
+      setIsEditMode(true);
+    } catch (error) {
+      console.error('Terjadi kesalahan saat memuat detail produk:', error);
+      swal('Error', 'Gagal memuat detail produk. Silakan coba lagi nanti.', 'error');
     }
   };
 
@@ -63,14 +98,29 @@ const ProductSeller = () => {
     }
   };
 
-  const [ProdukDetail, setProdukDetail] = useState(null);
-  const [scrollableModal, setScrollableModal] = useState(false);
-  const loadProdukDetail = async (id) => {
+  const updateProduk = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('nama', nama);
+    formData.append('stok', stok);
+    formData.append('harga', harga);
+    formData.append('deskripsi', deskripsi);
+    formData.append('file', file);
+
     try {
-      const response = await axios.get(`http://localhost:3000/marketplace/${id}/produk`);
-      const ProdukDetailData = Array.isArray(response.data.items) ? response.data.items : [response.data.items];
-      setProdukDetail(ProdukDetailData);
-      setScrollableModal(true);
+      await axios.put(`http://localhost:3000/marketplace/updateProduk/${produkDetail.id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      swal({
+        icon: 'success',
+        title: 'Success',
+        text: 'Produk berhasil di update!',
+      }).then(() => {
+        setScrollableModal(false);
+        getMarketplace();
+      });
     } catch (error) {
       console.log(error);
     }
@@ -93,8 +143,7 @@ const ProductSeller = () => {
               <MDBCol md={12} xs={2} className="ms-auto">
                 <MDBCard>
                   <MDBCardBody>
-                    {' '}
-                    <div class="row">
+                    <div className="row">
                       <Table responsive>
                         <thead>
                           <tr>
@@ -114,13 +163,12 @@ const ProductSeller = () => {
                                 <td>{item.id}</td>
                                 <td>{item.nama}</td>
                                 <td>{item.stok}</td>
-                                <td> {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(item.harga)}</td>
+                                <td>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(item.harga)}</td>
                                 <td>35</td>
                                 <td>{item.deskripsi}</td>
                                 <td>
-                                  <i class="bi bi-trash-fill" onClick={() => deleteProduk(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
-                                  <i class="bi bi-pencil-square" style={{ color: '#A08336', paddingRight: '10px' }}></i>
-                                  <i class="bi bi-eye-fill" onClick={() => loadProdukDetail(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
+                                  <i className="bi bi-trash-fill" onClick={() => deleteProduk(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
+                                  <i className="bi bi-pencil-square" onClick={() => loadProdukDetail(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
                                 </td>
                               </tr>
                             ))}
@@ -138,41 +186,47 @@ const ProductSeller = () => {
         <MDBModalDialog centered scrollable>
           <MDBModalContent>
             <MDBModalHeader>
-              <MDBModalTitle>Produk Details</MDBModalTitle>
+              <MDBModalTitle>Edit Produk</MDBModalTitle>
               <MDBBtn className="btn-close" color="none" onClick={() => setScrollableModal(!scrollableModal)}></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
               <MDBRow className="justify-content-center">
                 <section className="isiblog">
-                  {Array.isArray(ProdukDetail) &&
-                    ProdukDetail.map((detail) => (
-                      <MDBContainer key={detail.id}>
-                        <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5 text-center">
-                          <div className="col-lg-12 ">
-                            <img src={detail.gambar} className="hover-shadow" alt="" style={{ width: '100%' }} />
-                          </div>
-                        </div>
-                        <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center mt-5 ">
-                          <div className="col-lg-12 ">
-                            <h5>
-                              Nama Produk : <strong>{detail.nama}</strong>
-                            </h5>
-                            <h5>
-                              Jumlah Stok : <strong>{detail.stok}</strong>
-                            </h5>
-                            <h5>
-                              Harga Produk : <strong>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(detail.harga)}</strong>
-                            </h5>
-                          </div>
-                        </div>
-                        <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content ">
-                          <div className="col-lg-12 ">
-                            <p style={{ color: 'black', marginTop: '25px', textAlign: 'justify', fontSize: '20px' }}>Deskripsi Produk : </p>
-                            <p style={{ color: 'black', marginTop: '25px', textAlign: 'justify', fontSize: '20px' }} dangerouslySetInnerHTML={{ __html: detail.deskripsi }}></p>
-                          </div>
-                        </div>
-                      </MDBContainer>
-                    ))}
+                  <form onSubmit={updateProduk}>
+                    <div className="mb-3">
+                      <label htmlFor="nama" className="form-label">
+                        Nama Produk
+                      </label>
+                      <input type="text" value={nama} onChange={(e) => setNama(e.target.value)} className="form-control" id="nama" />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="stok" className="form-label">
+                        Stok
+                      </label>
+                      <input type="number" value={stok} onChange={(e) => setStok(e.target.value)} className="form-control" id="stok" />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="harga" className="form-label">
+                        Harga
+                      </label>
+                      <input type="number" value={harga} onChange={(e) => setHarga(e.target.value)} className="form-control" id="harga" />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="file" className="form-label">
+                        Unggah Gambar
+                      </label>
+                      <input type="file" onChange={(e) => setFile(e.target.files[0])} className="form-control" id="file" />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="deskripsi" className="form-label">
+                        Deskripsi
+                      </label>
+                      <CKEditor editor={ClassicEditor} data={deskripsi} onChange={(event, editor) => setDeskripsi(editor.getData())} />
+                    </div>
+                    <button type="submit" className="btn btn-primary">
+                      Simpan Perubahan
+                    </button>
+                  </form>
                 </section>
               </MDBRow>
             </MDBModalBody>
