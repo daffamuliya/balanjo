@@ -22,7 +22,7 @@ export const BuktiBayar = () => {
 
   const fetchOrderDetail = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/marketplace/getMyOrder');
+      const response = await axios.get('http://localhost:3000/marketplace/order/getMyOrder');
       console.log(response);
       if (response.data.data) {
         const orderDetails = response.data.data;
