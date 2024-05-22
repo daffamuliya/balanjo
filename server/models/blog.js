@@ -1,8 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/conn');
 const users = require('./users');
-const komentar_blog = require('./komentar_blog');
-const kategori_blog = require('./kategori_blog');
 
 const blog = sequelize.define(
   'blog',
@@ -66,7 +64,9 @@ const blog = sequelize.define(
   }
 );
 
+module.exports = blog;
+
+// Hubungkan relasi di sini untuk menghindari circular dependencies
+const komentar_blog = require('./komentar_blog');
 blog.hasMany(komentar_blog, { foreignKey: 'blog_id' });
 komentar_blog.belongsTo(blog);
-
-module.exports = blog;

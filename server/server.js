@@ -76,7 +76,9 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
-app.use('/', (req, res) => {});
+app.use('/', (req, res) => {
+  res.render('eror404');
+});
 
 // store.sync();
 
