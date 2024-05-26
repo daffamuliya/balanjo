@@ -228,7 +228,7 @@ const LandingForum = () => {
             <form onSubmit={saveForum}>
               <MDBModalBody>
                 <div className="form-floating">
-                  <textarea value={konten} onChange={(e) => setKonten(e.target.value)} className="form-control" placeholder="Tinggalkan komentar di sini" id="floatingTextarea2" style={{ height: '100px' }}></textarea>
+                  <textarea value={konten} onChange={(e) => setKonten(e.target.value)} className="form-control" placeholder="Tinggalkan komentar di sini" id="floatingTextarea2" style={{ height: '100px' }} required></textarea>
                   <label htmlFor="floatingTextarea2">Tanyakan sesuatu pada rangers</label>
                 </div>
               </MDBModalBody>

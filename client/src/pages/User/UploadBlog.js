@@ -63,6 +63,11 @@ const UploadBlog = () => {
         navigate('/blog');
       });
     } catch (error) {
+      swal({
+        icon: 'error', // Mengubah ikon menjadi 'error' karena ini adalah blok catch
+        title: 'Error',
+        text: error.response ? error.response.data.message : 'Something went wrong', // Menampilkan pesan kesalahan yang lebih informatif
+      });
       console.log(error);
     }
   };
@@ -96,7 +101,7 @@ const UploadBlog = () => {
                   <label htmlFor="judul" className="form-label">
                     Judul
                   </label>
-                  <input type="text" value={judul} onChange={(e) => setJudul(e.target.value)} className="form-control" id="judul" />
+                  <input type="text" value={judul} onChange={(e) => setJudul(e.target.value)} className="form-control" id="judul" required />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="slug" className="form-label">
