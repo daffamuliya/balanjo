@@ -84,6 +84,8 @@ const LandingForum = () => {
   };
 
   const [forum, setForum] = useState([]);
+  const [forums, set3Forum] = useState([]);
+
   const [basicModal, setBasicModal] = useState(false);
   const toggleOpen = () => setBasicModal(!basicModal);
   const handleCloseModal = () => {
@@ -97,11 +99,22 @@ const LandingForum = () => {
 
   useEffect(() => {
     getForum();
+    get3Forum();
   }, []);
 
   const getForum = async () => {
     const response = await axios.get('http://localhost:3000/forum');
     setForum(response.data.items);
+  };
+
+  const get3Forum = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/forum');
+      const latestThreeItems = response.data.items.slice(0, 3);
+      set3Forum(latestThreeItems);
+    } catch (error) {
+      console.error('Error fetching forum data:', error);
+    }
   };
 
   const loadForumDetail = async (id) => {
@@ -149,48 +162,20 @@ const LandingForum = () => {
                 Mulai Diskusi Baru
               </a>
             )}
+
             <p className="text-white-75 d-none d-md-block" style={{ color: '#6A6D70', marginBottom: '1rem' }}>
-              Kategori{' '}
-            </p>
-            <MDBListGroup style={{ minWidth: '22rem', paddingBottom: '35px' }} className="d-none d-md-block">
-              <MDBListGroupItem noBorders style={{ backgroundColor: 'transparent' }}>
-                - Campus Life
-              </MDBListGroupItem>
-              <MDBListGroupItem noBorders style={{ backgroundColor: 'transparent' }}>
-                - Tech
-              </MDBListGroupItem>
-              <MDBListGroupItem noBorders style={{ backgroundColor: 'transparent' }}>
-                - Kesehatan
-              </MDBListGroupItem>
-              <MDBListGroupItem noBorders style={{ backgroundColor: 'transparent' }}>
-                - Informasi
-              </MDBListGroupItem>
-              <MDBListGroupItem noBorders style={{ backgroundColor: 'transparent' }}>
-                - Bisnis
-              </MDBListGroupItem>
-            </MDBListGroup>
-            <p className="text-white-75 d-none d-md-block" style={{ color: '#6A6D70', marginBottom: '1rem' }}>
-              Trending{' '}
+              Terbaru{' '}
             </p>
             <MDBListGroup style={{ minWidth: '22rem', backgroundColor: 'transparent' }} className="d-none d-md-block">
-              <MDBListGroupItem className="d-flex justify-content-between align-items-start" noBorders style={{ backgroundColor: 'transparent' }}>
-                <div className="me-auto">
-                  <div className="fw-bold">Info tempat nongkrong di Unand dong</div>14 balasan
-                  <hr />
-                </div>
-              </MDBListGroupItem>
-              <MDBListGroupItem className="d-flex justify-content-between align-items-start" noBorders style={{ backgroundColor: 'transparent' }}>
-                <div className="me-auto">
-                  <div className="fw-bold">Guyss, ada info jadwal wisuda ga?</div>12 balasan
-                  <hr />
-                </div>
-              </MDBListGroupItem>
-              <MDBListGroupItem className="d-flex justify-content-between align-items-start" noBorders style={{ backgroundColor: 'transparent' }}>
-                <div className="me-auto">
-                  <div className="fw-bold">Rekomen beli hadiah buat sempro</div>10 balasan
-                  <hr />
-                </div>
-              </MDBListGroupItem>
+              {Array.isArray(forums) &&
+                forums.map((item) => (
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-start" noBorders style={{ backgroundColor: 'transparent' }}>
+                    <div className="me-auto">
+                      <div className="fw-bold">{item.konten}</div>by {item.user}
+                      <hr />
+                    </div>
+                  </MDBListGroupItem>
+                ))}
             </MDBListGroup>
           </MDBCol>
           <MDBCol md={8} xs={12}>
