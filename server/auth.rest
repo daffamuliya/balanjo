@@ -35,3 +35,13 @@ Content-Type: application/json
     "newPassword" : "12",
     "confNewPassword" : "12"
 } 
+
+###
+PUT http://localhost:3000/auth/updateProfile
+Content-Type: application/json
+
+{     
+    "no_telp" : "123",
+    "alamat" : "seberang"
+    
+} 

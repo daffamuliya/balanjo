@@ -5,6 +5,7 @@ const argon2 = require('argon2');
 const { json } = require('body-parser');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const bodyParser = require('body-parser');
 
 function generateAccessToken(username) {
   return jwt.sign(username, process.env.TOKEN, { expiresIn: '1d' });
@@ -129,6 +130,37 @@ controller.updatePassword = async function (req, res) {
     res.json({ msg: 'Password berhasil diperbarui' });
   } catch (error) {
     // Tangani kesalahan
+    console.log(error);
+    res.status(500).json({ msg: 'Server Error' });
+  }
+};
+
+controller.updateProfile = async function (req, res) {
+  const { no_telp, alamat } = req.body;
+  console.log(req.body); 
+
+  try {
+    const loggedInUser = await model.findOne({
+      where: {
+        uuid: req.session.userId,
+      },
+    });
+
+    if (!loggedInUser) {
+      return res.status(404).json({ msg: 'Pengguna tidak ditemukan' });
+    }
+
+    await model.update(
+      { no_telp: no_telp, alamat: alamat },
+      {
+        where: {
+          uuid: req.session.userId,
+        },
+      }
+    );
+
+    res.json({ msg: 'Informasi kontak berhasil diperbarui' });
+  } catch (error) {
     console.log(error);
     res.status(500).json({ msg: 'Server Error' });
   }

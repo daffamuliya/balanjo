@@ -20,6 +20,8 @@ const AkunDetails = () => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confNewPassword, setConfNewPassword] = useState('');
+  const [noTelp, setNoTelp] = useState('');
+  const [alamat, setAlamat] = useState('');
 
   useEffect(() => {
     dispatch(getMe());
@@ -74,6 +76,37 @@ const AkunDetails = () => {
         icon: 'error',
         title: 'Error',
         text: 'Gagal mengubah kata sandi. Silakan coba lagi.',
+      });
+    }
+  };
+
+  const handleSave = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put('http://localhost:3000/auth/updateProfile', {
+        no_telp: noTelp,
+        alamat: alamat,
+      });
+
+      if (response.status === 200) {
+        swal({
+          icon: 'success',
+          title: 'Success',
+          text: response.data.msg,
+        });
+        setShowModal(false);
+      } else {
+        swal({
+          icon: 'error',
+          title: 'Error',
+          text: response.data.msg,
+        });
+      }
+    } catch (error) {
+      swal({
+        icon: 'error',
+        title: 'Error',
+        text: 'Gagal memperbarui informasi kontak. Silakan coba lagi.',
       });
     }
   };
@@ -157,7 +190,7 @@ const AkunDetails = () => {
           <Modal.Title>Edit Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form>
+          <form onSubmit={handleSave}>
             <div className="mb-3">
               <label className="form-label">FULL NAME </label>
               <input type="text" className="form-control" defaultValue={user && user.name} disabled />
@@ -172,11 +205,11 @@ const AkunDetails = () => {
             </div>
             <div className="mb-3">
               <label className="form-label">HANDPHONE </label>
-              <input type="text" className="form-control" defaultValue={user && user.no_telp} />
+              <input type="text" className="form-control" value={noTelp} onChange={(e) => setNoTelp(e.target.value)} />
             </div>
             <div className="mb-3">
               <label className="form-label">ALAMAT </label>
-              <input type="text" className="form-control" defaultValue={user && user.alamat} />
+              <input type="text" className="form-control" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
             </div>
           </form>
         </Modal.Body>
@@ -184,7 +217,7 @@ const AkunDetails = () => {
           <Button variant="secondary" onClick={handleCloseModal}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSaveChanges} style={{ backgroundColor: '#A08336', border: 'none' }}>
+          <Button variant="primary" onClick={handleSave} style={{ backgroundColor: '#A08336', border: 'none' }}>
             Save Changes
           </Button>
         </Modal.Footer>
