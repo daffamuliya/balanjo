@@ -76,14 +76,6 @@ controller.getBlogBySlug = async (req, res) => {
   try {
     await model.blog
       .findOne({
-        include: [
-          {
-            model: model.komentar_blog,
-            attributes: ['id', 'blog_id', 'user_id', 'user', 'komentar', 'created_at'],
-            required: false,
-            order: [['id', 'ASC']],
-          },
-        ],
         where: {
           slug: req.params.slug,
         },

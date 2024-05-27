@@ -15,6 +15,7 @@ const DetailBlog = () => {
         const savedBlog = localStorage.getItem('savedBlog');
         if (savedBlog) {
           fetchedBlog = JSON.parse(savedBlog);
+          console.log(fetchedBlog);
         } else {
           const response = await axios.get(`http://localhost:3000/blog/baca/${slug}`);
           fetchedBlog = response.data.items;
