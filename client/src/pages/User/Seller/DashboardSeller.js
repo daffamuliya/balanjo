@@ -105,6 +105,7 @@ const DashboardSeller = () => {
                             <th>Customer</th>
                             <th>Total</th>
                             <th>Payment</th>
+                            <th>Keterangan</th>
                             <th>Status</th>
                           </tr>
                         </thead>
@@ -118,6 +119,7 @@ const DashboardSeller = () => {
                                 <td>{item.user.name}</td>
                                 <td>Rp {item.total}</td>
                                 <td>{item.payment}</td>
+                                <td>{item.keterangan}</td>
                                 <td>{item.status}</td>
                               </tr>
                             ))}
