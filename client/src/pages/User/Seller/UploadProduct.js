@@ -87,7 +87,7 @@ const UploadProduk = () => {
         <SidebarSeller />
         <div className="container">
           <MDBRow className="mt-5">
-            <h5 style={{ color: '#A08336' }}>Pesanan</h5>
+            <h5 style={{ color: '#A08336' }}>Tambah Produk</h5>
             <MDBRow className="mt-3 justify-content-center">
               <MDBCol md={12} xs={2} className="ms-auto">
                 <Card>
