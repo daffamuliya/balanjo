@@ -15,9 +15,33 @@ const DashboardSeller = () => {
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
 
+  const [omzet, setOmzet] = useState(0);
+  const [totalOrder, setTotalOrder] = useState(0);
+
   useEffect(() => {
     dispatch(getMe());
+    getOmzet();
+    getTotalOrder();
   }, [dispatch]);
+
+  const getOmzet = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/marketplace/omzet/transaksi');
+      const omzetData = response.data.omzet;
+      setOmzet(omzetData);
+    } catch (error) {
+      console.error('Error fetching omzet:', error);
+    }
+  };
+
+  const getTotalOrder = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/marketplace/order/total');
+      setTotalOrder(response.data.totalOrder);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   useEffect(() => {
     if (isError) {
@@ -50,7 +74,7 @@ const DashboardSeller = () => {
                 <Card>
                   <CardBody>
                     <h5>Total Revenue</h5>
-                    <h3>Rp3.340.000</h3>
+                    <h3>Rp{omzet.toLocaleString()}</h3>
                   </CardBody>
                 </Card>
               </MDBCol>
@@ -58,7 +82,7 @@ const DashboardSeller = () => {
                 <Card>
                   <CardBody>
                     <h5>Total Order</h5>
-                    <h3>92</h3>
+                    <h3>{totalOrder}</h3>
                   </CardBody>
                 </Card>
               </MDBCol>

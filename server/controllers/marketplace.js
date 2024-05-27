@@ -590,6 +590,39 @@ controller.getTransaksiByIdJual = async function (req, res) {
   }
 };
 
+
+controller.getTotalOrder = async (req, res) => {
+  try {
+    await model.transaksi
+      .count({
+        where: {
+          id_penjual: req.userId,
+        },
+      })
+      .then((count) => {
+        res.json({ totalOrder: count });
+      });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+controller.getOmzetPenjualan = async function (req, res) {
+  try {
+    // Hitung total omzet penjualan
+    const omzet = await model.transaksi.sum('total', {
+      where: {
+        id_penjual: req.userId,
+      },
+    });
+
+    res.status(200).json({ msg: 'Omzet penjualan berhasil dihitung', omzet: omzet || 0 });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ msg: 'Terjadi kesalahan dalam memproses permintaan', error: error.message });
+  }
+};
+
 controller.getTransaksiByIdBeli = async function (req, res) {
   try {
     const result = await model.transaksi.findAll({

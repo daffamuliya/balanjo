@@ -54,6 +54,8 @@ router.get('/cart/myCart', verifyUser, controller.marketplace.getMyCart);
 router.get('/transaksi/all', controller.marketplace.getAllTransaksi);
 router.get('/pesan/transaksi', verifyUser, controller.marketplace.getTransaksiByIdBeli);
 router.get('/order/transaksi', verifyUser, controller.marketplace.getTransaksiByIdJual);
+router.get('/omzet/transaksi', verifyUser, controller.marketplace.getOmzetPenjualan);
+router.get('/order/total', verifyUser, controller.marketplace.getTotalOrder);
 router.get('/transaksi/:id', controller.marketplace.getTransaksiById);
 router.put('/transaksi/:id', controller.marketplace.updateTransaksi);
 router.get('/:user_id/getOrderDetail', controller.marketplace.getOrderDetail);
