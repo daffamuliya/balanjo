@@ -590,7 +590,6 @@ controller.getTransaksiByIdJual = async function (req, res) {
   }
 };
 
-
 controller.getTotalOrder = async (req, res) => {
   try {
     await model.transaksi
@@ -822,19 +821,45 @@ controller.addOrderDetail = async function (req, res) {
 controller.addCart = async (req, res) => {
   try {
     const { user_id, produk_id, id_penjual, jumlah, keterangan, harga, sub_total, gambar } = req.body;
-    await model.cart.create({
-      user_id: user_id,
-      produk_id: produk_id,
-      id_penjual: id_penjual,
-      jumlah: jumlah,
-      keterangan: keterangan,
-      harga: harga,
-      sub_total: sub_total,
-      gambar: gambar,
+
+    // Cek apakah produk sudah ada di keranjang
+    const existingCartItem = await model.cart.findOne({
+      where: {
+        user_id: user_id,
+        produk_id: produk_id,
+      },
     });
-    res.status(200).json({
-      message: 'berhasil menambah cart',
-    });
+
+    if (existingCartItem) {
+      // Jika produk sudah ada, tambahkan jumlahnya
+      const updatedJumlah = existingCartItem.jumlah + jumlah;
+      const updatedSubTotal = updatedJumlah * harga; // Menghitung subtotal baru
+
+      await existingCartItem.update({
+        jumlah: updatedJumlah,
+        sub_total: updatedSubTotal,
+      });
+
+      res.status(200).json({
+        message: 'Jumlah produk di keranjang berhasil diperbarui',
+      });
+    } else {
+      // Jika produk belum ada, tambahkan sebagai produk baru di keranjang
+      await model.cart.create({
+        user_id: user_id,
+        produk_id: produk_id,
+        id_penjual: id_penjual,
+        jumlah: jumlah,
+        keterangan: keterangan,
+        harga: harga,
+        sub_total: sub_total,
+        gambar: gambar,
+      });
+
+      res.status(200).json({
+        message: 'Berhasil menambah produk ke keranjang',
+      });
+    }
   } catch (error) {
     res.json({ message: error.message });
   }
