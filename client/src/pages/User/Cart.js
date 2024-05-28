@@ -77,9 +77,10 @@ const Cart = () => {
         produk_id: item.produk_id,
         keterangan: item.keterangan,
         alamat: user && user.alamat,
+        telp_pembeli: user && user.no_telp,
         total: item.sub_total,
       };
-      console.log('Order Data:', orderData); // Logging tambahan
+      console.log('Order Data:', orderData);
 
       try {
         const response = await axios.post(`http://localhost:3000/marketplace/addOrderDetail`, orderData);

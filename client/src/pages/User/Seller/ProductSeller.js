@@ -227,7 +227,7 @@ const ProductSeller = () => {
                       <label htmlFor="deskripsi" className="form-label">
                         Deskripsi
                       </label>
-                      <CKEditor editor={ClassicEditor} data={deskripsi} onChange={(event, editor) => setDeskripsi(editor.getData())} />
+                      <input type="text" value={deskripsi} onChange={(e) => setDeskripsi(e.target.value)} className="form-control" id="deskripsi" />
                     </div>
                     <button type="submit" className="btn btn-primary">
                       Simpan Perubahan

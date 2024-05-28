@@ -124,8 +124,8 @@ const PesananSeller = () => {
                                 <td>Rp {item.total}</td>
                                 <td>{item.payment}</td>
                                 <td>{item.keterangan}</td>
-                                <td>{item.user.no_telp}</td>
-                                <td>{item.user.alamat}</td>
+                                <td>{item.telp_pembeli}</td>
+                                <td>{item.alamat_pembeli}</td>
                                 <td>{item.status}</td>
                                 <td>
                                   <i class="bi bi-pencil-square" onClick={() => loadTransaksiDetail(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>

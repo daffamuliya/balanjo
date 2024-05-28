@@ -80,7 +80,7 @@ controller.transfer = async (req, res) => {
     }
 
     const allowedTypes = ['.png', '.jpg', '.jpeg'];
-    const { id_pembeli, id_penjual, total, keterangan, produk, payment, status } = req.body;
+    const { id_pembeli, id_penjual, total, keterangan, produk, payment, status, alamat_pembeli, telp_pembeli } = req.body;
     const { bukti_transfer } = req.files;
 
     console.log('Memvalidasi jenis file...');
@@ -109,6 +109,8 @@ controller.transfer = async (req, res) => {
       produk,
       payment,
       status,
+      alamat_pembeli,
+      telp_pembeli,
       bukti_transfer: buktiTransferUrl,
     });
 
@@ -796,7 +798,7 @@ controller.getMyOrder = async function (req, res) {
 
 controller.addOrderDetail = async function (req, res) {
   try {
-    const { user_id, id_penjual, produk_id, alamat, keterangan, total } = req.body;
+    const { user_id, id_penjual, produk_id, alamat, keterangan, telp_pembeli, total } = req.body;
 
     if (!user_id || !id_penjual || !produk_id || !alamat || !total) {
       throw new Error('Semua data yang diperlukan harus disediakan');
@@ -808,6 +810,7 @@ controller.addOrderDetail = async function (req, res) {
       produk_id: produk_id,
       keterangan: keterangan,
       alamat: alamat,
+      telp_pembeli: telp_pembeli,
       total: total,
     });
 

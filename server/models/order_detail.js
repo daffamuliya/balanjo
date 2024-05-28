@@ -35,6 +35,11 @@ const order_detail = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+
+    telp_pembeli: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     total: {
       type: DataTypes.BIGINT,
       allowNull: false,

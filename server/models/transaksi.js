@@ -47,6 +47,14 @@ const transaksi = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    alamat_pembeli: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    telp_pembeli: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     bukti_transfer: {
       type: DataTypes.STRING,
       allowNull: false,

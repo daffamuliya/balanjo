@@ -11,6 +11,8 @@ import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCard, MDBCardText, MDBCar
 export const BuktiBayar = () => {
   const { user } = useSelector((state) => state.auth);
   const id_pembeli = user ? user.id : null;
+  const alamat_pembeli = user ? user.alamat : null;
+  const telp_pembeli = user ? user.no_telp : null;
   const [totalBayar, setTotalBayar] = useState(0);
   const [keterangan, setKeterangan] = useState('');
   const [nama_produk, setProduk] = useState('');
@@ -85,6 +87,8 @@ export const BuktiBayar = () => {
     formData.append('produk', nama_produk);
     formData.append('payment', payment);
     formData.append('status', status);
+    formData.append('alamat_pembeli', alamat_pembeli);
+    formData.append('telp_pembeli', telp_pembeli);
     formData.append('bukti_transfer', bukti_transfer);
     console.log(nama_produk);
     try {
