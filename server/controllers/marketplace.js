@@ -806,19 +806,45 @@ controller.addOrderDetail = async function (req, res) {
       throw new Error('Semua data yang diperlukan harus disediakan');
     }
 
-    await model.order_detail.create({
-      user_id: user_id,
-      id_penjual: id_penjual,
-      produk_id: produk_id,
-      keterangan: keterangan,
-      alamat: alamat,
-      telp_pembeli: telp_pembeli,
-      total: total,
+    // Cek apakah sudah ada order detail dengan kombinasi user_id, id_penjual, dan produk_id
+    const existingOrderDetail = await model.order_detail.findOne({
+      where: {
+        user_id: user_id,
+        id_penjual: id_penjual,
+        produk_id: produk_id,
+      },
     });
 
-    res.status(200).json({
-      message: 'Berhasil menambahkan data ke order detail',
-    });
+    if (existingOrderDetail) {
+      // Jika ada, update totalnya
+      const updatedTotal = existingOrderDetail.total + total;
+
+      await existingOrderDetail.update({
+        total: updatedTotal,
+        keterangan: keterangan, // optional, bisa disesuaikan
+        alamat: alamat, // optional, bisa disesuaikan
+        telp_pembeli: telp_pembeli, // optional, bisa disesuaikan
+      });
+
+      res.status(200).json({
+        message: 'Detail pesanan berhasil diperbarui',
+      });
+    } else {
+      // Jika tidak ada, buat entry baru
+      await model.order_detail.create({
+        user_id: user_id,
+        id_penjual: id_penjual,
+        produk_id: produk_id,
+        keterangan: keterangan,
+        alamat: alamat,
+        telp_pembeli: telp_pembeli,
+        total: total,
+      });
+
+      res.status(200).json({
+        message: 'Berhasil menambahkan data ke order detail',
+      });
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
