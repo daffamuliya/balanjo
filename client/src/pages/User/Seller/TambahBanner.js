@@ -122,7 +122,7 @@ const TambahBanner = () => {
                     </div>
                     <div className="mb-3">
                       <label htmlFor="gambar" className="form-label">
-                        Upload Gambar Banner (Ukuran 15mmx15mm)
+                        Upload Gambar Banner (Ukuran 615px*234px)
                       </label>
                       <input type="file" onChange={loadImage} className="form-control" id="gambar" name="gambar" required />
                     </div>
