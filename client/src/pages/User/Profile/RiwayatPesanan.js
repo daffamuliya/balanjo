@@ -66,7 +66,7 @@ const RiwayatPesanan = () => {
                             <td>{item.produk}</td>
                             <td>Rp {item.total}</td>
                             <td>{item.payment}</td>
-                            <td>{item.user.no_telp}</td>
+                            <td>{item.telp_penjual}</td>
                             <td>{item.status}</td>
                           </tr>
                         ))}

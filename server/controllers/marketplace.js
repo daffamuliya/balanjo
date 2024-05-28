@@ -80,7 +80,7 @@ controller.transfer = async (req, res) => {
     }
 
     const allowedTypes = ['.png', '.jpg', '.jpeg'];
-    const { id_pembeli, id_penjual, total, keterangan, produk, payment, status, alamat_pembeli, telp_pembeli } = req.body;
+    const { id_pembeli, id_penjual, total, keterangan, produk, payment, status, alamat_pembeli, telp_pembeli, telp_penjual } = req.body;
     const { bukti_transfer } = req.files;
 
     console.log('Memvalidasi jenis file...');
@@ -111,6 +111,7 @@ controller.transfer = async (req, res) => {
       status,
       alamat_pembeli,
       telp_pembeli,
+      telp_penjual,
       bukti_transfer: buktiTransferUrl,
     });
 
@@ -417,6 +418,7 @@ controller.updateProduk = async (req, res) => {
 controller.addProduk = async (req, res) => {
   if (req.files === null) return res.status(400).json({ msg: 'No File Uploaded' });
   const id_penjual = req.body.id_penjual;
+  const telp_penjual = req.body.telp_penjual;
   const id_kategori = req.body.id_kategori;
   const nama = req.body.nama;
   const deskripsi = req.body.deskripsi;
@@ -436,7 +438,7 @@ controller.addProduk = async (req, res) => {
   file.mv(`./public/images/${fileName}`, async (err) => {
     if (err) return res.status(500).json({ msg: err.message });
     try {
-      await model.produk.create({ id_penjual: id_penjual, id_kategori: id_kategori, nama: nama, deskripsi: deskripsi, harga: harga, stok: stok, gambar: url });
+      await model.produk.create({ id_penjual: id_penjual, telp_penjual: telp_penjual, id_kategori: id_kategori, nama: nama, deskripsi: deskripsi, harga: harga, stok: stok, gambar: url });
       res.redirect('/seller/product');
     } catch (error) {
       console.log(error.message);
@@ -769,7 +771,7 @@ controller.getMyOrder = async function (req, res) {
         include: [
           {
             model: model.produk,
-            attributes: ['nama', 'deskripsi', 'gambar'],
+            attributes: ['nama', 'deskripsi', 'gambar', 'telp_penjual'],
           },
         ],
         where: {

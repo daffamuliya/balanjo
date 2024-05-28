@@ -13,6 +13,7 @@ import { getMe } from '../../../features/authSlice';
 const UploadProduk = () => {
   const { user } = useSelector((state) => state.auth);
   const id_penjual = user ? user.id : null;
+  const telp_penjual = user ? user.no_telp : null;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ const UploadProduk = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('id_penjual', id_penjual);
+    formData.append('telp_penjual', telp_penjual);
     formData.append('id_kategori', id_kategori);
     formData.append('nama', nama);
     formData.append('deskripsi', deskripsi);

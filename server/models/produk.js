@@ -20,6 +20,10 @@ const produk = sequelize.define(
         key: 'id',
       },
     },
+    telp_penjual: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     id_kategori: {
       type: DataTypes.BIGINT,
       allowNull: false,

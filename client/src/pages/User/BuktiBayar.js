@@ -16,6 +16,7 @@ export const BuktiBayar = () => {
   const [totalBayar, setTotalBayar] = useState(0);
   const [keterangan, setKeterangan] = useState('');
   const [nama_produk, setProduk] = useState('');
+  const [telp_penjual, setTelpPenjual] = useState('');
   const [idPenjual, setIdPenjual] = useState(null);
   const [orderDetails, setOrderDetails] = useState([]);
 
@@ -37,6 +38,7 @@ export const BuktiBayar = () => {
           setIdPenjual(orderDetails[0].id_penjual);
           setKeterangan(orderDetails[0].keterangan); // Set the keterangan state
           setProduk(orderDetails[0].produk.nama); // Set the keterangan state
+          setTelpPenjual(orderDetails[0].produk.telp_penjual); // Set the keterangan state
         }
       } else {
         console.error('Data detail pemesanan tidak ditemukan');
@@ -89,6 +91,7 @@ export const BuktiBayar = () => {
     formData.append('status', status);
     formData.append('alamat_pembeli', alamat_pembeli);
     formData.append('telp_pembeli', telp_pembeli);
+    formData.append('telp_penjual', telp_penjual);
     formData.append('bukti_transfer', bukti_transfer);
     console.log(nama_produk);
     try {
@@ -103,7 +106,7 @@ export const BuktiBayar = () => {
           title: 'Sukses',
           text: 'Bukti Transfer berhasil diunggah!',
         }).then(() => {
-          navigate('/home');
+          navigate('/user/pesanan');
           deleteAllOrderItems();
         });
       } else {
