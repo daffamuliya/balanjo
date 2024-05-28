@@ -50,8 +50,10 @@ const RiwayatPesanan = () => {
                       <tr>
                         <th>Order ID</th>
                         <th>Date</th>
+                        <th>Nama Produk</th>
                         <th>Total Transaksi</th>
                         <th>Payment</th>
+                        <th>No Telp Penjual</th>
                         <th>Status</th>
                       </tr>
                     </thead>
@@ -61,8 +63,10 @@ const RiwayatPesanan = () => {
                           <tr>
                             <td>{item.id}</td>
                             <td>{item.tanggal_pesan}</td>
+                            <td>{item.produk}</td>
                             <td>Rp {item.total}</td>
                             <td>{item.payment}</td>
+                            <td>{item.user.no_telp}</td>
                             <td>{item.status}</td>
                           </tr>
                         ))}

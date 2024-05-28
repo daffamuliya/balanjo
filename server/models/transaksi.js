@@ -35,6 +35,10 @@ const transaksi = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    produk: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
     payment: {
       type: DataTypes.STRING,
       allowNull: false,

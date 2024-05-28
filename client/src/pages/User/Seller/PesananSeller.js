@@ -103,9 +103,12 @@ const PesananSeller = () => {
                             <th>Order ID</th>
                             <th>Date</th>
                             <th>Customer</th>
+                            <th>Produk</th>
                             <th>Total</th>
                             <th>Payment</th>
                             <th>Keterangan</th>
+                            <th>No HP</th>
+                            <th>Alamat</th>
                             <th>Status</th>
                             <th>Action</th>
                           </tr>
@@ -117,9 +120,12 @@ const PesananSeller = () => {
                                 <td>{item.id}</td>
                                 <td>{item.tanggal_pesan}</td>
                                 <td>{item.user.name}</td>
+                                <td>{item.produk}</td>
                                 <td>Rp {item.total}</td>
                                 <td>{item.payment}</td>
                                 <td>{item.keterangan}</td>
+                                <td>{item.user.no_telp}</td>
+                                <td>{item.user.alamat}</td>
                                 <td>{item.status}</td>
                                 <td>
                                   <i class="bi bi-pencil-square" onClick={() => loadTransaksiDetail(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>

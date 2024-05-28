@@ -80,7 +80,7 @@ controller.transfer = async (req, res) => {
     }
 
     const allowedTypes = ['.png', '.jpg', '.jpeg'];
-    const { id_pembeli, id_penjual, total, keterangan, payment, status } = req.body;
+    const { id_pembeli, id_penjual, total, keterangan, produk, payment, status } = req.body;
     const { bukti_transfer } = req.files;
 
     console.log('Memvalidasi jenis file...');
@@ -106,6 +106,7 @@ controller.transfer = async (req, res) => {
       id_penjual,
       total,
       keterangan,
+      produk,
       payment,
       status,
       bukti_transfer: buktiTransferUrl,
@@ -562,7 +563,7 @@ controller.getTransaksiByIdJual = async function (req, res) {
       include: [
         {
           model: model.users,
-          attributes: ['name'],
+          attributes: ['name', 'no_telp', 'alamat'],
         },
       ],
       where: {
@@ -628,7 +629,7 @@ controller.getTransaksiByIdBeli = async function (req, res) {
       include: [
         {
           model: model.users,
-          attributes: ['name'],
+          attributes: ['name', 'no_telp'],
         },
       ],
       where: {
@@ -662,7 +663,7 @@ controller.getTransaksiById = async function (req, res) {
       include: [
         {
           model: model.users,
-          attributes: ['name'],
+          attributes: ['name', 'no_telp', 'alamat'],
         },
       ],
       where: {

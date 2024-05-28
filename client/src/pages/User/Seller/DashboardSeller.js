@@ -89,7 +89,7 @@ const DashboardSeller = () => {
             </MDBRow>
           </MDBRow>
           <MDBRow className="mt-5">
-            <h5 style={{ color: '#A08336' }}>Riwayat Pesanan</h5>
+            <h5 style={{ color: '#A08336' }}>Riwayat Pesanan Masuk</h5>
             <MDBRow className="mt-3 justify-content-center">
               <MDBCol md={12} xs={2} className="ms-auto">
                 <Card>
@@ -103,9 +103,12 @@ const DashboardSeller = () => {
                             <th>Qty</th>
                             <th>Date</th>
                             <th>Customer</th>
+                            <th>Produk</th>
                             <th>Total</th>
                             <th>Payment</th>
                             <th>Keterangan</th>
+                            <th>No HP</th>
+                            <th>Alamat</th>
                             <th>Status</th>
                           </tr>
                         </thead>
@@ -117,9 +120,12 @@ const DashboardSeller = () => {
                                 <td>12</td>
                                 <td>{item.tanggal_pesan}</td>
                                 <td>{item.user.name}</td>
+                                <td>{item.produk}</td>
                                 <td>Rp {item.total}</td>
                                 <td>{item.payment}</td>
                                 <td>{item.keterangan}</td>
+                                <td>{item.user.no_telp}</td>
+                                <td>{item.user.alamat}</td>
                                 <td>{item.status}</td>
                               </tr>
                             ))}

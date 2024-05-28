@@ -13,6 +13,7 @@ export const BuktiBayar = () => {
   const id_pembeli = user ? user.id : null;
   const [totalBayar, setTotalBayar] = useState(0);
   const [keterangan, setKeterangan] = useState('');
+  const [nama_produk, setProduk] = useState('');
   const [idPenjual, setIdPenjual] = useState(null);
   const [orderDetails, setOrderDetails] = useState([]);
 
@@ -33,6 +34,7 @@ export const BuktiBayar = () => {
         if (orderDetails.length > 0) {
           setIdPenjual(orderDetails[0].id_penjual);
           setKeterangan(orderDetails[0].keterangan); // Set the keterangan state
+          setProduk(orderDetails[0].produk.nama); // Set the keterangan state
         }
       } else {
         console.error('Data detail pemesanan tidak ditemukan');
@@ -80,9 +82,11 @@ export const BuktiBayar = () => {
     formData.append('id_penjual', idPenjual);
     formData.append('total', totalBayar);
     formData.append('keterangan', keterangan);
+    formData.append('produk', nama_produk);
     formData.append('payment', payment);
     formData.append('status', status);
     formData.append('bukti_transfer', bukti_transfer);
+    console.log(nama_produk);
     try {
       const response = await axios.post('http://localhost:3000/marketplace/transfer', formData, {
         headers: {
