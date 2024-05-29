@@ -70,7 +70,7 @@ const DashboardSeller = () => {
         <div className="container mt-5">
           <MDBRow>
             <MDBRow className="mt-3 justify-content-center">
-              <MDBCol md={6} xs={2} className="ms-auto">
+              <MDBCol md={6} xs={2} className="ms-auto mt-1">
                 <Card>
                   <CardBody>
                     <h5>Total Revenue</h5>
@@ -78,7 +78,7 @@ const DashboardSeller = () => {
                   </CardBody>
                 </Card>
               </MDBCol>
-              <MDBCol md={6} xs={2} className="ms-auto">
+              <MDBCol md={6} xs={2} className="ms-auto mt-1">
                 <Card>
                   <CardBody>
                     <h5>Total Order</h5>
