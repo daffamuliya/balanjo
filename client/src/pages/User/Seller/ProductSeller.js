@@ -8,8 +8,6 @@ import swal from 'sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '../../../features/authSlice';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const ProductSeller = () => {
   const dispatch = useDispatch();
@@ -206,7 +204,7 @@ const ProductSeller = () => {
                       <label htmlFor="stok" className="form-label">
                         Stok
                       </label>
-                      <input type="number" value={stok} onChange={(e) => setStok(e.target.value)} className="form-control" id="stok" />
+                      <input type="number" value={stok} onChange={(e) => setStok(Math.max(0, e.target.value))} className="form-control" id="stok" />
                     </div>
                     <div className="mb-3">
                       <label htmlFor="harga" className="form-label">
