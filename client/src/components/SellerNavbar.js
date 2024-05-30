@@ -35,7 +35,6 @@ const NormalNavbar = () => {
               {user && user.username}
             </MDBBtn>
           </Form>
-          <img src="/img/user.png" width="63" height="63" className="d-inline-block align-top" alt="React Bootstrap logo" />
         </Navbar.Collapse>
       </Container>
     </Navbar>

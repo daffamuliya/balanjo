@@ -45,7 +45,7 @@ const LandingBlog = () => {
                       </MDBBtn>
                       <MDBCardTitle style={{ fontSize: '20px', fontWeight: 'bold' }}>{item.judul}</MDBCardTitle>{' '}
                       <div className="d-flex">
-                        <MDBCardImage className="me-2 mt-2" src="/img/image.png" style={{ width: '13%', height: '13%' }} />
+                        <MDBCardImage className="me-2 mt-2" src="/img/profile.png" style={{ width: '13%', height: '13%' }} />
                         <MDBCardText className="mt-3" style={{ color: '#97989F', fontSize: '14px' }}>
                           Article by {item.user}
                         </MDBCardText>

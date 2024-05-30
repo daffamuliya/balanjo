@@ -60,7 +60,7 @@ function Register() {
                   type="email"
                   size="lg"
                   style={{ fontSize: '16px' }}
-                  placeholder="your display name"
+                  placeholder="your full name"
                   className="focus-ring focus-ring-light "
                   autoComplete="new-password"
                 />
@@ -75,7 +75,7 @@ function Register() {
                   type="email"
                   size="lg"
                   style={{ fontSize: '16px' }}
-                  placeholder="your phone number"
+                  placeholder="your display name"
                   className="focus-ring focus-ring-light "
                   autoComplete="new-password"
                 />
@@ -90,7 +90,7 @@ function Register() {
                   type="email"
                   size="lg"
                   style={{ fontSize: '16px' }}
-                  placeholder="your full name"
+                  placeholder="your phone number"
                   className="focus-ring focus-ring-light "
                   autoComplete="new-password"
                 />
