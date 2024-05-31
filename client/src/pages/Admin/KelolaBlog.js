@@ -102,10 +102,10 @@ const KelolaBlog = () => {
                 <thead>
                   <tr>
                     <th>Blog ID</th>
+                    <th>Tanggal Upload</th>
                     <th>Judul Blog</th>
                     <th>Kategori</th>
                     <th>Uploader</th>
-                    <th>Tanggal Upload</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
@@ -114,10 +114,10 @@ const KelolaBlog = () => {
                     blog.map((item) => (
                       <tr key={item.id}>
                         <td>{item.id}</td>
+                        <td>{item.waktuNormal}</td>
                         <td>{item.judul}</td>
                         <td>{item.kategori_blog}</td>
                         <td>{item.user}</td>
-                        <td>{item.waktuNormal}</td>
                         <td>
                           <i class="bi bi-trash-fill" onClick={() => deleteBlog(item.id)} style={{ color: '#A08336', marginRight: '5px', cursor: 'pointer' }}></i>
                           <i class="bi bi-eye-fill" onClick={() => loadBlogDetail(item.slug)} style={{ color: '#A08336', marginLeft: '10px', cursor: 'pointer' }}></i>

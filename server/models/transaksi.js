@@ -22,28 +22,11 @@ const transaksi = sequelize.define(
         key: 'id',
       },
     },
-    id_penjual: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-    },
-
     total: {
       type: DataTypes.BIGINT,
       allowNull: false,
     },
-    keterangan: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    produk: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
     payment: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    status: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -52,10 +35,6 @@ const transaksi = sequelize.define(
       allowNull: false,
     },
     telp_pembeli: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    telp_penjual: {
       type: DataTypes.STRING,
       allowNull: false,
     },

@@ -16,12 +16,14 @@ const DashboardSeller = () => {
   const { isError } = useSelector((state) => state.auth);
 
   const [omzet, setOmzet] = useState(0);
+  const [feePlatform, setFeePlatform] = useState(0);
   const [totalOrder, setTotalOrder] = useState(0);
 
   useEffect(() => {
     dispatch(getMe());
     getOmzet();
     getTotalOrder();
+    getFeePlatform();
   }, [dispatch]);
 
   const getOmzet = async () => {
@@ -29,6 +31,16 @@ const DashboardSeller = () => {
       const response = await axios.get('http://localhost:3000/marketplace/omzet/transaksi');
       const omzetData = response.data.omzet;
       setOmzet(omzetData);
+    } catch (error) {
+      console.error('Error fetching omzet:', error);
+    }
+  };
+
+  const getFeePlatform = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/marketplace/fee/transaksi');
+      const fee = response.data.fee;
+      setFeePlatform(fee);
     } catch (error) {
       console.error('Error fetching omzet:', error);
     }
@@ -70,7 +82,7 @@ const DashboardSeller = () => {
         <div className="container mt-5">
           <MDBRow>
             <MDBRow className="mt-3 justify-content-center">
-              <MDBCol md={6} xs={2} className="ms-auto mt-1">
+              <MDBCol md={4} xs={2} className="ms-auto mt-1">
                 <Card>
                   <CardBody>
                     <h5>Total Revenue</h5>
@@ -78,7 +90,15 @@ const DashboardSeller = () => {
                   </CardBody>
                 </Card>
               </MDBCol>
-              <MDBCol md={6} xs={2} className="ms-auto mt-1">
+              <MDBCol md={4} xs={2} className="ms-auto mt-1">
+                <Card>
+                  <CardBody>
+                    <h5>Fee Platform</h5>
+                    <h3>Rp{feePlatform.toLocaleString()}</h3>
+                  </CardBody>
+                </Card>
+              </MDBCol>
+              <MDBCol md={4} xs={2} className="ms-auto mt-1">
                 <Card>
                   <CardBody>
                     <h5>Total Order</h5>
@@ -100,15 +120,9 @@ const DashboardSeller = () => {
                         <thead>
                           <tr>
                             <th>Order ID</th>
-                            <th>Qty</th>
-                            <th>Date</th>
-                            <th>Customer</th>
                             <th>Produk</th>
-                            <th>Total</th>
-                            <th>Payment</th>
-                            <th>Keterangan</th>
-                            <th>No HP</th>
-                            <th>Alamat</th>
+                            <th>Harga</th>
+                            <th>Telp Pembeli</th>
                             <th>Status</th>
                           </tr>
                         </thead>
@@ -117,15 +131,9 @@ const DashboardSeller = () => {
                             transaksi.map((item) => (
                               <tr>
                                 <td>{item.id}</td>
-                                <td>12</td>
-                                <td>{item.tanggal_pesan}</td>
-                                <td>{item.user.name}</td>
-                                <td>{item.produk}</td>
-                                <td>Rp {item.total}</td>
-                                <td>{item.payment}</td>
-                                <td>{item.keterangan}</td>
-                                <td>{item.user.no_telp}</td>
-                                <td>{item.user.alamat}</td>
+                                <td>{item.nama_produk}</td>
+                                <td>{item.harga}</td>
+                                <td>{item.telp_pembeli}</td>
                                 <td>{item.status}</td>
                               </tr>
                             ))}

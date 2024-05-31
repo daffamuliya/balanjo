@@ -78,6 +78,7 @@ const PesananSeller = () => {
       const TransaksiDetailData = Array.isArray(response.data.data) ? response.data.data : [response.data.data];
       setTransaksiDetail(TransaksiDetailData);
       setScrollableModal2(true);
+      console.log(TransaksiDetailData);
     } catch (error) {
       console.log(error);
     }
@@ -101,16 +102,11 @@ const PesananSeller = () => {
                         <thead>
                           <tr>
                             <th>Order ID</th>
-                            <th>Date</th>
-                            <th>Customer</th>
                             <th>Produk</th>
-                            <th>Total</th>
-                            <th>Payment</th>
-                            <th>Keterangan</th>
-                            <th>No HP</th>
-                            <th>Alamat</th>
+                            <th>Harga</th>
+                            <th>Telp Pembeli</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -118,14 +114,9 @@ const PesananSeller = () => {
                             transaksi.map((item) => (
                               <tr>
                                 <td>{item.id}</td>
-                                <td>{item.tanggal_pesan}</td>
-                                <td>{item.user.name}</td>
-                                <td>{item.produk}</td>
-                                <td>Rp {item.total}</td>
-                                <td>{item.payment}</td>
-                                <td>{item.keterangan}</td>
+                                <td>{item.nama_produk}</td>
+                                <td>{item.harga}</td>
                                 <td>{item.telp_pembeli}</td>
-                                <td>{item.alamat_pembeli}</td>
                                 <td>{item.status}</td>
                                 <td>
                                   <i class="bi bi-pencil-square" onClick={() => loadTransaksiDetail(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
@@ -159,15 +150,15 @@ const PesananSeller = () => {
                         <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                           <div className="col-lg-12 ">
                             <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
-                              Customer : <br /> {detail.user.name}
+                              Nama Produk : <br /> {detail.nama_produk}
                             </p>{' '}
                             <hr />
                             <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
-                              Payment : <br /> {detail.payment}
+                              Total Transaksi : <br /> {detail.harga}
                             </p>{' '}
                             <hr />
                             <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
-                              Total Transaksi : <br /> {detail.total}
+                              Keterangan : <br /> {detail.keterangan}
                             </p>{' '}
                             <hr />
                             <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>Status :</p>
@@ -192,7 +183,7 @@ const PesananSeller = () => {
           </MDBModalContent>
         </MDBModalDialog>
       </MDBModal>
-      ;
+
       <MDBModal open={scrollableModal2} setOpen={setScrollableModal2} tabIndex="-1">
         <MDBModalDialog centered scrollable>
           <MDBModalContent>

@@ -1,3 +1,4 @@
+const sequelize = require('../config/conn.js');
 const indexmodel = {};
 
 indexmodel.blog = require('./blog.js');
@@ -15,5 +16,7 @@ indexmodel.order_detail = require('./order_detail.js');
 indexmodel.transaksi = require('./transaksi.js');
 indexmodel.requested_banner = require('./requested_banner.js');
 indexmodel.active_banner = require('./active_banner.js');
+indexmodel.detail_transaksi = require('./detail_transaksi.js');
+indexmodel.sequelize = sequelize; // Menambahkan sequelize ke indexmodel
 
 module.exports = indexmodel;

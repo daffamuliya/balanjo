@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { MDBBtn, MDBRow, MDBModal, MDBModalDialog, MDBContainer, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody } from 'mdb-react-ui-kit';
 import UserNavbar from '../../../components/UserNavbar';
 import Card from 'react-bootstrap/Card';
 import SidebarAkun from '../../../components/SidebarAkun';
@@ -22,7 +23,11 @@ const RiwayatPesanan = () => {
       navigate('/login');
     }
   }, [isError, navigate]);
+
   const [transaksi, setTransaksi] = useState([]);
+  const [transaksiDetail, setTransaksiDetail] = useState([]);
+  const [scrollableModal, setScrollableModal] = useState(false);
+
   useEffect(() => {
     getTransaksi();
   }, []);
@@ -30,11 +35,34 @@ const RiwayatPesanan = () => {
   const getTransaksi = async () => {
     try {
       const response = await axios.get('http://localhost:3000/marketplace/pesan/transaksi');
-      setTransaksi(response.data.data);
+      const formattedTransaksi = response.data.data.map((item) => {
+        const tanggal = new Date(item.tanggal_pesan);
+        const options = {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          timeZone: 'Asia/Jakarta',
+        };
+        const tanggalNormal = tanggal.toLocaleDateString('id-ID', options);
+        return { ...item, tanggalNormal };
+      });
+      setTransaksi(formattedTransaksi);
     } catch (error) {
-      console.error('Error fetching blogs:', error);
+      console.error('Error fetching transactions:', error);
     }
   };
+
+  const loadTransaksiDetail = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/marketplace/detailtransaksi/${id}`);
+      const transaksiDetailData = Array.isArray(response.data.data) ? response.data.data : [response.data.data];
+      setTransaksiDetail(transaksiDetailData);
+      setScrollableModal(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <UserNavbar />
@@ -44,30 +72,30 @@ const RiwayatPesanan = () => {
           <Card>
             <Card.Body>
               <section className="blog">
-                <div class="row">
+                <div className="row">
                   <Table responsive>
                     <thead>
                       <tr>
-                        <th>Order ID</th>
-                        <th>Date</th>
-                        <th>Nama Produk</th>
+                        <th>Transaksi ID</th>
+                        <th>Tanggal</th>
                         <th>Total Transaksi</th>
                         <th>Payment</th>
-                        <th>No Telp Penjual</th>
+                        <th>Alamat Saya</th>
                         <th>Status</th>
                       </tr>
                     </thead>
                     <tbody>
                       {Array.isArray(transaksi) &&
                         transaksi.map((item) => (
-                          <tr>
+                          <tr key={item.id}>
                             <td>{item.id}</td>
-                            <td>{item.tanggal_pesan}</td>
-                            <td>{item.produk}</td>
+                            <td>{item.tanggalNormal}</td>
                             <td>Rp {item.total}</td>
                             <td>{item.payment}</td>
-                            <td>{item.telp_penjual}</td>
-                            <td>{item.status}</td>
+                            <td>{item.alamat_pembeli}</td>
+                            <td>
+                              <i className="bi bi-eye-fill" style={{ color: '#A08336', cursor: 'pointer' }} onClick={() => loadTransaksiDetail(item.id)}></i>
+                            </td>
                           </tr>
                         ))}
                     </tbody>
@@ -78,6 +106,47 @@ const RiwayatPesanan = () => {
           </Card>
         </div>
       </div>
+
+      <MDBModal open={scrollableModal} setOpen={setScrollableModal} tabIndex="-1">
+        <MDBModalDialog centered scrollable>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Detail Transaksi</MDBModalTitle>
+              <MDBBtn className="btn-close" color="none" onClick={() => setScrollableModal(false)}></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>
+              <MDBRow className="justify-content-center">
+                <section className="isiblog">
+                  {Array.isArray(transaksiDetail) &&
+                    transaksiDetail.map((detail) => (
+                      <MDBContainer key={detail.id}>
+                        <Card className="mb-3">
+                          <Card.Body>
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
+                              <strong>Nama Produk:</strong> <br /> {detail.nama_produk}
+                            </p>
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
+                              <strong>Harga:</strong> <br /> Rp {detail.harga}
+                            </p>
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
+                              <strong>No HP Penjual:</strong> <br /> {detail.telp_penjual}
+                            </p>
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
+                              <strong>Status:</strong> <br /> {detail.status}
+                            </p>
+                          </Card.Body>
+                        </Card>
+                      </MDBContainer>
+                    ))}
+                </section>
+              </MDBRow>
+            </MDBModalBody>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
     </div>
   );
 };

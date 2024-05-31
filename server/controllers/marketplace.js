@@ -1,5 +1,5 @@
 const model = require('../models/indexmodel');
-const { Op, QueryTypes } = require('sequelize');
+const { Op, QueryTypes, Sequelize } = require('sequelize');
 const controller = {};
 const path = require('path');
 const fs = require('fs');
@@ -74,21 +74,18 @@ controller.bayar = async (req, res) => {
 
 controller.transfer = async (req, res) => {
   try {
-    console.log('Memeriksa apakah ada berkas yang diunggah...');
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).json({ msg: 'Tidak ada berkas yang diunggah' });
     }
 
     const allowedTypes = ['.png', '.jpg', '.jpeg'];
-    const { id_pembeli, id_penjual, total, keterangan, produk, payment, status, alamat_pembeli, telp_pembeli, telp_penjual } = req.body;
+    const { id_pembeli, total, produk, payment, alamat_pembeli, telp_pembeli } = req.body;
     const { bukti_transfer } = req.files;
 
-    console.log('Memvalidasi jenis file...');
     if (!allowedTypes.includes(path.extname(bukti_transfer.name).toLowerCase())) {
       return res.status(422).json({ msg: 'Bukti transfer tidak valid' });
     }
 
-    console.log('Memeriksa ukuran file...');
     if (bukti_transfer.size > 5000000) {
       return res.status(422).json({ msg: 'Ukuran bukti transfer harus kurang dari 5 MB' });
     }
@@ -96,30 +93,72 @@ controller.transfer = async (req, res) => {
     const buktiTransferName = bukti_transfer.md5 + path.extname(bukti_transfer.name);
     const buktiTransferUrl = `${req.protocol}://${req.get('host')}/images/${buktiTransferName}`;
 
-    console.log('Menyimpan file...');
     await bukti_transfer.mv(`./public/images/${buktiTransferName}`);
-    console.log('File berhasil disimpan:', buktiTransferName);
 
-    console.log('Membuat catatan transaksi...');
-    await model.transaksi.create({
+    const transaksiData = {
       id_pembeli,
-      id_penjual,
       total,
-      keterangan,
-      produk,
       payment,
-      status,
       alamat_pembeli,
       telp_pembeli,
-      telp_penjual,
       bukti_transfer: buktiTransferUrl,
+    };
+
+    // Debug log untuk data produk
+    console.log('Produk data received:', produk);
+
+    let productDetails;
+    try {
+      productDetails = JSON.parse(produk).map((item) => ({
+        id_transaksi: null,
+        id_produk: item.produk_id,
+        id_penjual: item.id_penjual,
+        telp_penjual: item.produk.telp_penjual,
+        telp_pembeli: telp_pembeli,
+        nama_produk: item.produk.nama,
+        harga: item.total, // Assuming total is the price of the product
+        jumlah: 1, // Assuming you don't have the quantity in the received data
+        keterangan: item.keterangan,
+        status: 'Sudah Bayar',
+      }));
+
+      // Debug log untuk productDetails
+      console.log('Parsed product details:', productDetails);
+    } catch (error) {
+      console.error('Error parsing produk:', error);
+      return res.status(400).json({ msg: 'Format produk tidak valid' });
+    }
+
+    // Validasi apakah semua id_produk ada di tabel produk
+    const productIds = productDetails.map((item) => item.id_produk);
+    const existingProducts = await model.produk.findAll({
+      where: {
+        id: productIds,
+      },
+      attributes: ['id'],
     });
 
-    console.log('Transaksi berhasil dibuat.');
-    return res.status(200).json({ msg: 'Bukti transfer berhasil diunggah!' });
+    // Debug log untuk validasi produk
+    console.log('Existing products:', existingProducts);
+
+    if (existingProducts.length !== productIds.length) {
+      return res.status(400).json({ msg: 'Beberapa id_produk tidak valid' });
+    }
+
+    const result = await model.sequelize.transaction(async (t) => {
+      const newTransaksi = await model.transaksi.create(transaksiData, { transaction: t });
+
+      productDetails = productDetails.map((item) => ({ ...item, id_transaksi: newTransaksi.id }));
+
+      await model.detail_transaksi.bulkCreate(productDetails, { transaction: t });
+
+      return newTransaksi;
+    });
+
+    return res.status(200).json({ msg: 'Bukti transfer berhasil diunggah!', data: result });
   } catch (error) {
-    console.error('Error saat menambahkan banner:', error);
-    return res.status(500).json({ msg: 'Terjadi kesalahan saat menambahkan banner' });
+    console.error('Error saat menambahkan bukti transfer:', error);
+    return res.status(500).json({ msg: 'Terjadi kesalahan saat menambahkan bukti transfer' });
   }
 };
 
@@ -563,13 +602,7 @@ controller.getAllTransaksi = async function (req, res) {
 
 controller.getTransaksiByIdJual = async function (req, res) {
   try {
-    const result = await model.transaksi.findAll({
-      include: [
-        {
-          model: model.users,
-          attributes: ['name', 'no_telp', 'alamat'],
-        },
-      ],
+    const result = await model.detail_transaksi.findAll({
       where: {
         id_penjual: req.userId,
       },
@@ -597,7 +630,7 @@ controller.getTransaksiByIdJual = async function (req, res) {
 
 controller.getTotalOrder = async (req, res) => {
   try {
-    await model.transaksi
+    await model.detail_transaksi
       .count({
         where: {
           id_penjual: req.userId,
@@ -614,13 +647,32 @@ controller.getTotalOrder = async (req, res) => {
 controller.getOmzetPenjualan = async function (req, res) {
   try {
     // Hitung total omzet penjualan
-    const omzet = await model.transaksi.sum('total', {
+    const omzet = await model.detail_transaksi.sum('harga', {
       where: {
         id_penjual: req.userId,
       },
     });
 
     res.status(200).json({ msg: 'Omzet penjualan berhasil dihitung', omzet: omzet || 0 });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ msg: 'Terjadi kesalahan dalam memproses permintaan', error: error.message });
+  }
+};
+
+controller.getFeePlatform = async function (req, res) {
+  try {
+    // Hitung total omzet penjualan
+    const omzet = await model.detail_transaksi.sum('harga', {
+      where: {
+        id_penjual: req.userId,
+      },
+    });
+
+    // Hitung fee 2,5 persen dari omzet
+    const fee = (omzet || 0) * 0.025;
+
+    res.status(200).json({ msg: 'Fee penjualan berhasil dihitung', fee: fee });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ msg: 'Terjadi kesalahan dalam memproses permintaan', error: error.message });
@@ -663,13 +715,7 @@ controller.getTransaksiByIdBeli = async function (req, res) {
 
 controller.getTransaksiById = async function (req, res) {
   try {
-    const result = await model.transaksi.findOne({
-      include: [
-        {
-          model: model.users,
-          attributes: ['name', 'no_telp', 'alamat'],
-        },
-      ],
+    const result = await model.detail_transaksi.findOne({
       where: {
         id: req.params.id,
       },
@@ -695,23 +741,44 @@ controller.getTransaksiById = async function (req, res) {
   }
 };
 
+controller.getDetailTransaksi = async function (req, res) {
+  try {
+    const result = await model.detail_transaksi.findAll({
+      where: {
+        id_transaksi: req.params.id,
+      },
+    });
+
+    if (result) {
+      res.status(200).json({
+        message: 'Berhasil mendapatkan transaksi',
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        message: 'Data tidak ditemukan',
+        data: [],
+      });
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({
+      message: 'Terjadi kesalahan dalam memproses permintaan',
+      error: error.message,
+    });
+  }
+};
+
 controller.updateTransaksi = async function (req, res) {
   try {
-    // Mencari transaksi berdasarkan id
-    const result = await model.transaksi.findOne({
-      include: [
-        {
-          model: model.users,
-          attributes: ['name'],
-        },
-      ],
+    const result = await model.detail_transaksi.findOne({
       where: {
         id: req.params.id,
       },
     });
 
     if (result) {
-      await model.transaksi.update({ status: req.body.status }, { where: { id: req.params.id } });
+      await model.detail_transaksi.update({ status: req.body.status }, { where: { id: req.params.id } });
       res.status(200).json({
         message: 'Berhasil memperbarui transaksi',
       });

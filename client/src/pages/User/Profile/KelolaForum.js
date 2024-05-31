@@ -104,7 +104,6 @@ export const KelolaForumUser = () => {
                   <Table responsive>
                     <thead>
                       <tr>
-                        <th>No</th>
                         <th>Content</th>
                         <th>Uploader</th>
                         <th>Tanggal</th>
@@ -115,7 +114,6 @@ export const KelolaForumUser = () => {
                       {Array.isArray(forum) &&
                         forum.map((item) => (
                           <tr key={item.uuid}>
-                            <td>{item.id}</td>
                             <td>{item.konten}</td>
                             <td>{item.user}</td>
                             <td>{item.waktuNormal}</td>

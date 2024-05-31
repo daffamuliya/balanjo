@@ -14,10 +14,7 @@ export const BuktiBayar = () => {
   const alamat_pembeli = user ? user.alamat : null;
   const telp_pembeli = user ? user.no_telp : null;
   const [totalBayar, setTotalBayar] = useState(0);
-  const [keterangan, setKeterangan] = useState('');
-  const [nama_produk, setProduk] = useState('');
-  const [telp_penjual, setTelpPenjual] = useState('');
-  const [idPenjual, setIdPenjual] = useState(null);
+
   const [orderDetails, setOrderDetails] = useState([]);
 
   useEffect(() => {
@@ -33,12 +30,13 @@ export const BuktiBayar = () => {
         setOrderDetails(orderDetails);
         const totalBayar = orderDetails.reduce((acc, item) => acc + item.total, 0);
         console.log('Total Bayar:', totalBayar);
+        console.log('kebabian', orderDetails);
         setTotalBayar(totalBayar);
         if (orderDetails.length > 0) {
-          setIdPenjual(orderDetails[0].id_penjual);
-          setKeterangan(orderDetails[0].keterangan); // Set the keterangan state
-          setProduk(orderDetails[0].produk.nama); // Set the keterangan state
-          setTelpPenjual(orderDetails[0].produk.telp_penjual); // Set the keterangan state
+          // setIdPenjual(orderDetails[0].id_penjual);
+          // setKeterangan(orderDetails[0].keterangan); // Set the keterangan state
+          // setProduk(orderDetails[0].produk.nama); // Set the keterangan state
+          // setTelpPenjual(orderDetails[0].produk.telp_penjual); // Set the keterangan state
         }
       } else {
         console.error('Data detail pemesanan tidak ditemukan');
@@ -65,7 +63,6 @@ export const BuktiBayar = () => {
 
   const [total, setTotal] = useState('');
   const [payment, setPayment] = useState('');
-  const [status] = useState('Sudah Bayar');
   const [bukti_transfer, setBuktiTransfer] = useState(null);
 
   const loadImage = (e) => {
@@ -83,17 +80,16 @@ export const BuktiBayar = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('id_pembeli', id_pembeli);
-    formData.append('id_penjual', idPenjual);
+    // formData.append('id_penjual', idPenjual);
     formData.append('total', totalBayar);
-    formData.append('keterangan', keterangan);
-    formData.append('produk', nama_produk);
+    // formData.append('keterangan', keterangan);
+    formData.append('produk', JSON.stringify(orderDetails)); // Perubahan di sini
     formData.append('payment', payment);
-    formData.append('status', status);
     formData.append('alamat_pembeli', alamat_pembeli);
     formData.append('telp_pembeli', telp_pembeli);
-    formData.append('telp_penjual', telp_penjual);
+    // formData.append('telp_penjual', telp_penjual);
     formData.append('bukti_transfer', bukti_transfer);
-    console.log(nama_produk);
+
     try {
       const response = await axios.post('http://localhost:3000/marketplace/transfer', formData, {
         headers: {
@@ -216,12 +212,12 @@ export const BuktiBayar = () => {
                           disabled
                         />
                       </div>
-                      <div className="mb-3">
+                      {/* <div className="mb-3">
                         <label htmlFor="keterangan" className="form-label" style={{ fontWeight: 'bold' }}>
                           Keterangan
                         </label>
                         <textarea className="form-control" id="keterangan" rows="3" value={keterangan} onChange={(e) => setKeterangan(e.target.value)} disabled />
-                      </div>
+                      </div> */}
                       <div className="mb-3">
                         <label htmlFor="exampleInputEmail1" className="form-label" style={{ fontWeight: 'bold' }}>
                           Sumber Transfer

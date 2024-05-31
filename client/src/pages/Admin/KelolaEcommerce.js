@@ -22,7 +22,9 @@ const KelolaEcommerce = () => {
       navigate('/login');
     }
   }, [isError, navigate]);
+
   const [transaksi, setTransaksi] = useState([]);
+
   useEffect(() => {
     getTransaksi();
   }, []);
@@ -30,9 +32,20 @@ const KelolaEcommerce = () => {
   const getTransaksi = async () => {
     try {
       const response = await axios.get('http://localhost:3000/marketplace/transaksi/all');
-      setTransaksi(response.data.data);
+      const formattedTransaksi = response.data.data.map((item) => {
+        const tanggalPesan = new Date(item.tanggal_pesan);
+        const options = {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          timeZone: 'Asia/Jakarta',
+        };
+        const tanggalPesanNormal = tanggalPesan.toLocaleDateString('id-ID', options);
+        return { ...item, tanggalPesanNormal };
+      });
+      setTransaksi(formattedTransaksi);
     } catch (error) {
-      console.error('Error fetching blogs:', error);
+      console.error('Error fetching transaksi:', error);
     }
   };
 
@@ -47,30 +60,37 @@ const KelolaEcommerce = () => {
           </h5>
           <Card>
             <Card.Body>
-              {' '}
               <Table responsive>
                 <thead>
                   <tr>
-                    <th>Order ID</th>
+                    <th>Transaction ID</th>
                     <th>Date</th>
                     <th>Customer</th>
                     <th>Total</th>
                     <th>Payment</th>
                     <th>Status</th>
+                    <th>Bukti Pembayaran</th>
                   </tr>
                 </thead>
                 <tbody>
                   {Array.isArray(transaksi) &&
-                    transaksi.map((item) => (
-                      <tr>
-                        <td>{item.id}</td>
-                        <td>{item.tanggal_pesan}</td>
-                        <td>{item.user.name}</td>
-                        <td>Rp {item.total}</td>
-                        <td>{item.payment}</td>
-                        <td>{item.status}</td>
-                      </tr>
-                    ))}
+                    transaksi
+                      .sort((a, b) => new Date(b.tanggal_pesan) - new Date(a.tanggal_pesan)) // Urutkan berdasarkan tanggal pesan, dari yang terbaru ke yang terlama
+                      .map((item) => (
+                        <tr key={item.id}>
+                          <td>{item.id}</td>
+                          <td>{item.tanggalPesanNormal}</td> {/* Gunakan tanggal yang sudah diformat */}
+                          <td>{item.user.name}</td>
+                          <td>Rp {item.total}</td>
+                          <td>{item.payment}</td>
+                          <td>{item.status}</td>
+                          <td>
+                            <a href={item.bukti_transfer} target="_blank" rel="noopener noreferrer">
+                              Lihat Bukti Transfer
+                            </a>
+                          </td>
+                        </tr>
+                      ))}
                 </tbody>
               </Table>
             </Card.Body>

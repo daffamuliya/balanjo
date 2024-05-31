@@ -1,7 +1,7 @@
 import React from 'react';
 import NormalNavbar from '../../components/NormalNavbar';
 import Footer from '../../components/Footer';
-import { MDBRow, MDBCol, MDBContainer, MDBInput } from 'mdb-react-ui-kit';
+import { MDBRow, MDBCol, MDBContainer } from 'mdb-react-ui-kit';
 import LandingBlog from '../../components/LandingBlog';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

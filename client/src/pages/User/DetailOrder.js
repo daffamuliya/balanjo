@@ -6,11 +6,13 @@ import swal from 'sweetalert';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMe } from '../../features/authSlice';
 import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCard, MDBCardTitle, MDBCardSubTitle, MDBCardText } from 'mdb-react-ui-kit';
+import { Alert } from 'react-bootstrap';
 
 const DetailOrder = () => {
   const [orderDetail, setOrderDetail] = useState(null);
   const { user } = useSelector((state) => state.auth);
   const [totalBayar, setTotalBayar] = useState(0);
+  const [isAlamatComplete, setIsAlamatComplete] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -30,6 +32,11 @@ const DetailOrder = () => {
         setOrderDetail(response.data.data);
         const totalBayar = response.data.data.reduce((acc, item) => acc + item.total, 0);
         setTotalBayar(totalBayar);
+        if (user && user.alamat && user.alamat !== 'Alamat belum dilengkapi') {
+          setIsAlamatComplete(true);
+        } else {
+          setIsAlamatComplete(false);
+        }
       } else {
         console.error('Data detail pemesanan tidak ditemukan');
       }
@@ -70,6 +77,11 @@ const DetailOrder = () => {
             <h2 className="text-center mb-3 mt-3" style={{ fontWeight: 'bold', color: '#A08336' }}>
               Detail Pemesanan
             </h2>
+            {!isAlamatComplete && user && user.alamat && user.alamat === 'Alamat belum dilengkapi' && (
+              <Alert variant="danger">
+                Alamat Anda belum dilengkapi. Silakan <Alert.Link href="/user/akun">lengkapi alamat Anda</Alert.Link>.
+              </Alert>
+            )}
             <MDBCard className="mb-3">
               <MDBCardBody>
                 <MDBCardBody>
