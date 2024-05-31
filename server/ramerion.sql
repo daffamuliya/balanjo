@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2024 at 10:41 AM
+-- Generation Time: May 31, 2024 at 07:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,8 +40,7 @@ CREATE TABLE `active_banners` (
 --
 
 INSERT INTO `active_banners` (`id`, `id_user`, `nama_banner`, `gambar`, `status`) VALUES
-(18, 26, 'wqwq', 'http://localhost:3000/images/b4a7a81346828d7db00162f4c89c54c3.png', 'Aktif'),
-(19, 26, '121', 'http://localhost:3000/images/b4a7a81346828d7db00162f4c89c54c3.png', 'Aktif');
+(20, 26, 'sasa', 'http://localhost:3000/images/9e7856a5e42f173bc6988c91148bdf41.png', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -72,7 +71,8 @@ INSERT INTO `blog` (`id`, `user_id`, `user`, `kategori_blog`, `judul`, `slug`, `
 (67, 28, 'Daffa Riza Muliya', 'Bisnis Teknologi', 'Apple Beri Peringatan Kepada Pengguna di 92 Negara', 'apple-beri-peringatan-kepada-pengguna-di-92-negara', '58e7d4052ff8a3e95ec17dae17646982.jpg', 'http://localhost:3000/images/58e7d4052ff8a3e95ec17dae17646982.jpg', 'Apple memberi peringatan kepada para pengguna di 92 negara terhadap potensi menjadi korban serangan spyware. Deteksi Apple atas ancaman ini didasarkan atas informasi dan investigasi intelijen ancaman internal.', '<p><i>Apple mendeteksi bahwa Anda sedang ditarget oleh serangan mercenary spyware yang mencoba untuk menyusupi iPhone yang terkait dengan ID Apple xxx dari jarak jauh. Serangan ini kemungkinan besar menargetkan Anda secara spesifik karena siapa Anda atau apa yang Anda lakukan. Meskipun penyelidikan kami tidak pernah mencapai kepastian mutlak, pemberitahuan ancaman Apple adalah peringatan dengan tingkat keyakinan tinggi bahwa pengguna secara individu telah menjadi sasaran serangan spyware tentara bayaran dan harus ditanggapi dengan sangat serius.”</i></p><p>Pada Rabu siang (10/04/2024), Apple memberi peringatan kepada para pengguna di 92 negara terhadap potensi menjadi korban serangan <i>spyware. </i>Deteksi Apple atas ancaman ini didasarkan atas informasi dan investigasi intelijen ancaman internal.</p><p>Dalam notifikasi tersebut, Apple memberitahu telah mendeteksi bahwasannya para pengguna bisa menjadi target serangan <i>spyware </i>dari tentara bayaran yang mencoba menyusupi iPhone mereka dari jarak jauh. Hal seperti ini sangat jarang terjadi dan jauh lebih canggih dibandingkan aktivitas kejahatan biasa di dunia maya atau malware konsumen. Sedangkan untuk identitas oknum atau negara yang diduga menjadi dalang dari serangan <i>spyware </i>ini tidak diberitahu oleh pihak Apple.&nbsp;</p><p>Peringatan serupa itu sudah beberapa kali dikirimkan oleh pihak Apple sejak tahun 2021 di lebih dari 150 negara. Pada Oktober tahun 2023, Apple juga turut mengirimkan peringatan serupa kepada sejumlah jurnalis dan politisi India.</p><p>Pemberitahuan atas serangan <i>spyware </i>ini muncul saat banyak negara sedang mempersiapkan pemilihan umum. Namun, Apple sendiri tidak menyebutkan waktu serangan tersebut. Jika diumumkan, hal ini dapat membantu penyerang <i>spyware </i>tentara bayaran untuk mengambil tindakan agar bisa terhindar dari deteksi perusahaan.</p><p>Apple sendiri awalnya menggambarkan penyerangan tersebut sebagai “aksi yang disponsori negara”. Namun, mereka mengganti diksi dengan “serangan <i>spyware </i>tentara bayaran”.</p>', '2024-05-15 07:13:44'),
 (71, 29, 'Hagi Siraj Sumanta', 'Wirausaha', 'Cara kaya', 'cara-kaya', '6c3a7b93e83698477dcdb39b9508ddd6.jpg', 'http://localhost:3000/images/6c3a7b93e83698477dcdb39b9508ddd6.jpg', 'cara cepat kaya', '<p>aiejaiejaiejaijeaijeaijeiajeiajeiajeijaeijaijeaijeiaje</p><p>aeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaa</p>', '2024-05-26 11:03:53'),
 (72, 29, 'Hagi Siraj Sumanta ', 'Wirausaha', '10 Tips Marketing Jitu yang Sederhana', '10-tips-marketing-jitu-yang-sederhana', 'c173399d4a0e3926d290bec26a5f18bf.png', 'http://localhost:3000/images/c173399d4a0e3926d290bec26a5f18bf.png', 'Merupakan sebuah pengujian', '<p>Merupakan sebuah pengujian, Merupakan sebuah pengujian, Merupakan sebuah pengujian, Merupakan sebuah pengujian.</p>', '2024-05-26 17:38:09'),
-(73, 27, 'Admin Ganteng', 'Bisnis Teknologi', '12121', '12121', '7b36bbbe48d5dba03d77781d6c577388.png', 'http://localhost:3000/images/7b36bbbe48d5dba03d77781d6c577388.png', '2121', '<p>2121</p>', '2024-05-26 17:53:34');
+(73, 27, 'Admin Ganteng', 'Bisnis Teknologi', '12121', '12121', '7b36bbbe48d5dba03d77781d6c577388.png', 'http://localhost:3000/images/7b36bbbe48d5dba03d77781d6c577388.png', '2121', '<p>2121</p>', '2024-05-26 17:53:34'),
+(74, 31, 'Boby Darmawan', 'Wirausaha', 'Cara membuat bisnis ikan lele', 'cara-membuat-bisnis-ikan-lele', '04667bb6a1004ba490794a4613cc6b7f.png', 'http://localhost:3000/images/04667bb6a1004ba490794a4613cc6b7f.png', 'Persiapan dan alat untuk membuat tambak ikan lele', '<p>Persiapan dan alat untuk membuat tambak ikan lele</p>', '2024-05-30 08:26:36');
 
 -- --------------------------------------------------------
 
@@ -111,6 +111,43 @@ INSERT INTO `cart` (`id`, `user_id`, `produk_id`, `id_penjual`, `jumlah`, `keter
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `detail_transaksi`
+--
+
+CREATE TABLE `detail_transaksi` (
+  `id` bigint(50) NOT NULL,
+  `id_transaksi` bigint(50) NOT NULL,
+  `id_produk` bigint(50) NOT NULL,
+  `id_penjual` bigint(50) NOT NULL,
+  `telp_penjual` varchar(50) NOT NULL,
+  `nama_produk` varchar(50) NOT NULL,
+  `harga` int(50) NOT NULL,
+  `keterangan` varchar(100) NOT NULL,
+  `jumlah` bigint(50) NOT NULL,
+  `status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `detail_transaksi`
+--
+
+INSERT INTO `detail_transaksi` (`id`, `id_transaksi`, `id_produk`, `id_penjual`, `telp_penjual`, `nama_produk`, `harga`, `keterangan`, `jumlah`, `status`) VALUES
+(26, 54, 28, 28, '0192391872918', 'Risoles Mayo', 20000, '', 1, 'Pesanan diterima pembeli'),
+(27, 54, 27, 28, '0192391872918', 'Sate Ayam Bundo', 25000, '', 1, 'Pesanan diterima pembeli'),
+(28, 54, 29, 28, '0192391872918', 'Jelly Segar', 50000, '', 1, 'Pesanan Ditolak'),
+(29, 55, 29, 28, '0192391872918', 'Jelly Segar', 50000, '', 1, 'Pesanan di Proses'),
+(30, 56, 28, 28, '0192391872918', 'Risoles Mayo', 20000, 'pedas', 1, 'Dalam Pengiriman'),
+(31, 57, 45, 26, '0192391872918', 'Madu Trigona', 25000, '', 1, 'Pesanan di Proses'),
+(32, 58, 20, 2, '0192391872918', 'Celana', 125000, '', 1, 'Pesanan di Proses'),
+(33, 59, 28, 28, '0192391872918', 'Risoles Mayo', 20000, 'enakin dong ', 1, 'Dalam Pengiriman'),
+(34, 60, 29, 28, '0192391872918', 'Jelly Segar', 50000, '', 1, 'Pesanan di Proses'),
+(35, 61, 28, 28, '0192391872918', 'Risoles Mayo', 60000, '', 0, 'Pesanan di Proses'),
+(36, 62, 28, 28, '0192391872918', 'Risoles Mayo', 80000, '', 0, 'Pesanan di Proses'),
+(37, 63, 28, 28, '0192391872918', 'Risoles Mayo', 100000, '', 5, 'Pesanan di Proses');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `forum`
 --
 
@@ -141,7 +178,9 @@ INSERT INTO `forum` (`id`, `user_id`, `user`, `konten`, `created_at`) VALUES
 (121, 28, 'Daffa Riza Muliya', 'awokwkwk', '2024-05-21 05:51:22'),
 (122, 28, 'Daffa Riza Muliya', 'Haii', '2024-05-21 10:03:43'),
 (123, 29, 'Hagi Siraj Sumanta', 'top 5 cowok terganteng di unand', '2024-05-26 11:04:26'),
-(124, 26, 'Tiara Valma Alzena', 'Ada yang tau info KKN?', '2024-05-26 16:49:36');
+(124, 26, 'Tiara Valma Alzena', 'Ada yang tau info KKN?', '2024-05-26 16:49:36'),
+(153, 31, 'Boby Darmawan', 'Info loker dong, yang part time', '2024-05-30 08:27:18'),
+(154, 28, 'Daffa Riza Muliya', 'halo', '2024-05-31 11:19:58');
 
 -- --------------------------------------------------------
 
@@ -315,7 +354,9 @@ INSERT INTO `komentar_forum` (`id`, `forum_id`, `user_id`, `user`, `komentar`, `
 (85, 120, 26, 'Tiara Valma Alzena', '88', '2024-05-20 16:57:44'),
 (86, 122, 26, 'Tiara Valma Alzena', 'haii juga', '2024-05-21 12:39:04'),
 (87, 123, 29, 'Hagi Siraj Sumanta', 'fti\n', '2024-05-26 11:04:55'),
-(92, 124, 30, 'Dimas Harianto', 'saya tau', '2024-05-28 08:06:47');
+(92, 124, 30, 'Dimas Harianto', 'saya tau', '2024-05-28 08:06:47'),
+(93, 153, 31, 'Boby Darmawan', 'pc gua', '2024-05-30 08:27:39'),
+(94, 153, 28, 'Daffa Riza Muliya', 'saya tau ', '2024-05-31 11:20:06');
 
 -- --------------------------------------------------------
 
@@ -328,8 +369,10 @@ CREATE TABLE `order_detail` (
   `user_id` bigint(20) NOT NULL,
   `id_penjual` bigint(20) NOT NULL,
   `produk_id` bigint(20) NOT NULL,
+  `jumlah` bigint(20) NOT NULL,
   `keterangan` varchar(100) NOT NULL,
   `alamat` varchar(255) NOT NULL,
+  `telp_pembeli` varchar(50) NOT NULL,
   `total` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -342,6 +385,7 @@ CREATE TABLE `order_detail` (
 CREATE TABLE `produk` (
   `id` bigint(20) NOT NULL,
   `id_penjual` bigint(20) NOT NULL,
+  `telp_penjual` varchar(50) NOT NULL,
   `id_kategori` bigint(20) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `gambar` varchar(255) NOT NULL,
@@ -358,18 +402,21 @@ CREATE TABLE `produk` (
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`id`, `id_penjual`, `id_kategori`, `nama`, `gambar`, `deskripsi`, `rate`, `harga`, `stok`, `slug`, `updated_at`, `created_at`) VALUES
-(17, 2, 1, 'Kalung', 'http://localhost:3000/images/860e87917069977dc61b7575a2109a50.jpg', 'Kalung adalah sejenis perhiasan yang dikenakan di sekitar leher. Biasanya terbuat dari berbagai bahan seperti logam mulia (emas, perak, atau platinum), batu permata, mutiara, kristal, atau bahan lainnya. Kalung memiliki berbagai desain dan panjang, mulai dari model sederhana hingga yang lebih rumit dan mewah. Selain sebagai aksesori mode, kalung juga sering kali memiliki makna simbolis atau religius dalam beberapa budaya.', NULL, 25000, 23, NULL, '2024-04-24 05:11:55', '2024-04-24 05:11:55'),
-(18, 2, 2, 'Baju Wanita Lavita Blouse ', 'http://localhost:3000/images/9db1c97b098be8f9523a5820c4ab164c.jpg', 'Baju adalah pakaian yang dikenakan untuk menutupi tubuh, khususnya bagian atas tubuh seperti dada, bahu, dan lengan. Baju dapat terbuat dari berbagai jenis bahan, termasuk katun, wol, sutra, dan sintetis.', NULL, 250000, 12, NULL, '2024-04-24 05:12:56', '2024-04-24 05:12:56'),
-(20, 2, 2, 'Celana', 'http://localhost:3000/images/86acecac2711c3fbc15045055ca96de3.jpg', 'Celana adalah pakaian yang dikenakan pada bagian bawah tubuh, mulai dari pinggang hingga kaki. Celana umumnya terbuat dari bahan tekstil seperti katun, denim, polyester, atau bahan lainnya.', NULL, 125000, 50, NULL, '2024-04-24 05:15:32', '2024-04-24 05:15:32'),
-(25, 28, 8, 'Laptop MSI Nvidia Gforce GTY', 'http://localhost:3000/images/225ce25d0dee4553d8f34bdeb83395ba.jpg', '<p>Laptop Nvidia Geforce</p>', NULL, 25000000, 2, NULL, '2024-05-21 09:12:30', '2024-05-15 09:35:12'),
-(27, 28, 3, 'Sate Ayam Bundo', 'http://localhost:3000/images/e0ce3e6e539573b4f69b56d8d7727aeb.jpg', '<p>Sate ayam paling enak di dunia</p>', NULL, 25000, 12, NULL, '2024-05-21 09:08:39', '2024-05-21 06:44:40'),
-(28, 28, 3, 'Risoles Mayo', 'http://localhost:3000/images/6c54154beed18d9694db29fe2969babc.jpg', '<p>Risoles mayo terenak di Dunia</p>', NULL, 20000, 12, NULL, '2024-05-21 08:53:03', '2024-05-21 06:45:51'),
-(29, 28, 4, 'Jelly Segar', 'http://localhost:3000/images/7322d2f281f562c26adbf7e965e8bd2f.png', '<p>Si Paling Nikmat, Inilah Resep Es Jelly Segar Rasa Pandan dan Anggur Solusi Gerahmu</p>', NULL, 50000, 15, NULL, '2024-05-21 09:03:03', '2024-05-21 06:48:58'),
-(30, 28, 7, 'Jasa Desain Rumah', 'http://localhost:3000/images/63368a9f50afe47379c1907570f70bb5.jpg', '<p>Jasa desain rumah</p>', NULL, 2000000, 1, NULL, '2024-05-21 09:03:26', '2024-05-21 06:50:59'),
-(42, 26, 5, 'Madu Trigona', 'http://localhost:3000/images/ccf778bc4d0f6d6cfa644389dd73d7f0.png', 'Madu Sehat Alami ', NULL, 12, 12, NULL, '2024-05-24 06:38:43', '2024-05-24 06:38:43'),
-(44, 29, 7, 'Diri', 'http://localhost:3000/images/c440cd1c9446ecb2a7dcbc3e4c27ebd0.png', 'mantep', NULL, 2147483647, 1, NULL, '2024-05-26 11:10:11', '2024-05-26 11:10:11'),
-(45, 26, 5, 'Madu Trigona', 'http://localhost:3000/images/ccf778bc4d0f6d6cfa644389dd73d7f0.png', 'Madu Trigona', NULL, 25000, 12, NULL, '2024-05-26 18:19:21', '2024-05-26 18:19:21');
+INSERT INTO `produk` (`id`, `id_penjual`, `telp_penjual`, `id_kategori`, `nama`, `gambar`, `deskripsi`, `rate`, `harga`, `stok`, `slug`, `updated_at`, `created_at`) VALUES
+(17, 2, '0192391872918', 1, 'Kalung', 'http://localhost:3000/images/860e87917069977dc61b7575a2109a50.jpg', 'Kalung adalah sejenis perhiasan yang dikenakan di sekitar leher. Biasanya terbuat dari berbagai bahan seperti logam mulia (emas, perak, atau platinum), batu permata, mutiara, kristal, atau bahan lainnya. Kalung memiliki berbagai desain dan panjang, mulai dari model sederhana hingga yang lebih rumit dan mewah. Selain sebagai aksesori mode, kalung juga sering kali memiliki makna simbolis atau religius dalam beberapa budaya.', NULL, 25000, 23, NULL, '2024-04-24 05:11:55', '2024-04-24 05:11:55'),
+(18, 2, '0192391872918', 2, 'Baju Wanita Lavita Blouse ', 'http://localhost:3000/images/9db1c97b098be8f9523a5820c4ab164c.jpg', 'Baju adalah pakaian yang dikenakan untuk menutupi tubuh, khususnya bagian atas tubuh seperti dada, bahu, dan lengan. Baju dapat terbuat dari berbagai jenis bahan, termasuk katun, wol, sutra, dan sintetis.', NULL, 250000, 12, NULL, '2024-04-24 05:12:56', '2024-04-24 05:12:56'),
+(20, 2, '0192391872918', 2, 'Celana', 'http://localhost:3000/images/86acecac2711c3fbc15045055ca96de3.jpg', 'Celana adalah pakaian yang dikenakan pada bagian bawah tubuh, mulai dari pinggang hingga kaki. Celana umumnya terbuat dari bahan tekstil seperti katun, denim, polyester, atau bahan lainnya.', NULL, 125000, 50, NULL, '2024-04-24 05:15:32', '2024-04-24 05:15:32'),
+(25, 28, '0192391872918', 8, 'Laptop MSI Nvidia Gforce GTY', 'http://localhost:3000/images/225ce25d0dee4553d8f34bdeb83395ba.jpg', 'Laptop Nvidia Geforce', NULL, 25000000, 2, NULL, '2024-05-28 18:10:27', '2024-05-15 09:35:12'),
+(27, 28, '0192391872918', 3, 'Sate Ayam Bundo', 'http://localhost:3000/images/e0ce3e6e539573b4f69b56d8d7727aeb.jpg', 'Sate Ayam rasa Babi', NULL, 25000, 12, NULL, '2024-05-28 18:10:18', '2024-05-21 06:44:40'),
+(28, 28, '0192391872918', 3, 'Risoles Mayo', 'http://localhost:3000/images/6c54154beed18d9694db29fe2969babc.jpg', 'Risoles mayo terenak di Dunia', NULL, 20000, 12, NULL, '2024-05-28 18:10:35', '2024-05-21 06:45:51'),
+(29, 28, '0192391872918', 4, 'Jelly Segar', 'http://localhost:3000/images/7322d2f281f562c26adbf7e965e8bd2f.png', 'Si Paling Nikmat, Inilah Resep Es Jelly Segar Rasa Pandan dan Anggur Solusi Gerahmu', NULL, 50000, 15, NULL, '2024-05-28 18:10:46', '2024-05-21 06:48:58'),
+(30, 28, '0192391872918', 7, 'Jasa Desain Rumah', 'http://localhost:3000/images/63368a9f50afe47379c1907570f70bb5.jpg', 'Jasa desain rumah', NULL, 2000000, 1, NULL, '2024-05-28 18:10:54', '2024-05-21 06:50:59'),
+(42, 26, '0192391872918', 5, 'Madu Trigona', 'http://localhost:3000/images/ccf778bc4d0f6d6cfa644389dd73d7f0.png', 'Madu Sehat Alami ', NULL, 12, 12, NULL, '2024-05-24 06:38:43', '2024-05-24 06:38:43'),
+(44, 29, '0192391872918', 7, 'Diri', 'http://localhost:3000/images/c440cd1c9446ecb2a7dcbc3e4c27ebd0.png', 'mantep', NULL, 2147483647, 1, NULL, '2024-05-26 11:10:11', '2024-05-26 11:10:11'),
+(45, 26, '0192391872918', 5, 'Madu Trigona', 'http://localhost:3000/images/ccf778bc4d0f6d6cfa644389dd73d7f0.png', 'Madu Trigona', NULL, 25000, 12, NULL, '2024-05-26 18:19:21', '2024-05-26 18:19:21'),
+(46, 26, '088888888', 3, 'Makanan Enak', 'http://localhost:3000/images/5147d853fa666a2f8cb338ca78b45404.jpg', 'Makanan Sangat Nikmat', NULL, 25000, 12, NULL, '2024-05-28 18:23:35', '2024-05-28 18:23:35'),
+(47, 31, '0192391872918', 1, 'Sepatu thrifting', 'http://localhost:3000/images/d27cc64e84a8724e4fdbca19679606f4.png', 'Sepatu ori', NULL, 500000, 5, NULL, '2024-05-30 08:32:41', '2024-05-30 08:30:01'),
+(48, 28, '082286541161', 3, 'tes', 'http://localhost:3000/images/24d0d5322ce37e8ddd0ebfa59a914c50.jpg', 'ass', NULL, 24999, 12, NULL, '2024-05-31 11:28:29', '2024-05-31 11:28:29');
 
 -- --------------------------------------------------------
 
@@ -406,23 +453,54 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`sid`, `expires`, `data`, `createdAt`, `updatedAt`) VALUES
-('-pCrPd_kDZMSmHgPrD_6MGxPMdaznlJB', '2024-05-29 08:03:33', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-28 08:03:33', '2024-05-28 08:03:33'),
-('49LKi-xL3XWXgZ_MTwrEZpkDp_05iJtA', '2024-05-29 04:57:43', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-28 04:57:43', '2024-05-28 04:57:43'),
-('BBROqzmc7AZpV-S5Ob4KH736zb3uiD_v', '2024-05-29 08:03:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-28 08:03:08', '2024-05-28 08:03:08'),
-('d8hzoAkAFg4TbrIa8_Y3A4E_XLmfgbIG', '2024-05-29 06:17:57', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"userId\":\"f34c5a80-4762-406d-99e3-08eabb7b8e98\"}', '2024-05-28 04:57:43', '2024-05-28 06:17:57'),
-('ExMd7t5av2UxicOVgy2nZgT4PPpuiNLx', '2024-05-28 08:41:56', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-27 08:41:56', '2024-05-27 08:41:56'),
-('FIUS9EdGs9E1OAfmoZZxSLOoK39bWBma', '2024-05-29 08:08:43', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"userId\":\"a344f612-40e3-4615-92b2-927c475bd62f\"}', '2024-05-28 08:03:33', '2024-05-28 08:08:43'),
-('KDcE5kkes-hdjPTLvNMyiRL-VEqQP4GD', '2024-05-28 13:30:28', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-27 13:30:28', '2024-05-27 13:30:28'),
-('MwdgYKAemrsVDAd8_o9Bzgm2GX2Cvvvf', '2024-05-28 07:28:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-27 07:28:13', '2024-05-27 07:28:13'),
-('nUzuKB9q6ayZK9yFPOJ1cEKL--XpSEa8', '2024-05-29 04:57:37', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-28 04:57:37', '2024-05-28 04:57:37'),
-('rJ8rmy-lfuAPOc2C3OBeXaXnxYlbpOUY', '2024-05-28 07:50:35', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-05-27 07:50:35', '2024-05-27 07:50:35'),
-('S_jYT3-FBVgdGQsxAjtK90Mj6fJhl7Cm', '2024-05-28 07:27:46', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-27 07:27:47', '2024-05-27 07:27:47'),
-('Uj6l-0hHBnAAY-eaRhjsb7zicNbTcORJ', '2024-05-28 14:33:28', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"userId\":\"1da77528-6f61-43d2-8abc-a14f7f657e34\"}', '2024-05-27 09:05:19', '2024-05-27 14:33:28'),
-('UoN0vn58zmzDz6GV5-ZOMp1AnT8kQyk9', '2024-05-29 04:57:37', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-28 04:57:37', '2024-05-28 04:57:37'),
-('uZea1nIgS75W_jLkOCExk6-SMZaStlvO', '2024-05-28 07:27:46', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-27 07:27:47', '2024-05-27 07:27:47'),
-('Y02Qjv5oVfZU9_gKC6HyZLlBGj6XV4y5', '2024-05-29 08:03:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-28 08:03:08', '2024-05-28 08:03:08'),
-('zEGpAWfjDxcHOsJTL1u521VnRB477j8w', '2024-05-28 14:11:43', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"userId\":\"1da77528-6f61-43d2-8abc-a14f7f657e34\"}', '2024-05-27 09:32:25', '2024-05-27 14:11:43'),
-('zXk570YgcbQq3cY-6A0MfaJnUmQ6beSR', '2024-05-28 13:30:28', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-27 13:30:28', '2024-05-27 13:30:28');
+('-2Qu4vEKIQgpXyGbVW2qh3_j7f6tBX5Z', '2024-06-01 11:29:02', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 11:29:02', '2024-05-31 11:29:02'),
+('-yMxSbYnpPACPwInk_0pGzIuhNxAY1CF', '2024-06-01 13:19:15', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 13:19:15', '2024-05-31 13:19:15'),
+('01g3YtrlufjHbra5tHGpoBlysNW5aunp', '2024-06-01 13:15:41', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 13:15:41', '2024-05-31 13:15:41'),
+('3S0ZW5iJMPlRpdL7UTU0caWdjXGGpbie', '2024-06-01 16:34:17', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 16:34:18', '2024-05-31 16:34:18'),
+('3sEJ0c7nRcX54XaKGQAC4CQFJo8_X6r6', '2024-06-01 13:19:15', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 13:19:15', '2024-05-31 13:19:15'),
+('4ddrZKslaHjfTNtgujxZLwWVEnNAJT_P', '2024-06-01 11:18:21', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 11:18:21', '2024-05-31 11:18:21'),
+('640LYZrN5pWi_hZETpfRyeNhVHz38olf', '2024-06-01 08:00:36', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 08:00:36', '2024-05-31 08:00:36'),
+('6kYfg-W26EY4X_NLmt-Zm2AIxT0ctqf5', '2024-06-01 14:32:11', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"userId\":\"1da77528-6f61-43d2-8abc-a14f7f657e34\"}', '2024-05-31 14:31:29', '2024-05-31 14:32:11'),
+('8gcN4HJZ3zNUodPIu9GTnAOmyVsy3oRe', '2024-06-01 13:43:41', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 13:43:41', '2024-05-31 13:43:41'),
+('9O4AwnYcYxtfUKOnp6vrLGyBUET7gRkG', '2024-06-01 14:30:09', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 14:30:09', '2024-05-31 14:30:09'),
+('Az8oPZZoMJMRY4Pdno9I6SkirTtS0M0t', '2024-06-01 17:30:17', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 17:30:17', '2024-05-31 17:30:17'),
+('Blsm1jMnWmdHs69MTwotqKb6zA2_25LU', '2024-06-01 17:32:03', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"userId\":\"1da77528-6f61-43d2-8abc-a14f7f657e34\"}', '2024-05-31 17:30:17', '2024-05-31 17:32:03'),
+('c07QWfq99cJbcJ8wQyU1vXnkVKrRvObf', '2024-06-01 13:15:41', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 13:15:41', '2024-05-31 13:15:41'),
+('D53yeEbcweGLEr7QG0FeC19e65tRKqKS', '2024-06-01 13:19:15', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-05-31 13:19:15', '2024-05-31 13:19:15'),
+('DcBdfIToh5ztJ0W5GBEgljiRkqk8rORS', '2024-06-01 14:04:09', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 14:04:09', '2024-05-31 14:04:09'),
+('eRhIOGC8yuYRx8eY-n-E8yRr44TkgIaK', '2024-06-01 11:19:39', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 11:19:39', '2024-05-31 11:19:39'),
+('FZjwbxTbgM1XSU1pLb-4xB5Z7r9PHyIr', '2024-06-01 11:19:39', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 11:19:39', '2024-05-31 11:19:39'),
+('Gbc9FZSUTMeS1jZUTRjH0I39oUWFW6Ia', '2024-06-01 13:15:48', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 13:15:48', '2024-05-31 13:15:48'),
+('hEsqpU9FflvZgklfHaeMHzZReEspxWv7', '2024-06-01 11:29:02', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 11:29:02', '2024-05-31 11:29:02'),
+('i1M2v5dS_Swulc-O34q8qBttxW4KbUaE', '2024-06-01 08:49:49', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"userId\":\"1da77528-6f61-43d2-8abc-a14f7f657e34\"}', '2024-05-31 08:42:53', '2024-05-31 08:49:49'),
+('i23fYA5KspJTkGfb19PF6WhR3jaYhJ9Q', '2024-06-01 13:19:15', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-05-31 13:19:15', '2024-05-31 13:19:15'),
+('IH6xWJ_8QTw4GG7VoTD7a92U7WYbpP6m', '2024-06-01 16:34:30', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 16:34:30', '2024-05-31 16:34:30'),
+('iSHU-iiUQ4tuZQRuoUTGteUzwSnMJBM3', '2024-06-01 14:29:05', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 14:29:05', '2024-05-31 14:29:05'),
+('j_B85HHb6PSk_4rQ7mkUwnnPTHLTrSMC', '2024-05-31 19:57:26', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-05-30 19:57:26', '2024-05-30 19:57:26'),
+('J_c-fX3WasFbFP8xNaOyd5nduJXfWY4E', '2024-06-01 11:11:49', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 11:11:49', '2024-05-31 11:11:49'),
+('KC_8yjjkHHJi6t8VsTWgTmwiPsgS6Qll', '2024-06-01 16:34:17', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 16:34:18', '2024-05-31 16:34:18'),
+('L9EAXjiNg3XRE3Ajaod1qFGtkDFh3Coj', '2024-06-01 14:31:29', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 14:31:29', '2024-05-31 14:31:29'),
+('lbjxt5f1ozCDYmCEGHjACMHbFJFkh-Rn', '2024-06-01 13:43:04', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 13:43:04', '2024-05-31 13:43:04'),
+('miCy0ny8BK5AwjFOB3pnZJT2z-z2REK8', '2024-05-31 19:57:26', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-05-30 19:57:26', '2024-05-30 19:57:26'),
+('Mq5b94PtT2zun8qANphj0N6eaTshV1sD', '2024-05-31 19:57:26', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-30 19:57:26', '2024-05-30 19:57:26'),
+('mqKy17XwNU0fDuIP0IeuV5SGYWfAemg4', '2024-06-01 07:59:55', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 07:59:55', '2024-05-31 07:59:55'),
+('NtIyigFlH-GP4DgWnJYPC29KoOwbAZTD', '2024-06-01 17:27:33', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 17:27:33', '2024-05-31 17:27:33'),
+('o3zTk5iJjIqY8WB3KiHIjEE8I8jG1gZL', '2024-05-31 19:57:26', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-30 19:57:26', '2024-05-30 19:57:26'),
+('ocbj4bUEmD1X223fAgXueSmZeRb5Pg23', '2024-06-01 17:14:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 17:14:08', '2024-05-31 17:14:08'),
+('qltsCAVIeyTjggwjr9bL8vaA3vT_xVtX', '2024-05-31 20:57:16', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-30 20:57:16', '2024-05-30 20:57:16'),
+('qmuWc3PJhKubojooGYTnVTkCDwMjyvrr', '2024-06-01 13:19:15', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-05-31 13:19:15', '2024-05-31 13:19:15'),
+('rWiLcaCkriXRsLHKRpOaQ6RYfqTOuqUG', '2024-06-01 16:47:28', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 16:47:28', '2024-05-31 16:47:28'),
+('siiyfz3Kkvc22jXAPITVcPTuuqQ2QpfU', '2024-06-01 11:18:21', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-05-31 11:18:21', '2024-05-31 11:18:21'),
+('T3Q2LIWbXvFYVD5BqAddt54wcClwxgry', '2024-06-01 13:19:16', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 13:19:15', '2024-05-31 13:19:16'),
+('t82CAypgIRAJ4J3QBqjYyl3EUebRVoSQ', '2024-05-31 21:07:06', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-30 21:07:06', '2024-05-30 21:07:06'),
+('udW0yBEAeGm2tF-NqsO2YuQFHrK4i9z0', '2024-06-01 11:18:21', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 11:18:21', '2024-05-31 11:18:21'),
+('uS2lkk4Zl83VFxKaqlQWZeIIDMBI80ac', '2024-06-01 11:19:39', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 11:19:39', '2024-05-31 11:19:39'),
+('VgpLZOcCqC6QwCISGqU98y97VYGgz0il', '2024-06-01 11:18:21', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 11:18:21', '2024-05-31 11:18:21'),
+('Vl1fvP6fVaQnd-hSk8dMJSKw9LrVSopn', '2024-05-31 19:57:26', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-30 19:57:26', '2024-05-30 19:57:26'),
+('Wc_VwOJt30uz8ukqPfg-rwmErAWNSyvt', '2024-06-01 11:18:21', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-05-31 11:18:21', '2024-05-31 11:18:21'),
+('xNRN59kLletJjEz5iXD99UJWgBccCcC0', '2024-06-01 14:27:15', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 14:27:15', '2024-05-31 14:27:15'),
+('_0gnWFhq9sqhebeSIHj3WpoeXAv_4Rpn', '2024-06-01 17:15:55', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 17:15:55', '2024-05-31 17:15:55'),
+('_Is1o3eaUGWRB5PVW5bttxzW9wCfdaVK', '2024-06-01 06:57:37', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}', '2024-05-31 06:57:37', '2024-05-31 06:57:37');
 
 -- --------------------------------------------------------
 
@@ -434,12 +512,11 @@ CREATE TABLE `transaksi` (
   `id` bigint(50) NOT NULL,
   `tanggal_pesan` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `id_pembeli` bigint(20) NOT NULL,
-  `id_penjual` bigint(20) NOT NULL,
   `total` bigint(50) NOT NULL,
-  `keterangan` varchar(100) NOT NULL,
-  `produk` varchar(50) NOT NULL,
   `payment` varchar(50) NOT NULL,
-  `status` varchar(50) NOT NULL,
+  `alamat_pembeli` varchar(100) NOT NULL,
+  `telp_pembeli` varchar(50) NOT NULL,
+  `status_pembayaran` varchar(50) NOT NULL,
   `bukti_transfer` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -447,11 +524,17 @@ CREATE TABLE `transaksi` (
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id`, `tanggal_pesan`, `id_pembeli`, `id_penjual`, `total`, `keterangan`, `produk`, `payment`, `status`, `bukti_transfer`) VALUES
-(18, '2024-05-28 06:17:47', 28, 28, 25000000, 'Daffa memang ganteng', 'Nasi', 'Transfer Bank', 'Pesanan diterima pembeli', 'http://localhost:3000/images/847c9e6e82aa5e453cbe320e77f86f57.jpg'),
-(25, '2024-05-28 05:31:35', 28, 2, 25000, '', 'Kalung', 'E Wallet', 'Sudah Bayar', 'http://localhost:3000/images/3ee3540beba843b5dcf84b6ae86778e7.jpg'),
-(26, '2024-05-28 05:51:45', 28, 26, 25000, '', 'Madu Trigona', 'Transfer Bank', 'Sudah Bayar', 'http://localhost:3000/images/bd9d95576bfffab46883aafe7e307804.png'),
-(27, '2024-05-28 08:08:11', 30, 28, 20000, '', 'Risoles Mayo', 'Transfer Bank', 'Sudah Bayar', 'http://localhost:3000/images/7559f2bbbe69796a112435879fa06aff.png');
+INSERT INTO `transaksi` (`id`, `tanggal_pesan`, `id_pembeli`, `total`, `payment`, `alamat_pembeli`, `telp_pembeli`, `status_pembayaran`, `bukti_transfer`) VALUES
+(54, '2024-05-31 14:17:36', 26, 95000, 'E Wallet', 'Filano Yang nda ada di GMAPS', '088888888', 'Pembayaran Terverifikasi', 'http://localhost:3000/images/d74cc7a4a0fa78f75aad91f46a96276a.png'),
+(55, '2024-05-31 14:17:38', 28, 50000, 'E Wallet', 'Auduri Number 18', '082286541161', 'Pembayaran Terverifikasi', 'http://localhost:3000/images/04667bb6a1004ba490794a4613cc6b7f.png'),
+(56, '2024-05-31 14:16:41', 28, 20000, 'Transfer Bank', 'Auduri Number 18', '082286541161', 'Pembayaran Terverifikasi', 'http://localhost:3000/images/d27cc64e84a8724e4fdbca19679606f4.png'),
+(57, '2024-05-31 14:29:26', 28, 25000, 'E Wallet', 'Auduri Number 18', '082286541161', 'Pembayaran Terverifikasi', 'http://localhost:3000/images/d74cc7a4a0fa78f75aad91f46a96276a.png'),
+(58, '2024-05-31 14:17:02', 28, 125000, 'E Wallet', 'Auduri Number 18', '082286541161', 'Pembayaran Terverifikasi', 'http://localhost:3000/images/d74cc7a4a0fa78f75aad91f46a96276a.png'),
+(59, '2024-05-31 14:30:31', 26, 20000, 'Transfer Bank', 'FILANO JAYA ABADI', '082286541161', 'Pembayaran Terverifikasi', 'http://localhost:3000/images/cd11f9f5fbf404ecc95180605c37f740.png'),
+(60, '2024-05-31 16:45:32', 28, 50000, 'E Wallet', 'Auduri Number 18', '082286541161', 'Menunggu Verifikasi', 'http://localhost:3000/images/d74cc7a4a0fa78f75aad91f46a96276a.png'),
+(61, '2024-05-31 16:58:24', 28, 60000, 'E Wallet', 'Auduri Number 18', '082286541161', 'Menunggu Verifikasi', 'http://localhost:3000/images/d74cc7a4a0fa78f75aad91f46a96276a.png'),
+(62, '2024-05-31 17:01:30', 28, 80000, 'E Wallet', 'Auduri Number 18', '082286541161', 'Menunggu Verifikasi', 'http://localhost:3000/images/04667bb6a1004ba490794a4613cc6b7f.png'),
+(63, '2024-05-31 17:06:39', 28, 100000, 'E Wallet', 'Auduri Number 18', '082286541161', 'Menunggu Verifikasi', 'http://localhost:3000/images/04667bb6a1004ba490794a4613cc6b7f.png');
 
 -- --------------------------------------------------------
 
@@ -483,11 +566,12 @@ INSERT INTO `users` (`id`, `uuid`, `username`, `name`, `email`, `no_telp`, `alam
 (2, '', '2011527001', 'Daffa', 'daffa@email.com', '628511289374', 'Jala Utama Residence, Blok A/4, Kota Padang, Sumatera Barat, Indonesia 25124', '$2a$10$FFhrC998SYAXea52uzE5T..8YXRyvrZL3bT5V0Hp/DY0XMZqmCba2', '', 'm', '2022-07-02 19:34:21', '2024-04-04 05:19:10'),
 (3, '', '2011523019', 'Kemal', 'kemal@email.com', '622358328953', 'Jalan Seberang Padang ', '$2a$10$Nt7pd7djbPhSrDoernRGQOtcS5fOqBUq4Kdp2A/QBgx4s3jJ0.L1i', '', 'm', '2022-07-04 01:08:14', '2023-02-07 05:35:39'),
 (8, '', 'admin', 'admin', 'admin@ramerion.id', '085155158625', 'Jalan Seberang Padang ', '$2a$10$GOb3vFuqzKoyr4MBGAjtZuVKJhrNl/CU5t6Okv35f3UaQ1sz18xDS', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwibmFtYSI6ImFkbWluIiwiaWQiOjgsInJvbGUiOiJkIiwiZW1haWwiOiJhZG1pbkByYW1lcmlvbi5pZCIsIm5vX3RlbHAiOiIwODUxNTUxNTg2MjUiLCJpYXQiOjE2NzU5MzAwMjMsImV4cCI6MTY3NjAxNjQyM30.foSP56xU7TIA5uxNOE0k2JtYbH-wJ-Z1l4VXdY6wRUs', 'admin', '2023-02-07 05:37:14', '2023-02-09 08:07:03'),
-(26, '1da77528-6f61-43d2-8abc-a14f7f657e34', '@tiaravalma', 'Tiara Valma Alzena', 'tiara1239910wqwq@gmail.com', '088888888', 'Filano Yang nda ada di GMAPS', '$argon2id$v=19$m=65536,t=3,p=4$BypR0WNmu81Za+Sr4x5LAA$JxJxTjbIwZ2EYvSeIRhILjw04bUO7KUMIWvYjx8SwdI', NULL, 'User', '2024-05-04 13:25:24', '2024-05-27 13:55:28'),
+(26, '1da77528-6f61-43d2-8abc-a14f7f657e34', '@tiaravalma', 'Tiara Valma Alzena', 'tiara1239910wqwq@gmail.com', '082286541161', 'FILANO JAYA ABADI', '$argon2id$v=19$m=65536,t=3,p=4$BypR0WNmu81Za+Sr4x5LAA$JxJxTjbIwZ2EYvSeIRhILjw04bUO7KUMIWvYjx8SwdI', NULL, 'User', '2024-05-04 13:25:24', '2024-05-31 08:43:44'),
 (27, '3df26ba1-8fcb-4c84-b19f-a8a061f08255', 'admin a', 'Admin Ganteng', 'admin@gmail.com', '082286541161', 'Alamat belum dilengkapi', '$argon2id$v=19$m=65536,t=3,p=4$2MyNN8qn4E34iShEFAC/Yg$CsPoR4Y7cSZJRbW1bicdm0fKo1tffprUi5ANP906/So', NULL, 'admin', '2024-05-07 03:21:52', '2024-05-07 03:21:52'),
-(28, 'f34c5a80-4762-406d-99e3-08eabb7b8e98', '@daffamuliya', 'Daffa Riza Muliya', 'daffamuliya15@gmail.com', '082286541161', 'Alamat belum dilengkapi', '$argon2id$v=19$m=65536,t=3,p=4$ZQMfel9no2th/2u2KbRmaQ$qqRvUDV8TapcDM1kzcCV7+N2x50Kx9Kmd0e1xAJ+mdw', NULL, 'User', '2024-05-07 07:27:36', '2024-05-21 12:59:47'),
+(28, 'f34c5a80-4762-406d-99e3-08eabb7b8e98', '@daffamuliya', 'Daffa Riza Muliya', 'daffamuliya15@gmail.com', '082286541161', 'Auduri Number 18', '$argon2id$v=19$m=65536,t=3,p=4$ZQMfel9no2th/2u2KbRmaQ$qqRvUDV8TapcDM1kzcCV7+N2x50Kx9Kmd0e1xAJ+mdw', NULL, 'User', '2024-05-07 07:27:36', '2024-05-31 08:30:56'),
 (29, '045f96c9-f25d-4ce4-9e29-2f9c07b5b4ae', 'hagisiraj', 'Hagi Siraj Sumanta', 'hagisiraj123@gmail.com', '082170246895', 'Alamat belum dilengkapi', '$argon2id$v=19$m=65536,t=3,p=4$TfJ9ud/lOvGmzl/6LXwKdA$YRJlIkl12D7IlDRQgi4gOfrPDB4DrlAoC/kig1I0fbE', NULL, 'User', '2024-05-26 11:02:36', '2024-05-26 11:02:36'),
-(30, 'a344f612-40e3-4615-92b2-927c475bd62f', 'dimas123', 'Dimas Harianto', 'dimas@gmail.com', '082286541161', 'Auduri Number 18', '$argon2id$v=19$m=65536,t=3,p=4$Ts760g7uPFb/V1+WLDuEzw$QKXFOc0eipEnCa+d7ke30QivMyi7m225nXa5jFMH2q8', NULL, 'User', '2024-05-28 08:05:32', '2024-05-28 08:07:33');
+(30, 'a344f612-40e3-4615-92b2-927c475bd62f', 'dimas123', 'Dimas Harianto', 'dimas@gmail.com', '082286541161', 'Auduri Number 18', '$argon2id$v=19$m=65536,t=3,p=4$Ts760g7uPFb/V1+WLDuEzw$QKXFOc0eipEnCa+d7ke30QivMyi7m225nXa5jFMH2q8', NULL, 'User', '2024-05-28 08:05:32', '2024-05-28 08:07:33'),
+(31, 'e1dca40d-503c-4efa-85bd-cd1365d11538', 'boby29', 'Boby Darmawan', 'bobydarmawan36@gmail.com', '', 'korong gadang', '$argon2id$v=19$m=65536,t=3,p=4$75p8PC/Ag548yGgDUj9q0A$1Fec9ZZRb/6t1G10AUEX3L95zln7XV9IQ7+DJ5pTcVo', NULL, 'User', '2024-05-30 08:20:53', '2024-05-30 08:23:37');
 
 --
 -- Indexes for dumped tables
@@ -513,6 +597,14 @@ ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `produk_id` (`produk_id`);
+
+--
+-- Indexes for table `detail_transaksi`
+--
+ALTER TABLE `detail_transaksi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_transaksi` (`id_transaksi`),
+  ADD KEY `id_produk` (`id_produk`);
 
 --
 -- Indexes for table `forum`
@@ -613,25 +705,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `active_banners`
 --
 ALTER TABLE `active_banners`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+
+--
+-- AUTO_INCREMENT for table `detail_transaksi`
+--
+ALTER TABLE `detail_transaksi`
+  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `forum`
 --
 ALTER TABLE `forum`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT for table `gambar_blog`
@@ -667,37 +765,37 @@ ALTER TABLE `kategori_produk`
 -- AUTO_INCREMENT for table `komentar_forum`
 --
 ALTER TABLE `komentar_forum`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `requested_banners`
 --
 ALTER TABLE `requested_banners`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables
@@ -715,6 +813,13 @@ ALTER TABLE `blog`
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`);
+
+--
+-- Constraints for table `detail_transaksi`
+--
+ALTER TABLE `detail_transaksi`
+  ADD CONSTRAINT `detail_transaksi_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id`),
+  ADD CONSTRAINT `detail_transaksi_ibfk_2` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id`);
 
 --
 -- Constraints for table `forum`
