@@ -135,7 +135,11 @@ const RiwayatPesanan = () => {
                             </p>
                             <hr />
                             <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
-                              <strong>Status:</strong> <br /> {detail.status}
+                              <strong>Status Pengiriman:</strong> <br /> {detail.status}
+                            </p>
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
+                              <strong>Status Pembayaran:</strong> <br /> {detail.transaksi.status_pembayaran}
                             </p>
                           </Card.Body>
                         </Card>

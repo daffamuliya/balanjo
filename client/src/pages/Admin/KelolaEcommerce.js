@@ -49,6 +49,16 @@ const KelolaEcommerce = () => {
     }
   };
 
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      await axios.put(`http://localhost:3000/marketplace/statusTransaksi/${id}`, { status: newStatus });
+      // Update status pembayaran in the state
+      setTransaksi(transaksi.map((item) => (item.id === id ? { ...item, status_pembayaran: newStatus } : item)));
+    } catch (error) {
+      console.error('Error updating status:', error);
+    }
+  };
+
   return (
     <div>
       <AdminNavbar />
@@ -83,7 +93,15 @@ const KelolaEcommerce = () => {
                           <td>{item.user.name}</td>
                           <td>Rp {item.total}</td>
                           <td>{item.payment}</td>
-                          <td>{item.status}</td>
+                          <td>
+                            <select className="form-select" aria-label="Default select example" onChange={(e) => handleStatusChange(item.id, e.target.value)}>
+                              <option value="" disabled selected>
+                                {item.status_pembayaran}
+                              </option>
+                              <option value="Pembayaran Terverifikasi">Pembayaran Terverifikasi</option>
+                              <option value="Pembayaran Gagal">Pembayaran Gagal</option>
+                            </select>
+                          </td>
                           <td>
                             <a href={item.bukti_transfer} target="_blank" rel="noopener noreferrer">
                               Lihat Bukti Transfer

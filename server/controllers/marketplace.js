@@ -79,7 +79,7 @@ controller.transfer = async (req, res) => {
     }
 
     const allowedTypes = ['.png', '.jpg', '.jpeg'];
-    const { id_pembeli, total, produk, payment, alamat_pembeli, telp_pembeli } = req.body;
+    const { id_pembeli, total, produk, payment, alamat_pembeli, status_pembayaran, telp_pembeli } = req.body;
     const { bukti_transfer } = req.files;
 
     if (!allowedTypes.includes(path.extname(bukti_transfer.name).toLowerCase())) {
@@ -101,6 +101,7 @@ controller.transfer = async (req, res) => {
       payment,
       alamat_pembeli,
       telp_pembeli,
+      status_pembayaran: 'Menunggu Verifikasi',
       bukti_transfer: buktiTransferUrl,
     };
 
@@ -119,7 +120,7 @@ controller.transfer = async (req, res) => {
         harga: item.total, // Assuming total is the price of the product
         jumlah: 1, // Assuming you don't have the quantity in the received data
         keterangan: item.keterangan,
-        status: 'Sudah Bayar',
+        status: 'Pesanan di Proses',
       }));
 
       // Debug log untuk productDetails
@@ -606,6 +607,12 @@ controller.getTransaksiByIdJual = async function (req, res) {
       where: {
         id_penjual: req.userId,
       },
+      include: [
+        {
+          model: model.transaksi,
+          attributes: ['alamat_pembeli', 'status_pembayaran'],
+        },
+      ],
     });
 
     if (result.length > 0) {
@@ -747,6 +754,12 @@ controller.getDetailTransaksi = async function (req, res) {
       where: {
         id_transaksi: req.params.id,
       },
+      include: [
+        {
+          model: model.transaksi,
+          attributes: ['status_pembayaran'],
+        },
+      ],
     });
 
     if (result) {
@@ -779,6 +792,33 @@ controller.updateTransaksi = async function (req, res) {
 
     if (result) {
       await model.detail_transaksi.update({ status: req.body.status }, { where: { id: req.params.id } });
+      res.status(200).json({
+        message: 'Berhasil memperbarui transaksi',
+      });
+    } else {
+      res.status(404).json({
+        message: 'Data tidak ditemukan',
+      });
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({
+      message: 'Terjadi kesalahan dalam memproses permintaan',
+      error: error.message,
+    });
+  }
+};
+
+controller.updateStatusTransaksi = async function (req, res) {
+  try {
+    const result = await model.transaksi.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (result) {
+      await model.transaksi.update({ status_pembayaran: req.body.status }, { where: { id: req.params.id } });
       res.status(200).json({
         message: 'Berhasil memperbarui transaksi',
       });

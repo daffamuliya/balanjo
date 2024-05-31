@@ -60,6 +60,7 @@ router.get('/order/total', verifyUser, controller.marketplace.getTotalOrder);
 router.get('/transaksi/:id', controller.marketplace.getTransaksiById);
 router.get('/detailtransaksi/:id', controller.marketplace.getDetailTransaksi);
 router.put('/transaksi/:id', controller.marketplace.updateTransaksi);
+router.put('/statusTransaksi/:id', controller.marketplace.updateStatusTransaksi);
 router.get('/:user_id/getOrderDetail', controller.marketplace.getOrderDetail);
 router.get('/order/getMyOrder', verifyUser, controller.marketplace.getMyOrder);
 router.post('/addOrderDetail', verifyUser, controller.marketplace.addOrderDetail);

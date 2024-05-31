@@ -80,14 +80,11 @@ export const BuktiBayar = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('id_pembeli', id_pembeli);
-    // formData.append('id_penjual', idPenjual);
     formData.append('total', totalBayar);
-    // formData.append('keterangan', keterangan);
-    formData.append('produk', JSON.stringify(orderDetails)); // Perubahan di sini
+    formData.append('produk', JSON.stringify(orderDetails));
     formData.append('payment', payment);
     formData.append('alamat_pembeli', alamat_pembeli);
     formData.append('telp_pembeli', telp_pembeli);
-    // formData.append('telp_penjual', telp_penjual);
     formData.append('bukti_transfer', bukti_transfer);
 
     try {
