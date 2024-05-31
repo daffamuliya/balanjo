@@ -43,9 +43,6 @@ const users = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    remember_token: {
-      type: DataTypes.STRING,
-    },
     role: {
       type: DataTypes.STRING,
       allowNull: true,
