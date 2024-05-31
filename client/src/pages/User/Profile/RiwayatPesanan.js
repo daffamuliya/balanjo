@@ -76,12 +76,12 @@ const RiwayatPesanan = () => {
                   <Table responsive>
                     <thead>
                       <tr>
-                        <th>Transaksi ID</th>
-                        <th>Tanggal</th>
+                        <th>Order ID</th>
+                        <th>Tanggal Pemesanan</th>
                         <th>Total Transaksi</th>
                         <th>Payment</th>
                         <th>Alamat Saya</th>
-                        <th>Status</th>
+                        <th className="text-center">Lihat Status</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -93,7 +93,7 @@ const RiwayatPesanan = () => {
                             <td>Rp {item.total}</td>
                             <td>{item.payment}</td>
                             <td>{item.alamat_pembeli}</td>
-                            <td>
+                            <td className="text-center">
                               <i className="bi bi-eye-fill" style={{ color: '#A08336', cursor: 'pointer' }} onClick={() => loadTransaksiDetail(item.id)}></i>
                             </td>
                           </tr>
@@ -127,7 +127,11 @@ const RiwayatPesanan = () => {
                             </p>
                             <hr />
                             <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
-                              <strong>Harga:</strong> <br /> Rp {detail.harga}
+                              <strong>Jumlah Pesanan:</strong> <br /> {detail.jumlah}
+                            </p>
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
+                              <strong>Total Harga:</strong> <br /> Rp {detail.harga}
                             </p>
                             <hr />
                             <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>

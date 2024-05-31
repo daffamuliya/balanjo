@@ -75,6 +75,7 @@ const Cart = () => {
         user_id: userId,
         id_penjual: item.id_penjual,
         produk_id: item.produk_id,
+        jumlah: item.jumlah,
         keterangan: item.keterangan,
         alamat: user && user.alamat,
         telp_pembeli: user && user.no_telp,

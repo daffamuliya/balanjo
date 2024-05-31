@@ -36,10 +36,6 @@ const DetailTransaksi = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    telp_pembeli: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     nama_produk: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -53,7 +49,7 @@ const DetailTransaksi = sequelize.define(
       allowNull: false,
     },
     jumlah: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       allowNull: false,
     },
     status: {

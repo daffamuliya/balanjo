@@ -40,16 +40,14 @@ const PesananSeller = () => {
   };
 
   const [TransaksiDetail, setTransaksiDetail] = useState(null);
-  const [Bukti, setBukti] = useState(null);
   const [scrollableModal, setScrollableModal] = useState(false);
-  const [scrollableModal2, setScrollableModal2] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState('');
 
   const loadTransaksiDetail = async (id) => {
     try {
       const response = await axios.get(`http://localhost:3000/marketplace/transaksi/${id}`);
-      const BuktiData = Array.isArray(response.data.data) ? response.data.data : [response.data.data];
-      setBukti(BuktiData);
+      const TransaksiDetailData = Array.isArray(response.data.data) ? response.data.data : [response.data.data];
+      setTransaksiDetail(TransaksiDetailData);
       setScrollableModal(true);
     } catch (error) {
       console.log(error);
@@ -72,16 +70,9 @@ const PesananSeller = () => {
     }
   };
 
-  const loadBukti = async (id) => {
-    try {
-      const response = await axios.get(`http://localhost:3000/marketplace/transaksi/${id}`);
-      const TransaksiDetailData = Array.isArray(response.data.data) ? response.data.data : [response.data.data];
-      setTransaksiDetail(TransaksiDetailData);
-      setScrollableModal2(true);
-      console.log(TransaksiDetailData);
-    } catch (error) {
-      console.log(error);
-    }
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
   return (
@@ -102,6 +93,7 @@ const PesananSeller = () => {
                         <thead>
                           <tr>
                             <th>Order ID</th>
+                            <th>Tanggal Pemesanan</th>
                             <th>Produk</th>
                             <th>Harga</th>
                             <th>Telp Pembeli</th>
@@ -113,21 +105,23 @@ const PesananSeller = () => {
                         </thead>
                         <tbody>
                           {Array.isArray(transaksi) &&
-                            transaksi.map((item) => (
-                              <tr>
-                                <td>{item.id}</td>
-                                <td>{item.nama_produk}</td>
-                                <td>{item.harga}</td>
-                                <td>{item.telp_pembeli}</td>
-                                <td>{item.transaksi.alamat_pembeli}</td>
-                                <td>{item.transaksi.status_pembayaran}</td>
-                                <td>{item.status}</td>
-                                <td>
-                                  <i class="bi bi-pencil-square" onClick={() => loadTransaksiDetail(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
-                                  <i class="bi bi-eye-fill" onClick={() => loadBukti(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
-                                </td>
-                              </tr>
-                            ))}
+                            transaksi
+                              .sort((a, b) => b.id - a.id)
+                              .map((item) => (
+                                <tr key={item.id}>
+                                  <td>{item.id}</td>
+                                  <td>{formatDate(item.transaksi.tanggal_pesan)}</td>
+                                  <td>{item.nama_produk}</td>
+                                  <td>{item.harga}</td>
+                                  <td>{item.transaksi.telp_pembeli}</td>
+                                  <td>{item.transaksi.alamat_pembeli}</td>
+                                  <td>{item.transaksi.status_pembayaran}</td>
+                                  <td>{item.status}</td>
+                                  <td>
+                                    <i class="bi bi-pencil-square" onClick={() => loadTransaksiDetail(item.id)} style={{ color: '#A08336', paddingRight: '10px', cursor: 'pointer' }}></i>
+                                  </td>
+                                </tr>
+                              ))}
                         </tbody>
                       </Table>
                     </div>
@@ -158,6 +152,10 @@ const PesananSeller = () => {
                             </p>{' '}
                             <hr />
                             <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
+                              Jumlah : <br /> {detail.jumlah}
+                            </p>{' '}
+                            <hr />
+                            <p style={{ color: 'black', marginTop: '5px', textAlign: 'justify', fontSize: '16px' }}>
                               Total Transaksi : <br /> {detail.harga}
                             </p>{' '}
                             <hr />
@@ -177,33 +175,6 @@ const PesananSeller = () => {
                             <button className="btn btn-primary" style={{ backgroundColor: '#A08336', fontSize: '16px', textAlign: 'center', border: 'black', width: '100%', marginTop: '20px' }} onClick={() => handleSaveStatus(detail.id)}>
                               Simpan perubahan status
                             </button>
-                          </div>
-                        </div>
-                      </MDBContainer>
-                    ))}
-                </section>
-              </MDBRow>
-            </MDBModalBody>
-          </MDBModalContent>
-        </MDBModalDialog>
-      </MDBModal>
-
-      <MDBModal open={scrollableModal2} setOpen={setScrollableModal2} tabIndex="-1">
-        <MDBModalDialog centered scrollable>
-          <MDBModalContent>
-            <MDBModalHeader>
-              <MDBModalTitle>Bukti Transfer</MDBModalTitle>
-              <MDBBtn className="btn-close" color="none" onClick={() => setScrollableModal2(!scrollableModal2)}></MDBBtn>
-            </MDBModalHeader>
-            <MDBModalBody>
-              <MDBRow className="justify-content-center">
-                <section className="isiblog">
-                  {Array.isArray(Bukti) &&
-                    Bukti.map((detail) => (
-                      <MDBContainer key={detail.id}>
-                        <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-                          <div className="col-lg-12 ">
-                            <img src={detail.bukti_transfer} alt="" />
                           </div>
                         </div>
                       </MDBContainer>

@@ -32,12 +32,6 @@ export const BuktiBayar = () => {
         console.log('Total Bayar:', totalBayar);
         console.log('kebabian', orderDetails);
         setTotalBayar(totalBayar);
-        if (orderDetails.length > 0) {
-          // setIdPenjual(orderDetails[0].id_penjual);
-          // setKeterangan(orderDetails[0].keterangan); // Set the keterangan state
-          // setProduk(orderDetails[0].produk.nama); // Set the keterangan state
-          // setTelpPenjual(orderDetails[0].produk.telp_penjual); // Set the keterangan state
-        }
       } else {
         console.error('Data detail pemesanan tidak ditemukan');
       }
