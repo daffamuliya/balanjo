@@ -52,7 +52,6 @@ const KelolaEcommerce = () => {
   const handleStatusChange = async (id, newStatus) => {
     try {
       await axios.put(`http://localhost:3000/marketplace/statusTransaksi/${id}`, { status: newStatus });
-      // Update status pembayaran in the state
       setTransaksi(transaksi.map((item) => (item.id === id ? { ...item, status_pembayaran: newStatus } : item)));
     } catch (error) {
       console.error('Error updating status:', error);
@@ -89,7 +88,7 @@ const KelolaEcommerce = () => {
                       .map((item) => (
                         <tr key={item.id}>
                           <td>{item.id}</td>
-                          <td>{item.tanggalPesanNormal}</td> {/* Gunakan tanggal yang sudah diformat */}
+                          <td>{item.tanggalPesanNormal}</td>
                           <td>{item.user.name}</td>
                           <td>Rp {item.total}</td>
                           <td>{item.payment}</td>
