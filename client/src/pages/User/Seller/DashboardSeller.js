@@ -135,7 +135,7 @@ const DashboardSeller = () => {
                                 <td>{item.id}</td>
                                 <td>{item.nama_produk}</td>
                                 <td>{item.harga}</td>
-                                <td>{item.telp_pembeli}</td>
+                                <td>{item.transaksi.telp_pembeli}</td>
                                 <td>{item.transaksi.alamat_pembeli}</td>
                                 <td>{item.transaksi.status_pembayaran}</td>
                                 <td>{item.status}</td>
