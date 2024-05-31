@@ -73,6 +73,7 @@ router.get('/banner/total', controller.marketplace.getTotalBanner);
 router.get('/banner/:id', controller.marketplace.getBannerById);
 router.delete('/banner/rejectBanner/:id', controller.marketplace.rejectBanner);
 router.delete('/banner/deleteActiveBanner/:id', controller.marketplace.deleteActiveBanner);
+router.delete('/banner/deleteRequestedBanner/:id', controller.marketplace.deleteRequestedBanner);
 router.delete('/deleteCart/:id', controller.marketplace.deleteCart);
 router.delete('/deleteOrderDetail/:id', controller.marketplace.deleteOrderDetail);
 router.delete('/deleteAllCartItems/:user_id', verifyUser, controller.marketplace.deleteAllCartItems);

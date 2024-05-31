@@ -1033,6 +1033,21 @@ controller.deleteActiveBanner = async (req, res) => {
   }
 };
 
+controller.deleteRequestedBanner = async (req, res) => {
+  try {
+    await model.requested_banner.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(200).json({
+      message: 'berhasil hapus id',
+    });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
 controller.addActiveBanner = async (req, res) => {
   try {
     const { id_user, nama_banner, gambar, status } = req.body;
