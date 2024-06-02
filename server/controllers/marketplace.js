@@ -133,7 +133,7 @@ controller.transfer = async (req, res) => {
       where: {
         id: productIds,
       },
-      attributes: ['id'],
+      attributes: ['id', 'stok'], // Tambahkan stok ke dalam atribut yang diambil
     });
 
     console.log('Existing products:', existingProducts);
@@ -148,6 +148,15 @@ controller.transfer = async (req, res) => {
       productDetails = productDetails.map((item) => ({ ...item, id_transaksi: newTransaksi.id }));
 
       await model.detail_transaksi.bulkCreate(productDetails, { transaction: t });
+
+      // Kurangi stok produk
+      for (const item of productDetails) {
+        const product = existingProducts.find((p) => p.id === item.id_produk);
+        if (product.stok < item.jumlah) {
+          throw new Error(`Stok produk dengan id ${item.id_produk} tidak mencukupi.`);
+        }
+        await model.produk.update({ stok: product.stok - item.jumlah }, { where: { id: item.id_produk }, transaction: t });
+      }
 
       return newTransaksi;
     });
