@@ -57,7 +57,7 @@ const KelolaUser = () => {
     try {
       swal({
         title: 'Anda yakin?',
-        text: 'Anda tidak akan dapat mengembalikan blog ini!',
+        text: 'Anda tidak akan dapat mengembalikan user ini!',
         icon: 'warning',
         buttons: true,
         dangerMode: true,
